@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-package com.github.lukesky19.skymarket.util.enums;
+package com.github.lukesky19.skymarket.enums;
 
 public enum ActionType {
     FILLER,

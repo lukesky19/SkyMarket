@@ -27,7 +27,7 @@ import com.github.lukesky19.skymarket.configuration.manager.LocaleLoader;
 import com.github.lukesky19.skymarket.configuration.record.Gui;
 import com.github.lukesky19.skymarket.configuration.record.Items;
 import com.github.lukesky19.skymarket.configuration.record.Locale;
-import com.github.lukesky19.skymarket.util.enums.ActionType;
+import com.github.lukesky19.skymarket.enums.ActionType;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;

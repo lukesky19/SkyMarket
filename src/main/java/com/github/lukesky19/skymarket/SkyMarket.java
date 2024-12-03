@@ -23,7 +23,6 @@ import com.github.lukesky19.skymarket.configuration.manager.LocaleLoader;
 import com.github.lukesky19.skymarket.configuration.manager.SettingsLoader;
 import com.github.lukesky19.skymarket.configuration.manager.ShopLoader;
 import com.github.lukesky19.skymarket.listener.InventoryListener;
-import com.github.lukesky19.skymarket.util.ConfigurationUtility;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
@@ -54,16 +53,14 @@ public final class SkyMarket extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        ConfigurationUtility configurationUtility = new ConfigurationUtility(this);
-
         setupEconomy();
         setupPlaceholderAPI();
 
         InventoryListener inventoryListener = new InventoryListener(this);
-        settingsLoader = new SettingsLoader(this, configurationUtility);
-        localeLoader = new LocaleLoader(this, this.settingsLoader, configurationUtility);
-        itemsLoader = new ItemsLoader(this, configurationUtility);
-        shopLoader = new ShopLoader(this, settingsLoader, localeLoader, itemsLoader, configurationUtility);
+        settingsLoader = new SettingsLoader(this);
+        localeLoader = new LocaleLoader(this, this.settingsLoader);
+        itemsLoader = new ItemsLoader(this);
+        shopLoader = new ShopLoader(this, settingsLoader, localeLoader, itemsLoader);
 
         SkyMarketCommand skyMarketCommand = new SkyMarketCommand(this, localeLoader, shopLoader);
         Objects.requireNonNull(Bukkit.getPluginCommand("skymarket")).setExecutor(skyMarketCommand);

@@ -17,17 +17,17 @@
 */
 package com.github.lukesky19.skymarket.gui;
 
+import com.github.lukesky19.skylib.format.FormatUtil;
+import com.github.lukesky19.skylib.format.PlaceholderAPIUtil;
+import com.github.lukesky19.skylib.gui.GUIButton;
+import com.github.lukesky19.skylib.gui.InventoryGUI;
 import com.github.lukesky19.skymarket.SkyMarket;
 import com.github.lukesky19.skymarket.configuration.manager.ItemsLoader;
 import com.github.lukesky19.skymarket.configuration.manager.LocaleLoader;
 import com.github.lukesky19.skymarket.configuration.record.Gui;
 import com.github.lukesky19.skymarket.configuration.record.Items;
 import com.github.lukesky19.skymarket.configuration.record.Locale;
-import com.github.lukesky19.skymarket.util.FormatUtil;
-import com.github.lukesky19.skymarket.util.PlaceholderAPIUtil;
 import com.github.lukesky19.skymarket.util.enums.ActionType;
-import com.github.lukesky19.skymarket.util.gui.AbstractGUI;
-import com.github.lukesky19.skymarket.util.gui.GUIButton;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
@@ -42,7 +42,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
 
-public class MarketGUI extends AbstractGUI {
+public class MarketGUI extends InventoryGUI {
     private final SkyMarket skyMarket;
     private final LocaleLoader localeLoader;
     private final ItemsLoader itemsLoader;
@@ -87,11 +87,10 @@ public class MarketGUI extends AbstractGUI {
                     }
 
                     for (int i = 0; i <= guiConfig.gui().size() - 1; i++) {
-                        setButton(i, (new GUIButton.Builder())
-                                .setItemStack(new ItemStack(Material.valueOf(item.material())))
+                        setButton(i, new GUIButton.Builder()
+                                .setMaterial(Material.valueOf(item.material()))
                                 .setItemName(FormatUtil.format(item.name()))
                                 .setLore(loreList)
-                                .setAction(event -> {})
                                 .build());
                     }
                 }
@@ -105,7 +104,7 @@ public class MarketGUI extends AbstractGUI {
                     }
 
                     setButton(entry.slot(), (new GUIButton.Builder())
-                            .setItemStack(new ItemStack(Material.valueOf(item.material())))
+                            .setMaterial(Material.valueOf(item.material()))
                             .setItemName(FormatUtil.format(item.name()))
                             .setLore(loreList)
                             .setAction(event -> super.closeInventory(skyMarket, (Player) event.getWhoClicked()))
@@ -145,7 +144,7 @@ public class MarketGUI extends AbstractGUI {
                     }
 
                     setButton(entry.slot(), (new GUIButton.Builder())
-                            .setItemStack(new ItemStack(Material.valueOf(item.material())))
+                            .setMaterial(Material.valueOf(item.material()))
                             .setItemName(FormatUtil.format(item.name(), placeholders))
                             .setLore(loreList)
                             .setAction(event -> {

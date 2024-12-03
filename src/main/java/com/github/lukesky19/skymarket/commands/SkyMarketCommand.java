@@ -17,11 +17,11 @@
 */
 package com.github.lukesky19.skymarket.commands;
 
+import com.github.lukesky19.skylib.format.FormatUtil;
 import com.github.lukesky19.skymarket.SkyMarket;
 import com.github.lukesky19.skymarket.configuration.manager.LocaleLoader;
 import com.github.lukesky19.skymarket.configuration.manager.ShopLoader;
 import com.github.lukesky19.skymarket.configuration.record.Locale;
-import com.github.lukesky19.skymarket.util.FormatUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

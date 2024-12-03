@@ -17,7 +17,7 @@
 */
 package com.github.lukesky19.skymarket.configuration.record;
 
-import org.spongepowered.configurate.objectmapping.ConfigSerializable;
+import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
 
 @ConfigSerializable
 public record Settings(String locale, Integer refreshTimeSeconds) {}

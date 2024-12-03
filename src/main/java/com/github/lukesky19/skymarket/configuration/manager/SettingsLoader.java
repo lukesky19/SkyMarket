@@ -17,24 +17,21 @@
 */
 package com.github.lukesky19.skymarket.configuration.manager;
 
+import com.github.lukesky19.skylib.config.ConfigurationUtility;
+import com.github.lukesky19.skylib.libs.configurate.ConfigurateException;
+import com.github.lukesky19.skylib.libs.configurate.yaml.YamlConfigurationLoader;
 import com.github.lukesky19.skymarket.SkyMarket;
 import com.github.lukesky19.skymarket.configuration.record.Settings;
-import com.github.lukesky19.skymarket.util.ConfigurationUtility;
 
 import java.io.File;
 import java.nio.file.Path;
 
-import org.spongepowered.configurate.ConfigurateException;
-import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
-
 public class SettingsLoader {
     final SkyMarket skyMarket;
-    final ConfigurationUtility configurationUtility;
     Settings settingsConfig;
 
-    public SettingsLoader(SkyMarket skyMarket, ConfigurationUtility configurationUtility) {
+    public SettingsLoader(SkyMarket skyMarket) {
         this.skyMarket = skyMarket;
-        this.configurationUtility = configurationUtility;
     }
 
     public Settings getSettingsConfig() {
@@ -48,7 +45,7 @@ public class SettingsLoader {
             skyMarket.saveResource("settings.yml", false);
         }
 
-        YamlConfigurationLoader loader = configurationUtility.getYamlConfigurationLoader(path);
+        YamlConfigurationLoader loader = ConfigurationUtility.getYamlConfigurationLoader(path);
         try {
             settingsConfig = loader.load().get(Settings.class);
         } catch (ConfigurateException e) {

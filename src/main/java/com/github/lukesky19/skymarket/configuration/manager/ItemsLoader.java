@@ -17,25 +17,23 @@
 */
 package com.github.lukesky19.skymarket.configuration.manager;
 
+import com.github.lukesky19.skylib.config.ConfigurationUtility;
+import com.github.lukesky19.skylib.format.FormatUtil;
+import com.github.lukesky19.skylib.libs.configurate.ConfigurateException;
+import com.github.lukesky19.skylib.libs.configurate.yaml.YamlConfigurationLoader;
 import com.github.lukesky19.skymarket.SkyMarket;
 import com.github.lukesky19.skymarket.configuration.record.Items;
-import com.github.lukesky19.skymarket.util.ConfigurationUtility;
-import com.github.lukesky19.skymarket.util.FormatUtil;
 import net.kyori.adventure.text.logger.slf4j.ComponentLogger;
-import org.spongepowered.configurate.ConfigurateException;
-import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
 
 import java.io.File;
 import java.nio.file.Path;
 
 public class ItemsLoader {
     private final SkyMarket skyMarket;
-    private final ConfigurationUtility configurationUtility;
     private Items items;
 
-    public ItemsLoader(SkyMarket skyMarket, ConfigurationUtility configurationUtility) {
+    public ItemsLoader(SkyMarket skyMarket) {
         this.skyMarket = skyMarket;
-        this.configurationUtility = configurationUtility;
     }
 
     public Items getItems() {
@@ -57,7 +55,7 @@ public class ItemsLoader {
             skyMarket.saveResource("items.yml", false);
         }
 
-        YamlConfigurationLoader loader = configurationUtility.getYamlConfigurationLoader(path);
+        YamlConfigurationLoader loader = ConfigurationUtility.getYamlConfigurationLoader(path);
         try {
             items = loader.load().get(Items.class);
         } catch (ConfigurateException e) {

@@ -17,32 +17,30 @@
 */
 package com.github.lukesky19.skymarket.gui;
 
+import com.github.lukesky19.skylib.format.FormatUtil;
+import com.github.lukesky19.skylib.format.PlaceholderAPIUtil;
+import com.github.lukesky19.skylib.gui.GUIButton;
+import com.github.lukesky19.skylib.gui.InventoryGUI;
 import com.github.lukesky19.skymarket.SkyMarket;
 import com.github.lukesky19.skymarket.configuration.manager.ItemsLoader;
 import com.github.lukesky19.skymarket.configuration.manager.LocaleLoader;
 import com.github.lukesky19.skymarket.configuration.record.Gui;
 import com.github.lukesky19.skymarket.configuration.record.Items;
 import com.github.lukesky19.skymarket.configuration.record.Locale;
-import com.github.lukesky19.skymarket.util.FormatUtil;
-import com.github.lukesky19.skymarket.util.PlaceholderAPIUtil;
-import com.github.lukesky19.skymarket.util.enums.ActionType;
-import com.github.lukesky19.skymarket.util.gui.AbstractGUI;
-import com.github.lukesky19.skymarket.util.gui.GUIButton;
+import com.github.lukesky19.skymarket.enums.ActionType;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.ClickType;
-import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
 
-public class MarketGUI extends AbstractGUI {
+public class MarketGUI extends InventoryGUI {
     private final SkyMarket skyMarket;
     private final LocaleLoader localeLoader;
     private final ItemsLoader itemsLoader;
@@ -71,6 +69,8 @@ public class MarketGUI extends AbstractGUI {
     public void decorate() {
         clearButtons();
 
+        if(itemsLoader.getItems() == null) return;
+
         LinkedHashMap<Integer, Items.Entry> items = itemsLoader.getItems().items();
         List<Integer> keysList = new ArrayList<>(items.keySet());
 
@@ -81,35 +81,50 @@ public class MarketGUI extends AbstractGUI {
             switch (type) {
                 case FILLER -> {
                     Gui.Item item = entry.item();
-                    List<Component> loreList = new ArrayList<>();
-                    for (String loreLine : item.lore()) {
-                        loreList.add(FormatUtil.format(loreLine));
-                    }
+                    Material material = Material.getMaterial(item.material());
 
-                    for (int i = 0; i <= guiConfig.gui().size() - 1; i++) {
-                        setButton(i, (new GUIButton.Builder())
-                                .setItemStack(new ItemStack(Material.valueOf(item.material())))
-                                .setItemName(FormatUtil.format(item.name()))
-                                .setLore(loreList)
-                                .setAction(event -> {})
-                                .build());
+                    if (material != null) {
+                        List<Component> lore = item.lore().stream().map(FormatUtil::format).toList();
+
+                        GUIButton.Builder builder = new GUIButton.Builder();
+
+                        builder.setMaterial(material);
+
+                        if(item.name() != null) {
+                            builder.setItemName(FormatUtil.format(item.name()));
+                        }
+
+                        builder.setLore(lore);
+
+                        GUIButton button = builder.build();
+
+                        for (int i = 0; i <= guiConfig.gui().size() - 1; i++) {
+                            setButton(i, button);
+                        }
                     }
                 }
 
                 case RETURN -> {
                     Gui.Item item = entry.item();
+                    Material material = Material.getMaterial(item.material());
 
-                    List<Component> loreList = new ArrayList<>();
-                    for (String loreLine : item.lore()) {
-                        loreList.add(FormatUtil.format(loreLine));
+                    if(material != null) {
+                        List<Component> lore = item.lore().stream().map(FormatUtil::format).toList();
+
+                        GUIButton.Builder builder = new GUIButton.Builder();
+
+                        builder.setMaterial(material);
+
+                        if(item.name() != null) {
+                            builder.setItemName(FormatUtil.format(item.name()));
+                        }
+
+                        builder.setLore(lore);
+
+                        builder.setAction(event -> closeInventory(skyMarket, (Player) event.getWhoClicked()));
+
+                        setButton(entry.slot(), builder.build());
                     }
-
-                    setButton(entry.slot(), (new GUIButton.Builder())
-                            .setItemStack(new ItemStack(Material.valueOf(item.material())))
-                            .setItemName(FormatUtil.format(item.name()))
-                            .setLore(loreList)
-                            .setAction(event -> super.closeInventory(skyMarket, (Player) event.getWhoClicked()))
-                            .build());
                 }
 
                 case PLACEHOLDER -> {
@@ -121,140 +136,199 @@ public class MarketGUI extends AbstractGUI {
                     Items.Item item = randomEntry.item();
                     Items.Prices prices = randomEntry.prices();
 
-                    double buyPrice;
-                    double sellPrice;
-                    if(prices.buyPriceMax() <= 0.0 && prices.buyPriceMin() <= 0.0) {
-                        buyPrice = 0.0;
-                    } else {
-                        buyPrice = BigDecimal.valueOf(Math.random() * (prices.buyPriceMax() - prices.buyPriceMin()) + prices.buyPriceMin()).setScale(2,  RoundingMode.HALF_UP).doubleValue();
-                    }
+                    Material material = Material.getMaterial(item.material());
 
-                    if(prices.sellPriceMax() <= 0.0 && prices.sellPriceMin() <= 0.0) {
-                        sellPrice = 0.0;
-                    } else {
-                        sellPrice = BigDecimal.valueOf(Math.random() * (prices.sellPriceMax() - prices.sellPriceMin()) + prices.sellPriceMin()).setScale(2,  RoundingMode.HALF_UP).doubleValue();
-                    }
+                    if(material != null) {
+                        double buyPrice;
+                        double sellPrice;
+                        if (prices.buyPriceMax() <= 0.0 && prices.buyPriceMin() <= 0.0) {
+                            buyPrice = 0.0;
+                        } else {
+                            buyPrice = BigDecimal.valueOf(Math.random() * (prices.buyPriceMax() - prices.buyPriceMin()) + prices.buyPriceMin()).setScale(2, RoundingMode.HALF_UP).doubleValue();
+                        }
 
-                    List<TagResolver.Single> placeholders = new ArrayList<>();
-                    placeholders.add(Placeholder.parsed("buy_price", String.valueOf(buyPrice)));
-                    placeholders.add(Placeholder.parsed("sell_price", String.valueOf(sellPrice)));
+                        if (prices.sellPriceMax() <= 0.0 && prices.sellPriceMin() <= 0.0) {
+                            sellPrice = 0.0;
+                        } else {
+                            sellPrice = BigDecimal.valueOf(Math.random() * (prices.sellPriceMax() - prices.sellPriceMin()) + prices.sellPriceMin()).setScale(2, RoundingMode.HALF_UP).doubleValue();
+                        }
 
-                    List<Component> loreList = new ArrayList<>();
-                    for (String loreLine : item.lore()) {
-                        loreList.add(FormatUtil.format(loreLine, placeholders));
-                    }
+                        List<TagResolver.Single> placeholders = List.of(
+                                Placeholder.parsed("buy_price", String.valueOf(buyPrice)),
+                                Placeholder.parsed("sell_price", String.valueOf(sellPrice)));
 
-                    setButton(entry.slot(), (new GUIButton.Builder())
-                            .setItemStack(new ItemStack(Material.valueOf(item.material())))
-                            .setItemName(FormatUtil.format(item.name(), placeholders))
-                            .setLore(loreList)
-                            .setAction(event -> {
-                                Locale locale = localeLoader.getLocale();
-                                Player player = (Player) event.getWhoClicked();
+                        List<Component> lore = item.lore().stream().map(line -> FormatUtil.format(line, placeholders)).toList();
 
-                                if(event.getClick().equals(ClickType.LEFT) || event.getClick().equals(ClickType.SHIFT_LEFT)) {
-                                    if(buyPrice <= 0.0) {
+
+                        GUIButton.Builder builder = new GUIButton.Builder();
+
+                        builder.setMaterial(material);
+
+                        if(item.name() != null) {
+                            builder.setItemName(FormatUtil.format(item.name()));
+                        }
+
+                        builder.setLore(lore);
+
+                        builder.setAction(event -> {
+                            Locale locale = localeLoader.getLocale();
+                            Player player = (Player) event.getWhoClicked();
+
+                            switch(event.getClick()) {
+                                case LEFT, SHIFT_LEFT -> {
+                                    if (buyPrice <= 0.0) {
                                         event.getWhoClicked().sendMessage(FormatUtil.format(player, locale.prefix() + locale.unbuyable()));
                                         return;
                                     }
 
                                     ActionType randomType = ActionType.valueOf(randomEntry.type());
-                                    if(randomType.equals(ActionType.ITEM)) {
-                                        ItemStack buyItem = new ItemStack(Material.valueOf(item.material()));
+                                    switch(randomType) {
+                                        case ITEM -> buyItem(player, material, item.name(), buyPrice);
 
-                                        if (skyMarket.getEconomy().getBalance(player) >= buyPrice) {
-                                            skyMarket.getEconomy().withdrawPlayer(player, buyPrice);
-
-                                            HashMap<Integer, ItemStack> leftover = player.getInventory().addItem(buyItem);
-                                            for(Map.Entry<Integer, ItemStack> leftoverEntry : leftover.entrySet()) {
-                                                ItemStack itemStack = leftoverEntry.getValue();
-                                                player.getWorld().dropItem(player.getLocation(), itemStack);
-                                            }
-
-                                            List<TagResolver.Single> successPlaceholders = new ArrayList<>();
-                                            successPlaceholders.add(Placeholder.parsed("amount", String.valueOf(buyItem.getAmount())));
-                                            successPlaceholders.add(Placeholder.parsed("item", item.name()));
-                                            successPlaceholders.add(Placeholder.parsed("price", String.valueOf(buyPrice)));
-                                            successPlaceholders.add(Placeholder.parsed("bal", String.valueOf(skyMarket.getEconomy().getBalance(player))));
-
-                                            event.getWhoClicked().sendMessage(FormatUtil.format(player, locale.prefix() + locale.buySuccess(), successPlaceholders));
-                                        } else {
-                                            event.getWhoClicked().sendMessage(FormatUtil.format(player, locale.prefix() + locale.insufficientFunds()));
-                                            Bukkit.getScheduler().runTaskLater(skyMarket, () -> event.getWhoClicked().closeInventory(), 1L);
-                                        }
-                                    }
-
-                                    if(randomType.equals(ActionType.COMMAND)) {
-                                        if (skyMarket.getEconomy().getBalance(player) >= buyPrice) {
-                                            skyMarket.getEconomy().withdrawPlayer(player, buyPrice);
-
-                                            for (String command : randomEntry.commands().buyCommands()) {
-                                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), PlaceholderAPIUtil.parsePlaceholders(player, command));
-                                            }
-
-                                            List<TagResolver.Single> successPlaceholders = new ArrayList<>();
-                                            successPlaceholders.add(Placeholder.parsed("amount", "1"));
-                                            successPlaceholders.add(Placeholder.parsed("item", randomEntry.item().name()));
-                                            successPlaceholders.add(Placeholder.parsed("price", String.valueOf(buyPrice)));
-                                            successPlaceholders.add(Placeholder.parsed("bal", String.valueOf(skyMarket.getEconomy().getBalance(player))));
-
-                                            event.getWhoClicked().sendMessage(FormatUtil.format(player, locale.prefix() + locale.buySuccess(), successPlaceholders));
-                                        } else {
-                                            event.getWhoClicked().sendMessage(FormatUtil.format(player, locale.prefix() + locale.insufficientFunds()));
-                                            Bukkit.getScheduler().runTaskLater(skyMarket, () -> event.getWhoClicked().closeInventory(InventoryCloseEvent.Reason.UNLOADED), 1L);
-                                        }
+                                        case COMMAND -> buyCommand(player, item.name(), buyPrice, randomEntry.commands().buyCommands());
                                     }
                                 }
 
-                                if(event.getClick().equals(ClickType.RIGHT) || event.getClick().equals(ClickType.SHIFT_RIGHT)) {
+                                case RIGHT, SHIFT_RIGHT -> {
                                     if (sellPrice <= 0.0) {
                                         event.getWhoClicked().sendMessage(FormatUtil.format(player, locale.prefix() + locale.unsellable()));
                                         return;
                                     }
 
                                     ActionType randomType = ActionType.valueOf(randomEntry.type());
-                                    if (randomType.equals(ActionType.ITEM)) {
-                                        ItemStack sellItem = new ItemStack(Material.valueOf(randomEntry.item().material()));
+                                    switch(randomType) {
+                                        case ITEM -> sellItem(player,material, item.name(), sellPrice);
 
-                                        if (player.getInventory().containsAtLeast(sellItem, sellItem.getAmount())) {
-                                            player.getInventory().removeItem(sellItem);
-                                            skyMarket.getEconomy().depositPlayer(player, sellPrice);
-
-                                            List<TagResolver.Single> successPlaceholders = new ArrayList<>();
-                                            successPlaceholders.add(Placeholder.parsed("amount", String.valueOf(sellItem.getAmount())));
-                                            successPlaceholders.add(Placeholder.parsed("item", randomEntry.item().name()));
-                                            successPlaceholders.add(Placeholder.parsed("price", String.valueOf(sellPrice)));
-                                            successPlaceholders.add(Placeholder.parsed("bal", String.valueOf(skyMarket.getEconomy().getBalance(player))));
-
-                                            event.getWhoClicked().sendMessage(FormatUtil.format(player, locale.prefix() + locale.sellSuccess(), successPlaceholders));
-                                        } else {
-                                            event.getWhoClicked().sendMessage(FormatUtil.format(player, locale.prefix() + locale.notEnoughItems()));
-                                            Bukkit.getScheduler().runTaskLater(skyMarket, () -> event.getWhoClicked().closeInventory(InventoryCloseEvent.Reason.UNLOADED), 1L);
-                                        }
-                                    }
-
-                                    if (randomType.equals(ActionType.COMMAND)) {
-                                        skyMarket.getEconomy().depositPlayer(player, sellPrice);
-
-                                        for (String command : randomEntry.commands().buyCommands()) {
-                                            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), PlaceholderAPIUtil.parsePlaceholders(player, command));
-                                        }
-
-                                        List<TagResolver.Single> successPlaceholders = new ArrayList<>();
-                                        successPlaceholders.add(Placeholder.parsed("amount", "1"));
-                                        successPlaceholders.add(Placeholder.parsed("item", randomEntry.item().name()));
-                                        successPlaceholders.add(Placeholder.parsed("price", String.valueOf(sellPrice)));
-                                        successPlaceholders.add(Placeholder.parsed("bal", String.valueOf(skyMarket.getEconomy().getBalance(player))));
-
-                                        event.getWhoClicked().sendMessage(FormatUtil.format(player, locale.prefix() + locale.buySuccess(), successPlaceholders));
+                                        case COMMAND -> sellCommand(player, item.name(), sellPrice, randomEntry.commands().sellCommands());
                                     }
                                 }
-                            })
-                            .build());
+                            }
+                        });
+
+                        setButton(entry.slot(), builder.build());
+                    }
                 }
             }
         }
 
         super.decorate();
+    }
+
+    /**
+     * This method contains the logic to purchase an item.
+     * @param player The player buying.
+     * @param material The material being purchased.
+     * @param itemName The name of the item being purchased.
+     * @param price The price of the item being purchased.
+     */
+    private void buyItem(Player player, Material material, String itemName, double price) {
+        Locale locale = localeLoader.getLocale();
+
+        ItemStack buyItem = new ItemStack(material);
+
+        if (skyMarket.getEconomy().getBalance(player) >= price) {
+            skyMarket.getEconomy().withdrawPlayer(player, price);
+
+            HashMap<Integer, ItemStack> leftover = player.getInventory().addItem(buyItem);
+            for (Map.Entry<Integer, ItemStack> leftoverEntry : leftover.entrySet()) {
+                ItemStack itemStack = leftoverEntry.getValue();
+                player.getWorld().dropItem(player.getLocation(), itemStack);
+            }
+
+            List<TagResolver.Single> successPlaceholders = new ArrayList<>();
+            successPlaceholders.add(Placeholder.parsed("amount", String.valueOf(buyItem.getAmount())));
+            successPlaceholders.add(Placeholder.parsed("item", itemName));
+            successPlaceholders.add(Placeholder.parsed("price", String.valueOf(price)));
+            successPlaceholders.add(Placeholder.parsed("bal", String.valueOf(skyMarket.getEconomy().getBalance(player))));
+
+            player.sendMessage(FormatUtil.format(player, locale.prefix() + locale.buySuccess(), successPlaceholders));
+        } else {
+            player.sendMessage(FormatUtil.format(player, locale.prefix() + locale.insufficientFunds()));
+            Bukkit.getScheduler().runTaskLater(skyMarket, () -> player.closeInventory(), 1L);
+        }
+    }
+
+    /**
+     * This method contains the logic to sell an item.
+     * @param player The player selling.
+     * @param material The material being sold
+     * @param itemName The name of the item being sold.
+     * @param price The price of the item being sold.
+     */
+    private void sellItem(Player player, Material material, String itemName, double price) {
+        Locale locale = localeLoader.getLocale();
+
+        ItemStack sellItem = new ItemStack(material);
+
+        if (player.getInventory().containsAtLeast(sellItem, sellItem.getAmount())) {
+            player.getInventory().removeItem(sellItem);
+            skyMarket.getEconomy().depositPlayer(player, price);
+
+            List<TagResolver.Single> successPlaceholders = new ArrayList<>();
+            successPlaceholders.add(Placeholder.parsed("amount", String.valueOf(sellItem.getAmount())));
+            successPlaceholders.add(Placeholder.parsed("item", itemName));
+            successPlaceholders.add(Placeholder.parsed("price", String.valueOf(price)));
+            successPlaceholders.add(Placeholder.parsed("bal", String.valueOf(skyMarket.getEconomy().getBalance(player))));
+
+            player.sendMessage(FormatUtil.format(player, locale.prefix() + locale.sellSuccess(), successPlaceholders));
+        } else {
+            player.sendMessage(FormatUtil.format(player, locale.prefix() + locale.notEnoughItems()));
+            Bukkit.getScheduler().runTaskLater(skyMarket, () -> closeInventory(skyMarket, player), 1L);
+        }
+    }
+
+    /**
+     * This method contains the logic to purchase a command.
+     * @param player The player buying.
+     * @param name The name of the command being purchased.
+     * @param price The price of the command being purchased.
+     * @param buyCommands The list of commands to run.
+     */
+    private void buyCommand(Player player, String name, double price, List<String> buyCommands) {
+        Locale locale = localeLoader.getLocale();
+
+        if (skyMarket.getEconomy().getBalance(player) >= price) {
+            for (String command : buyCommands) {
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), PlaceholderAPIUtil.parsePlaceholders(player, command));
+            }
+
+            skyMarket.getEconomy().withdrawPlayer(player, price);
+
+            List<TagResolver.Single> successPlaceholders = new ArrayList<>();
+            successPlaceholders.add(Placeholder.parsed("amount", String.valueOf(1)));
+            successPlaceholders.add(Placeholder.parsed("item", name));
+            successPlaceholders.add(Placeholder.parsed("price", String.valueOf(price)));
+            successPlaceholders.add(Placeholder.parsed("bal", String.valueOf(skyMarket.getEconomy().getBalance(player))));
+
+            player.sendMessage(FormatUtil.format(player, locale.prefix() + locale.buySuccess(), successPlaceholders));
+        } else {
+            player.sendMessage(FormatUtil.format(player, locale.prefix() + locale.insufficientFunds()));
+            Bukkit.getScheduler().runTaskLater(skyMarket, () -> closeInventory(skyMarket, player), 1L);
+        }
+    }
+
+    /**
+     * This method contains the logic to sell a command.
+     * @param player The player selling.
+     * @param name The name of whatever is being purchased.
+     * @param price The price of the item being sold.
+     * @param sellCommands The list of commands to run.
+     */
+    private void sellCommand(Player player, String name, double price, List<String> sellCommands) {
+        Locale locale = localeLoader.getLocale();
+
+        skyMarket.getEconomy().depositPlayer(player, price);
+
+        for(String command : sellCommands) {
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), PlaceholderAPIUtil.parsePlaceholders(player, command));
+        }
+
+        List<TagResolver.Single> successPlaceholders = new ArrayList<>();
+        successPlaceholders.add(Placeholder.parsed("amount", String.valueOf(1)));
+        successPlaceholders.add(Placeholder.parsed("item", name));
+        successPlaceholders.add(Placeholder.parsed("price", String.valueOf(price)));
+        successPlaceholders.add(Placeholder.parsed("bal", String.valueOf(skyMarket.getEconomy().getBalance(player))));
+
+        player.sendMessage(FormatUtil.format(player, locale.prefix() + locale.sellSuccess(), successPlaceholders));
     }
 }

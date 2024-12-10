@@ -17,13 +17,13 @@
 */
 package com.github.lukesky19.skymarket.configuration.record;
 
-import org.spongepowered.configurate.objectmapping.ConfigSerializable;
+import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 
 @ConfigSerializable
-public record Items(LinkedHashMap<Integer, Entry> items) {
+public record Items(String configVersion, LinkedHashMap<Integer, Entry> items) {
     @ConfigSerializable
     public record Entry(
             String type,

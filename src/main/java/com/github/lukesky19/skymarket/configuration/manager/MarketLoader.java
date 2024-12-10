@@ -21,36 +21,37 @@ import com.github.lukesky19.skylib.config.ConfigurationUtility;
 import com.github.lukesky19.skylib.libs.configurate.ConfigurateException;
 import com.github.lukesky19.skylib.libs.configurate.yaml.YamlConfigurationLoader;
 import com.github.lukesky19.skymarket.SkyMarket;
-import com.github.lukesky19.skymarket.configuration.record.Items;
+import com.github.lukesky19.skymarket.configuration.record.Gui;
 
-import javax.annotation.CheckForNull;
 import java.io.File;
 import java.nio.file.Path;
 
-public class ItemsLoader {
-    private final SkyMarket skyMarket;
-    private Items items;
+import javax.annotation.CheckForNull;
 
-    public ItemsLoader(SkyMarket skyMarket) {
+public class MarketLoader {
+    private final SkyMarket skyMarket;
+    private Gui configuration;
+
+    public MarketLoader(SkyMarket skyMarket) {
         this.skyMarket = skyMarket;
     }
 
     @CheckForNull
-    public Items getItems() {
-        return items;
+    public Gui getConfiguration() {
+        return configuration;
     }
 
     public void reload() {
-        items = null;
+        configuration = null;
 
-        Path path = Path.of(skyMarket.getDataFolder() + File.separator + "items.yml");
+        Path path = Path.of(skyMarket.getDataFolder() + File.separator + "market.yml");
         if (!path.toFile().exists()) {
-            skyMarket.saveResource("items.yml", false);
+            skyMarket.saveResource("market.yml", false);
         }
 
         YamlConfigurationLoader loader = ConfigurationUtility.getYamlConfigurationLoader(path);
         try {
-            items = loader.load().get(Items.class);
+            configuration = loader.load().get(Gui.class);
         } catch (ConfigurateException e) {
             throw new RuntimeException(e);
         }

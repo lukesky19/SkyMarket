@@ -1,3 +1,4 @@
+config-version: 1.0.0
 gui:
   size: 27
   name: "<gold><bold>Market</bold></gold>"

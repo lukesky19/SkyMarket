@@ -5,7 +5,7 @@ api-version: '1.21'
 load: STARTUP
 author: lukeskywlker19
 description: A rotating shop plugin
-depend: [Vault, PlaceholderAPI]
+depend: [SkyLib, Vault]
 
 commands:
   skymarket:
@@ -20,6 +20,6 @@ permissions:
   skymarket.commands.skymarket:
     description: Permission to access the shop.
     default: op
-  skyshop.commands.skymarket.reload:
+  skymarket.commands.skymarket.reload:
     description: Permission to reload the plugin.
     default: op

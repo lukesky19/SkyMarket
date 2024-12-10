@@ -17,10 +17,11 @@
 */
 package com.github.lukesky19.skymarket.configuration.record;
 
-import org.spongepowered.configurate.objectmapping.ConfigSerializable;
+import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
 
 @ConfigSerializable
 public record Locale(
+        String configVersion,
         String prefix,
         String noPermission,
         String configReload,
@@ -31,5 +32,8 @@ public record Locale(
         String unbuyable,
         String unsellable,
         String inGameOnly,
-        String unknownArgument) {
+        String unknownArgument,
+        String marketRefreshed,
+        String marketOpenError,
+        String marketRefreshTime) {
 }

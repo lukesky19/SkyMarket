@@ -20,8 +20,10 @@ package com.github.lukesky19.skymarket.commands;
 import com.github.lukesky19.skylib.format.FormatUtil;
 import com.github.lukesky19.skymarket.SkyMarket;
 import com.github.lukesky19.skymarket.configuration.manager.LocaleLoader;
-import com.github.lukesky19.skymarket.configuration.manager.ShopLoader;
 import com.github.lukesky19.skymarket.configuration.record.Locale;
+import com.github.lukesky19.skymarket.manager.MarketManager;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
+import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -30,36 +32,37 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class SkyMarketCommand implements CommandExecutor, TabCompleter {
     private final SkyMarket skyMarket;
     private final LocaleLoader localeLoader;
-    private final ShopLoader shopLoader;
+    private final MarketManager marketManager;
 
     public SkyMarketCommand(
             SkyMarket skyMarket,
             LocaleLoader localeLoader,
-            ShopLoader shopLoader) {
+            MarketManager marketManager) {
         this.skyMarket = skyMarket;
         this.localeLoader = localeLoader;
-        this.shopLoader = shopLoader;
+        this.marketManager = marketManager;
     }
 
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        Locale locale;
-        if(localeLoader.getLocale() != null) {
-            locale = localeLoader.getLocale();
-        } else {
-            locale = localeLoader.getDefaultLocale();
-        }
+        Locale locale = localeLoader.getLocale();
 
         switch(args.length) {
             case 0 -> {
                 if(sender instanceof Player player) {
                     if(sender.hasPermission("skymarket.commands.skymarket")) {
-                        shopLoader.getMarketGUI().openInventory(skyMarket, player);
-                        return true;
+                        if(marketManager.getMarketGUI() != null) {
+                            marketManager.getMarketGUI().openInventory(skyMarket, player);
+                            return true;
+                        } else {
+                            player.sendMessage(FormatUtil.format(locale.prefix() + locale.marketOpenError()));
+                            return false;
+                        }
                     } else {
                         sender.sendMessage(FormatUtil.format(player, locale.prefix() + locale.noPermission()));
                         return false;
@@ -71,36 +74,63 @@ public class SkyMarketCommand implements CommandExecutor, TabCompleter {
             }
 
             case 1 -> {
-                if (args[0].equalsIgnoreCase("reload")) {
-                    if (sender instanceof Player player) {
-                        if (player.hasPermission("skymarket.commands.skymarket.reload")) {
-                            skyMarket.reload();
+                switch(args[0].toLowerCase()) {
+                    case "reload" -> {
+                        if (sender instanceof Player player) {
+                            if (player.hasPermission("skymarket.commands.skymarket.reload")) {
+                                skyMarket.reload();
 
-                            if(localeLoader.getLocale() != null) {
                                 locale = localeLoader.getLocale();
-                            } else {
-                                locale = localeLoader.getDefaultLocale();
-                            }
 
-                            sender.sendMessage(FormatUtil.format(player, locale.prefix() + locale.configReload()));
-                            return true;
+                                sender.sendMessage(FormatUtil.format(player, locale.prefix() + locale.configReload()));
+                                return true;
+                            } else {
+                                sender.sendMessage(FormatUtil.format(player, locale.prefix() + locale.noPermission()));
+                                return false;
+                            }
                         } else {
-                            sender.sendMessage(FormatUtil.format(player, locale.prefix() + locale.noPermission()));
-                            return false;
+                            skyMarket.reload();
+                            skyMarket.getComponentLogger().info(FormatUtil.format(locale.configReload()));
+                            return true;
                         }
-                    } else {
-                        skyMarket.reload();
-                        skyMarket.getComponentLogger().info(FormatUtil.format(locale.configReload()));
-                        return true;
+                    }
+
+                    case "refresh" -> {
+                        if(sender instanceof Player player) {
+                            if(player.hasPermission("skymarket.commands.skymarket.refresh")) {
+                                marketManager.refreshMarket();
+
+                                return true;
+                            }
+                        }
+                    }
+
+                    case "time" -> {
+                        if(sender instanceof Player player) {
+                            if(player.hasPermission("skymarket.commands.skymarket.time")) {
+                                SimpleDateFormat simpleDateFormat = marketManager.getSimpleDateFormat();
+
+                                Date date = new Date(marketManager.getResetTime());
+
+                                List<TagResolver.Single> placeholders = List.of(Placeholder.parsed("time", simpleDateFormat.format(date)));
+
+                                player.sendMessage(FormatUtil.format(locale.prefix() + locale.marketRefreshTime(), placeholders));
+
+                                return true;
+                            }
+                        }
+                    }
+
+                    default -> {
+                        if (sender instanceof Player player) {
+                            player.sendMessage(FormatUtil.format(player, locale.prefix() + locale.unknownArgument(), new ArrayList<>()));
+                        } else {
+                            skyMarket.getComponentLogger().info(FormatUtil.format(locale.unknownArgument(), new ArrayList<>()));
+                        }
+
+                        return false;
                     }
                 }
-
-                if (sender instanceof Player player) {
-                    player.sendMessage(FormatUtil.format(player, locale.prefix() + locale.unknownArgument(), new ArrayList<>()));
-                } else {
-                    skyMarket.getComponentLogger().info(FormatUtil.format(locale.unknownArgument(), new ArrayList<>()));
-                }
-                return false;
             }
 
             default -> {
@@ -112,6 +142,8 @@ public class SkyMarketCommand implements CommandExecutor, TabCompleter {
                 return false;
             }
         }
+
+        return false;
     }
 
     @Nullable

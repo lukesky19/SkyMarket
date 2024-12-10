@@ -23,7 +23,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 @ConfigSerializable
-public record Gui(GuiData gui) {
+public record Gui(String configVersion, GuiData gui) {
     @ConfigSerializable
     public record GuiData(Integer size, String name, LinkedHashMap<Integer, Entry> entries) {}
 

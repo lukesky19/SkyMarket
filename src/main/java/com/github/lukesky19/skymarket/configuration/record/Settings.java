@@ -20,4 +20,4 @@ package com.github.lukesky19.skymarket.configuration.record;
 import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
 
 @ConfigSerializable
-public record Settings(String locale, Integer refreshTimeSeconds) {}
+public record Settings(String configVersion, String locale, Integer refreshTimeSeconds) {}

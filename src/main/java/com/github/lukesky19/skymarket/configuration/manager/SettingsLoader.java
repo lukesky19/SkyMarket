@@ -23,6 +23,7 @@ import com.github.lukesky19.skylib.libs.configurate.yaml.YamlConfigurationLoader
 import com.github.lukesky19.skymarket.SkyMarket;
 import com.github.lukesky19.skymarket.configuration.record.Settings;
 
+import javax.annotation.CheckForNull;
 import java.io.File;
 import java.nio.file.Path;
 
@@ -34,6 +35,7 @@ public class SettingsLoader {
         this.skyMarket = skyMarket;
     }
 
+    @CheckForNull
     public Settings getSettingsConfig() {
         return settingsConfig;
     }
@@ -49,7 +51,6 @@ public class SettingsLoader {
         try {
             settingsConfig = loader.load().get(Settings.class);
         } catch (ConfigurateException e) {
-            skyMarket.setPluginState(false);
             throw new RuntimeException(e);
         }
     }

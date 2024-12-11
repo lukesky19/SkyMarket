@@ -154,10 +154,13 @@ public class SkyMarketCommand implements CommandExecutor, TabCompleter {
         if(args.length == 1) {
             ArrayList<String> subCmds = new ArrayList<>();
             if(sender instanceof Player) {
-                if(sender.hasPermission("skyshop.commands.reload")) subCmds.add("reload");
+                if(sender.hasPermission("skymarket.commands.skymarket.reload")) subCmds.add("reload");
+                if(sender.hasPermission("skymarket.commands.skymarket.time")) subCmds.add("time");
             } else {
                 subCmds.add("reload");
+                subCmds.add("time");
             }
+
             return subCmds;
         }
 

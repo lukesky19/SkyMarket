@@ -34,7 +34,7 @@ public class LocaleLoader {
     final SettingsLoader settingsLoader;
     private Locale locale;
     private final Locale defaultLocale = new Locale(
-            "1.1.0",
+            "1.1.1",
             "<gold><bold>SkyMarket</bold></gold><gray> ▪ </gray>",
             "<red>You do not have permission for this command.</red>",
             "<aqua>Configuration files have been reloaded.</aqua>",
@@ -109,15 +109,39 @@ public class LocaleLoader {
 
     private void migrateLocale() {
         switch(locale.configVersion()) {
-            case "1.1.0" -> {
+            case "1.1.1" -> {
                 // Current version, do nothing.
             }
 
-            case null -> {
-                // Version 1.0.0 -> 1.1.0
+            case "1.1.0" -> {
+                // Version 1.1.0 -> 1.1.1
                 Locale newLocale = new Locale(
-                        "1.1.0",
-                        locale.prefix(),
+                        "1.1.1",
+                        locale.prefix().trim(),
+                        locale.noPermission(),
+                        locale.configReload(),
+                        locale.notEnoughItems(),
+                        locale.insufficientFunds(),
+                        locale.buySuccess(),
+                        locale.sellSuccess(),
+                        locale.unbuyable(),
+                        locale.unsellable(),
+                        locale.inGameOnly(),
+                        locale.unknownArgument(),
+                        locale.marketRefreshed(),
+                        locale.marketOpenError(),
+                        locale.marketRefreshTime());
+
+                locale = newLocale;
+
+                saveLocale(newLocale);
+            }
+
+            case null -> {
+                // Version 1.0.0 -> 1.1.1
+                Locale newLocale = new Locale(
+                        "1.1.1",
+                        locale.prefix().trim(),
                         locale.noPermission(),
                         locale.configReload(),
                         locale.notEnoughItems(),

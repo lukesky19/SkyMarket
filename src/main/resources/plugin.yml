@@ -23,3 +23,6 @@ permissions:
   skymarket.commands.skymarket.reload:
     description: Permission to reload the plugin.
     default: op
+  skymarket.commands.skymarket.time:
+    description: Permission to view when the market will refresh.
+    default: op

@@ -117,6 +117,9 @@ public class SkyMarketCommand implements CommandExecutor, TabCompleter {
                                 player.sendMessage(FormatUtil.format(locale.prefix() + locale.marketRefreshTime(), placeholders));
 
                                 return true;
+                            } else {
+                                sender.sendMessage(FormatUtil.format(player, locale.prefix() + locale.noPermission()));
+                                return false;
                             }
                         }
                     }

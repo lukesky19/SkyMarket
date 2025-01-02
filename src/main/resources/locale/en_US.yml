@@ -1,7 +1,6 @@
-config-version: 1.1.0
+config-version: 1.2.0
 # Prefix is placed in-front of all other messages automatically.
-prefix: "<gold><bold>SkyMarket</bold></gold><gray> ▪ </gray> "
-no-permission: "<red>You do not have permission for this command.</red>"
+prefix: "<gold><bold>SkyMarket</bold></gold><gray> ▪ </gray>"
 config-reload: "<aqua>Configuration files have been reloaded.</aqua>"
 not-enough-items: "<red>You do not have enough items to sell.</red>"
 insufficient-funds: "<red>Insufficient funds.</red>"
@@ -12,7 +11,6 @@ sell-success: "<white>Sold <yellow><amount> <item></yellow> for <yellow><price><
 unbuyable: "<red>This item is not able to be purchased.</red>"
 unsellable: "<red>This item is not able to be sold.</red>"
 in-game-only: "<red>This command can only be ran in-game.</red>"
-unknown-argument: "<red>One or more of the arguments sent is not recognized.</red>"
 market-refreshed: "<white>The market has been refreshed.</white>"
 market-open-error: "<red>Unable to open the market due to a configuration issue.</red>"
-market-refresh-time: "<white>The market will be refreshed at <yellow><time></yellow>.</white>"
+market-refresh-time: "<white>The market will be refreshed in <yellow><time></yellow>.</white>"

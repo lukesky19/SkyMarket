@@ -18,24 +18,22 @@
 package com.github.lukesky19.skymarket.commands;
 
 import com.github.lukesky19.skylib.format.FormatUtil;
+import com.github.lukesky19.skylib.record.Time;
 import com.github.lukesky19.skymarket.SkyMarket;
 import com.github.lukesky19.skymarket.configuration.manager.LocaleLoader;
 import com.github.lukesky19.skymarket.configuration.record.Locale;
 import com.github.lukesky19.skymarket.manager.MarketManager;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import com.mojang.brigadier.tree.LiteralCommandNode;
+import io.papermc.paper.command.brigadier.CommandSourceStack;
+import io.papermc.paper.command.brigadier.Commands;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class SkyMarketCommand implements CommandExecutor, TabCompleter {
+public class SkyMarketCommand {
     private final SkyMarket skyMarket;
     private final LocaleLoader localeLoader;
     private final MarketManager marketManager;
@@ -49,115 +47,133 @@ public class SkyMarketCommand implements CommandExecutor, TabCompleter {
         this.marketManager = marketManager;
     }
 
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        Locale locale = localeLoader.getLocale();
+    public LiteralCommandNode<CommandSourceStack> createCommand() {
+        LiteralArgumentBuilder<CommandSourceStack> builder = Commands.literal("skymarket")
+            .requires(ctx -> ctx.getSender().hasPermission("skymarket.commands.skymarket"))
+                .executes(ctx -> {
+                    Locale locale = localeLoader.getLocale();
 
-        switch(args.length) {
-            case 0 -> {
-                if(sender instanceof Player player) {
-                    if(sender.hasPermission("skymarket.commands.skymarket")) {
-                        if(marketManager.getMarketGUI() != null) {
+                    if(ctx.getSource().getSender() instanceof Player player) {
+                        if (marketManager.getMarketGUI() != null) {
                             marketManager.getMarketGUI().openInventory(skyMarket, player);
-                            return true;
+
+                            return 1;
                         } else {
                             player.sendMessage(FormatUtil.format(locale.prefix() + locale.marketOpenError()));
-                            return false;
+
+                            return 0;
                         }
                     } else {
-                        sender.sendMessage(FormatUtil.format(player, locale.prefix() + locale.noPermission()));
-                        return false;
+                        skyMarket.getComponentLogger().info(FormatUtil.format(locale.inGameOnly()));
+
+                        return 0;
                     }
-                } else {
-                    skyMarket.getComponentLogger().info(locale.inGameOnly());
-                    return false;
-                }
-            }
+                });
 
-            case 1 -> {
-                switch(args[0].toLowerCase()) {
-                    case "reload" -> {
-                        if (sender instanceof Player player) {
-                            if (player.hasPermission("skymarket.commands.skymarket.reload")) {
-                                skyMarket.reload();
+        builder.then(Commands.literal("reload")
+            .requires(ctx -> ctx.getSender().hasPermission("skymarket.commands.skymarket.reload"))
+            .executes(ctx -> {
+                skyMarket.reload();
 
-                                locale = localeLoader.getLocale();
+                Locale locale = localeLoader.getLocale();
 
-                                sender.sendMessage(FormatUtil.format(player, locale.prefix() + locale.configReload()));
-                                return true;
-                            } else {
-                                sender.sendMessage(FormatUtil.format(player, locale.prefix() + locale.noPermission()));
-                                return false;
-                            }
-                        } else {
-                            skyMarket.reload();
-                            skyMarket.getComponentLogger().info(FormatUtil.format(locale.configReload()));
-                            return true;
-                        }
-                    }
+                ctx.getSource().getSender().sendMessage(FormatUtil.format(locale.prefix() + locale.configReload()));
 
-                    case "refresh" -> {
-                        if(sender instanceof Player player) {
-                            if(player.hasPermission("skymarket.commands.skymarket.refresh")) {
-                                marketManager.refreshMarket();
+                return 1;
+            })
+        );
 
-                                return true;
-                            }
-                        }
-                    }
+        builder.then(Commands.literal("refresh")
+            .requires(ctx -> ctx.getSender().hasPermission("skymarket.commands.skymarket.refresh"))
+            .executes(ctx -> {
+                marketManager.refreshMarket();
 
-                    case "time" -> {
-                        if(sender instanceof Player player) {
-                            if(player.hasPermission("skymarket.commands.skymarket.time")) {
-                                SimpleDateFormat simpleDateFormat = marketManager.getSimpleDateFormat();
+                return 1;
+            })
+        );
 
-                                Date date = new Date(marketManager.getResetTime());
+        builder.then(Commands.literal("time")
+            .requires(ctx -> ctx.getSender().hasPermission("skymarket.commands.skymarket.time"))
+            .executes(ctx -> {
+                Locale locale = localeLoader.getLocale();
+                Time time = FormatUtil.millisToTime(marketManager.getResetTime() - System.currentTimeMillis());
 
-                                List<TagResolver.Single> placeholders = List.of(Placeholder.parsed("time", simpleDateFormat.format(date)));
+                StringBuilder stringBuilder = new StringBuilder();
 
-                                player.sendMessage(FormatUtil.format(locale.prefix() + locale.marketRefreshTime(), placeholders));
-
-                                return true;
-                            }
-                        }
-                    }
-
-                    default -> {
-                        if (sender instanceof Player player) {
-                            player.sendMessage(FormatUtil.format(player, locale.prefix() + locale.unknownArgument(), new ArrayList<>()));
-                        } else {
-                            skyMarket.getComponentLogger().info(FormatUtil.format(locale.unknownArgument(), new ArrayList<>()));
-                        }
-
-                        return false;
+                if(time.years() > 0) {
+                    if(time.years() > 1) {
+                        stringBuilder.append(time.years()).append(" years ");
+                    } else {
+                        stringBuilder.append(time.years()).append(" year ");
                     }
                 }
-            }
 
-            default -> {
-                if(sender instanceof Player player) {
-                    player.sendMessage(FormatUtil.format(player,locale.prefix() + locale.unknownArgument()));
-                } else {
-                    skyMarket.getComponentLogger().info(FormatUtil.format(locale.unknownArgument()));
+                if(time.months() > 0) {
+                    if(time.months() > 1) {
+                        stringBuilder.append(time.months()).append(" months ");
+                    } else {
+                        stringBuilder.append(time.months()).append(" month ");
+                    }
                 }
-                return false;
-            }
-        }
 
-        return false;
-    }
+                if(time.weeks() > 0) {
+                    if(time.weeks() > 1) {
+                        stringBuilder.append(time.weeks()).append(" weeks ");
+                    } else {
+                        stringBuilder.append(time.weeks()).append(" week ");
+                    }
+                }
 
-    @Nullable
-    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if(args.length == 1) {
-            ArrayList<String> subCmds = new ArrayList<>();
-            if(sender instanceof Player) {
-                if(sender.hasPermission("skyshop.commands.reload")) subCmds.add("reload");
-            } else {
-                subCmds.add("reload");
-            }
-            return subCmds;
-        }
+                if(time.days() > 0) {
+                    if(time.days() > 1) {
+                        stringBuilder.append(time.days()).append(" days ");
+                    } else {
+                        stringBuilder.append(time.days()).append(" day ");
+                    }
+                }
 
-        return Collections.emptyList();
+                if(time.hours() > 0) {
+                    if(time.hours() > 1) {
+                        stringBuilder.append(time.hours()).append(" hours ");
+                    } else {
+                        stringBuilder.append(time.hours()).append(" hour ");
+                    }
+                }
+
+                if(time.minutes() > 0) {
+                    if(time.minutes() > 1) {
+                        stringBuilder.append(time.minutes()).append(" minutes ");
+                    } else {
+                        stringBuilder.append(time.minutes()).append(" minute ");
+                    }
+                }
+
+                if(time.seconds() > 0) {
+                    if(time.seconds() > 1) {
+                        stringBuilder.append(time.seconds()).append(" seconds ");
+                    } else {
+                        stringBuilder.append(time.seconds()).append(" second ");
+                    }
+                }
+
+                if(time.milliseconds() > 0) {
+                    if(time.milliseconds() > 1) {
+                        stringBuilder.append(time.milliseconds()).append(" milliseconds");
+                    } else {
+                        stringBuilder.append(time.milliseconds()).append(" millisecond");
+                    }
+                }
+
+                List<TagResolver.Single> placeholders = List.of(Placeholder.parsed("time", stringBuilder.toString()));
+
+                ctx.getSource().getSender().sendMessage(FormatUtil.format(locale.prefix() + locale.marketRefreshTime(), placeholders));
+
+                return 1;
+            })
+        );
+
+
+
+        return builder.build();
     }
 }

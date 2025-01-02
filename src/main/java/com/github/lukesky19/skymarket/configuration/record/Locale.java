@@ -23,7 +23,6 @@ import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializ
 public record Locale(
         String configVersion,
         String prefix,
-        String noPermission,
         String configReload,
         String notEnoughItems,
         String insufficientFunds,
@@ -32,7 +31,6 @@ public record Locale(
         String unbuyable,
         String unsellable,
         String inGameOnly,
-        String unknownArgument,
         String marketRefreshed,
         String marketOpenError,
         String marketRefreshTime) {

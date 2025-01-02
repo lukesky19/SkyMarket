@@ -12,11 +12,8 @@ import com.github.lukesky19.skymarket.gui.MarketGUI;
 import com.google.common.collect.ImmutableList;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.CheckForNull;
-import java.text.SimpleDateFormat;
-import java.util.TimeZone;
 
 public class MarketManager {
     private final SkyMarket skyMarket;
@@ -28,7 +25,6 @@ public class MarketManager {
     private BukkitTask task;
 
     private long resetTime;
-    private final SimpleDateFormat simpleDateFormat;
 
     public MarketManager(SkyMarket skyMarket, SettingsLoader settingsLoader, LocaleLoader localeLoader, ItemsLoader itemsLoader, MarketLoader marketLoader) {
         this.skyMarket = skyMarket;
@@ -36,19 +32,11 @@ public class MarketManager {
         this.localeLoader = localeLoader;
         this.itemsLoader = itemsLoader;
         this.marketLoader = marketLoader;
-
-        simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss z");
-        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("America/New_York"));
     }
 
     @CheckForNull
     public MarketGUI getMarketGUI() {
         return marketGUI;
-    }
-
-    @NotNull
-    public SimpleDateFormat getSimpleDateFormat() {
-        return simpleDateFormat;
     }
 
     public long getResetTime() {

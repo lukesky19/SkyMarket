@@ -25,6 +25,7 @@ import com.github.lukesky19.skymarket.configuration.manager.SettingsLoader;
 import com.github.lukesky19.skymarket.configuration.manager.MarketLoader;
 import com.github.lukesky19.skymarket.listener.InventoryListener;
 import com.github.lukesky19.skymarket.manager.MarketManager;
+import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
@@ -33,14 +34,13 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.Objects;
+import java.util.List;
 
 public final class SkyMarket extends JavaPlugin {
     private SettingsLoader settingsLoader;
     private LocaleLoader localeLoader;
     private MarketLoader marketLoader;
     private ItemsLoader itemsLoader;
-    private MarketManager marketManager;
     private Economy economy;
 
     public Economy getEconomy() {
@@ -58,11 +58,12 @@ public final class SkyMarket extends JavaPlugin {
         localeLoader = new LocaleLoader(this, this.settingsLoader);
         itemsLoader = new ItemsLoader(this);
         marketLoader = new MarketLoader(this);
-        marketManager = new MarketManager(this, settingsLoader, localeLoader, itemsLoader, marketLoader);
+        MarketManager marketManager = new MarketManager(this, settingsLoader, localeLoader, itemsLoader, marketLoader);
 
         SkyMarketCommand skyMarketCommand = new SkyMarketCommand(this, localeLoader, marketManager);
-        Objects.requireNonNull(Bukkit.getPluginCommand("skymarket")).setExecutor(skyMarketCommand);
-        Objects.requireNonNull(Bukkit.getPluginCommand("skymarket")).setTabCompleter(skyMarketCommand);
+        this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands ->
+                commands.registrar().register(skyMarketCommand.createCommand(),
+                        "Command to manage and use the SkyMarket plugin.", List.of("market", "skm", "sm", "blackmarket", "bm")));
 
         Bukkit.getPluginManager().registerEvents(inventoryListener, this);
 
@@ -74,7 +75,6 @@ public final class SkyMarket extends JavaPlugin {
         this.localeLoader.reload();
         this.itemsLoader.reload();
         this.marketLoader.reload();
-        this.marketManager.refreshMarket();
     }
 
     private void setupEconomy() {

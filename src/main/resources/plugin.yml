@@ -7,15 +7,6 @@ author: lukeskywlker19
 description: A rotating shop plugin
 depend: [SkyLib, Vault]
 
-commands:
-  skymarket:
-    description: The base command.
-    aliases:
-      - sm
-      - skm
-      - market
-      - blackmarket
-      - bm
 permissions:
   skymarket.commands.skymarket:
     description: Permission to access the shop.

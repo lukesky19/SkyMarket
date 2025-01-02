@@ -34,9 +34,8 @@ public class LocaleLoader {
     final SettingsLoader settingsLoader;
     private Locale locale;
     private final Locale defaultLocale = new Locale(
-            "1.1.1",
+            "1.2.0",
             "<gold><bold>SkyMarket</bold></gold><gray> ▪ </gray>",
-            "<red>You do not have permission for this command.</red>",
             "<aqua>Configuration files have been reloaded.</aqua>",
             "<red>You do not have enough items to sell.</red>",
             "<red>Insufficient funds.</red>",
@@ -45,10 +44,9 @@ public class LocaleLoader {
             "<red>This item is not able to be purchased.</red>",
             "<red>This item is not able to be sold.</red>",
             "<red>This command can only be ran in-game.</red>",
-            "<red>One or more of the arguments sent is not recognized.</red>",
             "<white>The black market has been refreshed.</white>",
             "<red>Unable to open the market due to a configuration issue.</red>",
-            "<white>The market will be refreshed at <yellow><time></yellow>.</white>");
+            "<white>The market will be refreshed in <yellow><time></yellow>.</white>");
 
     public LocaleLoader(SkyMarket skyMarket, SettingsLoader settingsLoader) {
         this.skyMarket = skyMarket;
@@ -109,16 +107,15 @@ public class LocaleLoader {
 
     private void migrateLocale() {
         switch(locale.configVersion()) {
-            case "1.1.1" -> {
+            case "1.2.0" -> {
                 // Current version, do nothing.
             }
 
             case "1.1.0" -> {
-                // Version 1.1.0 -> 1.1.1
+                // Version 1.1.0 -> 1.2.0
                 Locale newLocale = new Locale(
-                        "1.1.1",
+                        "1.2.0",
                         locale.prefix().trim(),
-                        locale.noPermission(),
                         locale.configReload(),
                         locale.notEnoughItems(),
                         locale.insufficientFunds(),
@@ -127,10 +124,9 @@ public class LocaleLoader {
                         locale.unbuyable(),
                         locale.unsellable(),
                         locale.inGameOnly(),
-                        locale.unknownArgument(),
                         locale.marketRefreshed(),
                         locale.marketOpenError(),
-                        locale.marketRefreshTime());
+                        "<white>The market will be refreshed in <yellow><time></yellow>.</white>");
 
                 locale = newLocale;
 
@@ -138,11 +134,10 @@ public class LocaleLoader {
             }
 
             case null -> {
-                // Version 1.0.0 -> 1.1.1
+                // Version 1.0.0 -> 1.2.0
                 Locale newLocale = new Locale(
-                        "1.1.1",
+                        "1.2.0",
                         locale.prefix().trim(),
-                        locale.noPermission(),
                         locale.configReload(),
                         locale.notEnoughItems(),
                         locale.insufficientFunds(),
@@ -151,10 +146,9 @@ public class LocaleLoader {
                         locale.unbuyable(),
                         locale.unsellable(),
                         locale.inGameOnly(),
-                        locale.unknownArgument(),
                         "<white>The market has been refreshed.</white>",
                         "<red>Unable to open the market due to a configuration issue.</red>",
-                        "<white>The market will be refreshed at <yellow><time></yellow>.</white>");
+                        "<white>The market will be refreshed in <yellow><time></yellow>.</white>");
 
                 locale = newLocale;
 

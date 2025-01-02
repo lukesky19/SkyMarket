@@ -4,7 +4,6 @@
 ## Features
 * Supports buying and selling for items and commands.
 ## Required Dependencies
-* PlaceholderAPI
 * Vault
 ## Commands
 - /skymarket - Command to open the shop.
@@ -12,12 +11,16 @@
     - /market
     - /bm
     - /blackmarket
-- /skymarket reload - Reloads the plugin and shop inventory.
+- /skymarket reload - Reloads the plugin.
+- /skymarket refresh - Refreshes the market's inventory.
+- /skymarket time - View when the shop will refresh next.
 ## Permisisons
 - `skymarket.commands.skymarket` - The permission to access the shop.
 - `skymarket.commands.skymarket.reload` - The permission to reload the plugin.
+- `skymarket.commands.skymarket.refresh` - The permission to refresh the shop.
+- `skymarket.commands.skymarket.time` - The permission to view when the shop will refresh next.
 ## Issues, Bugs, or Suggestions
-* Please create a new [Github Issue](https://github.com/lukesky19/SkyShop/issues) with your issue, bug, or suggestion.
+* Please create a new [Github Issue](https://github.com/lukesky19/SkyMarket/issues) with your issue, bug, or suggestion.
 * If an issue or bug, please post any relevant logs containing errors related to SkyShop and your configuration files.
 * I will attempt to solve any issues or implement features to the best of my ability.
 ## FAQ

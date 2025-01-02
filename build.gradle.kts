@@ -16,10 +16,6 @@ repositories {
         name = "Vault Repo"
     }
 
-    maven("https://repo.extendedclip.com/content/repositories/placeholderapi/") {
-        name = "PlaceholderAPI Repo"
-    }
-
     mavenLocal()
 }
 

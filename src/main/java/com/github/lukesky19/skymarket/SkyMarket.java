@@ -68,6 +68,8 @@ public final class SkyMarket extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(inventoryListener, this);
 
         reload();
+
+        marketManager.refreshMarket();
     }
 
     public void reload() {

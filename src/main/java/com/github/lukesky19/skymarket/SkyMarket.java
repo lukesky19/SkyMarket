@@ -64,16 +64,10 @@ public final class SkyMarket extends JavaPlugin {
     @Override
     public void onEnable() {
         boolean skyLib = checkSkyLibVersion();
-        if(!skyLib) {
-            this.getServer().getPluginManager().disablePlugin(this);
-            return;
-        }
+        if(!skyLib) return;
 
         boolean econ = setupEconomy();
-        if(!econ) {
-            this.getServer().getPluginManager().disablePlugin(this);
-            return;
-        }
+        if(!econ) return;
 
         settingsLoader = new SettingsLoader(this);
         localeLoader = new LocaleLoader(this, this.settingsLoader);
@@ -122,20 +116,20 @@ public final class SkyMarket extends JavaPlugin {
     }
 
     /**
-     * Sets up the Economy by getting it from Vault.
-     * @return true of setup successfully, false if not.
+     * Checks for Vault as a dependency and sets up the Economy instance.
      */
     private boolean setupEconomy() {
-        if (getServer().getPluginManager().getPlugin("Vault") != null) {
+        if(getServer().getPluginManager().getPlugin("Vault") != null) {
             RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
             if (rsp != null) {
                 this.economy = rsp.getProvider();
+
                 return true;
             }
-        } else {
-            getComponentLogger().error(MiniMessage.miniMessage().deserialize("<red>SkyShop has been disabled due to no Vault dependency found!</red>"));
         }
 
+        getComponentLogger().error(MiniMessage.miniMessage().deserialize("<red>SkyShop has been disabled due to no Vault dependency found!</red>"));
+        this.getServer().getPluginManager().disablePlugin(this);
         return false;
     }
 
@@ -154,12 +148,11 @@ public final class SkyMarket extends JavaPlugin {
 
             if(second >= 2) {
                 return true;
-            } else {
-                this.getComponentLogger().error(FormatUtil.format("SkyLib Version 1.2.0.0 or newer is required to run this plugin."));
-                return false;
             }
         }
 
-        return true;
+        this.getComponentLogger().error(FormatUtil.format("SkyLib Version 1.2.0.0 or newer is required to run this plugin."));
+        this.getServer().getPluginManager().disablePlugin(this);
+        return false;
     }
 }

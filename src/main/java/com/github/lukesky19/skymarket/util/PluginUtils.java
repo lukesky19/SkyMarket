@@ -104,7 +104,8 @@ public class PluginUtils {
 
                     DecimalFormat df = new DecimalFormat("#.##");
                     df.setRoundingMode(RoundingMode.CEILING);
-                    String bal = df.format(skyMarket.getEconomy().getBalance(player));
+                    BigDecimal bigDecimal = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
+                    String bal = df.format(bigDecimal);
 
                     List<TagResolver.Single> successPlaceholders = new ArrayList<>();
                     successPlaceholders.add(Placeholder.parsed("item", playerItem));
@@ -142,7 +143,8 @@ public class PluginUtils {
 
                     DecimalFormat df = new DecimalFormat("#.##");
                     df.setRoundingMode(RoundingMode.CEILING);
-                    String bal = df.format(skyMarket.getEconomy().getBalance(player));
+                    BigDecimal bigDecimal = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
+                    String bal = df.format(bigDecimal);
 
                     List<TagResolver.Single> successPlaceholders = new ArrayList<>();
                     successPlaceholders.add(Placeholder.parsed("item", playerItem));
@@ -186,7 +188,8 @@ public class PluginUtils {
 
             DecimalFormat df = new DecimalFormat("#.##");
             df.setRoundingMode(RoundingMode.CEILING);
-            String bal = df.format(skyMarket.getEconomy().getBalance(player));
+            BigDecimal bigDecimal = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
+            String bal = df.format(bigDecimal);
 
             List<TagResolver.Single> successPlaceholders = new ArrayList<>();
             successPlaceholders.add(Placeholder.parsed("item", playerItem));
@@ -252,7 +255,8 @@ public class PluginUtils {
 
             DecimalFormat df = new DecimalFormat("#.##");
             df.setRoundingMode(RoundingMode.CEILING);
-            String bal = df.format(skyMarket.getEconomy().getBalance(player));
+            BigDecimal bigDecimal = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
+            String bal = df.format(bigDecimal);
 
             List<TagResolver.Single> successPlaceholders = new ArrayList<>();
             successPlaceholders.add(Placeholder.parsed("item", playerItem));
@@ -332,7 +336,8 @@ public class PluginUtils {
 
                     DecimalFormat df = new DecimalFormat("#.##");
                     df.setRoundingMode(RoundingMode.CEILING);
-                    String bal = df.format(skyMarket.getEconomy().getBalance(player));
+                    BigDecimal bigDecimal = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
+                    String bal = df.format(bigDecimal);
 
                     List<TagResolver.Single> successPlaceholders = new ArrayList<>();
                     successPlaceholders.add(Placeholder.parsed("item", name));
@@ -368,7 +373,8 @@ public class PluginUtils {
 
                     DecimalFormat df = new DecimalFormat("#.##");
                     df.setRoundingMode(RoundingMode.CEILING);
-                    String bal = df.format(skyMarket.getEconomy().getBalance(player));
+                    BigDecimal bigDecimal = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
+                    String bal = df.format(bigDecimal);
 
                     List<TagResolver.Single> successPlaceholders = new ArrayList<>();
                     successPlaceholders.add(Placeholder.parsed("item", name));
@@ -420,7 +426,8 @@ public class PluginUtils {
 
             DecimalFormat df = new DecimalFormat("#.##");
             df.setRoundingMode(RoundingMode.CEILING);
-            String bal = df.format(skyMarket.getEconomy().getBalance(player));
+            BigDecimal bigDecimal = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
+            String bal = df.format(bigDecimal);
 
             List<TagResolver.Single> successPlaceholders = new ArrayList<>();
             successPlaceholders.add(Placeholder.parsed("item", name));
@@ -487,7 +494,8 @@ public class PluginUtils {
 
         DecimalFormat df = new DecimalFormat("#.##");
         df.setRoundingMode(RoundingMode.CEILING);
-        String bal = df.format(skyMarket.getEconomy().getBalance(player));
+        BigDecimal bigDecimal = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
+        String bal = df.format(bigDecimal);
 
         List<TagResolver.Single> successPlaceholders = new ArrayList<>();
         successPlaceholders.add(Placeholder.parsed("item", name));

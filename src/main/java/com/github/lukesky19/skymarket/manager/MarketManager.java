@@ -290,7 +290,8 @@ public class MarketManager {
             if(chestConfig != null) {
                 MarketGUI marketGUI = new MarketGUI(chestConfig, activeMarket.buttons(), player, this);
 
-                openMarketGUIs.put(player.getUniqueId(), marketGUI);
+                skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () ->
+                        openMarketGUIs.put(player.getUniqueId(), marketGUI), 1L);
 
                 marketGUI.openInventory(skyMarket, player);
 
@@ -307,7 +308,8 @@ public class MarketManager {
                 List<MerchantRecipe> trades = activeMerchant.playerTrades().getOrDefault(uuid, activeMerchant.trades());
                 MerchantGUI merchantGUI = new MerchantGUI(marketId, trades, merchantConfig.guiName(), player, this);
 
-                openMerchantGUIs.put(player.getUniqueId(), merchantGUI);
+                skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () ->
+                        openMerchantGUIs.put(player.getUniqueId(), merchantGUI), 1L);
 
                 merchantGUI.openInventory(skyMarket, player);
 
@@ -460,7 +462,9 @@ public class MarketManager {
      * @param uuid The UUID of the player whose GUI was closed.
      */
     public void removeActiveGui(UUID uuid) {
-        openMarketGUIs.remove(uuid);
-        openMerchantGUIs.remove(uuid);
+        skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
+            openMarketGUIs.remove(uuid);
+            openMerchantGUIs.remove(uuid);
+        }, 1L);
     }
 }

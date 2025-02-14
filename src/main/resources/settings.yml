@@ -1,3 +1,19 @@
-config-version: 1.0.0
+config-version: 2.0.0
 locale: en_US
-refresh-time-seconds: 21600
+# These can and will only be registered when the plugin is first enabled.
+aliases:
+    -
+        alias: "vm"
+        market-id: "villagers"
+    -
+        alias: "villagers"
+        market-id: "villagers"
+    -
+        alias: "villagermarket"
+        market-id: "villagers"
+    -
+        alias: "sm"
+        market-id: "skymarket"
+    -
+        alias: "skymarket"
+        market-id: "skymarket"

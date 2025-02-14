@@ -6,19 +6,22 @@
 ## Required Dependencies
 * Vault
 ## Commands
-- /skymarket - Command to open the shop.
-  - Aliases
-    - /market
-    - /bm
-    - /blackmarket
+- /skymarket open <market_id> - Command to open a market.
 - /skymarket reload - Reloads the plugin.
-- /skymarket refresh - Refreshes the market's inventory.
-- /skymarket time - View when the shop will refresh next.
+- /skymarket refresh <market_id> - Refreshes the market's inventory.
+- /skymarket time <time> - View when the market will refresh next.
+## Command Aliases (Configurable)
+- /vm - Command to open the villager market.
+- /villagers - Command to open the villager market.
+- /villagermarket - Command to open the villager market.
+- sm - Command to open the skymarket.
+- skymarket - Command to open the skymarket.
 ## Permisisons
 - `skymarket.commands.skymarket` - The permission to access the shop.
 - `skymarket.commands.skymarket.reload` - The permission to reload the plugin.
 - `skymarket.commands.skymarket.refresh` - The permission to refresh the shop.
 - `skymarket.commands.skymarket.time` - The permission to view when the shop will refresh next.
+- `skymarket.commands.skymarket.open` - The permission to open markets.
 ## Issues, Bugs, or Suggestions
 * Please create a new [Github Issue](https://github.com/lukesky19/SkyMarket/issues) with your issue, bug, or suggestion.
 * If an issue or bug, please post any relevant logs containing errors related to SkyShop and your configuration files.

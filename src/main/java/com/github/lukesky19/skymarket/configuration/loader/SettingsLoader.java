@@ -15,43 +15,55 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-package com.github.lukesky19.skymarket.configuration.manager;
+package com.github.lukesky19.skymarket.configuration.loader;
 
 import com.github.lukesky19.skylib.config.ConfigurationUtility;
 import com.github.lukesky19.skylib.libs.configurate.ConfigurateException;
 import com.github.lukesky19.skylib.libs.configurate.yaml.YamlConfigurationLoader;
 import com.github.lukesky19.skymarket.SkyMarket;
-import com.github.lukesky19.skymarket.configuration.record.Gui;
+import com.github.lukesky19.skymarket.configuration.record.Settings;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.nio.file.Path;
 
-import javax.annotation.CheckForNull;
-
-public class MarketLoader {
+/**
+ * This class manages the loading of the plugin's settings.
+ */
+public class SettingsLoader {
     private final SkyMarket skyMarket;
-    private Gui configuration;
+    private Settings settingsConfig;
 
-    public MarketLoader(SkyMarket skyMarket) {
+    /**
+     * Constructor
+     * @param skyMarket A SkyMarket plugin instance.
+     */
+    public SettingsLoader(SkyMarket skyMarket) {
         this.skyMarket = skyMarket;
     }
 
-    @CheckForNull
-    public Gui getConfiguration() {
-        return configuration;
+    /**
+     * Gets the plugin's configuration.
+     * @return A Settings object representing the plugin settings, or null if it failed to load.
+     */
+    @Nullable
+    public Settings getSettingsConfig() {
+        return settingsConfig;
     }
 
+    /**
+     * Reloads the plugin's settings.
+     */
     public void reload() {
-        configuration = null;
-
-        Path path = Path.of(skyMarket.getDataFolder() + File.separator + "market.yml");
-        if (!path.toFile().exists()) {
-            skyMarket.saveResource("market.yml", false);
+        settingsConfig = null;
+        Path path = Path.of(skyMarket.getDataFolder() + File.separator + "settings.yml");
+        if(!path.toFile().exists()) {
+            skyMarket.saveResource("settings.yml", false);
         }
 
         YamlConfigurationLoader loader = ConfigurationUtility.getYamlConfigurationLoader(path);
         try {
-            configuration = loader.load().get(Gui.class);
+            settingsConfig = loader.load().get(Settings.class);
         } catch (ConfigurateException e) {
             throw new RuntimeException(e);
         }

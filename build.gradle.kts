@@ -3,9 +3,10 @@ plugins {
 }
 
 group = "com.github.lukesky19"
-version = "1.3.0"
+version = "2.0.0.0-SNAPSHOT"
 
 repositories {
+    mavenLocal()
     mavenCentral()
 
     maven("https://repo.papermc.io/repository/maven-public/") {
@@ -15,15 +16,11 @@ repositories {
     maven("https://jitpack.io") {
         name = "Vault Repo"
     }
-
-    mavenLocal()
 }
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
-    compileOnly("net.kyori:adventure-api:4.17.0")
-    compileOnly("net.kyori:adventure-text-minimessage:4.17.0")
-    compileOnly("com.github.lukesky19:SkyLib:1.1.0")
+    compileOnly("com.github.lukesky19:SkyLib:1.2.0.0")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7.1")
 }
 

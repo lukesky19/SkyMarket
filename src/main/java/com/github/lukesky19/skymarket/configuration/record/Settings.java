@@ -19,5 +19,11 @@ package com.github.lukesky19.skymarket.configuration.record;
 
 import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
 
+import java.util.List;
+
 @ConfigSerializable
-public record Settings(String configVersion, String locale, Integer refreshTimeSeconds) {}
+public record Settings(String configVersion, String locale, List<Alias> aliases) {
+    @ConfigSerializable
+    public record Alias(String alias, String marketId) {}
+}
+

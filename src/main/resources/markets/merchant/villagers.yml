@@ -1,0 +1,5880 @@
+config-version: 2.0.0
+refresh-time: "1h"
+# Used when sending the market has been refreshed message.
+market-name: "Villager Market"
+gui-name: "<gold><bold>Villager Market</bold></gold>"
+num-of-trades: 30
+trades:
+    # Armorer Trades
+    0:
+        limit: -1
+        input1:
+            material: COAL
+            amount:
+                fixed: 15
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    1:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 5
+        output:
+            material: IRON_HELMET
+            amount:
+                fixed: 1
+    2:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 9
+        output:
+            material: IRON_CHESTPLATE
+            amount:
+                fixed: 1
+    3:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 7
+        output:
+            material: IRON_LEGGINGS
+            amount:
+                fixed: 1
+    4:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 4
+        output:
+            material: IRON_BOOTS
+            amount:
+                fixed: 1
+    5:
+        limit: -1
+        input1:
+            material: IRON_INGOT
+            amount:
+                fixed: 4
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    6:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 36
+        output:
+            material: BELL
+            amount:
+                fixed: 1
+    7:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: CHAINMAIL_LEGGINGS
+            amount:
+                fixed: 1
+    8:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: CHAINMAIL_BOOTS
+            amount:
+                fixed: 1
+    9:
+        limit: -1
+        input1:
+            material: LAVA_BUCKET
+            amount:
+                fixed: 1
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    10:
+        limit: -1
+        input1:
+            material: DIAMOND
+            amount:
+                fixed: 1
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    11:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: CHAINMAIL_HELMET
+            amount:
+                fixed: 1
+    12:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 4
+        output:
+            material: CHAINMAIL_CHESTPLATE
+            amount:
+                fixed: 1
+    13:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 5
+        output:
+            material: SHIELD
+            amount:
+                fixed: 1
+    14:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 19
+                max: 33
+        output:
+            material: DIAMOND_LEGGINGS
+            amount:
+                fixed: 1
+            enchants:
+                enchant-randomly: true
+                min: 5
+                max: 19
+                treasure: false
+    15:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 13
+                max: 27
+        output:
+            material: DIAMOND_BOOTS
+            amount:
+                fixed: 1
+            enchants:
+                enchant-randomly: true
+                min: 5
+                max: 19
+                treasure: false
+    16:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 13
+                max: 27
+        output:
+            material: DIAMOND_HELMET
+            amount:
+                fixed: 1
+            enchants:
+                enchant-randomly: true
+                min: 5
+                max: 19
+                treasure: false
+    17:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 21
+                max: 35
+        output:
+            material: DIAMOND_CHESTPLATE
+            amount:
+                fixed: 1
+            enchants:
+                enchant-randomly: true
+                min: 5
+                max: 19
+                treasure: false
+    # Butcher
+    18:
+        limit: -1
+        input1:
+            material: CHICKEN
+            amount:
+                fixed: 14
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    19:
+        limit: -1
+        input1:
+            material: RABBIT
+            amount:
+                fixed: 4
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    20:
+        limit: -1
+        input1:
+            material: PORKCHOP
+            amount:
+                fixed: 7
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    21:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: RABBIT_STEW
+            amount:
+                fixed: 1
+    22:
+        limit: -1
+        input1:
+            material: COAL
+            amount:
+                fixed: 15
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    23:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: COOKED_CHICKEN
+            amount:
+                fixed: 8
+    24:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: COOKED_PORKCHOP
+            amount:
+                fixed: 5
+    25:
+        limit: -1
+        input1:
+            material: BEEF
+            amount:
+                fixed: 10
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    26:
+        limit: -1
+        input1:
+            material: MUTTON
+            amount:
+                fixed: 7
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    27:
+        limit: -1
+        input1:
+            material: DRIED_KELP_BLOCK
+            amount:
+                fixed: 10
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    28:
+        limit: -1
+        input1:
+            material: SWEET_BERRIES
+            amount:
+                fixed: 10
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    # Cartographer
+    29:
+        limit: -1
+        input1:
+            material: PAPER
+            amount:
+                fixed: 24
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    30:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 7
+        output:
+            material: MAP
+            amount:
+                fixed: 1
+    31:
+        limit: -1
+        input1:
+            material: GLASS_PANE
+            amount:
+                fixed: 11
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    32:
+        limit: -1
+        input1:
+            material: COMPASS
+            amount:
+                fixed: 1
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    33:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 7
+        output:
+            material: ITEM_FRAME
+            amount:
+                fixed: 1
+    34:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 7
+        output:
+            material: ITEM_FRAME
+            amount:
+                fixed: 1
+    35:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: WHITE_BANNER
+            amount:
+                fixed: 1
+    36:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: LIGHT_GRAY_BANNER
+            amount:
+                fixed: 1
+    37:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: GRAY_BANNER
+            amount:
+                fixed: 1
+    38:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: BLACK_BANNER
+            amount:
+                fixed: 1
+    39:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: BROWN_BANNER
+            amount:
+                fixed: 1
+    40:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: RED_BANNER
+            amount:
+                fixed: 1
+    41:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: ORANGE_BANNER
+            amount:
+                fixed: 1
+    42:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: YELLOW_BANNER
+            amount:
+                fixed: 1
+    43:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: LIME_BANNER
+            amount:
+                fixed: 1
+    44:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: GREEN_BANNER
+            amount:
+                fixed: 1
+    45:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: CYAN_BANNER
+            amount:
+                fixed: 1
+    46:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: LIGHT_BLUE_BANNER
+            amount:
+                fixed: 1
+    47:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: BLUE_BANNER
+            amount:
+                fixed: 1
+    48:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: PURPLE_BANNER
+            amount:
+                fixed: 1
+    49:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: MAGENTA_BANNER
+            amount:
+                fixed: 1
+    50:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: PINK_BANNER
+            amount:
+                fixed: 1
+    51:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 8
+        output:
+            material: GLOBE_BANNER_PATTERN
+            amount:
+                fixed: 1
+    # Cleric
+    52:
+        limit: -1
+        input1:
+            material: ROTTEN_FLESH
+            amount:
+                fixed: 32
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    53:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: REDSTONE
+            amount:
+                fixed: 2
+    54:
+        limit: -1
+        input1:
+            material: GOLD_INGOT
+            amount:
+                fixed: 3
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    55:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: LAPIS_LAZULI
+            amount:
+                fixed: 1
+    56:
+        limit: -1
+        input1:
+            material: RABBIT_FOOT
+            amount:
+                fixed: 2
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    57:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 4
+        output:
+            material: GLOWSTONE
+            amount:
+                fixed: 1
+    58:
+        limit: -1
+        input1:
+            material: TURTLE_SCUTE
+            amount:
+                fixed: 4
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    59:
+        limit: -1
+        input1:
+            material: GLASS_BOTTLE
+            amount:
+                fixed: 9
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    60:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 5
+        output:
+            material: ENDER_PEARL
+            amount:
+                fixed: 1
+    61:
+        limit: -1
+        input1:
+            material: NETHER_WART
+            amount:
+                fixed: 22
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    62:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: EXPERIENCE_BOTTLE
+            amount:
+                fixed: 1
+    # Farmer
+    63:
+        limit: -1
+        input1:
+            material: WHEAT
+            amount:
+                fixed: 20
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    64:
+        limit: -1
+        input1:
+            material: POTATO
+            amount:
+                fixed: 26
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    65:
+        limit: -1
+        input1:
+            material: CARROT
+            amount:
+                fixed: 22
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    66:
+        limit: -1
+        input1:
+            material: BEETROOT
+            amount:
+                fixed: 15
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    67:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: BREAD
+            amount:
+                fixed: 6
+    68:
+        limit: -1
+        input1:
+            material: PUMPKIN
+            amount:
+                fixed: 6
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    69:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: PUMPKIN_PIE
+            amount:
+                fixed: 4
+    70:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: APPLE
+            amount:
+                fixed: 4
+    71:
+        limit: -1
+        input1:
+            material: MELON
+            amount:
+                fixed: 4
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    72:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: COOKIE
+            amount:
+                fixed: 18
+    73:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: SUSPICIOUS_STEW
+            amount:
+                fixed: 1
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            stew-effects:
+                -
+                    type: minecraft:blindness
+                    duration: 11
+    74:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: SUSPICIOUS_STEW
+            amount:
+                fixed: 1
+            # NOTE: Effect Data is only added to Suspicious Stew and Potions.
+            stew-effects:
+                -
+                    type: minecraft:jump_boost
+                    duration: 5
+    75:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: SUSPICIOUS_STEW
+            amount:
+                fixed: 1
+            # NOTE: Effect Data is only added to Suspicious Stew and Potions.
+            effects:
+                -
+                    type: minecraft:night_vision
+                    duration: 5
+    76:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: SUSPICIOUS_STEW
+            amount:
+                fixed: 1
+            # NOTE: Effect Data is only added to Suspicious Stew and Potions.
+            effects:
+                -
+                    type: minecraft:poison
+                    duration: 11
+    77:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: SUSPICIOUS_STEW
+            amount:
+                fixed: 1
+            # NOTE: Effect Data is only added to Suspicious Stew and Potions.
+            effects:
+                -
+                    type: minecraft:saturation
+                    duration: 0.35
+    78:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: SUSPICIOUS_STEW
+            amount:
+                fixed: 1
+            # NOTE: Effects are only added to Suspicious Stew and Potions.
+            effects:
+                -
+                    type: minecraft:weakness
+                    duration: 7
+    79:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: CAKE
+            amount:
+                fixed: 1
+    80:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: GOLDEN_CARROT
+            amount:
+                fixed: 3
+    81:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 4
+        output:
+            material: GLISTERING_MELON_SLICE
+            amount:
+                fixed: 3
+    # Fisherman
+    82:
+        limit: -1
+        input1:
+            material: STRING
+            amount:
+                fixed: 20
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    83:
+        limit: -1
+        input1:
+            material: COAL
+            amount:
+                fixed: 10
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    84:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: COD_BUCKET
+            amount:
+                fixed: 1
+    85:
+        limit: -1
+        input1:
+            material: COD
+            amount:
+                fixed: 6
+        input2:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: COOKED_COD
+            amount:
+                fixed: 6
+    86:
+        limit: -1
+        input1:
+            material: COD
+            amount:
+                fixed: 15
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    87:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        output:
+            material: CAMPFIRE
+            amount:
+                fixed: 1
+    88:
+        limit: -1
+        input1:
+            material: SALMON
+            amount:
+                fixed: 6
+        input2:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: COOKED_SALMON
+            amount:
+                fixed: 6
+    89:
+        limit: -1
+        input1:
+            material: SALMON
+            amount:
+                fixed: 13
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    90:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 22
+        output:
+            material: FISHING_ROD
+            amount:
+                fixed: 1
+            enchants:
+                enchant-randomly: true
+                min: 5
+                max: 19
+                treasure: false
+    91:
+        limit: -1
+        input1:
+            material: TROPICAL_FISH
+            amount:
+                fixed: 6
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    92:
+        limit: -1
+        input1:
+            material: PUFFERFISH
+            amount:
+                fixed: 4
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    93:
+        limit: -1
+        input1:
+            material: OAK_BOAT
+            amount:
+                fixed: 1
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    94:
+        limit: -1
+        input1:
+            material: SPRUCE_BOAT
+            amount:
+                fixed: 1
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    95:
+        limit: -1
+        input1:
+            material: JUNGLE_BOAT
+            amount:
+                fixed: 1
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    96:
+        limit: -1
+        input1:
+            material: ACACIA_BOAT
+            amount:
+                fixed: 1
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    97:
+        limit: -1
+        input1:
+            material: CHERRY_BOAT
+            amount:
+                fixed: 1
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    98:
+        limit: -1
+        input1:
+            material: DARK_OAK_BOAT
+            amount:
+                fixed: 1
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    # Fletcher
+    99:
+        limit: -1
+        input1:
+            material: STICK
+            amount:
+                fixed: 32
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    100:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: ARROW
+            amount:
+                fixed: 16
+    102:
+        limit: -1
+        input1:
+            material: GRAVEL
+            amount:
+                fixed: 10
+        input2:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: FLINT
+            amount:
+                fixed: 10
+    103:
+        limit: -1
+        input1:
+            material: FLINT
+            amount:
+                fixed: 26
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    104:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        output:
+            material: BOW
+            amount:
+                fixed: 1
+    105:
+        limit: -1
+        input1:
+            material: STRING
+            amount:
+                fixed: 14
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    106:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: CROSSBOW
+            amount:
+                fixed: 1
+    107:
+        limit: -1
+        input1:
+            material: FEATHER
+            amount:
+                fixed: 24
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    108:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 7
+                max: 21
+        output:
+            material: BOW
+            amount:
+                fixed: 1
+            enchants:
+                enchant-randomly: true
+                min: 5
+                max: 19
+                treasure: false
+    109:
+        limit: -1
+        input1:
+            material: TRIPWIRE_HOOK
+            amount:
+                fixed: 8
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    110:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 22
+        output:
+            material: CROSSBOW
+            amount:
+                fixed: 1
+            enchants:
+                enchant-randomly: true
+                min: 5
+                max: 19
+                treasure: false
+    111:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:night_vision
+    112:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:long_night_vision
+    113:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:invisibility
+    114:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:long_invisibility
+    115:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:leaping
+    116:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:long_leaping
+    117:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:strong_leaping
+    118:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:fire_resistance
+    119:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:long_fire_resistance
+    120:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:swiftness
+    121:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:long_swiftness
+    122:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:strong_swiftness
+    123:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:slowness
+    124:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:long_slowness
+    125:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:strong_slowness
+    126:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:turtle_master
+    127:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:long_turtle_master
+    128:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:strong_turtle_master
+    129:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:water_breathing
+    130:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:long_water_breathing
+    131:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:healing
+    132:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:strong_healing
+    133:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:harming
+    134:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:strong_harming
+    135:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:poison
+    136:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:long_poison
+    137:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:strong_poison
+    138:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:regeneration
+    139:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:long_regeneration
+    140:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:strong_regeneration
+    141:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:strength
+    142:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:long_strength
+    143:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:strong_strength
+    144:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:weakness
+    145:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:long_weakness
+    146:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:slow_falling
+    147:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        input2:
+            material: ARROW
+            amount:
+                fixed: 5
+        output:
+            material: TIPPED_ARROW
+            amount:
+                fixed: 5
+            # NOTE: Effect Data is only added to Suspicious Stew, Potions, and Tipped Arrows.
+            potion-effects:
+                base-effect:
+                    # https://jd.papermc.io/paper/1.21.4/org/bukkit/potion/PotionType.html
+                    type: minecraft:long_slow_falling
+    # Leatherworker
+    148:
+        limit: -1
+        input1:
+            material: LEATHER
+            amount:
+                fixed: 6
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    149:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: LEATHER_LEGGINGS
+            amount:
+                fixed: 1
+            color:
+                # Will pick a random color.
+                # Otherwise try to set the static color using red, green, blue below. Otherwise plain armor.
+                random: true
+                # 0 to 255
+                red: 0
+                # 0 to 255
+                green: 255
+                # 0 to 255
+                blue: 0
+    150:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 7
+        output:
+            material: LEATHER_CHESTPLATE
+            amount:
+                fixed: 1
+            color:
+                random: true
+                # 0 to 255
+                red: 0
+                # 0 to 255
+                green: 255
+                # 0 to 255
+                blue: 0
+
+    151:
+        limit: -1
+        input1:
+            material: FLINT
+            amount:
+                fixed: 26
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    152:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 5
+        output:
+            material: LEATHER_HELMET
+            amount:
+                fixed: 1
+            color:
+                random: true
+                # 0 to 255
+                red: 0
+                # 0 to 255
+                green: 255
+                # 0 to 255
+                blue: 0
+    153:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 4
+        output:
+            material: LEATHER_BOOTS
+            amount:
+                fixed: 1
+            color:
+                random: true
+                # 0 to 255
+                red: 0
+                # 0 to 255
+                green: 255
+                # 0 to 255
+                blue: 0
+    154:
+        limit: -1
+        input1:
+            material: RABBIT_HIDE
+            amount:
+                fixed: 4
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    155:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 7
+        output:
+            material: LEATHER_CHESTPLATE
+            amount:
+                fixed: 1
+            color:
+                random: true
+                # 0 to 255
+                red: 0
+                # 0 to 255
+                green: 255
+                # 0 to 255
+                blue: 0
+    156:
+        limit: -1
+        input1:
+            material: TURTLE_SCUTE
+            amount:
+                fixed: 4
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    157:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 6
+        output:
+            material: LEATHER_HORSE_ARMOR
+            amount:
+                fixed: 1
+            color:
+                random: true
+                # 0 to 255
+                red: 0
+                # 0 to 255
+                green: 255
+                # 0 to 255
+                blue: 0
+    158:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 5
+        output:
+            material: LEATHER_HELMET
+            amount:
+                fixed: 1
+            color:
+                random: true
+                # 0 to 255
+                red: 0
+                # 0 to 255
+                green: 255
+                # 0 to 255
+                blue: 0
+    159:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 6
+        output:
+            material: SADDLE
+            amount:
+                fixed: 1
+    # Librarian
+    160:
+        limit: -1
+        input1:
+            material: PAPER
+            amount:
+                fixed: 24
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    161:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 9
+        output:
+            material: BOOKSHELF
+            amount:
+                fixed: 1
+    162:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:aqua_affinity
+                        level: 1
+    163:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:bane_of_arthropods
+                        level: 1
+    164:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:bane_of_arthropods
+                        level: 2
+    165:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:bane_of_arthropods
+                        level: 3
+    166:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 14
+                max: 58
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:bane_of_arthropods
+                        level: 4
+    167:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 17
+                max: 64
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:bane_of_arthropods
+                        level: 5
+    168:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:blast_protection
+                        level: 1
+    169:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:blast_protection
+                        level: 2
+    170:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:blast_protection
+                        level: 3
+    171:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 14
+                max: 58
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:blast_protection
+                        level: 4
+    172:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:breach
+                        level: 1
+    173:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:breach
+                        level: 2
+    174:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:breach
+                        level: 3
+    175:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 14
+                max: 58
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:breach
+                        level: 4
+    176:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:channeling
+                        level: 1
+    177:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 10
+                max: 38
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:binding_curse
+                        level: 1
+    178:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 10
+                max: 38
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:vanishing_curse
+                        level: 1
+    179:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:density
+                        level: 1
+    180:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:density
+                        level: 2
+    181:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:density
+                        level: 3
+    182:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 14
+                max: 58
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:density
+                        level: 4
+    183:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 17
+                max: 64
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:density
+                        level: 5
+    184:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:depth_strider
+                        level: 1
+    185:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:depth_strider
+                        level: 2
+    186:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:depth_strider
+                        level: 3
+    187:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:efficiency
+                        level: 1
+    188:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:efficiency
+                        level: 2
+    189:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:efficiency
+                        level: 3
+    190:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 14
+                max: 58
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:efficiency
+                        level: 4
+    191:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 17
+                max: 64
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:efficiency
+                        level: 5
+    192:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:feather_falling
+                        level: 1
+    193:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:feather_falling
+                        level: 2
+    194:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:feather_falling
+                        level: 3
+    195:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 14
+                max: 58
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:feather_falling
+                        level: 4
+    196:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:fire_aspect
+                        level: 1
+    197:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:fire_aspect
+                        level: 2
+    198:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:fire_protection
+                        level: 1
+    199:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:fire_protection
+                        level: 2
+    200:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:fire_protection
+                        level: 3
+    201:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 14
+                max: 58
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:fire_protection
+                        level: 4
+    202:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:flame
+                        level: 1
+    203:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:fortune
+                        level: 1
+    204:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:fortune
+                        level: 2
+    205:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:fortune
+                        level: 3
+    206:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 10
+                max: 38
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:frost_walker
+                        level: 1
+    207:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 16
+                max: 64
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:frost_walker
+                        level: 2
+    208:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:impaling
+                        level: 1
+    209:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:impaling
+                        level: 2
+    210:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:impaling
+                        level: 3
+    211:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 14
+                max: 58
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:impaling
+                        level: 4
+    212:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 17
+                max: 64
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:impaling
+                        level: 5
+    213:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:infinity
+                        level: 1
+    214:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:knockback
+                        level: 1
+    215:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:knockback
+                        level: 2
+    216:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:looting
+                        level: 1
+    217:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:looting
+                        level: 2
+    218:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:looting
+                        level: 3
+    219:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:loyalty
+                        level: 1
+    220:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:loyalty
+                        level: 2
+    221:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:loyalty
+                        level: 3
+    222:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:luck_of_the_sea
+                        level: 1
+    223:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:luck_of_the_sea
+                        level: 2
+    224:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:luck_of_the_sea
+                        level: 3
+    225:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:lure
+                        level: 1
+    226:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:lure
+                        level: 2
+    227:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:lure
+                        level: 3
+    228:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:multishot
+                        level: 1
+    229:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:piercing
+                        level: 1
+    230:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:piercing
+                        level: 2
+    231:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:piercing
+                        level: 3
+    232:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 14
+                max: 58
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:piercing
+                        level: 4
+    233:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:power
+                        level: 1
+    234:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:power
+                        level: 2
+    235:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:power
+                        level: 3
+    236:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 14
+                max: 58
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:power
+                        level: 4
+    237:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 17
+                max: 64
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:power
+                        level: 5
+    238:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:projectile_protection
+                        level: 1
+    239:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:projectile_protection
+                        level: 2
+    240:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:projectile_protection
+                        level: 3
+    241:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 14
+                max: 58
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:projectile_protection
+                        level: 4
+    242:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:protection
+                        level: 1
+    243:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:protection
+                        level: 2
+    244:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:protection
+                        level: 3
+    245:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 14
+                max: 58
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:protection
+                        level: 4
+    246:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:punch
+                        level: 1
+    247:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:punch
+                        level: 2
+    248:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:quick_charge
+                        level: 1
+    249:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:quick_charge
+                        level: 2
+    250:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:quick_charge
+                        level: 3
+    251:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:respiration
+                        level: 1
+    252:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:respiration
+                        level: 2
+    253:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:respiration
+                        level: 3
+    254:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:sharpness
+                        level: 1
+    255:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:sharpness
+                        level: 2
+    256:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:sharpness
+                        level: 3
+    257:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 14
+                max: 58
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:sharpness
+                        level: 4
+    258:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 17
+                max: 64
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:sharpness
+                        level: 5
+    259:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:silk_touch
+                        level: 1
+    260:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:smite
+                        level: 1
+    261:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:smite
+                        level: 2
+    262:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:smite
+                        level: 3
+    263:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 14
+                max: 58
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:smite
+                        level: 4
+    264:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 17
+                max: 64
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:smite
+                        level: 5
+    265:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:sweeping_edge
+                        level: 1
+    266:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:sweeping_edge
+                        level: 2
+    267:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:sweeping_edge
+                        level: 3
+    268:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:thorns
+                        level: 1
+    269:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:thorns
+                        level: 2
+    270:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:thorns
+                        level: 3
+    271:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 5
+                max: 19
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:unbreaking
+                        level: 1
+    272:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 32
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:unbreaking
+                        level: 2
+    273:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 11
+                max: 45
+        input2:
+            material: BOOK
+            amount:
+                fixed: 1
+        output:
+            material: ENCHANTED_BOOK
+            amount:
+                fixed: 1
+            enchants:
+                enchantments:
+                    0:
+                        enchantment: minecraft:unbreaking
+                        level: 3
+    274:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: LANTERN
+            amount:
+                fixed: 1
+    275:
+        limit: -1
+        input1:
+            material: INK_SAC
+            amount:
+                fixed: 5
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    276:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: GLASS
+            amount:
+                fixed: 4
+    277:
+        limit: -1
+        input1:
+            material: WRITABLE_BOOK
+            amount:
+                fixed: 1
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    278:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 4
+        output:
+            material: COMPASS
+            amount:
+                fixed: 1
+    279:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 5
+        output:
+            material: CLOCK
+            amount:
+                fixed: 1
+    280:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 20
+        output:
+            material: NAME_TAG
+            amount:
+                fixed: 1
+    # Mason
+    281:
+        limit: -1
+        input1:
+            material: CLAY_BALL
+            amount:
+                fixed: 10
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    282:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: BRICK
+            amount:
+                fixed: 10
+    283:
+        limit: -1
+        input1:
+            material: STONE
+            amount:
+                fixed: 20
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    284:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: CHISELED_STONE_BRICKS
+            amount:
+                fixed: 4
+    285:
+        limit: -1
+        input1:
+            material: GRANITE
+            amount:
+                fixed: 16
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    286:
+        limit: -1
+        input1:
+            material: ANDESITE
+            amount:
+                fixed: 16
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    287:
+        limit: -1
+        input1:
+            material: DIORITE
+            amount:
+                fixed: 16
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    288:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: DRIPSTONE_BLOCK
+            amount:
+                fixed: 4
+    289:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: POLISHED_ANDESITE
+            amount:
+                fixed: 4
+    290:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: POLISHED_DIORITE
+            amount:
+                fixed: 4
+    291:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: POLISHED_GRANITE
+            amount:
+                fixed: 4
+    292:
+        limit: -1
+        input1:
+            material: QUARTZ
+            amount:
+                fixed: 12
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    293:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: WHITE_TERRACOTTA
+            amount:
+                fixed: 4
+    294:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: WHITE_TERRACOTTA
+            amount:
+                fixed: 1
+    295:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: LIGHT_GRAY_TERRACOTTA
+            amount:
+                fixed: 1
+    296:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: GRAY_TERRACOTTA
+            amount:
+                fixed: 1
+    297:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: BLACK_TERRACOTTA
+            amount:
+                fixed: 1
+    298:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: BROWN_TERRACOTTA
+            amount:
+                fixed: 1
+    299:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: RED_TERRACOTTA
+            amount:
+                fixed: 1
+    300:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: ORANGE_TERRACOTTA
+            amount:
+                fixed: 1
+    301:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: YELLOW_TERRACOTTA
+            amount:
+                fixed: 1
+    302:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: LIME_TERRACOTTA
+            amount:
+                fixed: 1
+    303:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: GREEN_TERRACOTTA
+            amount:
+                fixed: 1
+    304:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: CYAN_TERRACOTTA
+            amount:
+                fixed: 1
+    305:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: LIGHT_BLUE_TERRACOTTA
+            amount:
+                fixed: 1
+    306:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: BLUE_TERRACOTTA
+            amount:
+                fixed: 1
+    307:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: PURPLE_TERRACOTTA
+            amount:
+                fixed: 1
+    308:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: MAGENTA_TERRACOTTA
+            amount:
+                fixed: 1
+    309:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: PINK_TERRACOTTA
+            amount:
+                fixed: 1
+    310:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: WHITE_GLAZED_TERRACOTTA
+            amount:
+                fixed: 1
+    311:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: LIGHT_GRAY_GLAZED_TERRACOTTA
+            amount:
+                fixed: 1
+    312:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: GRAY_GLAZED_TERRACOTTA
+            amount:
+                fixed: 1
+    313:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: BLACK_GLAZED_TERRACOTTA
+            amount:
+                fixed: 1
+    314:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: BROWN_GLAZED_TERRACOTTA
+            amount:
+                fixed: 1
+    315:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: RED_GLAZED_TERRACOTTA
+            amount:
+                fixed: 1
+    316:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: ORANGE_GLAZED_TERRACOTTA
+            amount:
+                fixed: 1
+    317:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: YELLOW_GLAZED_TERRACOTTA
+            amount:
+                fixed: 1
+    318:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: LIME_GLAZED_TERRACOTTA
+            amount:
+                fixed: 1
+    319:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: GREEN_GLAZED_TERRACOTTA
+            amount:
+                fixed: 1
+    320:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: CYAN_GLAZED_TERRACOTTA
+            amount:
+                fixed: 1
+    321:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: LIGHT_BLUE_GLAZED_TERRACOTTA
+            amount:
+                fixed: 1
+    322:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: BLUE_GLAZED_TERRACOTTA
+            amount:
+                fixed: 1
+    323:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: PURPLE_GLAZED_TERRACOTTA
+            amount:
+                fixed: 1
+    324:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: MAGENTA_GLAZED_TERRACOTTA
+            amount:
+                fixed: 1
+    325:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: PINK_GLAZED_TERRACOTTA
+            amount:
+                fixed: 1
+    326:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: QUARTZ_PILLAR
+            amount:
+                fixed: 1
+    327:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: QUARTZ_BLOCK
+            amount:
+                fixed: 1
+    # Shepard
+    328:
+        limit: -1
+        input1:
+            material: WHITE_WOOL
+            amount:
+                fixed: 18
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    329:
+        limit: -1
+        input1:
+            material: BROWN_WOOL
+            amount:
+                fixed: 18
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    330:
+        limit: -1
+        input1:
+            material: BLACK_WOOL
+            amount:
+                fixed: 18
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    331:
+        limit: -1
+        input1:
+            material: GRAY_WOOL
+            amount:
+                fixed: 18
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    332:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        output:
+            material: SHEARS
+            amount:
+                fixed: 1
+    333:
+        limit: -1
+        input1:
+            material: WHITE_DYE
+            amount:
+                fixed: 12
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    334:
+        limit: -1
+        input1:
+            material: GRAY_DYE
+            amount:
+                fixed: 12
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    335:
+        limit: -1
+        input1:
+            material: BLACK_DYE
+            amount:
+                fixed: 12
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    336:
+        limit: -1
+        input1:
+            material: LIGHT_BLUE_DYE
+            amount:
+                fixed: 12
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    337:
+        limit: -1
+        input1:
+            material: LIME_DYE
+            amount:
+                fixed: 12
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    338:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: WHITE_WOOL
+            amount:
+                fixed: 1
+    339:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: LIGHT_GRAY_WOOL
+            amount:
+                fixed: 1
+    340:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: GRAY_WOOL
+            amount:
+                fixed: 1
+    341:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: BLACK_WOOL
+            amount:
+                fixed: 1
+    342:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: BROWN_WOOL
+            amount:
+                fixed: 1
+    343:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: RED_WOOL
+            amount:
+                fixed: 1
+    344:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: ORANGE_WOOL
+            amount:
+                fixed: 1
+    345:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: YELLOW_WOOL
+            amount:
+                fixed: 1
+    346:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: LIME_WOOL
+            amount:
+                fixed: 1
+    347:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: GREEN_WOOL
+            amount:
+                fixed: 1
+    348:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: CYAN_WOOL
+            amount:
+                fixed: 1
+    349:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: LIGHT_BLUE_WOOL
+            amount:
+                fixed: 1
+    350:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: BLUE_WOOL
+            amount:
+                fixed: 1
+    351:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: PURPLE_WOOL
+            amount:
+                fixed: 1
+    352:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: MAGENTA_WOOL
+            amount:
+                fixed: 1
+    353:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: PINK_WOOL
+            amount:
+                fixed: 1
+    354:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: WHITE_CARPET
+            amount:
+                fixed: 1
+    355:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: LIGHT_GRAY_CARPET
+            amount:
+                fixed: 1
+    356:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: GRAY_CARPET
+            amount:
+                fixed: 1
+    357:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: BLACK_CARPET
+            amount:
+                fixed: 1
+    358:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: BROWN_CARPET
+            amount:
+                fixed: 1
+    359:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: RED_CARPET
+            amount:
+                fixed: 1
+    360:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: ORANGE_CARPET
+            amount:
+                fixed: 1
+    361:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: YELLOW_CARPET
+            amount:
+                fixed: 1
+    362:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: LIME_CARPET
+            amount:
+                fixed: 1
+    363:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: GREEN_CARPET
+            amount:
+                fixed: 1
+    364:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: CYAN_CARPET
+            amount:
+                fixed: 1
+    365:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: LIGHT_BLUE_CARPET
+            amount:
+                fixed: 1
+    366:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: BLUE_CARPET
+            amount:
+                fixed: 1
+    367:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: PURPLE_CARPET
+            amount:
+                fixed: 1
+    368:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: MAGENTA_CARPET
+            amount:
+                fixed: 1
+    369:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: PINK_CARPET
+            amount:
+                fixed: 1
+    370:
+        limit: -1
+        input1:
+            material: YELLOW_DYE
+            amount:
+                fixed: 12
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    371:
+        limit: -1
+        input1:
+            material: LIGHT_GRAY_DYE
+            amount:
+                fixed: 12
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    372:
+        limit: -1
+        input1:
+            material: ORANGE_DYE
+            amount:
+                fixed: 12
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    373:
+        limit: -1
+        input1:
+            material: RED_DYE
+            amount:
+                fixed: 12
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    374:
+        limit: -1
+        input1:
+            material: PINK_DYE
+            amount:
+                fixed: 12
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    375:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: WHITE_BED
+            amount:
+                fixed: 1
+    376:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: LIGHT_GRAY_BED
+            amount:
+                fixed: 1
+    377:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: GRAY_BED
+            amount:
+                fixed: 1
+    378:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: BLACK_BED
+            amount:
+                fixed: 1
+    379:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: BROWN_BED
+            amount:
+                fixed: 1
+    380:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: RED_BED
+            amount:
+                fixed: 1
+    381:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: ORANGE_BED
+            amount:
+                fixed: 1
+    382:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: YELLOW_BED
+            amount:
+                fixed: 1
+    383:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: LIME_BED
+            amount:
+                fixed: 1
+    384:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: GREEN_BED
+            amount:
+                fixed: 1
+    385:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: CYAN_BED
+            amount:
+                fixed: 1
+    386:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: LIGHT_BLUE_BED
+            amount:
+                fixed: 1
+    387:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: BLUE_BED
+            amount:
+                fixed: 1
+    388:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: PURPLE_BED
+            amount:
+                fixed: 1
+    389:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: MAGENTA_BED
+            amount:
+                fixed: 1
+    390:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: PINK_BED
+            amount:
+                fixed: 1
+    391:
+        limit: -1
+        input1:
+            material: BROWN_DYE
+            amount:
+                fixed: 12
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    392:
+        limit: -1
+        input1:
+            material: PURPLE_DYE
+            amount:
+                fixed: 12
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    393:
+        limit: -1
+        input1:
+            material: BLUE_DYE
+            amount:
+                fixed: 12
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    394:
+        limit: -1
+        input1:
+            material: GREEN_DYE
+            amount:
+                fixed: 12
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    395:
+        limit: -1
+        input1:
+            material: MAGENTA_DYE
+            amount:
+                fixed: 12
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    396:
+        limit: -1
+        input1:
+            material: CYAN_DYE
+            amount:
+                fixed: 12
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    397:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 2
+        output:
+            material: PAINTING
+            amount:
+                fixed: 3
+    # Toolsmith
+    398:
+        limit: -1
+        input1:
+            material: COAL
+            amount:
+                fixed: 15
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    399:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: STONE_AXE
+            amount:
+                fixed: 1
+    400:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: STONE_SHOVEL
+            amount:
+                fixed: 1
+    401:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: STONE_PICKAXE
+            amount:
+                fixed: 1
+    402:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 1
+        output:
+            material: STONE_HOE
+            amount:
+                fixed: 1
+    403:
+        limit: -1
+        input1:
+            material: IRON_INGOT
+            amount:
+                fixed: 4
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    404:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 36
+        output:
+            material: BELL
+            amount:
+                fixed: 1
+    405:
+        limit: -1
+        input1:
+            material: FLINT
+            amount:
+                fixed: 30
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    406:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 6
+                max: 20
+        output:
+            material: IRON_AXE
+            amount:
+                fixed: 1
+            enchants:
+                enchant-randomly: true
+                min: 5
+                max: 19
+    407:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 7
+                max: 21
+        output:
+            material: IRON_SHOVEL
+            amount:
+                fixed: 1
+            enchants:
+                enchant-randomly: true
+                min: 5
+                max: 19
+    408:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 8
+                max: 22
+        output:
+            material: IRON_PICKAXE
+            amount:
+                fixed: 1
+            enchants:
+                enchant-randomly: true
+                min: 5
+                max: 19
+    409:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 4
+        output:
+            material: DIAMOND_HOE
+            amount:
+                fixed: 1
+    410:
+        limit: -1
+        input1:
+            material: DIAMOND
+            amount:
+                fixed: 1
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    411:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 17
+                max: 31
+        output:
+            material: DIAMOND_AXE
+            amount:
+                fixed: 1
+            enchants:
+                enchant-randomly: true
+                min: 5
+                max: 19
+    412:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 10
+                max: 24
+        output:
+            material: DIAMOND_SHOVEL
+            amount:
+                fixed: 1
+            enchants:
+                enchant-randomly: true
+                min: 5
+                max: 19
+    413:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 18
+                max: 32
+        output:
+            material: DIAMOND_PICKAXE
+            amount:
+                fixed: 1
+            enchants:
+                enchant-randomly: true
+                min: 5
+                max: 19
+    414:
+        limit: -1
+        input1:
+            material: COAL
+            amount:
+                fixed: 15
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    415:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 3
+        output:
+            material: IRON_AXE
+            amount:
+                fixed: 1
+    416:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 7
+                max: 21
+        output:
+            material: IRON_SWORD
+            amount:
+                fixed: 1
+            enchants:
+                enchant-randomly: true
+                min: 5
+                max: 19
+    417:
+        limit: -1
+        input1:
+            material: IRON_INGOT
+            amount:
+                fixed: 4
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    418:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                fixed: 36
+        output:
+            material: BELL
+            amount:
+                fixed: 1
+    419:
+        limit: -1
+        input1:
+            material: FLINT
+            amount:
+                fixed: 24
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    420:
+        limit: -1
+        input1:
+            material: DIAMOND
+            amount:
+                fixed: 1
+        output:
+            material: EMERALD
+            amount:
+                fixed: 1
+    421:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 17
+                max: 31
+        output:
+            material: DIAMOND_AXE
+            amount:
+                fixed: 1
+            enchants:
+                enchant-randomly: true
+                min: 5
+                max: 19
+    422:
+        limit: -1
+        input1:
+            material: EMERALD
+            amount:
+                min: 13
+                max: 27
+        output:
+            material: DIAMOND_SWORD
+            amount:
+                fixed: 1
+            enchants:
+                enchant-randomly: true
+                min: 5
+                max: 19

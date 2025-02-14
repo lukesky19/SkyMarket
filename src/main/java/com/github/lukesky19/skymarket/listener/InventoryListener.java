@@ -1,46 +1,144 @@
-/*
-    SkyMarket is a shop that rotates it's inventory after a set period of time.
-    Copyright (C) 2024  lukeskywlker19
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published
-    by the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-*/
 package com.github.lukesky19.skymarket.listener;
 
-import com.github.lukesky19.skymarket.SkyMarket;
 import com.github.lukesky19.skymarket.gui.MarketGUI;
+import com.github.lukesky19.skymarket.gui.MerchantGUI;
+import com.github.lukesky19.skymarket.manager.MarketManager;
+import io.papermc.paper.event.player.PlayerTradeEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.Inventory;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.inventory.TradeSelectEvent;
+import org.bukkit.inventory.PlayerInventory;
+
+import java.util.UUID;
 
 /**
- * This class supports the creation of inventory GUIs.
+ * This class listens to a bunch of Inventory events and passes them to any GUIs that are open.
  */
 public class InventoryListener implements Listener {
-    final SkyMarket skyMarket;
+    private final MarketManager marketManager;
 
-    public InventoryListener(SkyMarket skyMarket) {
-        this.skyMarket = skyMarket;
+    /**
+     * Constructor
+     * @param marketManager A MarketManager instance.
+     */
+    public InventoryListener(MarketManager marketManager) {
+        this.marketManager = marketManager;
     }
 
+    /**
+     * Sends click events to the respective open GUIs.
+     * @param inventoryClickEvent An InventoryClickEvent
+     */
     @EventHandler
-    public void onClick(InventoryClickEvent event) {
-        Inventory inventory = event.getClickedInventory();
-        if(inventory == null) return;
+    public void onClick(InventoryClickEvent inventoryClickEvent) {
+        UUID uuid = inventoryClickEvent.getWhoClicked().getUniqueId();
 
-        if(inventory.getHolder(false) instanceof MarketGUI marketGUI) {
-            marketGUI.handleClick(event);
+        MarketGUI marketGUI = marketManager.getMarketGUI(uuid);
+        MerchantGUI merchantGUI = marketManager.getMerchantGUI(uuid);
+
+        if(marketGUI != null) {
+            if(inventoryClickEvent.getClickedInventory() instanceof PlayerInventory) {
+                // Bottom Inventory
+                marketGUI.handleBottomClick(inventoryClickEvent);
+            } else {
+                // Top Inventory
+                marketGUI.handleTopClick(inventoryClickEvent);
+            }
+
+            marketGUI.handleGlobalClick(inventoryClickEvent);
+        } else if(merchantGUI != null) {
+            if (inventoryClickEvent.getClickedInventory() instanceof PlayerInventory) {
+                // Bottom Inventory
+                merchantGUI.handleBottomClick(inventoryClickEvent);
+            } else {
+                // Top Inventory
+                merchantGUI.handleTopClick(inventoryClickEvent);
+            }
+
+            merchantGUI.handleGlobalClick(inventoryClickEvent);
+        }
+    }
+
+    /**
+     * Sends drag events to the respective open GUIs.
+     * @param inventoryDragEvent An InventoryDragEvent
+     */
+    @EventHandler
+    public void onDrag(InventoryDragEvent inventoryDragEvent) {
+        UUID uuid = inventoryDragEvent.getWhoClicked().getUniqueId();
+
+        MarketGUI marketGUI = marketManager.getMarketGUI(uuid);
+        MerchantGUI merchantGUI = marketManager.getMerchantGUI(uuid);
+
+        if(marketGUI != null) {
+            if(inventoryDragEvent.getInventory() instanceof PlayerInventory) {
+                // Bottom Inventory
+                marketGUI.handleBottomDrag(inventoryDragEvent);
+            } else {
+                // Top Inventory
+                marketGUI.handleTopDrag(inventoryDragEvent);
+            }
+
+            marketGUI.handleGlobalDrag(inventoryDragEvent);
+        } else if(merchantGUI != null) {
+            if (inventoryDragEvent.getInventory() instanceof PlayerInventory) {
+                // Bottom Inventory
+                merchantGUI.handleBottomDrag(inventoryDragEvent);
+            } else {
+                // Top Inventory
+                merchantGUI.handleTopDrag(inventoryDragEvent);
+            }
+
+            merchantGUI.handleGlobalDrag(inventoryDragEvent);
+        }
+    }
+
+    /**
+     * Sends close events to the respective open GUIs.
+     * @param inventoryCloseEvent An InventoryCloseEvent
+     */
+    @EventHandler
+    public void onClose(InventoryCloseEvent inventoryCloseEvent) {
+        UUID uuid = inventoryCloseEvent.getPlayer().getUniqueId();
+
+        MarketGUI marketGUI = marketManager.getMarketGUI(uuid);
+        MerchantGUI merchantGUI = marketManager.getMerchantGUI(uuid);
+
+        if(marketGUI != null) {
+            marketGUI.handleClose(inventoryCloseEvent);
+        } else if(merchantGUI != null) {
+            merchantGUI.handleClose(inventoryCloseEvent);
+        }
+    }
+
+    /**
+     * Sends trade select events to the respective open GUIs.
+     * @param tradeSelectEvent A TradeSelectEvent
+     */
+    @EventHandler
+    public void onTradeSelect(TradeSelectEvent tradeSelectEvent) {
+        UUID uuid = tradeSelectEvent.getWhoClicked().getUniqueId();
+
+        MerchantGUI merchantGUI = marketManager.getMerchantGUI(uuid);
+        if(merchantGUI != null) {
+            merchantGUI.handleTradeSelect(tradeSelectEvent);
+        }
+    }
+
+    /**
+     * Sends player trade events to the respective open GUIs.
+     * @param playerTradeEvent A PlayerTradeEvent
+     */
+    @EventHandler
+    public void onPlayerTrade(PlayerTradeEvent playerTradeEvent) {
+        UUID uuid = playerTradeEvent.getPlayer().getUniqueId();
+
+        MerchantGUI merchantGUI = marketManager.getMerchantGUI(uuid);
+        if(merchantGUI != null) {
+            merchantGUI.handlePlayerTrade(playerTradeEvent);
         }
     }
 }

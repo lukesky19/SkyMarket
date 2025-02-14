@@ -17,10 +17,21 @@
 */
 package com.github.lukesky19.skymarket.enums;
 
+import org.jetbrains.annotations.Nullable;
+
 public enum ActionType {
     FILLER,
     RETURN,
+    PLACEHOLDER,
     ITEM,
-    COMMAND,
-    PLACEHOLDER
+    COMMAND;
+
+    @Nullable
+    public static ActionType getType(String type) {
+        try {
+            return ActionType.valueOf(type);
+        } catch (IllegalArgumentException ignored) {
+            return null;
+        }
+    }
 }

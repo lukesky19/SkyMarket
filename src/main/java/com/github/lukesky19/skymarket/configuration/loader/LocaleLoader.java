@@ -15,9 +15,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-package com.github.lukesky19.skymarket.configuration.manager;
+package com.github.lukesky19.skymarket.configuration.loader;
 
 import com.github.lukesky19.skylib.config.ConfigurationUtility;
+import com.github.lukesky19.skylib.format.FormatUtil;
 import com.github.lukesky19.skylib.libs.configurate.ConfigurateException;
 import com.github.lukesky19.skylib.libs.configurate.ConfigurationNode;
 import com.github.lukesky19.skylib.libs.configurate.yaml.YamlConfigurationLoader;
@@ -29,36 +30,55 @@ import java.nio.file.Path;
 
 import com.github.lukesky19.skymarket.configuration.record.Settings;
 
+/**
+ * This class handles the loading of the locale configuration.
+ */
 public class LocaleLoader {
     final SkyMarket skyMarket;
     final SettingsLoader settingsLoader;
     private Locale locale;
     private final Locale defaultLocale = new Locale(
-            "1.2.0",
+            "2.0.0",
             "<gold><bold>SkyMarket</bold></gold><gray> ▪ </gray>",
             "<aqua>Configuration files have been reloaded.</aqua>",
             "<red>You do not have enough items to sell.</red>",
             "<red>Insufficient funds.</red>",
-            "<white>Purchased <yellow><amount> <item></yellow> for <yellow><price></yellow>. Balance: <yellow><bal></yellow></white>",
-            "<white>Sold <yellow><amount> <item></yellow> for <yellow><price></yellow>. Balance: <yellow><bal></yellow></white>",
+            "<red>You do not have enough items to trade.</red>",
+            "<white>Purchased <yellow><item></yellow> for <yellow><price></yellow>. Balance: <yellow><bal></yellow></white>",
+            "<white>Sold <yellow><item></yellow> for <yellow><price></yellow>. Balance: <yellow><bal></yellow></white>",
             "<red>This item is not able to be purchased.</red>",
             "<red>This item is not able to be sold.</red>",
-            "<red>This command can only be ran in-game.</red>",
-            "<white>The black market has been refreshed.</white>",
-            "<red>Unable to open the market due to a configuration issue.</red>",
-            "<white>The market will be refreshed in <yellow><time></yellow>.</white>");
+            "<red>You have reached the purchase limit of this item.</red>",
+            "<red>You have reached the sell limit of this item.</red>",
+            "<white>The <yellow><market_name></yellow> has been refreshed.</white>",
+            "<white>The market will be refreshed in <yellow><time></yellow>.</white>",
+            "<red>There is no market with this id.</red>",
+            "<yellow><item_name> <white>x</white><item_amount></yellow>");
 
+    /**
+     * Constructor
+     * @param skyMarket A SkyMarket plugin instance.
+     * @param settingsLoader A SettingsLoader instance.
+     */
     public LocaleLoader(SkyMarket skyMarket, SettingsLoader settingsLoader) {
         this.skyMarket = skyMarket;
         this.settingsLoader = settingsLoader;
     }
 
+    /**
+     * Gets the plugin's locale.
+     * Will return a default copy of the configuration if the user-supplied one failed to load.
+     * @return A Locale object represent the plugin's locale.
+     */
     public Locale getLocale() {
         if(locale == null) return defaultLocale;
 
         return locale;
     }
 
+    /**
+     * Reloads the plugin's locale.
+     */
     public void reload() {
         Settings settings = settingsLoader.getSettingsConfig();
         locale = null;
@@ -80,6 +100,10 @@ public class LocaleLoader {
         migrateLocale();
     }
 
+    /**
+     * Saves the plugins locale to a file on the disk.
+     * @param newLocale The locale to save.
+     */
     private void saveLocale(Locale newLocale) {
         Settings settings = settingsLoader.getSettingsConfig();
         if(settings == null) return;
@@ -98,6 +122,9 @@ public class LocaleLoader {
         }
     }
 
+    /**
+     * Copies the default locale files bundled with the plugin to the disk.
+     */
     private void copyDefaultLocales() {
         Path path = Path.of(skyMarket.getDataFolder() + File.separator + "locale" + File.separator + "en_US.yml");
         if (!path.toFile().exists()) {
@@ -105,57 +132,20 @@ public class LocaleLoader {
         }
     }
 
+    /**
+     * Migrates the locale configuration.
+     */
     private void migrateLocale() {
         switch(locale.configVersion()) {
-            case "1.2.0" -> {
+            case "2.0.0" -> {
                 // Current version, do nothing.
             }
 
-            case "1.1.0" -> {
-                // Version 1.1.0 -> 1.2.0
-                Locale newLocale = new Locale(
-                        "1.2.0",
-                        locale.prefix().trim(),
-                        locale.configReload(),
-                        locale.notEnoughItems(),
-                        locale.insufficientFunds(),
-                        locale.buySuccess(),
-                        locale.sellSuccess(),
-                        locale.unbuyable(),
-                        locale.unsellable(),
-                        locale.inGameOnly(),
-                        locale.marketRefreshed(),
-                        locale.marketOpenError(),
-                        "<white>The market will be refreshed in <yellow><time></yellow>.</white>");
-
-                locale = newLocale;
-
-                saveLocale(newLocale);
+            case null, default -> {
+                skyMarket.getComponentLogger().error(FormatUtil.format("<red>You need to migrate your locale to the new version."));
+                skyMarket.getComponentLogger().error(FormatUtil.format("<red>This happens from using a locale version older than 2.0.0."));
+                locale = null;
             }
-
-            case null -> {
-                // Version 1.0.0 -> 1.2.0
-                Locale newLocale = new Locale(
-                        "1.2.0",
-                        locale.prefix().trim(),
-                        locale.configReload(),
-                        locale.notEnoughItems(),
-                        locale.insufficientFunds(),
-                        locale.buySuccess(),
-                        locale.sellSuccess(),
-                        locale.unbuyable(),
-                        locale.unsellable(),
-                        locale.inGameOnly(),
-                        "<white>The market has been refreshed.</white>",
-                        "<red>Unable to open the market due to a configuration issue.</red>",
-                        "<white>The market will be refreshed in <yellow><time></yellow>.</white>");
-
-                locale = newLocale;
-
-                saveLocale(newLocale);
-            }
-
-            default -> throw new IllegalStateException("Unexpected value: " + locale.configVersion());
         }
     }
 }

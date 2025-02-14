@@ -26,12 +26,14 @@ public record Locale(
         String configReload,
         String notEnoughItems,
         String insufficientFunds,
+        String insufficientItems,
         String buySuccess,
         String sellSuccess,
         String unbuyable,
         String unsellable,
-        String inGameOnly,
+        String buyLimitReached,
+        String sellLimitReached,
         String marketRefreshed,
-        String marketOpenError,
-        String marketRefreshTime) {
-}
+        String marketRefreshTime,
+        String invalidMarketId,
+        String itemFormat) {}

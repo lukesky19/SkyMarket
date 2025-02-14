@@ -58,7 +58,7 @@ items:
             amount:
                 fixed: 1
             lore:
-                - "<gray>Buy for:</gray> <red><buy_price> and <buy_item0></red>"
+                - "<gray>Buy for:</gray> <red><buy_price></red>"
         price:
             buy-min: 8500.0
             buy-max: 17500.0

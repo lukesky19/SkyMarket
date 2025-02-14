@@ -104,12 +104,16 @@ public class PluginUtils {
 
                     DecimalFormat df = new DecimalFormat("#.##");
                     df.setRoundingMode(RoundingMode.CEILING);
-                    BigDecimal bigDecimal = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
-                    String bal = df.format(bigDecimal);
+
+                    BigDecimal bigPrice = BigDecimal.valueOf(price);
+                    String formattedPrice = df.format(bigPrice);
+
+                    BigDecimal bigBalance = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
+                    String bal = df.format(bigBalance);
 
                     List<TagResolver.Single> successPlaceholders = new ArrayList<>();
                     successPlaceholders.add(Placeholder.parsed("item", playerItem));
-                    successPlaceholders.add(Placeholder.parsed("price", String.valueOf(price)));
+                    successPlaceholders.add(Placeholder.parsed("price", formattedPrice));
                     successPlaceholders.add(Placeholder.parsed("bal", bal));
 
                     for(int i = 0; i < buyItems.size() - 1; i++) {
@@ -143,12 +147,16 @@ public class PluginUtils {
 
                     DecimalFormat df = new DecimalFormat("#.##");
                     df.setRoundingMode(RoundingMode.CEILING);
-                    BigDecimal bigDecimal = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
-                    String bal = df.format(bigDecimal);
+
+                    BigDecimal bigPrice = BigDecimal.valueOf(price);
+                    String formattedPrice = df.format(bigPrice);
+
+                    BigDecimal bigBalance = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
+                    String bal = df.format(bigBalance);
 
                     List<TagResolver.Single> successPlaceholders = new ArrayList<>();
                     successPlaceholders.add(Placeholder.parsed("item", playerItem));
-                    successPlaceholders.add(Placeholder.parsed("price", String.valueOf(price)));
+                    successPlaceholders.add(Placeholder.parsed("price", formattedPrice));
                     successPlaceholders.add(Placeholder.parsed("bal", bal));
 
                     player.sendMessage(FormatUtil.format(player, locale.prefix() + locale.buySuccess(), successPlaceholders));
@@ -188,8 +196,9 @@ public class PluginUtils {
 
             DecimalFormat df = new DecimalFormat("#.##");
             df.setRoundingMode(RoundingMode.CEILING);
-            BigDecimal bigDecimal = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
-            String bal = df.format(bigDecimal);
+
+            BigDecimal bigBalance = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
+            String bal = df.format(bigBalance);
 
             List<TagResolver.Single> successPlaceholders = new ArrayList<>();
             successPlaceholders.add(Placeholder.parsed("item", playerItem));
@@ -255,8 +264,9 @@ public class PluginUtils {
 
             DecimalFormat df = new DecimalFormat("#.##");
             df.setRoundingMode(RoundingMode.CEILING);
-            BigDecimal bigDecimal = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
-            String bal = df.format(bigDecimal);
+
+            BigDecimal bigBalance = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
+            String bal = df.format(bigBalance);
 
             List<TagResolver.Single> successPlaceholders = new ArrayList<>();
             successPlaceholders.add(Placeholder.parsed("item", playerItem));
@@ -336,12 +346,16 @@ public class PluginUtils {
 
                     DecimalFormat df = new DecimalFormat("#.##");
                     df.setRoundingMode(RoundingMode.CEILING);
-                    BigDecimal bigDecimal = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
-                    String bal = df.format(bigDecimal);
+
+                    BigDecimal bigPrice = BigDecimal.valueOf(price);
+                    String formattedPrice = df.format(bigPrice);
+
+                    BigDecimal bigBalance = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
+                    String bal = df.format(bigBalance);
 
                     List<TagResolver.Single> successPlaceholders = new ArrayList<>();
                     successPlaceholders.add(Placeholder.parsed("item", name));
-                    successPlaceholders.add(Placeholder.parsed("price", String.valueOf(price)));
+                    successPlaceholders.add(Placeholder.parsed("price", formattedPrice));
                     successPlaceholders.add(Placeholder.parsed("bal", bal));
 
                     for(int i = 0; i < buyItems.size() - 1; i++) {
@@ -373,12 +387,16 @@ public class PluginUtils {
 
                     DecimalFormat df = new DecimalFormat("#.##");
                     df.setRoundingMode(RoundingMode.CEILING);
-                    BigDecimal bigDecimal = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
-                    String bal = df.format(bigDecimal);
+
+                    BigDecimal bigPrice = BigDecimal.valueOf(price);
+                    String formattedPrice = df.format(bigPrice);
+
+                    BigDecimal bigBalance = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
+                    String bal = df.format(bigBalance);
 
                     List<TagResolver.Single> successPlaceholders = new ArrayList<>();
                     successPlaceholders.add(Placeholder.parsed("item", name));
-                    successPlaceholders.add(Placeholder.parsed("price", String.valueOf(price)));
+                    successPlaceholders.add(Placeholder.parsed("price", formattedPrice));
                     successPlaceholders.add(Placeholder.parsed("bal", bal));
 
                     for(int i = 0; i < buyItems.size() - 1; i++) {
@@ -423,11 +441,11 @@ public class PluginUtils {
             for (String command : buyCommands) {
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), PlaceholderAPIUtil.parsePlaceholders(player, command));
             }
-
             DecimalFormat df = new DecimalFormat("#.##");
             df.setRoundingMode(RoundingMode.CEILING);
-            BigDecimal bigDecimal = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
-            String bal = df.format(bigDecimal);
+
+            BigDecimal bigBalance = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
+            String bal = df.format(bigBalance);
 
             List<TagResolver.Single> successPlaceholders = new ArrayList<>();
             successPlaceholders.add(Placeholder.parsed("item", name));
@@ -494,12 +512,16 @@ public class PluginUtils {
 
         DecimalFormat df = new DecimalFormat("#.##");
         df.setRoundingMode(RoundingMode.CEILING);
-        BigDecimal bigDecimal = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
-        String bal = df.format(bigDecimal);
+
+        BigDecimal bigPrice = BigDecimal.valueOf(price);
+        String formattedPrice = df.format(bigPrice);
+
+        BigDecimal bigBalance = BigDecimal.valueOf(skyMarket.getEconomy().getBalance(player));
+        String bal = df.format(bigBalance);
 
         List<TagResolver.Single> successPlaceholders = new ArrayList<>();
         successPlaceholders.add(Placeholder.parsed("item", name));
-        successPlaceholders.add(Placeholder.parsed("price", String.valueOf(price)));
+        successPlaceholders.add(Placeholder.parsed("price", formattedPrice));
         successPlaceholders.add(Placeholder.parsed("bal", bal));
 
         player.sendMessage(FormatUtil.format(player, locale.prefix() + locale.sellSuccess(), successPlaceholders));

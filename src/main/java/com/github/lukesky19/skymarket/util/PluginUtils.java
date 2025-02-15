@@ -648,8 +648,10 @@ public class PluginUtils {
 
         ItemMeta itemMeta = itemStack.getItemMeta();
 
-        itemMeta.setEnchantmentGlintOverride(item.enchantmentGlint());
-        itemStack.setItemMeta(itemMeta);
+        if(item.enchantmentGlint()) {
+            itemMeta.setEnchantmentGlintOverride(true);
+            itemStack.setItemMeta(itemMeta);
+        }
 
         switch (itemMeta) {
             case SuspiciousStewMeta susMeta -> {
@@ -872,6 +874,7 @@ public class PluginUtils {
                         }
 
                         recipe.setIgnoreDiscounts(true);
+                        recipe.setExperienceReward(false);
 
                         trades.add(recipe);
 

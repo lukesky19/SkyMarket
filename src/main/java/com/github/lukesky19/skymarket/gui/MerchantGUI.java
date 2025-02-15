@@ -96,7 +96,6 @@ public class MerchantGUI extends com.github.lukesky19.skylib.gui.abstracts.Merch
         MerchantInventory merchantInventory = tradeSelectEvent.getInventory();
 
         for (MerchantRecipe recipe : merchantInventory.getMerchant().getRecipes()) {
-            recipe.setIgnoreDiscounts(true);
             recipe.setDemand(0);
         }
     }

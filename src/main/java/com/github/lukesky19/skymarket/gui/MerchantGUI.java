@@ -1,6 +1,5 @@
 package com.github.lukesky19.skymarket.gui;
 
-import com.github.lukesky19.skylib.player.PlayerUtil;
 import com.github.lukesky19.skymarket.manager.MarketManager;
 import io.papermc.paper.event.player.PlayerTradeEvent;
 import org.bukkit.entity.Player;
@@ -51,14 +50,6 @@ public class MerchantGUI extends com.github.lukesky19.skylib.gui.abstracts.Merch
         marketManager.removeActiveGui(inventoryCloseEvent.getPlayer().getUniqueId());
 
         Player player = (Player) inventoryCloseEvent.getPlayer();
-        Inventory inventory = inventoryCloseEvent.getInventory();
-
-        for (int i = 0; i <= 1; i++) {
-            ItemStack itemStack = inventory.getItem(i);
-            if (itemStack != null) {
-                PlayerUtil.giveItem(player.getInventory(), itemStack, itemStack.getAmount(), player.getLocation());
-            }
-        }
 
         marketManager.updatePlayerTrades(marketId, player.getUniqueId(), getMerchant().getRecipes());
     }

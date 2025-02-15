@@ -647,6 +647,10 @@ public class PluginUtils {
         Registry<@NotNull PotionEffectType> potionEffectRegistry = RegistryAccess.registryAccess().getRegistry(RegistryKey.MOB_EFFECT);
 
         ItemMeta itemMeta = itemStack.getItemMeta();
+
+        itemMeta.setEnchantmentGlintOverride(item.enchantmentGlint());
+        itemStack.setItemMeta(itemMeta);
+
         switch (itemMeta) {
             case SuspiciousStewMeta susMeta -> {
                 for (Item.PotionType effect : item.stewEffects()) {
@@ -776,8 +780,9 @@ public class PluginUtils {
                 itemStack.setItemMeta(enchMeta);
             }
 
-            case null, default -> {
+            default -> {
                 Item.Enchants displayEnchants = item.enchants();
+
                 if (displayEnchants.enchantRandomly()) {
                     itemStack = itemStack.enchantWithLevels(new Random().nextInt(displayEnchants.min(), displayEnchants.max()), displayEnchants.treasure(), new Random());
                 }
@@ -990,7 +995,8 @@ public class PluginUtils {
                             }
 
                             placeholders.add(Placeholder.parsed("sell_price", String.valueOf(sellPrice)));
-                            placeholders.add(Placeholder.parsed("limit", String.valueOf(randomEntry.limit())));
+                            placeholders.add(Placeholder.parsed("buy_limit", String.valueOf(randomEntry.buyLimit())));
+                            placeholders.add(Placeholder.parsed("sell_limit", String.valueOf(randomEntry.sellLimit())));
 
                             // Display Item
                             ItemStack displayItem = getDisplayItem(skyMarket, randomEntry.item(), placeholders);
@@ -1008,9 +1014,9 @@ public class PluginUtils {
                                             event.setCancelled(true);
 
                                             if (event.getClick().isLeftClick()) {
-                                                buyItem(skyMarket, marketManager, locale, marketId, (Player) event.getWhoClicked(), playerItem, buyPrice, buyItems, entry.slot(), randomEntry.limit());
+                                                buyItem(skyMarket, marketManager, locale, marketId, (Player) event.getWhoClicked(), playerItem, buyPrice, buyItems, entry.slot(), randomEntry.buyLimit());
                                             } else if (event.getClick().isRightClick()) {
-                                                sellItem(skyMarket, marketManager, locale, marketId, (Player) event.getWhoClicked(), playerItem, sellPrice, entry.slot(), randomEntry.limit());
+                                                sellItem(skyMarket, marketManager, locale, marketId, (Player) event.getWhoClicked(), playerItem, sellPrice, entry.slot(), randomEntry.sellLimit());
                                             }
                                         });
                                     }
@@ -1026,11 +1032,11 @@ public class PluginUtils {
 
                                         if (event.getClick().isLeftClick()) {
                                             if (randomEntry.commands().buyCommands() != null) {
-                                                buyCommand(skyMarket, marketManager, locale, marketId, (Player) event.getWhoClicked(), randomEntry.item().name(), buyPrice, buyItems, randomEntry.commands().buyCommands(), entry.slot(), randomEntry.limit());
+                                                buyCommand(skyMarket, marketManager, locale, marketId, (Player) event.getWhoClicked(), randomEntry.item().name(), buyPrice, buyItems, randomEntry.commands().buyCommands(), entry.slot(), randomEntry.buyLimit());
                                             }
                                         } else if (event.getClick().isRightClick()) {
                                             if (randomEntry.commands().sellCommands() != null) {
-                                                sellCommand(skyMarket, marketManager, locale, marketId, (Player) event.getWhoClicked(), randomEntry.item().name(), sellPrice, randomEntry.commands().sellCommands(), entry.slot(), randomEntry.limit());
+                                                sellCommand(skyMarket, marketManager, locale, marketId, (Player) event.getWhoClicked(), randomEntry.item().name(), sellPrice, randomEntry.commands().sellCommands(), entry.slot(), randomEntry.sellLimit());
                                             }
                                         }
                                     });

@@ -14,6 +14,7 @@ public record Item(
         @NotNull Item.Amount amount,
         @NotNull List<String> lore,
         @NotNull List<String> itemFlags,
+        boolean enchantmentGlint,
         @NotNull Item.Enchants enchants,
         @NotNull List<PotionType> stewEffects,
         @NotNull List<PotionEffect> potionEffects,

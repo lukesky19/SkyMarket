@@ -31,7 +31,8 @@ public record Chest(
     @ConfigSerializable
     public record ItemEntry(
             @Nullable String type,
-            @NotNull Integer limit,
+            int buyLimit,
+            int sellLimit,
             @NotNull Item item,
             @NotNull Commands commands,
             @NotNull Price price) {}

@@ -7,6 +7,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.TradeSelectEvent;
 import org.bukkit.inventory.*;
+import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -34,24 +35,48 @@ public class MerchantGUI extends com.github.lukesky19.skylib.gui.abstracts.Merch
             MarketManager marketManager) {
         this.marketId = marketId;
         this.marketManager = marketManager;
-        createInventory(player, guiName, null, false);
+        create(player, guiName, null, false);
 
         setTrades(trades);
 
         this.update();
     }
 
+    @Override
+    public void close(@NotNull Plugin plugin, @NotNull Player player) {
+        plugin.getServer().getScheduler().runTaskLater(plugin, () -> player.closeInventory(InventoryCloseEvent.Reason.UNLOADED), 1L);
+
+        marketManager.updatePlayerTrades(marketId, player.getUniqueId(), getLiveTrades());
+
+        marketManager.removeActiveGui(player.getUniqueId());
+    }
+
+    @Override
+    public void unload(@NotNull Plugin plugin, @NotNull Player player, boolean onDisable) {
+        if(onDisable) {
+            player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
+        } else {
+            plugin.getServer().getScheduler().runTaskLater(plugin, () -> player.closeInventory(InventoryCloseEvent.Reason.UNLOADED), 1L);
+
+            marketManager.updatePlayerTrades(marketId, player.getUniqueId(), getLiveTrades());
+        }
+
+        marketManager.removeActiveGui(player.getUniqueId());
+    }
+
     /**
-     * When an inventory is closed, return any items left inside slot 0 and 1.
+     * When the GUI is closed, remove it from the active GUIs and save the live trades for later use.
      * @param inventoryCloseEvent An InventoryCloseEvent
      */
     @Override
     public void handleClose(@NotNull InventoryCloseEvent inventoryCloseEvent) {
+        if(inventoryCloseEvent.getReason().equals(InventoryCloseEvent.Reason.UNLOADED)) return;
+
         marketManager.removeActiveGui(inventoryCloseEvent.getPlayer().getUniqueId());
 
         Player player = (Player) inventoryCloseEvent.getPlayer();
 
-        marketManager.updatePlayerTrades(marketId, player.getUniqueId(), getMerchant().getRecipes());
+        marketManager.updatePlayerTrades(marketId, player.getUniqueId(), getLiveTrades());
     }
 
     /**

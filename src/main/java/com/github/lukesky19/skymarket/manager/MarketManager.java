@@ -235,38 +235,22 @@ public class MarketManager {
 
     /**
      * Closes all open markets.
-     * @param onDisable If the closure is occuring on plugin disable or not.
+     * @param onDisable If the closure is occurring on plugin disable or not.
      */
     public void closeMarkets(boolean onDisable) {
-        if(!onDisable) {
-            openMarketGUIs.forEach((uuid, marketGUI) -> {
-                Player player = skyMarket.getServer().getPlayer(uuid);
-                if(player != null && player.isOnline() && player.isConnected()) {
-                    marketGUI.closeInventory(skyMarket, player);
-                }
-            });
+        openMarketGUIs.forEach((uuid, marketGUI) -> {
+            Player player = skyMarket.getServer().getPlayer(uuid);
+            if(player != null && player.isOnline() && player.isConnected()) {
+                marketGUI.unload(skyMarket, player, onDisable);
+            }
+        });
 
-            openMerchantGUIs.forEach((uuid, merchantGUI) -> {
-                Player player = skyMarket.getServer().getPlayer(uuid);
-                if(player != null && player.isOnline() && player.isConnected()) {
-                    merchantGUI.closeInventory(skyMarket, player);
-                }
-            });
-        } else {
-            openMarketGUIs.forEach((uuid, marketGUI) -> {
-                Player player = skyMarket.getServer().getPlayer(uuid);
-                if(player != null && player.isOnline() && player.isConnected()) {
-                    player.closeInventory();
-                }
-            });
-
-            openMerchantGUIs.forEach((uuid, merchantGUI) -> {
-                Player player = skyMarket.getServer().getPlayer(uuid);
-                if(player != null && player.isOnline() && player.isConnected()) {
-                    player.closeInventory();
-                }
-            });
-        }
+        openMerchantGUIs.forEach((uuid, merchantGUI) -> {
+            Player player = skyMarket.getServer().getPlayer(uuid);
+            if(player != null && player.isOnline() && player.isConnected()) {
+                merchantGUI.unload(skyMarket, player, onDisable);
+            }
+        });
 
         openMarketGUIs.clear();
         openMerchantGUIs.clear();
@@ -293,7 +277,7 @@ public class MarketManager {
                 skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () ->
                         openMarketGUIs.put(player.getUniqueId(), marketGUI), 1L);
 
-                marketGUI.openInventory(skyMarket, player);
+                marketGUI.open(skyMarket, player);
 
                 return true;
             } else {
@@ -311,7 +295,7 @@ public class MarketManager {
                 skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () ->
                         openMerchantGUIs.put(player.getUniqueId(), merchantGUI), 1L);
 
-                merchantGUI.openInventory(skyMarket, player);
+                merchantGUI.open(skyMarket, player);
 
                 return true;
             } else {

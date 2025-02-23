@@ -7,6 +7,7 @@ import com.github.lukesky19.skymarket.configuration.record.gui.Chest;
 import com.github.lukesky19.skymarket.manager.MarketManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -37,7 +38,7 @@ public class MarketGUI extends ChestGUI {
         String guiName = config.guiData().guiName();
         if(guiName == null) throw new RuntimeException("GUI name cannot be null!");
 
-        createInventory(player, type, guiName, null);
+        create(player, type, guiName, null);
 
         update();
     }
@@ -52,7 +53,27 @@ public class MarketGUI extends ChestGUI {
     }
 
     @Override
+    public void close(@NotNull Plugin plugin, @NotNull Player player) {
+        plugin.getServer().getScheduler().runTaskLater(plugin, () -> player.closeInventory(InventoryCloseEvent.Reason.UNLOADED), 1L);
+
+        marketManager.removeActiveGui(player.getUniqueId());
+    }
+
+    @Override
+    public void unload(@NotNull Plugin plugin, @NotNull Player player, boolean onDisable) {
+        if(onDisable) {
+            player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
+        } else {
+            plugin.getServer().getScheduler().runTaskLater(plugin, () -> player.closeInventory(InventoryCloseEvent.Reason.UNLOADED), 1L);
+        }
+
+        marketManager.removeActiveGui(player.getUniqueId());
+    }
+
+    @Override
     public void handleClose(@NotNull InventoryCloseEvent inventoryCloseEvent) {
+        if(inventoryCloseEvent.getReason().equals(InventoryCloseEvent.Reason.UNLOADED)) return;
+
         marketManager.removeActiveGui(inventoryCloseEvent.getPlayer().getUniqueId());
     }
 }

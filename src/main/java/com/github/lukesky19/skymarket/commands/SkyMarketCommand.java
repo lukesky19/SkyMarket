@@ -1,6 +1,6 @@
 /*
     SkyMarket is a shop that rotates it's inventory after a set period of time.
-    Copyright (C) 2024  lukeskywlker19
+    Copyright (C) 2024 lukeskywlker19
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
@@ -17,11 +17,11 @@
 */
 package com.github.lukesky19.skymarket.commands;
 
-import com.github.lukesky19.skylib.format.FormatUtil;
-import com.github.lukesky19.skylib.record.Time;
+import com.github.lukesky19.skylib.api.adventure.AdventureUtil;
+import com.github.lukesky19.skylib.api.time.Time;
 import com.github.lukesky19.skymarket.SkyMarket;
-import com.github.lukesky19.skymarket.configuration.loader.LocaleLoader;
-import com.github.lukesky19.skymarket.configuration.record.Locale;
+import com.github.lukesky19.skymarket.configuration.LocaleManager;
+import com.github.lukesky19.skymarket.data.config.Locale;
 import com.github.lukesky19.skymarket.manager.MarketManager;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -32,6 +32,8 @@ import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
@@ -39,30 +41,30 @@ import java.util.*;
  * This class is used to create the /skymarket command.
  */
 public class SkyMarketCommand {
-    private final SkyMarket skyMarket;
-    private final LocaleLoader localeLoader;
-    private final MarketManager marketManager;
+    private final @NotNull SkyMarket skyMarket;
+    private final @NotNull LocaleManager localeManager;
+    private final @NotNull MarketManager marketManager;
 
     /**
      * Constructor
-     * @param skyMarket A SkyMarket plugin instance.
-     * @param localeLoader A LocaleLoader instance.
-     * @param marketManager A MarketManager instance.
+     * @param skyMarket A {@link SkyMarket} instance.
+     * @param localeManager A {@link LocaleManager} instance.
+     * @param marketManager A {@link MarketManager} instance.
      */
     public SkyMarketCommand(
-            SkyMarket skyMarket,
-            LocaleLoader localeLoader,
-            MarketManager marketManager) {
+            @NotNull SkyMarket skyMarket,
+            @NotNull LocaleManager localeManager,
+            @NotNull MarketManager marketManager) {
         this.skyMarket = skyMarket;
-        this.localeLoader = localeLoader;
+        this.localeManager = localeManager;
         this.marketManager = marketManager;
     }
 
     /**
-     * Creates a single {@literal LiteralCommandNode<CommandSourceStack>} that represents the /skymarket command.
-     * @return A {@literal LiteralCommandNode<CommandSourceStack>}
+     * Creates a {@link LiteralCommandNode} of type {@link CommandSourceStack} that represents the /skymarket command.
+     * @return A {@link LiteralCommandNode} of type {@link CommandSourceStack}.
      */
-    public LiteralCommandNode<CommandSourceStack> createCommand() {
+    public @NotNull LiteralCommandNode<CommandSourceStack> createCommand() {
         LiteralArgumentBuilder<CommandSourceStack> builder = Commands.literal("skymarket")
             .requires(ctx -> ctx.getSender().hasPermission("skymarket.commands.skymarket"));
 
@@ -81,7 +83,7 @@ public class SkyMarketCommand {
                     String id = ctx.getArgument("id", String.class);
                     CommandSender sender = ctx.getSource().getSender();
 
-                    return (marketManager.openMarket(id, sender)) ? 1 : 0;
+                    return marketManager.openMarket(id, (Player) sender) ? 1 : 0;
                 })
             )
         );
@@ -89,11 +91,11 @@ public class SkyMarketCommand {
         builder.then(Commands.literal("reload")
             .requires(ctx -> ctx.getSender().hasPermission("skymarket.commands.skymarket.reload"))
             .executes(ctx -> {
-                skyMarket.reload(false);
+                skyMarket.reload();
 
-                Locale locale = localeLoader.getLocale();
+                Locale locale = localeManager.getLocale();
 
-                ctx.getSource().getSender().sendMessage(FormatUtil.format(locale.prefix() + locale.configReload()));
+                ctx.getSource().getSender().sendMessage(AdventureUtil.serialize(locale.prefix() + locale.configReload()));
 
                 return 1;
             })
@@ -113,12 +115,12 @@ public class SkyMarketCommand {
                 .executes(ctx -> {
                     String id = ctx.getArgument("id", String.class);
                     CommandSender sender = ctx.getSource().getSender();
-                    Locale locale = localeLoader.getLocale();
+                    Locale locale = localeManager.getLocale();
 
                     if(marketManager.refreshMarket(id)) {
                         return 1;
                     } else {
-                        sender.sendMessage(FormatUtil.format(locale.prefix() + locale.invalidMarketId()));
+                        sender.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.invalidMarketId()));
                         return 0;
                     }
                 })
@@ -139,83 +141,84 @@ public class SkyMarketCommand {
                 .executes(ctx -> {
                     String id = ctx.getArgument("id", String.class);
                     CommandSender sender = ctx.getSource().getSender();
-                    Locale locale = localeLoader.getLocale();
-                    Time time = marketManager.getRefreshTime(id);
+                    Locale locale = localeManager.getLocale();
+                    @Nullable Time refreshTime = marketManager.getRefreshTime(id);
                     String marketName = marketManager.getMarketName(id);
-                    if(time != null && marketName != null) {
+
+                    if(refreshTime != null && marketName != null) {
                         StringBuilder stringBuilder = new StringBuilder();
 
-                        if (time.years() > 0) {
-                            if (time.years() > 1) {
-                                stringBuilder.append(time.years()).append(" years ");
+                        if (refreshTime.years() > 0) {
+                            if (refreshTime.years() > 1) {
+                                stringBuilder.append(refreshTime.years()).append(" years ");
                             } else {
-                                stringBuilder.append(time.years()).append(" year ");
+                                stringBuilder.append(refreshTime.years()).append(" year ");
                             }
                         }
 
-                        if (time.months() > 0) {
-                            if (time.months() > 1) {
-                                stringBuilder.append(time.months()).append(" months ");
+                        if (refreshTime.months() > 0) {
+                            if (refreshTime.months() > 1) {
+                                stringBuilder.append(refreshTime.months()).append(" months ");
                             } else {
-                                stringBuilder.append(time.months()).append(" month ");
+                                stringBuilder.append(refreshTime.months()).append(" month ");
                             }
                         }
 
-                        if (time.weeks() > 0) {
-                            if (time.weeks() > 1) {
-                                stringBuilder.append(time.weeks()).append(" weeks ");
+                        if (refreshTime.weeks() > 0) {
+                            if (refreshTime.weeks() > 1) {
+                                stringBuilder.append(refreshTime.weeks()).append(" weeks ");
                             } else {
-                                stringBuilder.append(time.weeks()).append(" week ");
+                                stringBuilder.append(refreshTime.weeks()).append(" week ");
                             }
                         }
 
-                        if (time.days() > 0) {
-                            if (time.days() > 1) {
-                                stringBuilder.append(time.days()).append(" days ");
+                        if (refreshTime.days() > 0) {
+                            if (refreshTime.days() > 1) {
+                                stringBuilder.append(refreshTime.days()).append(" days ");
                             } else {
-                                stringBuilder.append(time.days()).append(" day ");
+                                stringBuilder.append(refreshTime.days()).append(" day ");
                             }
                         }
 
-                        if (time.hours() > 0) {
-                            if (time.hours() > 1) {
-                                stringBuilder.append(time.hours()).append(" hours ");
+                        if (refreshTime.hours() > 0) {
+                            if (refreshTime.hours() > 1) {
+                                stringBuilder.append(refreshTime.hours()).append(" hours ");
                             } else {
-                                stringBuilder.append(time.hours()).append(" hour ");
+                                stringBuilder.append(refreshTime.hours()).append(" hour ");
                             }
                         }
 
-                        if (time.minutes() > 0) {
-                            if (time.minutes() > 1) {
-                                stringBuilder.append(time.minutes()).append(" minutes ");
+                        if (refreshTime.minutes() > 0) {
+                            if (refreshTime.minutes() > 1) {
+                                stringBuilder.append(refreshTime.minutes()).append(" minutes ");
                             } else {
-                                stringBuilder.append(time.minutes()).append(" minute ");
+                                stringBuilder.append(refreshTime.minutes()).append(" minute ");
                             }
                         }
 
-                        if (time.seconds() > 0) {
-                            if (time.seconds() > 1) {
-                                stringBuilder.append(time.seconds()).append(" seconds ");
+                        if (refreshTime.seconds() > 0) {
+                            if (refreshTime.seconds() > 1) {
+                                stringBuilder.append(refreshTime.seconds()).append(" seconds ");
                             } else {
-                                stringBuilder.append(time.seconds()).append(" second ");
+                                stringBuilder.append(refreshTime.seconds()).append(" second ");
                             }
                         }
 
-                        if (time.milliseconds() > 0) {
-                            if (time.milliseconds() > 1) {
-                                stringBuilder.append(time.milliseconds()).append(" milliseconds");
+                        if (refreshTime.milliseconds() > 0) {
+                            if (refreshTime.milliseconds() > 1) {
+                                stringBuilder.append(refreshTime.milliseconds()).append(" milliseconds");
                             } else {
-                                stringBuilder.append(time.milliseconds()).append(" millisecond");
+                                stringBuilder.append(refreshTime.milliseconds()).append(" millisecond");
                             }
                         }
 
                         List<TagResolver.Single> placeholders = List.of(Placeholder.parsed("time", stringBuilder.toString()), Placeholder.parsed("market_name", marketName));
 
-                        sender.sendMessage(FormatUtil.format(locale.prefix() + locale.marketRefreshTime(), placeholders));
+                        sender.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.marketRefreshTime(), placeholders));
 
                         return 1;
                     } else {
-                        sender.sendMessage(FormatUtil.format(locale.prefix() + locale.invalidMarketId()));
+                        sender.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.invalidMarketId()));
                         return 0;
                     }
                 })

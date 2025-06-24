@@ -1,77 +1,160 @@
+/*
+    SkyMarket is a shop that rotates it's inventory after a set period of time.
+    Copyright (C) 2024 lukeskywlker19
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
 package com.github.lukesky19.skymarket.manager;
 
-import com.github.lukesky19.skylib.format.FormatUtil;
-import com.github.lukesky19.skylib.gui.GUIType;
-import com.github.lukesky19.skylib.gui.GUIButton;
-import com.github.lukesky19.skylib.record.Time;
+import com.github.lukesky19.skylib.api.adventure.AdventureUtil;
+import com.github.lukesky19.skylib.api.gui.GUIButton;
+import com.github.lukesky19.skylib.api.gui.GUIType;
+import com.github.lukesky19.skylib.api.time.Time;
+import com.github.lukesky19.skylib.api.time.TimeUtil;
 import com.github.lukesky19.skymarket.SkyMarket;
-import com.github.lukesky19.skymarket.configuration.loader.LocaleLoader;
-import com.github.lukesky19.skymarket.configuration.loader.MarketLoader;
-import com.github.lukesky19.skymarket.configuration.record.ActiveMerchant;
-import com.github.lukesky19.skymarket.configuration.record.Locale;
-import com.github.lukesky19.skymarket.configuration.record.ActiveMarket;
-import com.github.lukesky19.skymarket.configuration.record.gui.Chest;
-import com.github.lukesky19.skymarket.configuration.record.gui.Merchant;
-import com.github.lukesky19.skymarket.gui.MarketGUI;
-import com.github.lukesky19.skymarket.gui.MerchantGUI;
-import com.github.lukesky19.skymarket.util.PluginUtils;
+import com.github.lukesky19.skymarket.configuration.LocaleManager;
+import com.github.lukesky19.skymarket.configuration.MarketConfigManager;
+import com.github.lukesky19.skymarket.data.config.Locale;
+import com.github.lukesky19.skymarket.data.config.gui.ChestConfig;
+import com.github.lukesky19.skymarket.data.config.gui.MerchantConfig;
+import com.github.lukesky19.skymarket.data.MarketData;
+import com.github.lukesky19.skymarket.data.PlayerData;
+import com.github.lukesky19.skymarket.gui.ChestMarketGUI;
+import com.github.lukesky19.skymarket.gui.MerchantMarketGUI;
+import com.github.lukesky19.skymarket.util.MarketType;
+import net.kyori.adventure.text.logger.slf4j.ComponentLogger;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.MerchantRecipe;
 import org.bukkit.scheduler.BukkitTask;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 /**
- * This class manages all open markets and their data.
+ * This class contains methods to interface with {@link MarketData} and the refreshing of markets.
  */
 public class MarketManager {
-    private final SkyMarket skyMarket;
-    private final LocaleLoader localeLoader;
-    private final MarketLoader marketLoader;
+    private final @NotNull SkyMarket skyMarket;
+    private final @NotNull LocaleManager localeManager;
+    private final @NotNull GUIManager guiManager;
+    private final @NotNull MarketConfigManager marketConfigManager;
+    private final @NotNull MarketDataManager marketDataManager;
+    private final @NotNull ButtonManager buttonManager;
+    private final @NotNull TradeManager tradeManager;
 
-    private final HashMap<UUID, MarketGUI> openMarketGUIs = new HashMap<>();
-    private final HashMap<UUID, MerchantGUI> openMerchantGUIs = new HashMap<>();
-
-    private final HashMap<String, ActiveMarket> activeMarkets = new HashMap<>();
-    private final HashMap<String, ActiveMerchant> activeMerchants = new HashMap<>();
-
-    public MarketManager(SkyMarket skyMarket, LocaleLoader localeLoader, MarketLoader marketLoader) {
-        this.skyMarket = skyMarket;
-        this.localeLoader = localeLoader;
-        this.marketLoader = marketLoader;
+    /**
+     * Default Constructor. You should use {@link MarketManager#MarketManager(SkyMarket, LocaleManager, GUIManager, MarketConfigManager, MarketDataManager, ButtonManager, TradeManager)} instead.
+     * @deprecated You should use {@link MarketManager#MarketManager(SkyMarket, LocaleManager, GUIManager, MarketConfigManager, MarketDataManager, ButtonManager, TradeManager)} instead.
+     * @throws RuntimeException if this method is used.
+     */
+    @Deprecated
+    public MarketManager() {
+        throw new RuntimeException("The use of the default constructor is not allowed.");
     }
 
     /**
-     * Reloads all markets.
+     * Constructor
+     * @param skyMarket A {@link SkyMarket} instance.
+     * @param localeManager A {@link LocaleManager} instance.
+     * @param guiManager A {@link GUIManager} instance.
+     * @param marketConfigManager A {@link MarketConfigManager} instance.
+     * @param marketDataManager A {@link MarketDataManager} instance.
+     * @param buttonManager A {@link ButtonManager} instance.
+     * @param tradeManager A {@link TradeManager} instance.
+     */
+    public MarketManager(
+            @NotNull SkyMarket skyMarket,
+            @NotNull LocaleManager localeManager,
+            @NotNull GUIManager guiManager,
+            @NotNull MarketConfigManager marketConfigManager,
+            @NotNull MarketDataManager marketDataManager,
+            @NotNull ButtonManager buttonManager,
+            @NotNull TradeManager tradeManager) {
+        this.skyMarket = skyMarket;
+        this.localeManager = localeManager;
+        this.guiManager = guiManager;
+        this.marketConfigManager = marketConfigManager;
+        this.marketDataManager = marketDataManager;
+        this.buttonManager = buttonManager;
+        this.tradeManager = tradeManager;
+    }
+
+    /**
+     * This should only be run on plugin load or reload. To refresh markets, use {@link #refreshMarkets()} or {@link #refreshMarket(String)}
      */
     public void reload() {
-        closeMarkets(false);
+        marketConfigManager.getChestConfigs().forEach((marketId, chestConfig) -> {
+            // Config is validated on load so these will never be null.
+            assert chestConfig.marketName() != null;
+            assert chestConfig.guiData().guiType() != null;
+            assert chestConfig.guiData().guiName() != null;
+            MarketData marketData = new MarketData(chestConfig.marketName(), MarketType.CHEST, chestConfig.guiData().guiType(), chestConfig.guiData().guiName(), buttonManager.createButtons(chestConfig.guiData().guiType(), chestConfig, marketId), List.of());
 
-        refreshMarkets();
-    }
+            // Calculate the delay time and when the next refresh will occur.
+            assert chestConfig.refreshTime() != null; // Config is validated on load.
+            long delayMilliseconds = TimeUtil.stringToMillis(chestConfig.refreshTime());
+            long delaySeconds = delayMilliseconds / 1000;
+            long refreshTime = System.currentTimeMillis() + delayMilliseconds;
 
-    /**
-     * Gets the MarketGUI that the given UUID has open.
-     * @param uuid The UUID of the player.
-     * @return A MarketGUI or null if none is open.
-     */
-    @Nullable
-    public MarketGUI getMarketGUI(UUID uuid) {
-        return openMarketGUIs.get(uuid);
-    }
+            // Restart the refresh task
+            BukkitTask refreshTask = skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> refreshMarket(marketId), delaySeconds * 20);
 
-    /**
-     * Gets the MerchantGUI that the given UUID has open.
-     * @param uuid The UUID of the player.
-     * @return A MerchantGUI or null if none is open.
-     */
-    @Nullable
-    public MerchantGUI getMerchantGUI(UUID uuid) {
-        return openMerchantGUIs.get(uuid);
+            // Set the refresh task in the market data
+            marketData.setRefreshTask(refreshTask);
+
+            // Set the refresh time in the market data
+            marketData.setRefreshTime(refreshTime);
+
+            // Store the MarketData in MarketDataManager
+            marketDataManager.setMarketData(marketId, marketData);
+        });
+
+        marketConfigManager.getMerchantConfigs().forEach((marketId, merchantConfig) -> {
+            // Config is validated on load so this will never be null.
+            assert merchantConfig.marketName() != null;
+            assert merchantConfig.guiName() != null;
+            MarketData marketData = new MarketData(merchantConfig.marketName(), MarketType.MERCHANT, GUIType.MERCHANT, merchantConfig.guiName(), new HashMap<>(), tradeManager.createTrades(merchantConfig));
+
+            // Calculate the delay time and when the next refresh will occur.
+            assert merchantConfig.refreshTime() != null; // Config is validated on load.
+            long delayMilliseconds = TimeUtil.stringToMillis(merchantConfig.refreshTime());
+            long delaySeconds = delayMilliseconds / 1000;
+            long refreshTime = System.currentTimeMillis() + delayMilliseconds;
+
+            System.out.println(delayMilliseconds);
+
+            System.out.println(delaySeconds);
+
+            System.out.println(refreshTime);
+
+            // Restart the refresh task
+            BukkitTask refreshTask = skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> refreshMarket(marketId), delaySeconds * 20);
+
+            // Set the refresh task in the market data
+            marketData.setRefreshTask(refreshTask);
+
+            // Set the refresh time in the market data
+            marketData.setRefreshTime(refreshTime);
+
+            // Store the MarketData in MarketDataManager
+            marketDataManager.setMarketData(marketId, marketData);
+        });
     }
 
     /**
@@ -79,233 +162,241 @@ public class MarketManager {
      * @param marketId The id of the market to refresh.
      * @return true if the market refreshed successfully, false if not.
      */
-    public boolean refreshMarket(String marketId) {
-        Locale locale = localeLoader.getLocale();
+    public boolean refreshMarket(@NotNull String marketId) {
+        Locale locale = localeManager.getLocale();
 
-        if(activeMarkets.containsKey(marketId)) {
-            ActiveMarket market = activeMarkets.get(marketId);
-            BukkitTask task = market.refreshTask();
+        MarketData marketData = marketDataManager.getMarketData(marketId);
+        if(marketData == null) return false;
 
-            if(!task.isCancelled()) {
-                task.cancel();
-            }
+        @NotNull MarketType marketType = marketData.getMarketType();
+        @Nullable BukkitTask refreshTask = marketData.getRefreshTask();
 
-            Chest chestConfig = marketLoader.getChestConfig(marketId);
-            if(chestConfig == null) return false;
-
-            if(chestConfig.refreshTime() != null) {
-                GUIType type = GUIType.getType(chestConfig.guiData().guiType());
-                if(type == null) return false;
-
-                String marketName = chestConfig.marketName();
-                if(marketName == null) return false;
-
-                long resetTime = System.currentTimeMillis() + FormatUtil.stringToMillis(chestConfig.refreshTime());
-                long seconds = FormatUtil.stringToMillis(chestConfig.refreshTime()) / 1000;
-
-                BukkitTask refreshTask = skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> refreshMarket(marketId), seconds * 20L);
-
-                HashMap<Integer, GUIButton> buttonMap = PluginUtils.getButtons(skyMarket, this, locale, type, chestConfig, marketId);
-
-                List<TagResolver.Single> placeholders = List.of(Placeholder.parsed("market_name", marketName));
-
-                skyMarket.getServer().getOnlinePlayers().forEach(player -> {
-                    if (player.isOnline() && player.isConnected()) {
-                        player.sendMessage(FormatUtil.format(locale.prefix() + locale.marketRefreshed(), placeholders));
-                    }
-                });
-
-                activeMarkets.put(marketId, new ActiveMarket(marketName, buttonMap, new HashMap<>(), new HashMap<>(), refreshTask, resetTime));
-
-                return true;
-            }
-        } else if(activeMerchants.containsKey(marketId)) {
-            ActiveMerchant merchant = activeMerchants.get(marketId);
-            BukkitTask task = merchant.refreshTask();
-
-            if(!task.isCancelled()) {
-                task.cancel();
-            }
-
-            Merchant merchantConfig = marketLoader.getMerchantConfig(marketId);
-            if(merchantConfig == null) return false;
-
-            if(merchantConfig.refreshTime() != null) {
-                String marketName = merchantConfig.marketName();
-                if(marketName == null) return false;
-
-                long resetTime = System.currentTimeMillis() + FormatUtil.stringToMillis(merchantConfig.refreshTime());
-                long seconds = FormatUtil.stringToMillis(merchantConfig.refreshTime()) / 1000;
-
-                BukkitTask refreshTask = skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> refreshMarket(marketId), seconds * 20L);
-
-                List<MerchantRecipe> tradeList = PluginUtils.getTrades(skyMarket, merchantConfig);
-
-                List<TagResolver.Single> placeholders = List.of(Placeholder.parsed("market_name", marketName));
-
-                skyMarket.getServer().getOnlinePlayers().forEach(player -> {
-                    if (player.isOnline() && player.isConnected()) {
-                        player.sendMessage(FormatUtil.format(locale.prefix() + locale.marketRefreshed(), placeholders));
-                    }
-                });
-
-                activeMerchants.put(marketId, new ActiveMerchant(marketName, tradeList, new HashMap<>(), refreshTask, resetTime));
-
-                return true;
-            }
+        // Cancel the refresh task and set it to null.
+        if(refreshTask != null && !refreshTask.isCancelled()) {
+            refreshTask.cancel();
+            marketData.setRefreshTask(null);
         }
 
-        return false;
+        if(marketType.equals(MarketType.CHEST)) {
+            // Get the configuration for the market
+            @Nullable ChestConfig marketConfig = marketConfigManager.getChestConfig(marketId);
+            if(marketConfig == null) return false;
+
+            // Generate a new Map of buttons and update the map inside the market
+            assert marketConfig.guiData().guiType() != null; // Config is validated on load.
+            Map<Integer, GUIButton> buttonMap = buttonManager.createButtons(marketConfig.guiData().guiType(), marketConfig, marketId);
+            marketData.setButtons(buttonMap);
+
+            // Create the placeholders list
+            List<TagResolver.Single> placeholders = List.of(Placeholder.parsed("market_name", marketData.getMarketName()));
+            // Tell all online players that the market was refreshed.
+            skyMarket.getServer().getOnlinePlayers().forEach(player -> {
+                if(player.isOnline() && player.isConnected()) {
+                    player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.marketRefreshed(), placeholders));
+                }
+            });
+
+            // Calculate the delay time and when the next refresh will occur.
+            assert marketConfig.refreshTime() != null; // Config is validated on load.
+            long delayMilliseconds = TimeUtil.stringToMillis(marketConfig.refreshTime());
+            long delaySeconds = delayMilliseconds / 1000;
+            long refreshTime = System.currentTimeMillis() + delayMilliseconds;
+
+            System.out.println(delayMilliseconds);
+
+            System.out.println(delaySeconds);
+
+            System.out.println(refreshTime);
+
+            // Restart the refresh task
+            refreshTask = skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> refreshMarket(marketId), delaySeconds * 20);
+
+            // Set the refresh task in the market data
+            marketData.setRefreshTask(refreshTask);
+
+            // Set the refresh time in the market data
+            marketData.setRefreshTime(refreshTime);
+        } else {
+            // Get the configuration for the market
+            @Nullable MerchantConfig tradeConfig = marketConfigManager.getMerchantConfig(marketId);
+            if(tradeConfig == null) return false;
+
+            // Get the market's name. This is separate from its id.
+            @Nullable String marketName = marketData.getMarketName();
+
+            // Generate a new list of trades and update the list in the market.
+            List<MerchantRecipe> tradeList = tradeManager.createTrades(tradeConfig);
+            marketData.setTrades(tradeList);
+
+            // Create the placeholders list
+            List<TagResolver.Single> placeholders = List.of(Placeholder.parsed("market_name", marketName));
+            // Tell all online players that the market was refreshed.
+            skyMarket.getServer().getOnlinePlayers().forEach(player -> {
+                if(player.isOnline() && player.isConnected()) {
+                    player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.marketRefreshed(), placeholders));
+                }
+            });
+
+            // Calculate the delay time and when the next refresh will occur.
+            assert tradeConfig.refreshTime() != null; // Config is validated on load.
+            long delayMilliseconds = TimeUtil.stringToMillis(tradeConfig.refreshTime());
+            long delaySeconds = delayMilliseconds / 1000;
+            long refreshTime = System.currentTimeMillis() + delayMilliseconds;
+
+            System.out.println(delayMilliseconds);
+
+            System.out.println(delaySeconds);
+
+            System.out.println(refreshTime);
+
+            // Restart the refresh task
+            refreshTask = skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> refreshMarket(marketId), delaySeconds * 20);
+
+            // Set the refresh task in the market data
+            marketData.setRefreshTask(refreshTask);
+
+            // Set the refresh time in the market data
+            marketData.setRefreshTime(refreshTime);
+        }
+
+        return true;
     }
 
     /**
      * Refreshes all markets.
      */
     public void refreshMarkets() {
-        Locale locale = localeLoader.getLocale();
-
-        for(ActiveMarket activeMarket : activeMarkets.values()) {
-            BukkitTask task = activeMarket.refreshTask();
-            if(task.isCancelled()) {
-                task.cancel();
-            }
-        }
-
-        for(ActiveMerchant activeMerchant : activeMerchants.values()) {
-            BukkitTask task = activeMerchant.refreshTask();
-            if(task.isCancelled()) {
-                task.cancel();
-            }
-        }
-
-        activeMarkets.clear();
-        activeMerchants.clear();
-
-        marketLoader.getChestGuiConfigurations().forEach((marketId, chestConfig) -> {
+        marketConfigManager.getChestConfigs().forEach((marketId, chestConfig) -> {
             if(chestConfig.refreshTime() != null) {
-                GUIType type = GUIType.getType(chestConfig.guiData().guiType());
-                if(type == null) return;
-
-                String marketName = chestConfig.marketName();
-                if(marketName == null) return;
-
-                long resetTime = System.currentTimeMillis() + FormatUtil.stringToMillis(chestConfig.refreshTime());
-                long seconds = FormatUtil.stringToMillis(chestConfig.refreshTime()) / 1000;
-
-                BukkitTask refreshTask = skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> refreshMarket(marketId), seconds * 20L);
-
-                HashMap<Integer, GUIButton> buttonMap = PluginUtils.getButtons(skyMarket, this, locale, type, chestConfig, marketId);
-
-                List<TagResolver.Single> placeholders = List.of(Placeholder.parsed("market_name", marketName));
-
-                skyMarket.getServer().getOnlinePlayers().forEach(player -> {
-                    if (player.isOnline() && player.isConnected()) {
-                        player.sendMessage(FormatUtil.format(locale.prefix() + locale.marketRefreshed(), placeholders));
-                    }
-                });
-
-                activeMarkets.put(marketId, new ActiveMarket(marketName, buttonMap, new HashMap<>(), new HashMap<>(), refreshTask, resetTime));
+                refreshMarket(marketId);
             }
         });
 
-        marketLoader.getMerchantGuiConfigurations().forEach((marketId, merchantConfig) -> {
+        marketConfigManager.getMerchantConfigs().forEach((marketId, merchantConfig) -> {
             if(merchantConfig.refreshTime() != null) {
-                String marketName = merchantConfig.marketName();
-                if(marketName == null) return;
-
-                long resetTime = System.currentTimeMillis() + FormatUtil.stringToMillis(merchantConfig.refreshTime());
-                long seconds = FormatUtil.stringToMillis(merchantConfig.refreshTime()) / 1000;
-
-                BukkitTask refreshTask = skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> refreshMarket(marketId), seconds * 20L);
-
-                List<MerchantRecipe> tradeList = PluginUtils.getTrades(skyMarket, merchantConfig);
-
-                List<TagResolver.Single> placeholders = List.of(Placeholder.parsed("market_name", marketName));
-
-                skyMarket.getServer().getOnlinePlayers().forEach(player -> {
-                    if (player.isOnline() && player.isConnected()) {
-                        player.sendMessage(FormatUtil.format(locale.prefix() + locale.marketRefreshed(), placeholders));
-                    }
-                });
-
-                activeMerchants.put(marketId, new ActiveMerchant(marketName, tradeList, new HashMap<>(), refreshTask, resetTime));
+                refreshMarket(marketId);
             }
         });
-    }
-
-    /**
-     * Closes all open markets.
-     * @param onDisable If the closure is occurring on plugin disable or not.
-     */
-    public void closeMarkets(boolean onDisable) {
-        openMarketGUIs.forEach((uuid, marketGUI) -> {
-            Player player = skyMarket.getServer().getPlayer(uuid);
-            if(player != null && player.isOnline() && player.isConnected()) {
-                marketGUI.unload(skyMarket, player, onDisable);
-            }
-        });
-
-        openMerchantGUIs.forEach((uuid, merchantGUI) -> {
-            Player player = skyMarket.getServer().getPlayer(uuid);
-            if(player != null && player.isOnline() && player.isConnected()) {
-                merchantGUI.unload(skyMarket, player, onDisable);
-            }
-        });
-
-        openMarketGUIs.clear();
-        openMerchantGUIs.clear();
     }
 
     /**
      * Opens a market based on the market id.
-     * @param marketId The market id of the gui to open.
-     * @param sender The CommandSender/Player who wants to open the GUI.
+     * @param marketId The market id of the market to open.
+     * @param player The {@link Player} who wants to view the market.
      * @return true if the market was opened, false if not.
      */
-    public boolean openMarket(String marketId, CommandSender sender) {
-        Locale locale = localeLoader.getLocale();
-        Player player = (Player) sender;
+    public boolean openMarket(@NotNull String marketId, @NotNull Player player) {
+        Locale locale = localeManager.getLocale();
+        ComponentLogger logger = skyMarket.getComponentLogger();
         UUID uuid = player.getUniqueId();
 
-        if(activeMarkets.containsKey(marketId)) {
-            ActiveMarket activeMarket = activeMarkets.get(marketId);
-            Chest chestConfig = marketLoader.getChestConfig(marketId);
+        MarketData marketData = marketDataManager.getMarketData(marketId);
+        if(marketData == null) {
+            player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.invalidMarketId()));
+            return false;
+        }
 
-            if(chestConfig != null) {
-                MarketGUI marketGUI = new MarketGUI(chestConfig, activeMarket.buttons(), player, this);
+        if(marketData.getMarketType().equals(MarketType.CHEST)) {
+            GUIType guiType = marketData.getGuiType();
+            String guiName = marketData.getGuiName();
 
-                skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () ->
-                        openMarketGUIs.put(player.getUniqueId(), marketGUI), 1L);
+            ChestMarketGUI marketGUI = new ChestMarketGUI(skyMarket, guiManager, player, guiType, guiName, marketData.getButtons());
 
-                marketGUI.open(skyMarket, player);
-
-                return true;
-            } else {
-                sender.sendMessage(FormatUtil.format(locale.prefix() + locale.invalidMarketId()));
+            boolean creationResult = marketGUI.create();
+            if(!creationResult) {
+                logger.error(AdventureUtil.serialize("Unable to create the InventoryView for a market GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
+                player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.guiOpenError()));
                 return false;
             }
-        } else if(activeMerchants.containsKey(marketId)) {
-            ActiveMerchant activeMerchant = activeMerchants.get(marketId);
-            Merchant merchantConfig = marketLoader.getMerchantConfig(marketId);
 
-            if (merchantConfig != null && merchantConfig.guiName() != null) {
-                List<MerchantRecipe> trades = activeMerchant.playerTrades().getOrDefault(uuid, activeMerchant.trades());
-                MerchantGUI merchantGUI = new MerchantGUI(marketId, trades, merchantConfig.guiName(), player, this);
+            // This method is completed sync, the api returns a CompletableFuture for supporting plugins with async requirements.
+            @NotNull CompletableFuture<Boolean> updateFuture = marketGUI.update();
+            try {
+                boolean updateResult = updateFuture.get();
 
-                skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () ->
-                        openMerchantGUIs.put(player.getUniqueId(), merchantGUI), 1L);
+                if(!updateResult) {
+                    logger.error(AdventureUtil.serialize("Unable to decorate a market GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
+                    player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.guiOpenError()));
+                    return false;
+                }
+            } catch (InterruptedException | ExecutionException e) {
+                logger.error(AdventureUtil.serialize("Unable to decorate a market GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error. " + e.getMessage()));
+                player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.guiOpenError()));
+                return false;
+            }
 
-                merchantGUI.open(skyMarket, player);
-
-                return true;
-            } else {
-                sender.sendMessage(FormatUtil.format(locale.prefix() + locale.invalidMarketId()));
+            boolean openResult = marketGUI.open();
+            if(!openResult) {
+                logger.error(AdventureUtil.serialize("Unable to open a market GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
+                player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.guiOpenError()));
                 return false;
             }
         } else {
-            sender.sendMessage(FormatUtil.format(locale.prefix() + locale.invalidMarketId()));
-            return false;
+            List<MerchantRecipe> trades = marketData.getTrades();
+            PlayerData playerData = marketData.getPlayerData(uuid);
+            if(!playerData.getPlayerTrades().isEmpty()) trades = playerData.getPlayerTrades();
+
+            MerchantMarketGUI tradeGUI = new MerchantMarketGUI(skyMarket, guiManager, player, marketId, marketData.getGuiName(), trades, this);
+
+            boolean creationResult = tradeGUI.create();
+            if(!creationResult) {
+                logger.error(AdventureUtil.serialize("Unable to create the InventoryView for a trade GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
+                player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.guiOpenError()));
+                return false;
+            }
+
+            // This method is completed sync, the api returns a CompletableFuture for supporting plugins with async requirements.
+            @NotNull CompletableFuture<Boolean> updateFuture = tradeGUI.update();
+            try {
+                boolean updateResult = updateFuture.get();
+
+                if(!updateResult) {
+                    logger.error(AdventureUtil.serialize("Unable to decorate a trade GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
+                    player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.guiOpenError()));
+                    return false;
+                }
+            } catch (InterruptedException | ExecutionException e) {
+                logger.error(AdventureUtil.serialize("Unable to decorate a trade GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error. " + e.getMessage()));
+                player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.guiOpenError()));
+                return false;
+            }
+
+            boolean openResult = tradeGUI.open();
+            if(!openResult) {
+                logger.error(AdventureUtil.serialize("Unable to open a trade GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
+                player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.guiOpenError()));
+                return false;
+            }
         }
+
+        return true;
+    }
+
+    /**
+     * Takes a {@link List} of {@link MerchantRecipe}s from a {@link MerchantMarketGUI} and stores it for later use.
+     * @param marketId The market id.
+     * @param uuid The {@link UUID} of the player.
+     * @param trades A {@link List} of {@link MerchantRecipe}s.
+     */
+    public void updatePlayerTrades(@NotNull String marketId, @NotNull UUID uuid, @NotNull List<MerchantRecipe> trades) {
+        @Nullable MarketData marketData = marketDataManager.getMarketData(marketId);
+        if(marketData == null) return;
+        PlayerData playerData = marketData.getPlayerData(uuid);
+
+        playerData.setPlayerTrades(trades);
+    }
+
+    /**
+     * Gets a {@link List} of {@link String}s for all known market ids.
+     * @return A {@link List} of {@link String}s for all known market ids
+     */
+    public @NotNull List<String> getMarketIds() {
+        List<String> marketIds = new ArrayList<>();
+
+        marketIds.addAll(marketConfigManager.getChestConfigs().keySet());
+        marketIds.addAll(marketConfigManager.getMerchantConfigs().keySet());
+
+        return marketIds;
     }
 
     /**
@@ -313,142 +404,22 @@ public class MarketManager {
      * @param marketId The market id to get the refresh time for.
      * @return A {@link Time} object or null if the market id is not known to the plugin.
      */
-    @Nullable
-    public Time getRefreshTime(String marketId) {
-        if(activeMarkets.containsKey(marketId)) {
-            long time = activeMarkets.get(marketId).resetTime();
+    public @Nullable Time getRefreshTime(@NotNull String marketId) {
+        @Nullable MarketData marketData = marketDataManager.getMarketData(marketId);
+        if(marketData == null) return null;
 
-            return FormatUtil.millisToTime(time - System.currentTimeMillis());
-        } else if(activeMerchants.containsKey(marketId)) {
-            long time = activeMerchants.get(marketId).resetTime();
-
-            return FormatUtil.millisToTime(time - System.currentTimeMillis());
-        } else {
-            return null;
-        }
+        return TimeUtil.millisToTime(marketData.getRefreshTime() - System.currentTimeMillis());
     }
 
     /**
-     * Gets a list of all known market ids.
-     * @return A List of Strings for all known market ids
+     * Get the market name for the provided market id.
+     * @param marketId The market's id.
+     * @return The name of the market.
      */
-    public List<String> getMarketIds() {
-        List<String> list = new ArrayList<>();
+    public @Nullable String getMarketName(@NotNull String marketId) {
+        @Nullable MarketData marketData = marketDataManager.getMarketData(marketId);
+        if(marketData == null) return null;
 
-        list.addAll(activeMarkets.keySet());
-        list.addAll(activeMerchants.keySet());
-
-        return list;
-    }
-
-    /**
-     * Gets the market name for a specific market id.
-     * @param marketId The market id to get the market name for.
-     * @return A String representing the market name or null if the market id is not known to the plugin.
-     */
-    @Nullable
-    public String getMarketName(String marketId) {
-        if(activeMarkets.containsKey(marketId)) {
-            return activeMarkets.get(marketId).marketName();
-        } else if(activeMerchants.containsKey(marketId)) {
-            return activeMerchants.get(marketId).marketName();
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Adds 1 to the per-player button buy limit for the given market id, uuid, and slot.
-     * @param marketId The market id the button was clicked
-     * @param uuid The UUID of the player who clicked the button.
-     * @param slot The slot where the button was clicked.
-     */
-    public void addToBuyButtonLimit(String marketId, UUID uuid, int slot) {
-        if(activeMarkets.containsKey(marketId)) {
-            ActiveMarket currentActiveMarket = activeMarkets.get(marketId);
-            HashMap<UUID, HashMap<Integer, Integer>> uuidMap = currentActiveMarket.buySlotLimits();
-            HashMap<Integer, Integer> slotMap = uuidMap.getOrDefault(uuid, new HashMap<>());
-
-            slotMap.put(slot, slotMap.getOrDefault(slot, 0) + 1);
-
-            uuidMap.put(uuid, slotMap);
-
-            ActiveMarket updateActiveMarket = new ActiveMarket(currentActiveMarket.marketName(), currentActiveMarket.buttons(), uuidMap, currentActiveMarket.sellSlotLimits(), currentActiveMarket.refreshTask(), currentActiveMarket.resetTime());
-
-            activeMarkets.put(marketId, updateActiveMarket);
-        } else {
-            throw new RuntimeException("Unable to add purchase to button limit because there is no market with market id " + marketId);
-        }
-    }
-
-    /**
-     * Adds 1 to the per-player button sell limit for the given market id, uuid, and slot.
-     * @param marketId The market id the button was clicked
-     * @param uuid The UUID of the player who clicked the button.
-     * @param slot The slot where the button was clicked.
-     */
-    public void addToSellButtonLimit(String marketId, UUID uuid, int slot) {
-        if(activeMarkets.containsKey(marketId)) {
-            ActiveMarket currentActiveMarket = activeMarkets.get(marketId);
-            HashMap<UUID, HashMap<Integer, Integer>> uuidMap = currentActiveMarket.sellSlotLimits();
-            HashMap<Integer, Integer> slotMap = uuidMap.getOrDefault(uuid, new HashMap<>());
-
-            slotMap.put(slot, slotMap.getOrDefault(slot, 0) + 1);
-
-            uuidMap.put(uuid, slotMap);
-
-            ActiveMarket updateActiveMarket = new ActiveMarket(currentActiveMarket.marketName(), currentActiveMarket.buttons(), currentActiveMarket.buySlotLimits(), uuidMap, currentActiveMarket.refreshTask(), currentActiveMarket.resetTime());
-
-            activeMarkets.put(marketId, updateActiveMarket);
-        } else {
-            throw new RuntimeException("Unable to add purchase to button limit because there is no market with market id " + marketId);
-        }
-    }
-
-    /**
-     * Gets the per-player limits associated with a slot inside the Inventory for buying.
-     * @param marketId The market id to get the button buy limits for.
-     * @param uuid The UUID of the player to get the button buy limits for.
-     * @return A HashMap representing a slot and the buy limit for that player.
-     */
-    @Nullable
-    public HashMap<Integer, Integer> getBuyButtonLimits(String marketId, UUID uuid) {
-        return activeMarkets.get(marketId).buySlotLimits().getOrDefault(uuid, new HashMap<>());
-    }
-
-    /**
-     * Gets the per-player limits associated with a slot inside the Inventory for selling.
-     * @param marketId The market id to get the button sell limits for.
-     * @param uuid The UUID of the player to get the button sell limits for.
-     * @return A HashMap representing a slot and the sell limit for that player.
-     */
-    @Nullable
-    public HashMap<Integer, Integer> getSellButtonLimits(String marketId, UUID uuid) {
-        return activeMarkets.get(marketId).sellSlotLimits().get(uuid);
-    }
-
-    /**
-     * Stores the current trades for the player so they are re-populate once they reopen the Merchant market.
-     * @param marketId The market id the player's trades belong to.
-     * @param uuid The UUID of the player.
-     * @param trades A List of MerchantRecipe that represents the current trades.
-     */
-    public void updatePlayerTrades(String marketId, UUID uuid, List<MerchantRecipe> trades) {
-        if(activeMerchants.containsKey(marketId)) {
-            ActiveMerchant currentActiveMerchant = activeMerchants.get(marketId);
-
-            currentActiveMerchant.playerTrades().put(uuid, trades);
-        }
-    }
-
-    /**
-     * Removes the player's active GUI from being tracked. Used when the GUI is closed by the player or server.
-     * @param uuid The UUID of the player whose GUI was closed.
-     */
-    public void removeActiveGui(UUID uuid) {
-        skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
-            openMarketGUIs.remove(uuid);
-            openMerchantGUIs.remove(uuid);
-        }, 1L);
+        return marketData.getMarketName();
     }
 }

@@ -1,6 +1,6 @@
 /*
     SkyMarket is a shop that rotates it's inventory after a set period of time.
-    Copyright (C) 2024  lukeskywlker19
+    Copyright (C) 2024 lukeskywlker19
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
@@ -15,30 +15,32 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-package com.github.lukesky19.skymarket.configuration.loader;
+package com.github.lukesky19.skymarket.configuration;
 
-import com.github.lukesky19.skylib.config.ConfigurationUtility;
-import com.github.lukesky19.skylib.format.FormatUtil;
+import com.github.lukesky19.skylib.api.adventure.AdventureUtil;
+import com.github.lukesky19.skylib.api.configurate.ConfigurationUtility;
 import com.github.lukesky19.skylib.libs.configurate.ConfigurateException;
 import com.github.lukesky19.skylib.libs.configurate.ConfigurationNode;
 import com.github.lukesky19.skylib.libs.configurate.yaml.YamlConfigurationLoader;
 import com.github.lukesky19.skymarket.SkyMarket;
-import com.github.lukesky19.skymarket.configuration.record.Locale;
+import com.github.lukesky19.skymarket.data.config.Locale;
 
 import java.io.File;
 import java.nio.file.Path;
 
-import com.github.lukesky19.skymarket.configuration.record.Settings;
+import com.github.lukesky19.skymarket.data.config.Settings;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * This class handles the loading of the locale configuration.
+ * This class handles the management of the locale configuration.
  */
-public class LocaleLoader {
-    final SkyMarket skyMarket;
-    final SettingsLoader settingsLoader;
-    private Locale locale;
-    private final Locale defaultLocale = new Locale(
-            "2.0.0",
+public class LocaleManager {
+    private final @NotNull SkyMarket skyMarket;
+    private final @NotNull SettingsManager settingsManager;
+    private @Nullable Locale locale;
+    private final @NotNull Locale DEFAULT_LOCALE = new Locale(
+            "2.0.0.0",
             "<gold><bold>SkyMarket</bold></gold><gray> ▪ </gray>",
             "<aqua>Configuration files have been reloaded.</aqua>",
             "<red>You do not have enough items to sell.</red>",
@@ -53,25 +55,26 @@ public class LocaleLoader {
             "<white>The <yellow><market_name></yellow> has been refreshed.</white>",
             "<white>The market will be refreshed in <yellow><time></yellow>.</white>",
             "<red>There is no market with this id.</red>",
-            "<yellow><item_name> <white>x</white><item_amount></yellow>");
+            "<yellow><item_name> <white>x</white><item_amount></yellow>",
+            "<red>Unable to open this GUI because of a configuration error.</red>");
 
     /**
      * Constructor
-     * @param skyMarket A SkyMarket plugin instance.
-     * @param settingsLoader A SettingsLoader instance.
+     * @param skyMarket A {@link SkyMarket} instance.
+     * @param settingsManager A {@link SettingsManager} instance.
      */
-    public LocaleLoader(SkyMarket skyMarket, SettingsLoader settingsLoader) {
+    public LocaleManager(@NotNull SkyMarket skyMarket, @NotNull SettingsManager settingsManager) {
         this.skyMarket = skyMarket;
-        this.settingsLoader = settingsLoader;
+        this.settingsManager = settingsManager;
     }
 
     /**
-     * Gets the plugin's locale.
-     * Will return a default copy of the configuration if the user-supplied one failed to load.
-     * @return A Locale object represent the plugin's locale.
+     * Gets the plugin's {@link Locale}.
+     * Will return a default copy of the configuration if the user-configured one failed to load.
+     * @return The plugin's {@link Locale}
      */
-    public Locale getLocale() {
-        if(locale == null) return defaultLocale;
+    public @NotNull Locale getLocale() {
+        if(locale == null) return DEFAULT_LOCALE;
 
         return locale;
     }
@@ -80,10 +83,9 @@ public class LocaleLoader {
      * Reloads the plugin's locale.
      */
     public void reload() {
-        Settings settings = settingsLoader.getSettingsConfig();
-        locale = null;
-
+        Settings settings = settingsManager.getSettingsConfig();
         if(settings == null) return;
+        locale = null;
 
         copyDefaultLocales();
 
@@ -105,7 +107,7 @@ public class LocaleLoader {
      * @param newLocale The locale to save.
      */
     private void saveLocale(Locale newLocale) {
-        Settings settings = settingsLoader.getSettingsConfig();
+        Settings settings = settingsManager.getSettingsConfig();
         if(settings == null) return;
 
         String localeString = settings.locale();
@@ -136,14 +138,16 @@ public class LocaleLoader {
      * Migrates the locale configuration.
      */
     private void migrateLocale() {
+        if(locale == null) return;
+
         switch(locale.configVersion()) {
-            case "2.0.0" -> {
+            case "2.0.0.0" -> {
                 // Current version, do nothing.
             }
 
             case null, default -> {
-                skyMarket.getComponentLogger().error(FormatUtil.format("<red>You need to migrate your locale to the new version."));
-                skyMarket.getComponentLogger().error(FormatUtil.format("<red>This happens from using a locale version older than 2.0.0."));
+                skyMarket.getComponentLogger().error(AdventureUtil.serialize("<red>You need to migrate your locale to the new version."));
+                skyMarket.getComponentLogger().error(AdventureUtil.serialize("<red>This happens from using a locale version older than 2.0.0.0."));
                 locale = null;
             }
         }

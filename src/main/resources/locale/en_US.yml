@@ -1,4 +1,4 @@
-config-version: 2.0.0
+config-version: 2.0.0.0
 # Prefix is placed in-front of all other messages automatically.
 prefix: "<gold><bold>SkyMarket</bold></gold><gray> ▪ </gray>"
 config-reload: "<aqua>Configuration files have been reloaded.</aqua>"
@@ -16,5 +16,6 @@ sell-limit-reached: "<red>You have reached the sell limit of this item.</red>"
 market-refreshed: "<white>The <yellow><market_name></yellow> has been refreshed.</white>"
 market-refresh-time: "<white>The <yellow><market_name></yellow> will be refreshed in <yellow><time></yellow>.</white>"
 invalid-market-id: "<red>There is no market with this id.</red>"
+gui-open-error: "<red>Unable to open this GUI because of a configuration error.</red>"
 # Placeholders
 item-format: "<yellow><item_name> <white>x</white><item_amount></yellow>"

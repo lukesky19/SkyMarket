@@ -1,6 +1,6 @@
 /*
     SkyMarket is a shop that rotates it's inventory after a set period of time.
-    Copyright (C) 2024  lukeskywlker19
+    Copyright (C) 2024 lukeskywlker19
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
@@ -15,39 +15,39 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-package com.github.lukesky19.skymarket.configuration.loader;
+package com.github.lukesky19.skymarket.configuration;
 
-import com.github.lukesky19.skylib.config.ConfigurationUtility;
+import com.github.lukesky19.skylib.api.configurate.ConfigurationUtility;
 import com.github.lukesky19.skylib.libs.configurate.ConfigurateException;
 import com.github.lukesky19.skylib.libs.configurate.yaml.YamlConfigurationLoader;
 import com.github.lukesky19.skymarket.SkyMarket;
-import com.github.lukesky19.skymarket.configuration.record.Settings;
+import com.github.lukesky19.skymarket.data.config.Settings;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.io.File;
 import java.nio.file.Path;
 
 /**
- * This class manages the loading of the plugin's settings.
+ * This class manages the plugin's settings.
  */
-public class SettingsLoader {
-    private final SkyMarket skyMarket;
-    private Settings settingsConfig;
+public class SettingsManager {
+    private final @NotNull SkyMarket skyMarket;
+    private @Nullable Settings settingsConfig;
 
     /**
      * Constructor
-     * @param skyMarket A SkyMarket plugin instance.
+     * @param skyMarket A {@link SkyMarket} instance.
      */
-    public SettingsLoader(SkyMarket skyMarket) {
+    public SettingsManager(@NotNull SkyMarket skyMarket) {
         this.skyMarket = skyMarket;
     }
 
     /**
-     * Gets the plugin's configuration.
-     * @return A Settings object representing the plugin settings, or null if it failed to load.
+     * Gets the plugin's {@link Settings}.
+     * @return The plugin's {@link Settings}, or null if it failed to load.
      */
-    @Nullable
-    public Settings getSettingsConfig() {
+    public @Nullable Settings getSettingsConfig() {
         return settingsConfig;
     }
 
@@ -56,6 +56,7 @@ public class SettingsLoader {
      */
     public void reload() {
         settingsConfig = null;
+
         Path path = Path.of(skyMarket.getDataFolder() + File.separator + "settings.yml");
         if(!path.toFile().exists()) {
             skyMarket.saveResource("settings.yml", false);

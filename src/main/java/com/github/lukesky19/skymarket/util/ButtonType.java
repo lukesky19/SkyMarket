@@ -1,6 +1,6 @@
 /*
     SkyMarket is a shop that rotates it's inventory after a set period of time.
-    Copyright (C) 2024  lukeskywlker19
+    Copyright (C) 2024 lukeskywlker19
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
@@ -15,23 +15,22 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-package com.github.lukesky19.skymarket.enums;
+package com.github.lukesky19.skymarket.util;
 
-import org.jetbrains.annotations.Nullable;
-
-public enum ActionType {
+/**
+ * This enum contains different types of buttons for GUIs.
+ */
+public enum ButtonType {
+    /**
+     * This type is used to identify the configuration for the filler buttons.
+     */
     FILLER,
+    /**
+     * This type is used to identify the configuration for the return or exit button.
+     */
     RETURN,
-    PLACEHOLDER,
-    ITEM,
-    COMMAND;
-
-    @Nullable
-    public static ActionType getType(String type) {
-        try {
-            return ActionType.valueOf(type);
-        } catch (IllegalArgumentException ignored) {
-            return null;
-        }
-    }
+    /**
+     * This type is used to identify the configuration for the placeholder items that are randomly selected.
+     */
+    PLACEHOLDER
 }

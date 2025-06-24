@@ -1,6 +1,6 @@
 /*
     SkyMarket is a shop that rotates it's inventory after a set period of time.
-    Copyright (C) 2024  lukeskywlker19
+    Copyright (C) 2024 lukeskywlker19
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
@@ -15,25 +15,21 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-package com.github.lukesky19.skymarket.configuration.record;
+package com.github.lukesky19.skymarket.util;
 
-import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
+import com.github.lukesky19.skymarket.gui.ChestMarketGUI;
+import com.github.lukesky19.skymarket.gui.MerchantMarketGUI;
 
-@ConfigSerializable
-public record Locale(
-        String configVersion,
-        String prefix,
-        String configReload,
-        String notEnoughItems,
-        String insufficientFunds,
-        String insufficientItems,
-        String buySuccess,
-        String sellSuccess,
-        String unbuyable,
-        String unsellable,
-        String buyLimitReached,
-        String sellLimitReached,
-        String marketRefreshed,
-        String marketRefreshTime,
-        String invalidMarketId,
-        String itemFormat) {}
+/**
+ * This enum is the type of Market GUI being created.
+ */
+public enum MarketType {
+    /**
+     * This market type identifies that {@link ChestMarketGUI} should be used.
+     */
+    CHEST,
+    /**
+     * This market type identifies that {@link MerchantMarketGUI} should be used.
+     */
+    MERCHANT
+}

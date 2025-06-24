@@ -29,19 +29,15 @@
 ## FAQ
 Q: What versions does this plugin support?
 
-A: 1.21.0, 1.21.1, 1.21.2, 1.21.3, and 1.21.4.
+A: 1.21.4, 1.21.5, and 1.21.6
 
 Q: Are there any plans to support any other versions?
 
-A: The plugin will always support the latest version of the game at the time.
+A: I will always do my best to support the latest versions of the game. I will sometimes support other versions until I no longer use them.
 
-Q: Does this work on Spigot and Paper?
+Q: Does this work on Spigot? Paper? (Insert other server software here)?
 
-A: This plugin only works with Paper, it makes use of many newer API features that don't exist in the Spigot API. There are no plans to support Spigot.
-
-Q: Is Folia supported?
-
-A: There is no Folia support at this time. I may look into it in the future though.
+A: I only support Paper, but this will likely also work on forks of Paper (untested). There are no plans to support any other server software (i.e., Spigot or Folia).
 
 ## Building
 ```./gradlew build```

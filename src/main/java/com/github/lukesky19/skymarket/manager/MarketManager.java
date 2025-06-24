@@ -137,12 +137,6 @@ public class MarketManager {
             long delaySeconds = delayMilliseconds / 1000;
             long refreshTime = System.currentTimeMillis() + delayMilliseconds;
 
-            System.out.println(delayMilliseconds);
-
-            System.out.println(delaySeconds);
-
-            System.out.println(refreshTime);
-
             // Restart the refresh task
             BukkitTask refreshTask = skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> refreshMarket(marketId), delaySeconds * 20);
 
@@ -202,12 +196,6 @@ public class MarketManager {
             long delaySeconds = delayMilliseconds / 1000;
             long refreshTime = System.currentTimeMillis() + delayMilliseconds;
 
-            System.out.println(delayMilliseconds);
-
-            System.out.println(delaySeconds);
-
-            System.out.println(refreshTime);
-
             // Restart the refresh task
             refreshTask = skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> refreshMarket(marketId), delaySeconds * 20);
 
@@ -242,12 +230,6 @@ public class MarketManager {
             long delayMilliseconds = TimeUtil.stringToMillis(tradeConfig.refreshTime());
             long delaySeconds = delayMilliseconds / 1000;
             long refreshTime = System.currentTimeMillis() + delayMilliseconds;
-
-            System.out.println(delayMilliseconds);
-
-            System.out.println(delaySeconds);
-
-            System.out.println(refreshTime);
 
             // Restart the refresh task
             refreshTask = skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> refreshMarket(marketId), delaySeconds * 20);

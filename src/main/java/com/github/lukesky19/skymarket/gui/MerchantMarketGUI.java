@@ -73,7 +73,7 @@ public class MerchantMarketGUI extends MerchantGUI {
      * @return true if created successfully, otherwise false.
      */
     public boolean create() {
-        return create(guiName);
+        return create(guiName, List.of());
     }
 
     /**

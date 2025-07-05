@@ -43,8 +43,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 /**
  * This class contains methods to interface with {@link MarketData} and the refreshing of markets.
@@ -291,18 +289,9 @@ public class MarketManager {
                 return false;
             }
 
-            // This method is completed sync, the api returns a CompletableFuture for supporting plugins with async requirements.
-            @NotNull CompletableFuture<Boolean> updateFuture = marketGUI.update();
-            try {
-                boolean updateResult = updateFuture.get();
-
-                if(!updateResult) {
-                    logger.error(AdventureUtil.serialize("Unable to decorate a market GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
-                    player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.guiOpenError()));
-                    return false;
-                }
-            } catch (InterruptedException | ExecutionException e) {
-                logger.error(AdventureUtil.serialize("Unable to decorate a market GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error. " + e.getMessage()));
+            boolean updateResult = marketGUI.update();
+            if(!updateResult) {
+                logger.error(AdventureUtil.serialize("Unable to decorate a market GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
                 player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.guiOpenError()));
                 return false;
             }
@@ -327,18 +316,9 @@ public class MarketManager {
                 return false;
             }
 
-            // This method is completed sync, the api returns a CompletableFuture for supporting plugins with async requirements.
-            @NotNull CompletableFuture<Boolean> updateFuture = tradeGUI.update();
-            try {
-                boolean updateResult = updateFuture.get();
-
-                if(!updateResult) {
-                    logger.error(AdventureUtil.serialize("Unable to decorate a trade GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
-                    player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.guiOpenError()));
-                    return false;
-                }
-            } catch (InterruptedException | ExecutionException e) {
-                logger.error(AdventureUtil.serialize("Unable to decorate a trade GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error. " + e.getMessage()));
+            boolean updateResult = tradeGUI.update();
+            if(!updateResult) {
+                logger.error(AdventureUtil.serialize("Unable to decorate a trade GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
                 player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.guiOpenError()));
                 return false;
             }

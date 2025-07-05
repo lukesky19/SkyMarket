@@ -29,6 +29,7 @@ import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.inventory.InventoryView;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -67,7 +68,7 @@ public class ChestMarketGUI extends ChestGUI {
      * @return true if created successfully, otherwise false.
      */
     public boolean create() {
-        return create(guiType, guiName);
+        return create(guiType, guiName, List.of());
     }
 
     /**

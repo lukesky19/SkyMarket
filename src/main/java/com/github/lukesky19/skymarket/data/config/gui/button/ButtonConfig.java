@@ -15,22 +15,20 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-package com.github.lukesky19.skymarket.util;
+package com.github.lukesky19.skymarket.data.config.gui.button;
+
+import com.github.lukesky19.skylib.api.itemstack.ItemStackConfig;
+import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
+import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * This enum contains different types of buttons for GUIs.
+ * This record contains the configuration for a single button to display in a GUI.
+ * @param item The {@link ItemStackConfig} for the {@link ItemStack}.
+ * @param slot The slot to place the {@link ItemStack} at.
  */
-public enum ButtonType {
-    /**
-     * This type is used to identify the configuration for the filler buttons.
-     */
-    FILLER,
-    /**
-     * This type is used to identify the configuration for the return or exit button.
-     */
-    RETURN,
-    /**
-     * This type is used to identify the configuration for the placeholder items that are randomly selected.
-     */
-    PLACEHOLDER
-}
+@ConfigSerializable
+public record ButtonConfig(
+        @NotNull ItemStackConfig item,
+        @Nullable Integer slot) {}

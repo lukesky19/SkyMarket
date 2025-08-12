@@ -20,10 +20,10 @@ package com.github.lukesky19.skymarket.data.config.gui;
 import com.github.lukesky19.skylib.api.gui.GUIType;
 import com.github.lukesky19.skylib.api.itemstack.ItemStackConfig;
 import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
+import com.github.lukesky19.skymarket.data.config.gui.button.ButtonConfig;
 import com.github.lukesky19.skymarket.data.config.item.AmountConfig;
 import com.github.lukesky19.skymarket.data.config.item.RandomEnchantConfig;
 import com.github.lukesky19.skymarket.gui.ChestMarketGUI;
-import com.github.lukesky19.skymarket.util.ButtonType;
 import com.github.lukesky19.skymarket.util.TransactionType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -50,28 +50,20 @@ public record ChestConfig(
      * This record contains the data for creating and decorating the GUI.
      * @param guiType The {@link GUIType}.
      * @param guiName The name to display inside the inventory GUI.
-     * @param buttons A {@link List} of {@link Button}s.
+     * @param placeholderSlots A {@link List} of {@link Integer}s to place actual market items in.
+     * @param dummyButtons A {@link List} of {@link ButtonConfig}s to display in the GUI.
      */
     @ConfigSerializable
     public record GuiData(
             @Nullable GUIType guiType,
             @Nullable String guiName,
-            @NotNull List<Button> buttons) {}
+            @NotNull ButtonConfig filler,
+            @NotNull ButtonConfig exit,
+            @NotNull List<Integer> placeholderSlots,
+            @NotNull List<ButtonConfig> dummyButtons) {}
 
     /**
-     * This record contains the configuration for an individual button.
-     * @param buttonType The {@link ButtonType}.
-     * @param slot The slot where the button should be placed.
-     * @param displayItem The {@link ItemStackConfig} for the button.
-     */
-    @ConfigSerializable
-    public record Button(
-            @Nullable ButtonType buttonType,
-            int slot,
-            @NotNull ItemStackConfig displayItem) {}
-
-    /**
-     * This record contains the configuration to replace {@link ButtonType#PLACEHOLDER} buttons with.
+     * This record contains the configuration to replace placeholder slots with.
      * @param transactionType The {@link TransactionType}
      * @param displayItem The {@link ItemStackConfig} to display in the GUI.
      * @param transactionItem The {@link ItemStackConfig} that is given to the player for {@link TransactionType#ITEM}.

@@ -25,11 +25,11 @@ import com.github.lukesky19.skylib.api.itemstack.ItemStackConfig;
 import com.github.lukesky19.skylib.libs.configurate.ConfigurateException;
 import com.github.lukesky19.skylib.libs.configurate.yaml.YamlConfigurationLoader;
 import com.github.lukesky19.skymarket.SkyMarket;
+import com.github.lukesky19.skymarket.data.config.gui.button.ButtonConfig;
 import com.github.lukesky19.skymarket.data.config.item.AmountConfig;
 import com.github.lukesky19.skymarket.data.config.gui.ChestConfig;
 import com.github.lukesky19.skymarket.data.config.gui.MerchantConfig;
 import com.github.lukesky19.skymarket.data.config.item.RandomEnchantConfig;
-import com.github.lukesky19.skymarket.util.ButtonType;
 import com.github.lukesky19.skymarket.util.TransactionType;
 import net.kyori.adventure.text.logger.slf4j.ComponentLogger;
 import org.bukkit.inventory.ItemStack;
@@ -163,9 +163,9 @@ public class MarketConfigManager {
             return false;
         }
 
-        ChestConfig.GuiData data = marketConfig.guiData();
+        ChestConfig.GuiData guiData = marketConfig.guiData();
 
-        GUIType guiType = data.guiType();
+        GUIType guiType = guiData.guiType();
         if(guiType == null) {
             logger.error(AdventureUtil.serialize("The gui type in " + marketId + ".yml is invalid."));
             return false;
@@ -182,44 +182,49 @@ public class MarketConfigManager {
             }
         }
 
-        if(data.guiName() == null) {
+        if(guiData.guiName() == null) {
             logger.error(AdventureUtil.serialize("The gui name in " + marketId + ".yml is invalid."));
             return false;
         }
 
-        for(int i = 0; i < data.buttons().size(); i++) {
-            ChestConfig.Button buttonConfig = data.buttons().get(i);
+        boolean fillerItemResult = isItemStackConfigValid(logger, guiData.filler().item());
+        if(!fillerItemResult) {
+            logger.error(AdventureUtil.serialize("The ItemStack for the filler buttons in market " + marketId + ".yml due to a configuration error with the ItemStackConfig."));
+            return false;
+        }
+
+        boolean exitSlotResult = isSlotValid(guiData.exit().slot(), guiType.getSize());
+        if(!exitSlotResult) {
+            logger.error(AdventureUtil.serialize("The slot for the exit button in " + marketId + ".yml is invalid or outside the bounds of this GUI type."));
+            return false;
+        }
+        boolean exitItemResult = isItemStackConfigValid(logger, guiData.exit().item());
+        if(!exitItemResult) {
+            logger.error(AdventureUtil.serialize("The ItemStack for the exit button in market " + marketId + ".yml due to a configuration error with the ItemStackConfig."));
+            return false;
+        }
+        
+        for(int i = 0; i < guiData.dummyButtons().size(); i++) {
+            ButtonConfig buttonConfig = guiData.dummyButtons().get(i);
             if(buttonConfig == null) continue;
 
-            ButtonType buttonType = buttonConfig.buttonType();
-            if(buttonType == null) {
-                logger.error(AdventureUtil.serialize("The button type for entry " + i + " in " + marketId + ".yml is invalid."));
+            boolean dummySlotResult = isSlotValid(buttonConfig.slot(), guiType.getSize());
+            if(!dummySlotResult) {
+                logger.error(AdventureUtil.serialize("The slot for the dummy button number " + i + " in " + marketId + ".yml is invalid or outside the bounds of this GUI type."));
                 return false;
             }
+            boolean dummyItemResult = isItemStackConfigValid(logger, buttonConfig.item());
+            if(!dummyItemResult) {
+                logger.error(AdventureUtil.serialize("The ItemStack for the dummy button number " + i + " in market " + marketId + ".yml due to a configuration error with the ItemStackConfig."));
+                return false;
+            }
+        }
 
-            boolean isSlotInvalid = buttonConfig.slot() < 0 || buttonConfig.slot() >= guiType.getSize();
-            switch(buttonType) {
-                case FILLER -> {
-                    boolean result = isItemStackConfigValid(logger, i, marketId, buttonConfig.displayItem());
-                    if(!result) return false;
-                }
-
-                case RETURN -> {
-                    if(isSlotInvalid) {
-                        logger.error(AdventureUtil.serialize("The slot for entry " + i + " in " + marketId + ".yml is outside the bounds of this GUI type."));
-                        return false;
-                    }
-
-                    boolean result = isItemStackConfigValid(logger, i, marketId, buttonConfig.displayItem());
-                    if(!result) return false;
-                }
-
-                case PLACEHOLDER -> {
-                    if(isSlotInvalid) {
-                        logger.error(AdventureUtil.serialize("The slot for entry " + i + " in " + marketId + ".yml is outside the bounds of this GUI type."));
-                        return false;
-                    }
-                }
+        for(int slot : guiData.placeholderSlots()) {
+            boolean placeholderSlotResult = isSlotValid(slot, guiType.getSize());
+            if(!placeholderSlotResult) {
+                logger.error(AdventureUtil.serialize("The slot " + slot + " for a placeholder button in " + marketId + ".yml is invalid or outside the bounds of this GUI type."));
+                return false;
             }
         }
 
@@ -252,7 +257,7 @@ public class MarketConfigManager {
             }
 
             for(ItemStackConfig itemStackConfig : priceConfig.buyItems()) {
-                boolean itemResult = isItemStackConfigValid(logger, i, marketId, itemStackConfig);
+                boolean itemResult = isItemStackConfigValid(logger, itemStackConfig);
                 if(!itemResult) {
                     logger.error(AdventureUtil.serialize("A buy item under price config for entry " + i + " in " + marketId + ".yml is invalid."));
                     return false;
@@ -265,7 +270,7 @@ public class MarketConfigManager {
                     return false;
                 }
 
-                if(!isItemStackConfigValid(logger, i, marketId, itemConfig.displayItem())) {
+                if(!isItemStackConfigValid(logger, itemConfig.displayItem())) {
                     logger.error(AdventureUtil.serialize("The display item's ItemStack config for entry " + i + " in " + marketId + ".yml is invalid."));
                     return false;
                 }
@@ -275,17 +280,17 @@ public class MarketConfigManager {
                     return false;
                 }
 
-                if(!isItemStackConfigValid(logger, i, marketId, itemConfig.displayItem())) {
+                if(!isItemStackConfigValid(logger, itemConfig.displayItem())) {
                     logger.error(AdventureUtil.serialize("The transaction item's ItemStack config for entry " + i + " in " + marketId + ".yml is invalid."));
                     return false;
                 }
 
-                if(!isAmountConfigValid(logger, i, marketId, itemConfig.amount())) {
+                if(!isAmountConfigValid(itemConfig.amount())) {
                     logger.error(AdventureUtil.serialize("The amount config for entry " + i + " in " + marketId + ".yml is invalid."));
                     return false;
                 }
 
-                if(!isRandomEnchantConfigValid(logger, i, marketId, itemConfig.randomEnchants())) {
+                if(!isRandomEnchantConfigValid(itemConfig.randomEnchants())) {
                     logger.error(AdventureUtil.serialize("The random enchants config for entry " + i + " in " + marketId + ".yml is invalid."));
                     return false;
                 }
@@ -361,27 +366,27 @@ public class MarketConfigManager {
                 continue;
             }
 
-            boolean input1Result = isItemStackConfigValid(logger, tradeId, marketId, input1ItemStackConfig)
-                    && isAmountConfigValid(logger, tradeId, marketId, trade.input1().amount())
-                    && isRandomEnchantConfigValid(logger, tradeId, marketId, trade.input1().randomEnchants());
+            boolean input1Result = isItemStackConfigValid(logger, input1ItemStackConfig)
+                    && isAmountConfigValid(trade.input1().amount())
+                    && isRandomEnchantConfigValid(trade.input1().randomEnchants());
             if(!input1Result) {
                 logger.error(AdventureUtil.serialize("The first input (input1) config is invalid for trade " + tradeId + " in " + marketId + ".yml."));
                 return false;
             }
 
             if(input2ItemStackConfig.itemType() != null) {
-                boolean input2Result = isItemStackConfigValid(logger, tradeId, marketId, input2ItemStackConfig)
-                        && isAmountConfigValid(logger, tradeId, marketId, trade.input2().amount())
-                        && isRandomEnchantConfigValid(logger, tradeId, marketId, trade.input2().randomEnchants());
+                boolean input2Result = isItemStackConfigValid(logger, input2ItemStackConfig)
+                        && isAmountConfigValid(trade.input2().amount())
+                        && isRandomEnchantConfigValid(trade.input2().randomEnchants());
                 if(!input2Result) {
                     logger.warn(AdventureUtil.serialize("The second input (input2) config is invalid for trade " + tradeId + " in " + marketId + ".yml."));
                     return false;
                 }
             }
 
-            boolean outputResult = isItemStackConfigValid(logger, tradeId, marketId, outputItemStackConfig)
-                    && isAmountConfigValid(logger, tradeId, marketId, trade.output().amount())
-                    && isRandomEnchantConfigValid(logger, tradeId, marketId, trade.output().randomEnchants());
+            boolean outputResult = isItemStackConfigValid(logger, outputItemStackConfig)
+                    && isAmountConfigValid(trade.output().amount())
+                    && isRandomEnchantConfigValid(trade.output().randomEnchants());
             if(!outputResult) {
                 logger.error(AdventureUtil.serialize("The output config is invalid for trade " + tradeId + " in " + marketId + ".yml."));
                 return false;
@@ -394,55 +399,48 @@ public class MarketConfigManager {
     /**
      * Is the {@link ItemStackConfig} valid?
      * @param logger A {@link ComponentLogger}.
-     * @param entryId The index number of the item being validated.
-     * @param marketId The id of the market.
      * @param itemStackConfig The {@link ItemStackConfig} to validate.
      * @return true if valid or false
      */
-    private boolean isItemStackConfigValid(@NotNull ComponentLogger logger, int entryId, @NotNull String marketId, @NotNull ItemStackConfig itemStackConfig) {
+    private boolean isItemStackConfigValid(@NotNull ComponentLogger logger, @NotNull ItemStackConfig itemStackConfig) {
         Optional<ItemStack> optionalItemStack = new ItemStackBuilder(logger).fromItemStackConfig(itemStackConfig, null, null, List.of()).buildItemStack();
-        if(optionalItemStack.isEmpty()) {
-            logger.error(AdventureUtil.serialize("Unable to create the ItemStack for entry " + entryId + " in market " + marketId + ".yml due to a configuration error with the ItemStackConfig."));
-            return false;
-        }
+        return optionalItemStack.isPresent();
+    }
 
-        return true;
+    /**
+     * Check if the provided slot is valid.
+     * @param slot The slot to validate.
+     * @param guiSize The gui size.
+     * @return true or false.
+     */
+    private boolean isSlotValid(@Nullable Integer slot, int guiSize) {
+        if(slot == null) return false;
+
+        return slot >= 0 && slot < guiSize;
     }
 
     /**
      * Is the {@link AmountConfig} valid?
-     * @param logger A {@link ComponentLogger}.
-     * @param entryId The index number of the item being validated.
-     * @param marketId The id of the market.
      * @param amountConfig The {@link AmountConfig} to validate.
      * @return true if valid or false
      */
-    private boolean isAmountConfigValid(@NotNull ComponentLogger logger, int entryId, @NotNull String marketId, @NotNull AmountConfig amountConfig) {
-        if((amountConfig.fixed() == null || amountConfig.fixed() <= 0)
-                && (amountConfig.min() == null || amountConfig.min() <= 0)
-                && (amountConfig.max() == null || amountConfig.max() <= 0)) {
-            logger.error(AdventureUtil.serialize("The amount config is invalid for entry " + entryId + " in market " + marketId + ".yml due to a configuration error."));
-            return false;
-        }
-
-        return true;
+    private boolean isAmountConfigValid(@NotNull AmountConfig amountConfig) {
+        return (amountConfig.fixed() != null && amountConfig.fixed() > 0)
+                || (amountConfig.min() != null && amountConfig.min() > 0)
+                || (amountConfig.max() != null && amountConfig.max() > 0);
     }
 
     /**
      * Is the {@link RandomEnchantConfig} valid?
-     * @param logger A {@link ComponentLogger}.
-     * @param entryId The index number of the item being validated.
-     * @param marketId The id of the market.
      * @param randomEnchantConfig The {@link RandomEnchantConfig} to validate.
      * @return true if valid or false
      */
-    private boolean isRandomEnchantConfigValid(@NotNull ComponentLogger logger, int entryId, @NotNull String marketId, @NotNull RandomEnchantConfig randomEnchantConfig) {
+    private boolean isRandomEnchantConfigValid(@NotNull RandomEnchantConfig randomEnchantConfig) {
         if(randomEnchantConfig.enchantRandomly() != null) {
             if(randomEnchantConfig.enchantRandomly()) {
-                if((randomEnchantConfig.min() == null || randomEnchantConfig.min() <= 0) || (randomEnchantConfig.max() == null || randomEnchantConfig.max() <= 0) || randomEnchantConfig.treasure() == null) {
-                    logger.error(AdventureUtil.serialize("The random enchant config is invalid for entry " + entryId + " in market " + marketId + ".yml due to a configuration error."));
-                    return false;
-                }
+                return (randomEnchantConfig.min() != null && randomEnchantConfig.min() > 0)
+                        && (randomEnchantConfig.max() != null && randomEnchantConfig.max() > 0)
+                        && randomEnchantConfig.treasure() != null;
             }
         }
 

@@ -26,8 +26,8 @@ import com.github.lukesky19.skymarket.SkyMarket;
 import com.github.lukesky19.skymarket.data.config.gui.ChestConfig;
 import com.github.lukesky19.skymarket.data.MarketData;
 import com.github.lukesky19.skymarket.data.PlayerData;
+import com.github.lukesky19.skymarket.data.config.gui.button.ButtonConfig;
 import com.github.lukesky19.skymarket.gui.ChestMarketGUI;
-import com.github.lukesky19.skymarket.util.ButtonType;
 import com.github.lukesky19.skymarket.util.PluginUtils;
 import com.github.lukesky19.skymarket.util.TransactionType;
 import net.kyori.adventure.text.logger.slf4j.ComponentLogger;
@@ -87,183 +87,192 @@ public class ButtonManager {
             @NotNull ChestConfig marketConfig,
             @NotNull String marketId) {
         ComponentLogger logger = skyMarket.getComponentLogger();
+        ChestConfig.GuiData guiData = marketConfig.guiData();
         Map<Integer, GUIButton> buttons = new HashMap<>();
 
-        List<ChestConfig.Button> buttonList = marketConfig.guiData().buttons();
         List<ChestConfig.ItemConfig> itemsList = new ArrayList<>(marketConfig.items());
 
-        for(ChestConfig.Button buttonConfig : buttonList) {
-            ButtonType buttonType = buttonConfig.buttonType();
-            if(buttonType == null) continue;
+        Optional<ItemStack> optionalFillerItemStack = new ItemStackBuilder(logger).fromItemStackConfig(guiData.filler().item(), null, null, List.of()).buildItemStack();
+        if(optionalFillerItemStack.isPresent()) {
+            ItemStack itemStack = optionalFillerItemStack.get();
 
-            switch(buttonType) {
-                case FILLER -> {
-                    Optional<ItemStack> optionalItemStack = new ItemStackBuilder(logger).fromItemStackConfig(buttonConfig.displayItem(), null, null, List.of()).buildItemStack();
-                    if(optionalItemStack.isEmpty()) continue;
-                    ItemStack itemStack = optionalItemStack.get();
+            GUIButton guiButton = new GUIButton.Builder().setItemStack(itemStack).build();
 
-                    GUIButton guiButton = new GUIButton.Builder().setItemStack(itemStack).build();
+            for(int i = 0; i <= guiType.getSize() - 1; i++) {
+                buttons.put(i, guiButton);
+            }
+        }
 
-                    for(int i = 0; i <= guiType.getSize() - 1; i++) {
-                        buttons.put(i, guiButton);
-                    }
-                }
+        Optional<ItemStack> optionalExitItemStack = new ItemStackBuilder(logger).fromItemStackConfig(guiData.exit().item(), null, null, List.of()).buildItemStack();
+        if(optionalExitItemStack.isPresent()) {
+            if(guiData.exit().slot() != null) {
+                ItemStack itemStack = optionalExitItemStack.get();
 
-                case RETURN -> {
-                    Optional<ItemStack> optionalItemStack = new ItemStackBuilder(logger).fromItemStackConfig(buttonConfig.displayItem(), null, null, List.of()).buildItemStack();
-                    if(optionalItemStack.isEmpty()) continue;
-                    ItemStack itemStack = optionalItemStack.get();
+                GUIButton guiButton = new GUIButton.Builder()
+                        .setItemStack(itemStack)
+                        .setAction(event -> {
+                            Player player = (Player) event.getWhoClicked();
 
-                    GUIButton guiButton = new GUIButton.Builder()
-                            .setItemStack(itemStack)
-                            .setAction(event -> {
-                                Player player = (Player) event.getWhoClicked();
+                            skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
+                                player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
 
-                                skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
-                                    player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
+                                guiManager.removeOpenGUI(player.getUniqueId());
+                            }, 1L);
+                        })
+                        .build();
 
-                                    guiManager.removeOpenGUI(player.getUniqueId());
-                                }, 1L);
-                            })
-                            .build();
+                buttons.put(guiData.exit().slot(), guiButton);
+            }
+        }
 
-                    buttons.put(buttonConfig.slot(), guiButton);
-                }
+        for(int i = 0; i < guiData.dummyButtons().size(); i++) {
+            ButtonConfig buttonConfig = guiData.dummyButtons().get(i);
+            if(buttonConfig == null) continue;
+            if(buttonConfig.slot() == null || buttonConfig.slot() < 0 || buttonConfig.slot() >= guiType.getSize()) continue;
 
-                case PLACEHOLDER -> {
-                    if (itemsList.isEmpty()) continue;
+            Optional<ItemStack> optionalDummyItemStack = new ItemStackBuilder(logger).fromItemStackConfig(buttonConfig.item(), null, null, List.of()).buildItemStack();
+            if(optionalDummyItemStack.isPresent()) {
+                ItemStack itemStack = optionalDummyItemStack.get();
 
-                    int randomIndex = new Random().nextInt(itemsList.size());
-                    ChestConfig.ItemConfig randomConfig = itemsList.get(randomIndex);
-                    itemsList.remove(randomIndex);
+                GUIButton guiButton = new GUIButton.Builder()
+                        .setItemStack(itemStack)
+                        .build();
 
-                    String transactionName = randomConfig.transactionName();
-                    if(transactionName == null) continue;
+                buttons.put(buttonConfig.slot(), guiButton);
+            }
+        }
 
-                    double buyPrice;
-                    double sellPrice;
-                    List<ItemStack> buyItems = new ArrayList<>();
+        if(itemsList.isEmpty()) return buttons;
+        for(int slot : guiData.placeholderSlots()) {
+            int randomIndex = new Random().nextInt(itemsList.size());
+            ChestConfig.ItemConfig randomConfig = itemsList.get(randomIndex);
+            itemsList.remove(randomIndex);
 
-                    if(randomConfig.prices().buyFixed() != null) {
-                        buyPrice = randomConfig.prices().buyFixed();
-                    } else if (randomConfig.prices().buyMin() != null && randomConfig.prices().buyMax() != null) {
-                        buyPrice = PluginUtils.calculatePrice(randomConfig.prices().buyMin(), randomConfig.prices().buyMax());
-                    } else {
-                        continue;
-                    }
+            String transactionName = randomConfig.transactionName();
+            if(transactionName == null) continue;
 
-                    if(randomConfig.prices().sellFixed() != null) {
-                        sellPrice = randomConfig.prices().sellFixed();
-                    } else if(randomConfig.prices().sellMin() != null && randomConfig.prices().sellMax() != null) {
-                        sellPrice = PluginUtils.calculatePrice(randomConfig.prices().sellMin(), randomConfig.prices().sellMax());
-                    } else {
-                        continue;
-                    }
+            double buyPrice;
+            double sellPrice;
+            List<ItemStack> buyItems = new ArrayList<>();
 
-                    List<TagResolver.Single> placeholders = new ArrayList<>();
-                    placeholders.add(Placeholder.parsed("buy_price", String.valueOf(buyPrice)));
-                    placeholders.add(Placeholder.parsed("sell_price", String.valueOf(sellPrice)));
-                    placeholders.add(Placeholder.parsed("buy_limit", String.valueOf(randomConfig.buyLimit())));
-                    placeholders.add(Placeholder.parsed("sell_limit", String.valueOf(randomConfig.sellLimit())));
+            if(randomConfig.prices().buyFixed() != null) {
+                buyPrice = randomConfig.prices().buyFixed();
+            } else if (randomConfig.prices().buyMin() != null && randomConfig.prices().buyMax() != null) {
+                buyPrice = PluginUtils.calculatePrice(randomConfig.prices().buyMin(), randomConfig.prices().buyMax());
+            } else {
+                continue;
+            }
 
-                    for(int i = 0; i < randomConfig.prices().buyItems().size(); i++) {
-                        ItemStackConfig itemStackConfig = randomConfig.prices().buyItems().get(i);
-                        Optional<ItemStack> optionalItemStack = new ItemStackBuilder(logger).fromItemStackConfig(itemStackConfig, null, null, List.of()).buildItemStack();
-                        if(optionalItemStack.isEmpty()) continue;
+            if(randomConfig.prices().sellFixed() != null) {
+                sellPrice = randomConfig.prices().sellFixed();
+            } else if(randomConfig.prices().sellMin() != null && randomConfig.prices().sellMax() != null) {
+                sellPrice = PluginUtils.calculatePrice(randomConfig.prices().sellMin(), randomConfig.prices().sellMax());
+            } else {
+                continue;
+            }
 
-                        buyItems.add(optionalItemStack.get());
-                    }
+            List<TagResolver.Single> placeholders = new ArrayList<>();
+            placeholders.add(Placeholder.parsed("buy_price", String.valueOf(buyPrice)));
+            placeholders.add(Placeholder.parsed("sell_price", String.valueOf(sellPrice)));
+            placeholders.add(Placeholder.parsed("buy_limit", String.valueOf(randomConfig.buyLimit())));
+            placeholders.add(Placeholder.parsed("sell_limit", String.valueOf(randomConfig.sellLimit())));
 
-                    TransactionType transactionType = randomConfig.transactionType();
-                    if (transactionType == null) continue;
+            for(int i = 0; i < randomConfig.prices().buyItems().size(); i++) {
+                ItemStackConfig itemStackConfig = randomConfig.prices().buyItems().get(i);
+                Optional<ItemStack> optionalItemStack = new ItemStackBuilder(logger).fromItemStackConfig(itemStackConfig, null, null, List.of()).buildItemStack();
+                if(optionalItemStack.isEmpty()) continue;
 
-                    if(transactionType.equals(TransactionType.ITEM)) {
-                        if(randomConfig.transactionItem().itemType() == null) continue;
-                        @NotNull Optional<ItemType> optionalItemType = RegistryUtil.getItemType(logger, randomConfig.transactionItem().itemType());
-                        if(optionalItemType.isEmpty()) continue;
-                        ItemType itemType = optionalItemType.get();
+                buyItems.add(optionalItemStack.get());
+            }
 
-                        Integer randomAmount = PluginUtils.getRandomAmount(randomConfig.amount().fixed(), randomConfig.amount().min(), randomConfig.amount().max());
-                        Map<Enchantment, Integer> randomEnchantments = PluginUtils.getRandomEnchantments(itemType, randomConfig.randomEnchants().enchantRandomly(), randomConfig.randomEnchants().min(), randomConfig.randomEnchants().max(), randomConfig.randomEnchants().treasure());
+            TransactionType transactionType = randomConfig.transactionType();
+            if (transactionType == null) continue;
 
-                        Optional<ItemStack> optionalDisplayStack = PluginUtils.createItemStack(logger, randomConfig.displayItem(), randomAmount, randomEnchantments, placeholders);
-                        if (optionalDisplayStack.isEmpty()) continue;
+            if(transactionType.equals(TransactionType.ITEM)) {
+                if(randomConfig.transactionItem().itemType() == null) continue;
+                @NotNull Optional<ItemType> optionalItemType = RegistryUtil.getItemType(logger, randomConfig.transactionItem().itemType());
+                if(optionalItemType.isEmpty()) continue;
+                ItemType itemType = optionalItemType.get();
 
-                        Optional<ItemStack> optionalPlayerItem = PluginUtils.createItemStack(logger, randomConfig.transactionItem(), randomAmount, randomEnchantments, placeholders);
-                        if (optionalPlayerItem.isEmpty()) continue;
+                Integer randomAmount = PluginUtils.getRandomAmount(randomConfig.amount().fixed(), randomConfig.amount().min(), randomConfig.amount().max());
+                Map<Enchantment, Integer> randomEnchantments = PluginUtils.getRandomEnchantments(itemType, randomConfig.randomEnchants().enchantRandomly(), randomConfig.randomEnchants().min(), randomConfig.randomEnchants().max(), randomConfig.randomEnchants().treasure());
 
-                        GUIButton guiButton = new GUIButton.Builder()
-                                .setItemStack(optionalDisplayStack.get())
-                                .setAction(inventoryClickEvent -> {
-                                    Player player = (Player) inventoryClickEvent.getWhoClicked();
-                                    UUID uuid = player.getUniqueId();
+                Optional<ItemStack> optionalDisplayStack = PluginUtils.createItemStack(logger, randomConfig.displayItem(), randomAmount, randomEnchantments, placeholders);
+                if (optionalDisplayStack.isEmpty()) continue;
 
-                                    MarketData marketData = marketDataManager.getMarketData(marketId);
-                                    if(marketData == null) return;
-                                    PlayerData playerData = marketData.getPlayerData(uuid);
+                Optional<ItemStack> optionalPlayerItem = PluginUtils.createItemStack(logger, randomConfig.transactionItem(), randomAmount, randomEnchantments, placeholders);
+                if (optionalPlayerItem.isEmpty()) continue;
 
-                                    if(inventoryClickEvent.getClick().isLeftClick()) {
-                                        transactionManager.buyItem(
-                                                player,
-                                                playerData,
-                                                optionalPlayerItem.get(),
-                                                buyPrice,
-                                                buyItems,
-                                                buttonConfig.slot(),
-                                                randomConfig.buyLimit());
-                                    } else if(inventoryClickEvent.getClick().isRightClick()) {
-                                        transactionManager.sellItem(
-                                                player,
-                                                playerData,
-                                                optionalPlayerItem.get(),
-                                                sellPrice,
-                                                buttonConfig.slot(),
-                                                randomConfig.sellLimit());
-                                    }
-                                })
-                                .build();
+                GUIButton guiButton = new GUIButton.Builder()
+                        .setItemStack(optionalDisplayStack.get())
+                        .setAction(inventoryClickEvent -> {
+                            Player player = (Player) inventoryClickEvent.getWhoClicked();
+                            UUID uuid = player.getUniqueId();
 
-                        buttons.put(buttonConfig.slot(), guiButton);
-                    } else {
-                        Optional<ItemStack> optionalDisplayStack = new ItemStackBuilder(logger).fromItemStackConfig(randomConfig.displayItem(), null, null, placeholders).buildItemStack();
-                        if(optionalDisplayStack.isEmpty()) continue;
+                            MarketData marketData = marketDataManager.getMarketData(marketId);
+                            if(marketData == null) return;
+                            PlayerData playerData = marketData.getPlayerData(uuid);
 
-                        GUIButton guiButton = new GUIButton.Builder()
-                                .setItemStack(optionalDisplayStack.get())
-                                .setAction(inventoryClickEvent -> {
-                                    Player player = (Player) inventoryClickEvent.getWhoClicked();
-                                    UUID uuid = player.getUniqueId();
+                            if(inventoryClickEvent.getClick().isLeftClick()) {
+                                transactionManager.buyItem(
+                                        player,
+                                        playerData,
+                                        optionalPlayerItem.get(),
+                                        buyPrice,
+                                        buyItems,
+                                        slot,
+                                        randomConfig.buyLimit());
+                            } else if(inventoryClickEvent.getClick().isRightClick()) {
+                                transactionManager.sellItem(
+                                        player,
+                                        playerData,
+                                        optionalPlayerItem.get(),
+                                        sellPrice,
+                                        slot,
+                                        randomConfig.sellLimit());
+                            }
+                        })
+                        .build();
 
-                                    MarketData marketData = marketDataManager.getMarketData(marketId);
-                                    if(marketData == null) return;
-                                    PlayerData playerData = marketData.getPlayerData(uuid);
+                buttons.put(slot, guiButton);
+            } else {
+                Optional<ItemStack> optionalDisplayStack = new ItemStackBuilder(logger).fromItemStackConfig(randomConfig.displayItem(), null, null, placeholders).buildItemStack();
+                if(optionalDisplayStack.isEmpty()) continue;
 
-                                    if(inventoryClickEvent.getClick().isLeftClick()) {
-                                        transactionManager.buyCommand(
-                                                player,
-                                                playerData,
-                                                transactionName,
-                                                buyPrice,
-                                                buyItems,
-                                                randomConfig.buyCommands(),
-                                                buttonConfig.slot(),
-                                                randomConfig.buyLimit());
-                                    } else if(inventoryClickEvent.getClick().isRightClick()) {
-                                        transactionManager.sellCommand(
-                                                player,
-                                                playerData,
-                                                transactionName,
-                                                sellPrice,
-                                                randomConfig.sellCommands(),
-                                                buttonConfig.slot(),
-                                                randomConfig.sellLimit());
-                                    }
-                                })
-                                .build();
+                GUIButton guiButton = new GUIButton.Builder()
+                        .setItemStack(optionalDisplayStack.get())
+                        .setAction(inventoryClickEvent -> {
+                            Player player = (Player) inventoryClickEvent.getWhoClicked();
+                            UUID uuid = player.getUniqueId();
 
-                        buttons.put(buttonConfig.slot(), guiButton);
-                    }
-                }
+                            MarketData marketData = marketDataManager.getMarketData(marketId);
+                            if(marketData == null) return;
+                            PlayerData playerData = marketData.getPlayerData(uuid);
+
+                            if(inventoryClickEvent.getClick().isLeftClick()) {
+                                transactionManager.buyCommand(
+                                        player,
+                                        playerData,
+                                        transactionName,
+                                        buyPrice,
+                                        buyItems,
+                                        randomConfig.buyCommands(),
+                                        slot,
+                                        randomConfig.buyLimit());
+                            } else if(inventoryClickEvent.getClick().isRightClick()) {
+                                transactionManager.sellCommand(
+                                        player,
+                                        playerData,
+                                        transactionName,
+                                        sellPrice,
+                                        randomConfig.sellCommands(),
+                                        slot,
+                                        randomConfig.sellLimit());
+                            }
+                        })
+                        .build();
+
+                buttons.put(slot, guiButton);
             }
         }
 

@@ -24,7 +24,7 @@
 - `skymarket.commands.skymarket.open` - The permission to open markets.
 ## Issues, Bugs, or Suggestions
 * Please create a new [Github Issue](https://github.com/lukesky19/SkyMarket/issues) with your issue, bug, or suggestion.
-* If an issue or bug, please post any relevant logs containing errors related to SkyShop and your configuration files.
+* If an issue or bug, please post any relevant logs containing errors related to SkyMarket and your configuration files.
 * I will attempt to solve any issues or implement features to the best of my ability.
 ## FAQ
 Q: What versions does this plugin support?

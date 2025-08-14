@@ -9,11 +9,17 @@ depend: [SkyLib, Vault]
 
 permissions:
   skymarket.commands.skymarket:
-    description: Permission to access the shop.
+    description: Permission to access the main plugin command.
     default: op
   skymarket.commands.skymarket.reload:
     description: Permission to reload the plugin.
     default: op
+  skymarket.commands.skymarket.refresh:
+    description: Permission to refresh a market.
+    default: op
   skymarket.commands.skymarket.time:
-    description: Permission to view when the market will refresh.
+    description: Permission to view when a market will refresh.
+    default: op
+  skymarket.commands.skymarket.open:
+    description: Permission to open a market gui.
     default: op

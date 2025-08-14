@@ -1,6 +1,6 @@
 /*
     SkyMarket is a shop that rotates it's inventory after a set period of time.
-    Copyright (C) 2024  lukeskywlker19
+    Copyright (C) 2024 lukeskywlker19
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
@@ -15,37 +15,17 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-package com.github.lukesky19.skymarket.configuration.record;
+package com.github.lukesky19.skymarket.data.config.item;
 
 import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
+import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-
+/**
+ * This record contains the configuration for configuring or calculating an {@link ItemStack}'s amount.
+ * @param fixed The fixed amount of the {@link ItemStack}.
+ * @param min The minimum amount. Used with the maximum amount to calculate the {@link ItemStack}'s amount.
+ * @param max The maximum amount. Used with the minimum amount to calculate the {@link ItemStack}'s amount.
+ */
 @ConfigSerializable
-public record Items(String configVersion, LinkedHashMap<Integer, Entry> items) {
-    @ConfigSerializable
-    public record Entry(
-            String type,
-            Item item,
-            Prices prices,
-            Commands commands) {}
-
-    @ConfigSerializable
-    public record Item(
-            String material,
-            String name,
-            List<String> lore) {}
-
-    @ConfigSerializable
-    public record Prices(
-            Double buyPriceMin,
-            Double buyPriceMax,
-            Double sellPriceMin,
-            Double sellPriceMax) { }
-
-    @ConfigSerializable
-    public record Commands(
-            List<String> buyCommands,
-            List<String> sellCommands) {}
-}
+public record AmountConfig(@Nullable Integer fixed, @Nullable Integer min, @Nullable Integer max) {}

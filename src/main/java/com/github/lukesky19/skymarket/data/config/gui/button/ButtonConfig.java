@@ -1,6 +1,6 @@
 /*
     SkyMarket is a shop that rotates it's inventory after a set period of time.
-    Copyright (C) 2024  lukeskywlker19
+    Copyright (C) 2024 lukeskywlker19
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
@@ -15,12 +15,20 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-package com.github.lukesky19.skymarket.enums;
+package com.github.lukesky19.skymarket.data.config.gui.button;
 
-public enum ActionType {
-    FILLER,
-    RETURN,
-    ITEM,
-    COMMAND,
-    PLACEHOLDER
-}
+import com.github.lukesky19.skylib.api.itemstack.ItemStackConfig;
+import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
+import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+/**
+ * This record contains the configuration for a single button to display in a GUI.
+ * @param item The {@link ItemStackConfig} for the {@link ItemStack}.
+ * @param slot The slot to place the {@link ItemStack} at.
+ */
+@ConfigSerializable
+public record ButtonConfig(
+        @NotNull ItemStackConfig item,
+        @Nullable Integer slot) {}

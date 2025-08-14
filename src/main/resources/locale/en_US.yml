@@ -1,16 +1,21 @@
-config-version: 1.2.0
+config-version: 2.0.0.0
 # Prefix is placed in-front of all other messages automatically.
 prefix: "<gold><bold>SkyMarket</bold></gold><gray> ▪ </gray>"
 config-reload: "<aqua>Configuration files have been reloaded.</aqua>"
 not-enough-items: "<red>You do not have enough items to sell.</red>"
 insufficient-funds: "<red>Insufficient funds.</red>"
-# Placeholders: <amount>, <item>, <price>, <bal>
-buy-success: "<white>Purchased <yellow><amount> <item></yellow> for <yellow><price></yellow>. Balance: <yellow><bal></yellow></white>"
-# Placeholders: <amount>, <item>, <price>, <bal>
-sell-success: "<white>Sold <yellow><amount> <item></yellow> for <yellow><price></yellow>. Balance: <yellow><bal></yellow></white>"
+insufficient-items: "<red>You do not have enough items to purchase this item.</red>"
+# Placeholders: <item>, <price>, <item#>, <bal>
+buy-success: "<white>Purchased <yellow><item></yellow> for <yellow><price></yellow>. Balance: <yellow><bal></yellow></white>"
+# Placeholders: <item>, <price>, <item#>, <bal>
+sell-success: "<white>Sold <yellow><item></yellow> for <yellow><price></yellow>. Balance: <yellow><bal></yellow></white>"
 unbuyable: "<red>This item is not able to be purchased.</red>"
 unsellable: "<red>This item is not able to be sold.</red>"
-in-game-only: "<red>This command can only be ran in-game.</red>"
-market-refreshed: "<white>The market has been refreshed.</white>"
-market-open-error: "<red>Unable to open the market due to a configuration issue.</red>"
-market-refresh-time: "<white>The market will be refreshed in <yellow><time></yellow>.</white>"
+buy-limit-reached: "<red>You have reached the purchase limit of this item.</red>"
+sell-limit-reached: "<red>You have reached the sell limit of this item.</red>"
+market-refreshed: "<white>The <yellow><market_name></yellow> has been refreshed.</white>"
+market-refresh-time: "<white>The <yellow><market_name></yellow> will be refreshed in <yellow><time></yellow>.</white>"
+invalid-market-id: "<red>There is no market with this id.</red>"
+gui-open-error: "<red>Unable to open this GUI because of a configuration error.</red>"
+# Placeholders
+item-format: "<yellow><item_name> <white>x</white><item_amount></yellow>"

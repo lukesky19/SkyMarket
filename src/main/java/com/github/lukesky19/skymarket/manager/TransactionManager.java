@@ -544,6 +544,9 @@ public class TransactionManager {
                     return;
                 }
 
+                // Remove the price from the player's balance.
+                skyMarket.getEconomy().withdrawPlayer(player, price);
+
                 // Run the buy commands through console
                 for (String command : buyCommands) {
                     skyMarket.getServer().dispatchCommand(skyMarket.getServer().getConsoleSender(), PlaceholderAPIUtil.parsePlaceholders(player, command));

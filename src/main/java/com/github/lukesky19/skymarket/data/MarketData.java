@@ -132,11 +132,7 @@ public class MarketData {
      * @return The {@link PlayerData} for the player.
      */
     public @NotNull PlayerData getPlayerData(@NotNull UUID uuid) {
-        PlayerData playerData = playerDataMap.get(uuid);
-
-        if(playerData == null) return new PlayerData(new HashMap<>(), new HashMap<>(), new ArrayList<>());
-
-        return playerData;
+        return playerDataMap.computeIfAbsent(uuid, (k) -> new PlayerData(new HashMap<>(), new HashMap<>(), new ArrayList<>()));
     }
 
     /**

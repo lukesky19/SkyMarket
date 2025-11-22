@@ -136,6 +136,13 @@ public class MarketData {
     }
 
     /**
+     * Clear all player data for the market.
+     */
+    public void clearPlayerData() {
+        playerDataMap.clear();
+    }
+
+    /**
      * Set the {@link BukkitTask} that is handling the refresh of the market.
      * @param refreshTask The {@link BukkitTask} that is handling the refresh of the market.
      */

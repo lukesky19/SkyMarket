@@ -179,6 +179,8 @@ public class MarketManager {
             Map<Integer, GUIButton> buttonMap = buttonManager.createButtons(marketConfig.guiData().guiType(), marketConfig, marketId);
             marketData.setButtons(buttonMap);
 
+            marketData.clearPlayerData();
+
             // Create the placeholders list
             List<TagResolver.Single> placeholders = List.of(Placeholder.parsed("market_name", marketData.getMarketName()));
             // Tell all online players that the market was refreshed.
@@ -213,6 +215,8 @@ public class MarketManager {
             // Generate a new list of trades and update the list in the market.
             List<MerchantRecipe> tradeList = tradeManager.createTrades(tradeConfig);
             marketData.setTrades(tradeList);
+
+            marketData.clearPlayerData();
 
             // Create the placeholders list
             List<TagResolver.Single> placeholders = List.of(Placeholder.parsed("market_name", marketName));

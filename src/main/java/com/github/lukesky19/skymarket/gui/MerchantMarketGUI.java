@@ -17,9 +17,9 @@
 */
 package com.github.lukesky19.skymarket.gui;
 
-import com.github.lukesky19.skylib.api.gui.abstracts.MerchantGUI;
+import com.github.lukesky19.skylib.api.gui.impl.UUIDGUIManager;
+import com.github.lukesky19.skylib.api.gui.templates.MerchantGUI;
 import com.github.lukesky19.skymarket.SkyMarket;
-import com.github.lukesky19.skymarket.manager.GUIManager;
 import com.github.lukesky19.skymarket.manager.MarketManager;
 import io.papermc.paper.event.player.PlayerTradeEvent;
 import org.bukkit.entity.Player;
@@ -32,11 +32,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * This class is used to create merchant-style GUIs for markets.
  */
-public class MerchantMarketGUI extends MerchantGUI {
+public class MerchantMarketGUI extends MerchantGUI<UUID> {
     private final @NotNull String marketId;
     private final @NotNull String guiName;
     private final @NotNull MarketManager marketManager;
@@ -44,7 +45,7 @@ public class MerchantMarketGUI extends MerchantGUI {
     /**
      * Constructor
      * @param skyMarket A {@link SkyMarket} instance.
-     * @param guiManager A {@link GUIManager} instance.
+     * @param guiManager A {@link UUIDGUIManager} instance.
      * @param player The {@link Player} to create the GUI for.
      * @param marketId The market id.
      * @param guiName The gui name to use.
@@ -53,13 +54,13 @@ public class MerchantMarketGUI extends MerchantGUI {
      */
     public MerchantMarketGUI(
             @NotNull SkyMarket skyMarket,
-            @NotNull GUIManager guiManager,
+            @NotNull UUIDGUIManager guiManager,
             @NotNull Player player,
             @NotNull String marketId,
             @NotNull String guiName,
             @NotNull List<MerchantRecipe> trades,
             @NotNull MarketManager marketManager) {
-        super(skyMarket, guiManager, player);
+        super(skyMarket, guiManager, player.getUniqueId(), player);
 
         this.marketId = marketId;
         this.guiName = guiName;

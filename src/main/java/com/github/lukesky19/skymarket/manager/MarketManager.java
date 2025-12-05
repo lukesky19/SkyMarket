@@ -20,6 +20,7 @@ package com.github.lukesky19.skymarket.manager;
 import com.github.lukesky19.skylib.api.adventure.AdventureUtil;
 import com.github.lukesky19.skylib.api.gui.GUIButton;
 import com.github.lukesky19.skylib.api.gui.GUIType;
+import com.github.lukesky19.skylib.api.gui.impl.UUIDGUIManager;
 import com.github.lukesky19.skylib.api.time.Time;
 import com.github.lukesky19.skylib.api.time.TimeUtil;
 import com.github.lukesky19.skymarket.SkyMarket;
@@ -50,15 +51,15 @@ import java.util.*;
 public class MarketManager {
     private final @NotNull SkyMarket skyMarket;
     private final @NotNull LocaleManager localeManager;
-    private final @NotNull GUIManager guiManager;
+    private final @NotNull UUIDGUIManager guiManager;
     private final @NotNull MarketConfigManager marketConfigManager;
     private final @NotNull MarketDataManager marketDataManager;
     private final @NotNull ButtonManager buttonManager;
     private final @NotNull TradeManager tradeManager;
 
     /**
-     * Default Constructor. You should use {@link MarketManager#MarketManager(SkyMarket, LocaleManager, GUIManager, MarketConfigManager, MarketDataManager, ButtonManager, TradeManager)} instead.
-     * @deprecated You should use {@link MarketManager#MarketManager(SkyMarket, LocaleManager, GUIManager, MarketConfigManager, MarketDataManager, ButtonManager, TradeManager)} instead.
+     * Default Constructor. You should use {@link MarketManager#MarketManager(SkyMarket, LocaleManager, UUIDGUIManager, MarketConfigManager, MarketDataManager, ButtonManager, TradeManager)} instead.
+     * @deprecated You should use {@link MarketManager#MarketManager(SkyMarket, LocaleManager, UUIDGUIManager, MarketConfigManager, MarketDataManager, ButtonManager, TradeManager)} instead.
      * @throws RuntimeException if this method is used.
      */
     @Deprecated
@@ -70,7 +71,7 @@ public class MarketManager {
      * Constructor
      * @param skyMarket A {@link SkyMarket} instance.
      * @param localeManager A {@link LocaleManager} instance.
-     * @param guiManager A {@link GUIManager} instance.
+     * @param guiManager A {@link UUIDGUIManager} instance.
      * @param marketConfigManager A {@link MarketConfigManager} instance.
      * @param marketDataManager A {@link MarketDataManager} instance.
      * @param buttonManager A {@link ButtonManager} instance.
@@ -79,7 +80,7 @@ public class MarketManager {
     public MarketManager(
             @NotNull SkyMarket skyMarket,
             @NotNull LocaleManager localeManager,
-            @NotNull GUIManager guiManager,
+            @NotNull UUIDGUIManager guiManager,
             @NotNull MarketConfigManager marketConfigManager,
             @NotNull MarketDataManager marketDataManager,
             @NotNull ButtonManager buttonManager,
@@ -186,7 +187,7 @@ public class MarketManager {
             // Tell all online players that the market was refreshed.
             skyMarket.getServer().getOnlinePlayers().forEach(player -> {
                 if(player.isOnline() && player.isConnected()) {
-                    player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.marketRefreshed(), placeholders));
+                    player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.marketRefreshed(), placeholders));
                 }
             });
 
@@ -223,7 +224,7 @@ public class MarketManager {
             // Tell all online players that the market was refreshed.
             skyMarket.getServer().getOnlinePlayers().forEach(player -> {
                 if(player.isOnline() && player.isConnected()) {
-                    player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.marketRefreshed(), placeholders));
+                    player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.marketRefreshed(), placeholders));
                 }
             });
 
@@ -276,7 +277,7 @@ public class MarketManager {
 
         MarketData marketData = marketDataManager.getMarketData(marketId);
         if(marketData == null) {
-            player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.invalidMarketId()));
+            player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.invalidMarketId()));
             return false;
         }
 
@@ -288,22 +289,22 @@ public class MarketManager {
 
             boolean creationResult = marketGUI.create();
             if(!creationResult) {
-                logger.error(AdventureUtil.serialize("Unable to create the InventoryView for a market GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
-                player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.guiOpenError()));
+                logger.error(AdventureUtil.deserialize("Unable to create the InventoryView for a market GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
+                player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.guiOpenError()));
                 return false;
             }
 
             boolean updateResult = marketGUI.update();
             if(!updateResult) {
-                logger.error(AdventureUtil.serialize("Unable to decorate a market GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
-                player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.guiOpenError()));
+                logger.error(AdventureUtil.deserialize("Unable to decorate a market GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
+                player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.guiOpenError()));
                 return false;
             }
 
             boolean openResult = marketGUI.open();
             if(!openResult) {
-                logger.error(AdventureUtil.serialize("Unable to open a market GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
-                player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.guiOpenError()));
+                logger.error(AdventureUtil.deserialize("Unable to open a market GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
+                player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.guiOpenError()));
                 return false;
             }
         } else {
@@ -315,22 +316,22 @@ public class MarketManager {
 
             boolean creationResult = tradeGUI.create();
             if(!creationResult) {
-                logger.error(AdventureUtil.serialize("Unable to create the InventoryView for a trade GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
-                player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.guiOpenError()));
+                logger.error(AdventureUtil.deserialize("Unable to create the InventoryView for a trade GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
+                player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.guiOpenError()));
                 return false;
             }
 
             boolean updateResult = tradeGUI.update();
             if(!updateResult) {
-                logger.error(AdventureUtil.serialize("Unable to decorate a trade GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
-                player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.guiOpenError()));
+                logger.error(AdventureUtil.deserialize("Unable to decorate a trade GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
+                player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.guiOpenError()));
                 return false;
             }
 
             boolean openResult = tradeGUI.open();
             if(!openResult) {
-                logger.error(AdventureUtil.serialize("Unable to open a trade GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
-                player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.guiOpenError()));
+                logger.error(AdventureUtil.deserialize("Unable to open a trade GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
+                player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.guiOpenError()));
                 return false;
             }
         }

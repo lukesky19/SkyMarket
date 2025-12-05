@@ -19,6 +19,7 @@ package com.github.lukesky19.skymarket.manager;
 
 import com.github.lukesky19.skylib.api.gui.GUIButton;
 import com.github.lukesky19.skylib.api.gui.GUIType;
+import com.github.lukesky19.skylib.api.gui.impl.UUIDGUIManager;
 import com.github.lukesky19.skylib.api.itemstack.ItemStackBuilder;
 import com.github.lukesky19.skylib.api.itemstack.ItemStackConfig;
 import com.github.lukesky19.skylib.api.registry.RegistryUtil;
@@ -49,11 +50,11 @@ public class ButtonManager {
     private final @NotNull SkyMarket skyMarket;
     private final @NotNull MarketDataManager marketDataManager;
     private final @NotNull TransactionManager transactionManager;
-    private final @NotNull GUIManager guiManager;
+    private final @NotNull UUIDGUIManager guiManager;
 
     /**
-     * Default Constructor. You should use {@link ButtonManager#ButtonManager(SkyMarket, MarketDataManager, TransactionManager, GUIManager)} instead.
-     * @deprecated You should use {@link ButtonManager#ButtonManager(SkyMarket, MarketDataManager, TransactionManager, GUIManager)} instead.
+     * Default Constructor. You should use {@link ButtonManager#ButtonManager(SkyMarket, MarketDataManager, TransactionManager, UUIDGUIManager)} instead.
+     * @deprecated You should use {@link ButtonManager#ButtonManager(SkyMarket, MarketDataManager, TransactionManager, UUIDGUIManager)} instead.
      * @throws RuntimeException if this method is used.
      */
     @Deprecated
@@ -66,9 +67,9 @@ public class ButtonManager {
      * @param skyMarket A {@link SkyMarket} instance.
      * @param marketDataManager A {@link MarketDataManager} instance.
      * @param transactionManager A {@link TransactionManager} instance.
-     * @param guiManager A {@link GUIManager} instance.
+     * @param guiManager A {@link UUIDGUIManager} instance.
      */
-    public ButtonManager(@NotNull SkyMarket skyMarket, @NotNull MarketDataManager marketDataManager, @NotNull TransactionManager transactionManager, @NotNull GUIManager guiManager) {
+    public ButtonManager(@NotNull SkyMarket skyMarket, @NotNull MarketDataManager marketDataManager, @NotNull TransactionManager transactionManager, @NotNull UUIDGUIManager guiManager) {
         this.skyMarket = skyMarket;
         this.marketDataManager = marketDataManager;
         this.transactionManager = transactionManager;

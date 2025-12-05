@@ -146,8 +146,8 @@ public class LocaleManager {
             }
 
             case null, default -> {
-                skyMarket.getComponentLogger().error(AdventureUtil.serialize("<red>You need to migrate your locale to the new version."));
-                skyMarket.getComponentLogger().error(AdventureUtil.serialize("<red>This happens from using a locale version older than 2.0.0.0."));
+                skyMarket.getComponentLogger().error(AdventureUtil.deserialize("<red>You need to migrate your locale to the new version."));
+                skyMarket.getComponentLogger().error(AdventureUtil.deserialize("<red>This happens from using a locale version older than 2.0.0.0."));
                 locale = null;
             }
         }

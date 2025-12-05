@@ -95,7 +95,7 @@ public class SkyMarketCommand {
 
                 Locale locale = localeManager.getLocale();
 
-                ctx.getSource().getSender().sendMessage(AdventureUtil.serialize(locale.prefix() + locale.configReload()));
+                ctx.getSource().getSender().sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.configReload()));
 
                 return 1;
             })
@@ -120,7 +120,7 @@ public class SkyMarketCommand {
                     if(marketManager.refreshMarket(id)) {
                         return 1;
                     } else {
-                        sender.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.invalidMarketId()));
+                        sender.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.invalidMarketId()));
                         return 0;
                     }
                 })
@@ -214,11 +214,11 @@ public class SkyMarketCommand {
 
                         List<TagResolver.Single> placeholders = List.of(Placeholder.parsed("time", stringBuilder.toString()), Placeholder.parsed("market_name", marketName));
 
-                        sender.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.marketRefreshTime(), placeholders));
+                        sender.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.marketRefreshTime(), placeholders));
 
                         return 1;
                     } else {
-                        sender.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.invalidMarketId()));
+                        sender.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.invalidMarketId()));
                         return 0;
                     }
                 })

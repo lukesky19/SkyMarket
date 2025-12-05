@@ -19,6 +19,7 @@ package com.github.lukesky19.skymarket.manager;
 
 import com.github.lukesky19.skylib.api.adventure.AdventureUtil;
 import com.github.lukesky19.skylib.api.format.FormatUtil;
+import com.github.lukesky19.skylib.api.gui.impl.UUIDGUIManager;
 import com.github.lukesky19.skylib.api.placeholderapi.PlaceholderAPIUtil;
 import com.github.lukesky19.skylib.api.player.PlayerUtil;
 import com.github.lukesky19.skymarket.SkyMarket;
@@ -45,11 +46,11 @@ import java.util.List;
 public class TransactionManager {
     private final @NotNull SkyMarket skyMarket;
     private final @NotNull LocaleManager localeManager;
-    private final @NotNull GUIManager guiManager;
+    private final @NotNull UUIDGUIManager guiManager;
 
     /**
-     * Default Constructor. You should use {@link TransactionManager#TransactionManager(SkyMarket, LocaleManager, GUIManager)} instead.
-     * @deprecated You should use {@link TransactionManager#TransactionManager(SkyMarket, LocaleManager, GUIManager)} instead.
+     * Default Constructor. You should use {@link TransactionManager#TransactionManager(SkyMarket, LocaleManager, UUIDGUIManager)} instead.
+     * @deprecated You should use {@link TransactionManager#TransactionManager(SkyMarket, LocaleManager, UUIDGUIManager)} instead.
      * @throws RuntimeException if this method is used.
      */
     @Deprecated
@@ -61,9 +62,9 @@ public class TransactionManager {
      * Constructor
      * @param skyMarket A {@link SkyMarket} instance.
      * @param localeManager A {@link LocaleManager} instance.
-     * @param guiManager A {@link GUIManager} instance.
+     * @param guiManager A {@link UUIDGUIManager} instance.
      */
-    public TransactionManager(@NotNull SkyMarket skyMarket, @NotNull LocaleManager localeManager, @NotNull GUIManager guiManager) {
+    public TransactionManager(@NotNull SkyMarket skyMarket, @NotNull LocaleManager localeManager, @NotNull UUIDGUIManager guiManager) {
         this.skyMarket = skyMarket;
         this.localeManager = localeManager;
         this.guiManager = guiManager;
@@ -91,7 +92,7 @@ public class TransactionManager {
 
         // Check if the item can be purchased according to the buy price or the items to trade.
         if(price <= 0 && buyItems.isEmpty()) {
-            player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.unbuyable()));
+            player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.unbuyable()));
             return;
         }
 
@@ -99,7 +100,7 @@ public class TransactionManager {
         if(limit != null && limit > 0) {
             @Nullable Integer playerLimit = playerData.getBuyLimits().get(slot);
             if(playerLimit != null && playerLimit >= limit) {
-                player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.buyLimitReached()));
+                player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.buyLimitReached()));
                 return;
             }
         }
@@ -108,7 +109,7 @@ public class TransactionManager {
             if(!buyItems.isEmpty()) {
                 // Check if the player's balance has enough money for the price
                 if(skyMarket.getEconomy().getBalance(player) < price) {
-                    player.sendMessage(AdventureUtil.serialize(player, locale.prefix() + locale.insufficientFunds()));
+                    player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.insufficientFunds()));
 
                     skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
                         player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
@@ -128,7 +129,7 @@ public class TransactionManager {
                 }
 
                 if(!containsItems) {
-                    player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.insufficientItems()));
+                    player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.insufficientItems()));
 
                     skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
                         player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
@@ -188,7 +189,7 @@ public class TransactionManager {
                 }
 
                 // Send the success message
-                player.sendMessage(AdventureUtil.serialize(player, locale.prefix() + locale.buySuccess(), successPlaceholders));
+                player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.buySuccess(), successPlaceholders));
 
                 // Increment the player's buy limit if a limit is configured
                 if(limit != null && limit > 0) {
@@ -197,7 +198,7 @@ public class TransactionManager {
             } else {
                 // Check if the player's balance has enough money for the price
                 if(skyMarket.getEconomy().getBalance(player) < price) {
-                    player.sendMessage(AdventureUtil.serialize(player, locale.prefix() + locale.insufficientFunds()));
+                    player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.insufficientFunds()));
 
                     skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
                         player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
@@ -241,7 +242,7 @@ public class TransactionManager {
                 successPlaceholders.add(Placeholder.parsed("bal", bal));
 
                 // Send the success message
-                player.sendMessage(AdventureUtil.serialize(player, locale.prefix() + locale.buySuccess(), successPlaceholders));
+                player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.buySuccess(), successPlaceholders));
 
                 // Increment the player's buy limit if a limit is configured
                 if(limit != null && limit > 0) {
@@ -259,7 +260,7 @@ public class TransactionManager {
             }
 
             if(!containsItems) {
-                player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.insufficientItems()));
+                player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.insufficientItems()));
 
                 skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
                     player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
@@ -311,7 +312,7 @@ public class TransactionManager {
             }
 
             // Send the success message
-            player.sendMessage(AdventureUtil.serialize(player, locale.prefix() + locale.buySuccess(), successPlaceholders));
+            player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.buySuccess(), successPlaceholders));
 
             // Increment the player's buy limit if a limit is configured
             if(limit != null && limit > 0) {
@@ -340,7 +341,7 @@ public class TransactionManager {
 
         // Check if the item can be sold according to the sell price
         if(price <= 0) {
-            player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.unsellable()));
+            player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.unsellable()));
             return;
         }
 
@@ -348,13 +349,13 @@ public class TransactionManager {
         if(limit != null && limit > 0) {
             @Nullable Integer playerLimit = playerData.getSellLimits().get(slot);
             if(playerLimit != null && playerLimit >= limit) {
-                player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.sellLimitReached()));
+                player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.sellLimitReached()));
                 return;
             }
         }
 
         if(!player.getInventory().containsAtLeast(itemStack, itemStack.getAmount())) {
-            player.sendMessage(AdventureUtil.serialize(player, locale.prefix() + locale.notEnoughItems()));
+            player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.notEnoughItems()));
 
             skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
                 player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
@@ -398,7 +399,7 @@ public class TransactionManager {
         successPlaceholders.add(Placeholder.parsed("bal", bal));
 
         // Send the success message
-        player.sendMessage(AdventureUtil.serialize(player, locale.prefix() + locale.sellSuccess(), successPlaceholders));
+        player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.sellSuccess(), successPlaceholders));
 
         // Increment the player's sell limit if a limit is configured
         if(limit != null && limit > 0) {
@@ -430,7 +431,7 @@ public class TransactionManager {
 
         // Check if the command can be purchased according to the buy price or the items to trade.
         if(price <= 0 && buyItems.isEmpty()) {
-            player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.unbuyable()));
+            player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.unbuyable()));
             return;
         }
 
@@ -438,7 +439,7 @@ public class TransactionManager {
         if(limit != null && limit > 0) {
             @Nullable Integer playerLimit = playerData.getBuyLimits().get(slot);
             if(playerLimit != null && playerLimit >= limit) {
-                player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.buyLimitReached()));
+                player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.buyLimitReached()));
                 return;
             }
         }
@@ -447,7 +448,7 @@ public class TransactionManager {
             if(!buyItems.isEmpty()) {
                 // Check if the player's balance has enough money for the price
                 if(skyMarket.getEconomy().getBalance(player) < price) {
-                    player.sendMessage(AdventureUtil.serialize(player, locale.prefix() + locale.insufficientFunds()));
+                    player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.insufficientFunds()));
 
                     skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
                         player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
@@ -467,7 +468,7 @@ public class TransactionManager {
                 }
 
                 if(!containsItems) {
-                    player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.insufficientItems()));
+                    player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.insufficientItems()));
 
                     skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
                         player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
@@ -524,7 +525,7 @@ public class TransactionManager {
                 }
 
                 // Send the success message
-                player.sendMessage(AdventureUtil.serialize(player, locale.prefix() + locale.buySuccess(), successPlaceholders));
+                player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.buySuccess(), successPlaceholders));
 
                 // Increment the player's buy limit if a limit is configured
                 if(limit != null && limit > 0) {
@@ -533,7 +534,7 @@ public class TransactionManager {
             } else {
                 // Check if the player's balance has enough money for the price
                 if(skyMarket.getEconomy().getBalance(player) < price) {
-                    player.sendMessage(AdventureUtil.serialize(player, locale.prefix() + locale.insufficientFunds()));
+                    player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.insufficientFunds()));
 
                     skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
                         player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
@@ -574,7 +575,7 @@ public class TransactionManager {
                 successPlaceholders.add(Placeholder.parsed("bal", bal));
 
                 // Send the success message
-                player.sendMessage(AdventureUtil.serialize(player, locale.prefix() + locale.buySuccess(), successPlaceholders));
+                player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.buySuccess(), successPlaceholders));
 
                 // Increment the player's buy limit if a limit is configured
                 if(limit != null && limit > 0) {
@@ -591,7 +592,7 @@ public class TransactionManager {
             }
 
             if(!containsItems) {
-                player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.insufficientItems()));
+                player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.insufficientItems()));
 
                 skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
                     player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
@@ -641,7 +642,7 @@ public class TransactionManager {
             }
 
             // Send the success message
-            player.sendMessage(AdventureUtil.serialize(player, locale.prefix() + locale.buySuccess(), successPlaceholders));
+            player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.buySuccess(), successPlaceholders));
 
             // Increment the player's buy limit if a limit is configured
             if(limit != null && limit > 0) {
@@ -672,7 +673,7 @@ public class TransactionManager {
 
         // Check if the item can be sold according to the sell price
         if(price <= 0) {
-            player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.unsellable()));
+            player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.unsellable()));
             return;
         }
 
@@ -680,7 +681,7 @@ public class TransactionManager {
         if(limit != null && limit > 0) {
             @Nullable Integer playerLimit = playerData.getSellLimits().get(slot);
             if(playerLimit != null && playerLimit >= limit) {
-                player.sendMessage(AdventureUtil.serialize(locale.prefix() + locale.sellLimitReached()));
+                player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.sellLimitReached()));
                 return;
             }
         }
@@ -714,7 +715,7 @@ public class TransactionManager {
         // Add the placeholder for the player's balance
         successPlaceholders.add(Placeholder.parsed("bal", bal));
 
-        player.sendMessage(AdventureUtil.serialize(player, locale.prefix() + locale.sellSuccess(), successPlaceholders));
+        player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.sellSuccess(), successPlaceholders));
 
         // Increment the player's buy limit if a limit is configured
         if(limit != null && limit > 0) {

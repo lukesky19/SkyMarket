@@ -70,7 +70,7 @@ public class TradeManager {
         // The list of trade configuration.
         List<MerchantConfig.Trade> tradesList = new ArrayList<>(tradeConfig.trades());
         if(tradesList.isEmpty()) {
-            logger.warn(AdventureUtil.serialize("Unable to create trades for a trade gui as no trades are configured."));
+            logger.warn(AdventureUtil.deserialize("Unable to create trades for a trade gui as no trades are configured."));
             return trades;
         }
 
@@ -112,7 +112,7 @@ public class TradeManager {
                 // Increment the added trades count
                 addedTrades++;
             } else {
-                logger.warn(AdventureUtil.serialize("Not enough trades configured to meet the number of trades to add. " + addedTrades + "/" + totalTrades));
+                logger.warn(AdventureUtil.deserialize("Not enough trades configured to meet the number of trades to add. " + addedTrades + "/" + totalTrades));
                 return trades;
             }
         }

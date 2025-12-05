@@ -18,6 +18,7 @@
 package com.github.lukesky19.skymarket;
 
 import com.github.lukesky19.skylib.api.adventure.AdventureUtil;
+import com.github.lukesky19.skylib.api.gui.impl.UUIDGUIManager;
 import com.github.lukesky19.skymarket.commands.AliasesCommands;
 import com.github.lukesky19.skymarket.commands.SkyMarketCommand;
 import com.github.lukesky19.skymarket.configuration.LocaleManager;
@@ -47,7 +48,7 @@ public final class SkyMarket extends JavaPlugin {
     private LocaleManager localeLoader;
     private MarketConfigManager marketConfigManager;
     private MarketDataManager marketDataManager;
-    private GUIManager guiManager;
+    private UUIDGUIManager guiManager;
     private MarketManager marketManager;
     private Economy economy;
 
@@ -77,7 +78,7 @@ public final class SkyMarket extends JavaPlugin {
 
         settingsLoader = new SettingsManager(this);
         localeLoader = new LocaleManager(this, this.settingsLoader);
-        guiManager = new GUIManager(this);
+        guiManager = new UUIDGUIManager();
         marketConfigManager = new MarketConfigManager(this);
         marketDataManager = new MarketDataManager();
         TransactionManager transactionManager = new TransactionManager(this, localeLoader, guiManager);
@@ -161,7 +162,7 @@ public final class SkyMarket extends JavaPlugin {
             }
         }
 
-        this.getComponentLogger().error(AdventureUtil.serialize("SkyLib Version 1.3.0.0 or newer is required to run this plugin."));
+        this.getComponentLogger().error(AdventureUtil.deserialize("SkyLib Version 1.3.0.0 or newer is required to run this plugin."));
         this.getServer().getPluginManager().disablePlugin(this);
         return false;
     }

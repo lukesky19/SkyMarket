@@ -20,7 +20,6 @@ package com.github.lukesky19.skymarket.manager;
 import com.github.lukesky19.skylib.api.adventure.AdventureUtil;
 import com.github.lukesky19.skylib.api.gui.GUIButton;
 import com.github.lukesky19.skylib.api.gui.GUIType;
-import com.github.lukesky19.skylib.api.gui.impl.UUIDGUIManager;
 import com.github.lukesky19.skylib.api.time.Time;
 import com.github.lukesky19.skylib.api.time.TimeUtil;
 import com.github.lukesky19.skymarket.SkyMarket;
@@ -33,6 +32,7 @@ import com.github.lukesky19.skymarket.data.MarketData;
 import com.github.lukesky19.skymarket.data.PlayerData;
 import com.github.lukesky19.skymarket.gui.ChestMarketGUI;
 import com.github.lukesky19.skymarket.gui.MerchantMarketGUI;
+import com.github.lukesky19.skymarket.util.MarketIdUUIDKey;
 import com.github.lukesky19.skymarket.util.MarketType;
 import net.kyori.adventure.text.logger.slf4j.ComponentLogger;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
@@ -51,15 +51,15 @@ import java.util.*;
 public class MarketManager {
     private final @NotNull SkyMarket skyMarket;
     private final @NotNull LocaleManager localeManager;
-    private final @NotNull UUIDGUIManager guiManager;
+    private final @NotNull GUIManager guiManager;
     private final @NotNull MarketConfigManager marketConfigManager;
     private final @NotNull MarketDataManager marketDataManager;
     private final @NotNull ButtonManager buttonManager;
     private final @NotNull TradeManager tradeManager;
 
     /**
-     * Default Constructor. You should use {@link MarketManager#MarketManager(SkyMarket, LocaleManager, UUIDGUIManager, MarketConfigManager, MarketDataManager, ButtonManager, TradeManager)} instead.
-     * @deprecated You should use {@link MarketManager#MarketManager(SkyMarket, LocaleManager, UUIDGUIManager, MarketConfigManager, MarketDataManager, ButtonManager, TradeManager)} instead.
+     * Default Constructor. You should use {@link MarketManager#MarketManager(SkyMarket, LocaleManager, GUIManager, MarketConfigManager, MarketDataManager, ButtonManager, TradeManager)} instead.
+     * @deprecated You should use {@link MarketManager#MarketManager(SkyMarket, LocaleManager, GUIManager, MarketConfigManager, MarketDataManager, ButtonManager, TradeManager)} instead.
      * @throws RuntimeException if this method is used.
      */
     @Deprecated
@@ -71,7 +71,7 @@ public class MarketManager {
      * Constructor
      * @param skyMarket A {@link SkyMarket} instance.
      * @param localeManager A {@link LocaleManager} instance.
-     * @param guiManager A {@link UUIDGUIManager} instance.
+     * @param guiManager A {@link GUIManager} instance.
      * @param marketConfigManager A {@link MarketConfigManager} instance.
      * @param marketDataManager A {@link MarketDataManager} instance.
      * @param buttonManager A {@link ButtonManager} instance.
@@ -80,7 +80,7 @@ public class MarketManager {
     public MarketManager(
             @NotNull SkyMarket skyMarket,
             @NotNull LocaleManager localeManager,
-            @NotNull UUIDGUIManager guiManager,
+            @NotNull GUIManager guiManager,
             @NotNull MarketConfigManager marketConfigManager,
             @NotNull MarketDataManager marketDataManager,
             @NotNull ButtonManager buttonManager,
@@ -98,6 +98,8 @@ public class MarketManager {
      * This should only be run on plugin load or reload. To refresh markets, use {@link #refreshMarkets()} or {@link #refreshMarket(String)}
      */
     public void reload() {
+        marketDataManager.clearMarketData();
+
         marketConfigManager.getChestConfigs().forEach((marketId, chestConfig) -> {
             // Config is validated on load so these will never be null.
             assert chestConfig.marketName() != null;
@@ -161,12 +163,18 @@ public class MarketManager {
         MarketData marketData = marketDataManager.getMarketData(marketId);
         if(marketData == null) return false;
 
+        // Close any open GUIs for the market id
+        guiManager.closeGUIsByMarketId(marketId);
+
         @NotNull MarketType marketType = marketData.getMarketType();
         @Nullable BukkitTask refreshTask = marketData.getRefreshTask();
 
         // Cancel the refresh task and set it to null.
         if(refreshTask != null && !refreshTask.isCancelled()) {
-            refreshTask.cancel();
+            if(!refreshTask.isCancelled()) {
+                refreshTask.cancel();
+            }
+
             marketData.setRefreshTask(null);
         }
 
@@ -281,11 +289,13 @@ public class MarketManager {
             return false;
         }
 
+        MarketIdUUIDKey identifier = new MarketIdUUIDKey(marketId, uuid);
+
         if(marketData.getMarketType().equals(MarketType.CHEST)) {
             GUIType guiType = marketData.getGuiType();
             String guiName = marketData.getGuiName();
 
-            ChestMarketGUI marketGUI = new ChestMarketGUI(skyMarket, guiManager, player, guiType, guiName, marketData.getButtons());
+            ChestMarketGUI marketGUI = new ChestMarketGUI(skyMarket, guiManager, player, identifier, guiType, guiName, marketData.getButtons());
 
             boolean creationResult = marketGUI.create();
             if(!creationResult) {
@@ -312,7 +322,7 @@ public class MarketManager {
             PlayerData playerData = marketData.getPlayerData(uuid);
             if(!playerData.getPlayerTrades().isEmpty()) trades = playerData.getPlayerTrades();
 
-            MerchantMarketGUI tradeGUI = new MerchantMarketGUI(skyMarket, guiManager, player, marketId, marketData.getGuiName(), trades, this);
+            MerchantMarketGUI tradeGUI = new MerchantMarketGUI(skyMarket, guiManager, player, identifier, marketData.getGuiName(), trades, this);
 
             boolean creationResult = tradeGUI.create();
             if(!creationResult) {

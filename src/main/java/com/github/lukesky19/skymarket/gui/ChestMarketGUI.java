@@ -19,9 +19,10 @@ package com.github.lukesky19.skymarket.gui;
 
 import com.github.lukesky19.skylib.api.gui.GUIType;
 import com.github.lukesky19.skylib.api.gui.GUIButton;
-import com.github.lukesky19.skylib.api.gui.impl.UUIDGUIManager;
 import com.github.lukesky19.skylib.api.gui.templates.ChestGUI;
 import com.github.lukesky19.skymarket.SkyMarket;
+import com.github.lukesky19.skymarket.manager.GUIManager;
+import com.github.lukesky19.skymarket.util.MarketIdUUIDKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -31,32 +32,33 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * This class is used to create chest-style GUIs for markets.
  */
-public class ChestMarketGUI extends ChestGUI<UUID> {
+public class ChestMarketGUI extends ChestGUI<MarketIdUUIDKey> {
     private final @NotNull GUIType guiType;
     private final @NotNull String guiName;
 
     /**
      * Constructor
      * @param skyMarket A {@link SkyMarket} instance.
-     * @param guiManager A {@link UUIDGUIManager} instance.
+     * @param guiManager A {@link GUIManager} instance.
      * @param player The {@link Player} this GUI is being created for.
+     * @param identifier The {@link MarketIdUUIDKey} for this GUI.
      * @param guiType The {@link GUIType} of this GUI.
      * @param guiName The name to use for the Inventory.
      * @param buttons The {@link Map} of {@link Integer} to {@link GUIButton}s to use.
      */
     public ChestMarketGUI(
             @NotNull SkyMarket skyMarket,
-            @NotNull UUIDGUIManager guiManager,
+            @NotNull GUIManager guiManager,
             @NotNull Player player,
+            @NotNull MarketIdUUIDKey identifier,
             @NotNull GUIType guiType,
             @NotNull String guiName,
             @NotNull Map<Integer, GUIButton> buttons) {
-        super(skyMarket, guiManager, player.getUniqueId(), player);
+        super(skyMarket, guiManager, identifier, player);
 
         this.guiType = guiType;
         this.guiName = guiName;
@@ -80,7 +82,7 @@ public class ChestMarketGUI extends ChestGUI<UUID> {
     public void handleClose(@NotNull InventoryCloseEvent inventoryCloseEvent) {
         if(inventoryCloseEvent.getReason().equals(InventoryCloseEvent.Reason.UNLOADED)) return;
 
-        guiManager.removeOpenGUI(uuid);
+        guiManager.removeOpenGUI(identifier);
     }
 
     /**

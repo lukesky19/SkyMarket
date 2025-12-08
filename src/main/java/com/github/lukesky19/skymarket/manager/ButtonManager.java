@@ -19,7 +19,6 @@ package com.github.lukesky19.skymarket.manager;
 
 import com.github.lukesky19.skylib.api.gui.GUIButton;
 import com.github.lukesky19.skylib.api.gui.GUIType;
-import com.github.lukesky19.skylib.api.gui.impl.UUIDGUIManager;
 import com.github.lukesky19.skylib.api.itemstack.ItemStackBuilder;
 import com.github.lukesky19.skylib.api.itemstack.ItemStackConfig;
 import com.github.lukesky19.skylib.api.registry.RegistryUtil;
@@ -29,6 +28,7 @@ import com.github.lukesky19.skymarket.data.MarketData;
 import com.github.lukesky19.skymarket.data.PlayerData;
 import com.github.lukesky19.skymarket.data.config.gui.button.ButtonConfig;
 import com.github.lukesky19.skymarket.gui.ChestMarketGUI;
+import com.github.lukesky19.skymarket.util.MarketIdUUIDKey;
 import com.github.lukesky19.skymarket.util.PluginUtils;
 import com.github.lukesky19.skymarket.util.TransactionType;
 import net.kyori.adventure.text.logger.slf4j.ComponentLogger;
@@ -50,11 +50,11 @@ public class ButtonManager {
     private final @NotNull SkyMarket skyMarket;
     private final @NotNull MarketDataManager marketDataManager;
     private final @NotNull TransactionManager transactionManager;
-    private final @NotNull UUIDGUIManager guiManager;
+    private final @NotNull GUIManager guiManager;
 
     /**
-     * Default Constructor. You should use {@link ButtonManager#ButtonManager(SkyMarket, MarketDataManager, TransactionManager, UUIDGUIManager)} instead.
-     * @deprecated You should use {@link ButtonManager#ButtonManager(SkyMarket, MarketDataManager, TransactionManager, UUIDGUIManager)} instead.
+     * Default Constructor. You should use {@link ButtonManager#ButtonManager(SkyMarket, MarketDataManager, TransactionManager, GUIManager)} instead.
+     * @deprecated You should use {@link ButtonManager#ButtonManager(SkyMarket, MarketDataManager, TransactionManager, GUIManager)} instead.
      * @throws RuntimeException if this method is used.
      */
     @Deprecated
@@ -67,9 +67,9 @@ public class ButtonManager {
      * @param skyMarket A {@link SkyMarket} instance.
      * @param marketDataManager A {@link MarketDataManager} instance.
      * @param transactionManager A {@link TransactionManager} instance.
-     * @param guiManager A {@link UUIDGUIManager} instance.
+     * @param guiManager A {@link GUIManager} instance.
      */
-    public ButtonManager(@NotNull SkyMarket skyMarket, @NotNull MarketDataManager marketDataManager, @NotNull TransactionManager transactionManager, @NotNull UUIDGUIManager guiManager) {
+    public ButtonManager(@NotNull SkyMarket skyMarket, @NotNull MarketDataManager marketDataManager, @NotNull TransactionManager transactionManager, @NotNull GUIManager guiManager) {
         this.skyMarket = skyMarket;
         this.marketDataManager = marketDataManager;
         this.transactionManager = transactionManager;
@@ -113,11 +113,12 @@ public class ButtonManager {
                         .setItemStack(itemStack)
                         .setAction(event -> {
                             Player player = (Player) event.getWhoClicked();
+                            MarketIdUUIDKey marketIdUUIDKey = new MarketIdUUIDKey(marketId, player.getUniqueId());
 
                             skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
                                 player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
 
-                                guiManager.removeOpenGUI(player.getUniqueId());
+                                guiManager.removeOpenGUI(marketIdUUIDKey);
                             }, 1L);
                         })
                         .build();
@@ -213,11 +214,13 @@ public class ButtonManager {
                             MarketData marketData = marketDataManager.getMarketData(marketId);
                             if(marketData == null) return;
                             PlayerData playerData = marketData.getPlayerData(uuid);
+                            MarketIdUUIDKey identifier = new MarketIdUUIDKey(marketId, uuid);
 
                             if(inventoryClickEvent.getClick().isLeftClick()) {
                                 transactionManager.buyItem(
                                         player,
                                         playerData,
+                                        identifier,
                                         optionalPlayerItem.get(),
                                         buyPrice,
                                         buyItems,
@@ -227,6 +230,7 @@ public class ButtonManager {
                                 transactionManager.sellItem(
                                         player,
                                         playerData,
+                                        identifier,
                                         optionalPlayerItem.get(),
                                         sellPrice,
                                         slot,
@@ -249,11 +253,13 @@ public class ButtonManager {
                             MarketData marketData = marketDataManager.getMarketData(marketId);
                             if(marketData == null) return;
                             PlayerData playerData = marketData.getPlayerData(uuid);
+                            MarketIdUUIDKey identifier = new MarketIdUUIDKey(marketId, uuid);
 
                             if(inventoryClickEvent.getClick().isLeftClick()) {
                                 transactionManager.buyCommand(
                                         player,
                                         playerData,
+                                        identifier,
                                         transactionName,
                                         buyPrice,
                                         buyItems,

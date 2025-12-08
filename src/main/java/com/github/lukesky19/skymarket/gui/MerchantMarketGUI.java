@@ -17,10 +17,11 @@
 */
 package com.github.lukesky19.skymarket.gui;
 
-import com.github.lukesky19.skylib.api.gui.impl.UUIDGUIManager;
 import com.github.lukesky19.skylib.api.gui.templates.MerchantGUI;
 import com.github.lukesky19.skymarket.SkyMarket;
+import com.github.lukesky19.skymarket.manager.GUIManager;
 import com.github.lukesky19.skymarket.manager.MarketManager;
+import com.github.lukesky19.skymarket.util.MarketIdUUIDKey;
 import io.papermc.paper.event.player.PlayerTradeEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -32,37 +33,34 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 /**
  * This class is used to create merchant-style GUIs for markets.
  */
-public class MerchantMarketGUI extends MerchantGUI<UUID> {
-    private final @NotNull String marketId;
+public class MerchantMarketGUI extends MerchantGUI<MarketIdUUIDKey> {
     private final @NotNull String guiName;
     private final @NotNull MarketManager marketManager;
 
     /**
      * Constructor
      * @param skyMarket A {@link SkyMarket} instance.
-     * @param guiManager A {@link UUIDGUIManager} instance.
+     * @param guiManager A {@link GUIManager} instance.
      * @param player The {@link Player} to create the GUI for.
-     * @param marketId The market id.
+     * @param identifier The {@link MarketIdUUIDKey} for this GUI.
      * @param guiName The gui name to use.
      * @param trades A {@link List} of {@link MerchantRecipe} to use.
      * @param marketManager A {@link MarketManager} instance.
      */
     public MerchantMarketGUI(
             @NotNull SkyMarket skyMarket,
-            @NotNull UUIDGUIManager guiManager,
+            @NotNull GUIManager guiManager,
             @NotNull Player player,
-            @NotNull String marketId,
+            @NotNull MarketIdUUIDKey identifier,
             @NotNull String guiName,
             @NotNull List<MerchantRecipe> trades,
             @NotNull MarketManager marketManager) {
-        super(skyMarket, guiManager, player.getUniqueId(), player);
+        super(skyMarket, guiManager, identifier, player);
 
-        this.marketId = marketId;
         this.guiName = guiName;
         this.marketManager = marketManager;
 
@@ -83,7 +81,7 @@ public class MerchantMarketGUI extends MerchantGUI<UUID> {
     @Override
     public void close() {
         Optional<List<MerchantRecipe>> optionalTrades = getLiveTrades();
-        optionalTrades.ifPresent(list -> marketManager.updatePlayerTrades(marketId, uuid, trades));
+        optionalTrades.ifPresent(list -> marketManager.updatePlayerTrades(identifier.marketId(), uuid, trades));
 
         super.close();
     }
@@ -94,7 +92,7 @@ public class MerchantMarketGUI extends MerchantGUI<UUID> {
     @Override
     public void unload(boolean onDisable) {
         Optional<List<MerchantRecipe>> optionalTrades = getLiveTrades();
-        optionalTrades.ifPresent(list -> marketManager.updatePlayerTrades(marketId, uuid, trades));
+        optionalTrades.ifPresent(list -> marketManager.updatePlayerTrades(identifier.marketId(), uuid, trades));
 
         super.unload(onDisable);
     }
@@ -107,10 +105,10 @@ public class MerchantMarketGUI extends MerchantGUI<UUID> {
     public void handleClose(@NotNull InventoryCloseEvent inventoryCloseEvent) {
         if(inventoryCloseEvent.getReason().equals(InventoryCloseEvent.Reason.UNLOADED)) return;
 
-        guiManager.removeOpenGUI(uuid);
+        guiManager.removeOpenGUI(identifier);
 
         Optional<List<MerchantRecipe>> optionalTrades = getLiveTrades();
-        optionalTrades.ifPresent(list -> marketManager.updatePlayerTrades(marketId, uuid, trades));
+        optionalTrades.ifPresent(list -> marketManager.updatePlayerTrades(identifier.marketId(), uuid, trades));
     }
 
     /**

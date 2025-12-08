@@ -106,6 +106,11 @@ public class TradeManager {
                 recipe.setIgnoreDiscounts(true);
                 recipe.setExperienceReward(false);
 
+                // Set the recipe max uses if a limit is configured
+                if(randomTrade.limit() != null) {
+                    recipe.setMaxUses(randomTrade.limit());
+                }
+
                 // Add the MerchantRecipe to the list of trades
                 trades.add(recipe);
 

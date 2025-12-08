@@ -18,7 +18,6 @@
 package com.github.lukesky19.skymarket;
 
 import com.github.lukesky19.skylib.api.adventure.AdventureUtil;
-import com.github.lukesky19.skylib.api.gui.impl.UUIDGUIManager;
 import com.github.lukesky19.skymarket.commands.AliasesCommands;
 import com.github.lukesky19.skymarket.commands.SkyMarketCommand;
 import com.github.lukesky19.skymarket.configuration.LocaleManager;
@@ -48,7 +47,7 @@ public final class SkyMarket extends JavaPlugin {
     private LocaleManager localeLoader;
     private MarketConfigManager marketConfigManager;
     private MarketDataManager marketDataManager;
-    private UUIDGUIManager guiManager;
+    private GUIManager guiManager;
     private MarketManager marketManager;
     private Economy economy;
 
@@ -78,7 +77,7 @@ public final class SkyMarket extends JavaPlugin {
 
         settingsLoader = new SettingsManager(this);
         localeLoader = new LocaleManager(this, this.settingsLoader);
-        guiManager = new UUIDGUIManager();
+        guiManager = new GUIManager();
         marketConfigManager = new MarketConfigManager(this);
         marketDataManager = new MarketDataManager();
         TransactionManager transactionManager = new TransactionManager(this, localeLoader, guiManager);
@@ -119,6 +118,8 @@ public final class SkyMarket extends JavaPlugin {
      * Reloads the plugin.
      */
     public void reload() {
+        this.guiManager.closeOpenGUIs(false);
+
         this.settingsLoader.reload();
         this.localeLoader.reload();
         this.marketConfigManager.reload();

@@ -19,13 +19,14 @@ package com.github.lukesky19.skymarket.manager;
 
 import com.github.lukesky19.skylib.api.adventure.AdventureUtil;
 import com.github.lukesky19.skylib.api.format.FormatUtil;
-import com.github.lukesky19.skylib.api.gui.impl.UUIDGUIManager;
+import com.github.lukesky19.skylib.api.gui.interfaces.BaseGUI;
 import com.github.lukesky19.skylib.api.placeholderapi.PlaceholderAPIUtil;
 import com.github.lukesky19.skylib.api.player.PlayerUtil;
 import com.github.lukesky19.skymarket.SkyMarket;
 import com.github.lukesky19.skymarket.configuration.LocaleManager;
 import com.github.lukesky19.skymarket.data.config.Locale;
 import com.github.lukesky19.skymarket.data.PlayerData;
+import com.github.lukesky19.skymarket.util.MarketIdUUIDKey;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import org.bukkit.entity.Player;
@@ -46,11 +47,11 @@ import java.util.List;
 public class TransactionManager {
     private final @NotNull SkyMarket skyMarket;
     private final @NotNull LocaleManager localeManager;
-    private final @NotNull UUIDGUIManager guiManager;
+    private final @NotNull GUIManager guiManager;
 
     /**
-     * Default Constructor. You should use {@link TransactionManager#TransactionManager(SkyMarket, LocaleManager, UUIDGUIManager)} instead.
-     * @deprecated You should use {@link TransactionManager#TransactionManager(SkyMarket, LocaleManager, UUIDGUIManager)} instead.
+     * Default Constructor. You should use {@link TransactionManager#TransactionManager(SkyMarket, LocaleManager, GUIManager)} instead.
+     * @deprecated You should use {@link TransactionManager#TransactionManager(SkyMarket, LocaleManager, GUIManager)} instead.
      * @throws RuntimeException if this method is used.
      */
     @Deprecated
@@ -62,9 +63,9 @@ public class TransactionManager {
      * Constructor
      * @param skyMarket A {@link SkyMarket} instance.
      * @param localeManager A {@link LocaleManager} instance.
-     * @param guiManager A {@link UUIDGUIManager} instance.
+     * @param guiManager A {@link GUIManager} instance.
      */
-    public TransactionManager(@NotNull SkyMarket skyMarket, @NotNull LocaleManager localeManager, @NotNull UUIDGUIManager guiManager) {
+    public TransactionManager(@NotNull SkyMarket skyMarket, @NotNull LocaleManager localeManager, @NotNull GUIManager guiManager) {
         this.skyMarket = skyMarket;
         this.localeManager = localeManager;
         this.guiManager = guiManager;
@@ -74,6 +75,7 @@ public class TransactionManager {
      * Used when a button is clicked to purchase an item.
      * @param player The player purchasing the item.
      * @param playerData The player's {@link PlayerData}.
+     * @param identifier The identifier of the gui the item is being purchased from.
      * @param itemStack The item to purchase.
      * @param price The buy price of the item.
      * @param buyItems The items to take in exchange for the item.
@@ -83,6 +85,7 @@ public class TransactionManager {
     public void buyItem(
             @NotNull Player player,
             @NotNull PlayerData playerData,
+            @NotNull MarketIdUUIDKey identifier,
             @NotNull ItemStack itemStack,
             double price,
             @NotNull List<ItemStack> buyItems,
@@ -112,9 +115,11 @@ public class TransactionManager {
                     player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.insufficientFunds()));
 
                     skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
-                        player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
+                        @Nullable BaseGUI<MarketIdUUIDKey> gui = guiManager.getOpenGUI(identifier);
 
-                        guiManager.removeOpenGUI(player.getUniqueId());
+                        if(gui != null) {
+                            gui.unload(false);
+                        }
                     }, 1L);
 
                     return;
@@ -134,7 +139,7 @@ public class TransactionManager {
                     skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
                         player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
 
-                        guiManager.removeOpenGUI(player.getUniqueId());
+                        guiManager.removeOpenGUI(identifier);
                     }, 1L);
 
                     return;
@@ -201,9 +206,11 @@ public class TransactionManager {
                     player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.insufficientFunds()));
 
                     skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
-                        player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
+                        @Nullable BaseGUI<MarketIdUUIDKey> gui = guiManager.getOpenGUI(identifier);
 
-                        guiManager.removeOpenGUI(player.getUniqueId());
+                        if(gui != null) {
+                            gui.unload(false);
+                        }
                     }, 1L);
 
                     return;
@@ -263,9 +270,11 @@ public class TransactionManager {
                 player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.insufficientItems()));
 
                 skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
-                    player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
+                    @Nullable BaseGUI<MarketIdUUIDKey> gui = guiManager.getOpenGUI(identifier);
 
-                    guiManager.removeOpenGUI(player.getUniqueId());
+                    if(gui != null) {
+                        gui.unload(false);
+                    }
                 }, 1L);
 
                 return;
@@ -325,6 +334,7 @@ public class TransactionManager {
      * Used when a button is clicked to sell an item.
      * @param player The player selling the item.
      * @param playerData The player's {@link PlayerData}.
+     * @param identifier The identifier of the gui the item is being sold from.
      * @param itemStack The item to sell.
      * @param price The sell price of the item.
      * @param slot The slot of the button clicked.
@@ -333,6 +343,7 @@ public class TransactionManager {
     public void sellItem(
             @NotNull Player player,
             @NotNull PlayerData playerData,
+            @NotNull MarketIdUUIDKey identifier,
             @NotNull ItemStack itemStack,
             double price,
             int slot,
@@ -358,9 +369,11 @@ public class TransactionManager {
             player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.notEnoughItems()));
 
             skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
-                player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
+                @Nullable BaseGUI<MarketIdUUIDKey> gui = guiManager.getOpenGUI(identifier);
 
-                guiManager.removeOpenGUI(player.getUniqueId());
+                if(gui != null) {
+                    gui.unload(false);
+                }
             }, 1L);
 
             return;
@@ -411,6 +424,7 @@ public class TransactionManager {
      * Used when a button is clicked to buy a command. (Runs a command through console, doesn't give the player access to the command.)
      * @param player The player buying the command.
      * @param playerData The player's {@link PlayerData}.
+     * @param identifier The identifier of the gui the command is being purchased from.
      * @param name The name of the command being purchased. Taken from the GUI configuration.
      * @param price The price of the command.
      * @param buyItems The items to take in exchange for the command.
@@ -421,6 +435,7 @@ public class TransactionManager {
     public void buyCommand(
             @NotNull Player player,
             @NotNull PlayerData playerData,
+            @NotNull MarketIdUUIDKey identifier,
             @NotNull String name,
             double price,
             @NotNull List<ItemStack> buyItems,
@@ -451,9 +466,11 @@ public class TransactionManager {
                     player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.insufficientFunds()));
 
                     skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
-                        player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
+                        @Nullable BaseGUI<MarketIdUUIDKey> gui = guiManager.getOpenGUI(identifier);
 
-                        guiManager.removeOpenGUI(player.getUniqueId());
+                        if(gui != null) {
+                            gui.unload(false);
+                        }
                     }, 1L);
 
                     return;
@@ -471,9 +488,11 @@ public class TransactionManager {
                     player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.insufficientItems()));
 
                     skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
-                        player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
+                        @Nullable BaseGUI<MarketIdUUIDKey> gui = guiManager.getOpenGUI(identifier);
 
-                        guiManager.removeOpenGUI(player.getUniqueId());
+                        if(gui != null) {
+                            gui.unload(false);
+                        }
                     }, 1L);
 
                     return;
@@ -537,9 +556,11 @@ public class TransactionManager {
                     player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.insufficientFunds()));
 
                     skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
-                        player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
+                        @Nullable BaseGUI<MarketIdUUIDKey> gui = guiManager.getOpenGUI(identifier);
 
-                        guiManager.removeOpenGUI(player.getUniqueId());
+                        if(gui != null) {
+                            gui.unload(false);
+                        }
                     }, 1L);
 
                     return;
@@ -595,9 +616,11 @@ public class TransactionManager {
                 player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.insufficientItems()));
 
                 skyMarket.getServer().getScheduler().runTaskLater(skyMarket, () -> {
-                    player.closeInventory(InventoryCloseEvent.Reason.UNLOADED);
+                    @Nullable BaseGUI<MarketIdUUIDKey> gui = guiManager.getOpenGUI(identifier);
 
-                    guiManager.removeOpenGUI(player.getUniqueId());
+                    if(gui != null) {
+                        gui.unload(false);
+                    }
                 }, 1L);
 
                 return;

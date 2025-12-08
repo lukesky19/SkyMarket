@@ -55,7 +55,7 @@ public record MerchantConfig(
      */
     @ConfigSerializable
     public record Trade(
-            @NotNull Integer limit,
+            @Nullable Integer limit,
             @NotNull Item input1,
             @NotNull Item input2,
             @NotNull Item output) {}

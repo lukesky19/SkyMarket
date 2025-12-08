@@ -18,6 +18,7 @@
 package com.github.lukesky19.skymarket.manager;
 
 import com.github.lukesky19.skymarket.data.MarketData;
+import org.bukkit.scheduler.BukkitTask;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -55,8 +56,20 @@ public class MarketDataManager {
 
     /**
      * Clears the stored market data.
+     * This will cancel any refresh tasks scheduled as well.
      */
     public void clearMarketData() {
+        markets.forEach((marketId, marketData) -> {
+            @Nullable BukkitTask refreshTask = marketData.getRefreshTask();
+            if(refreshTask != null) {
+                if(!refreshTask.isCancelled()) {
+                    refreshTask.cancel();
+                }
+
+                marketData.setRefreshTask(null);
+            }
+        });
+
         markets.clear();
     }
 }

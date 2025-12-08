@@ -107,7 +107,7 @@ public class TradeManager {
                 recipe.setExperienceReward(false);
 
                 // Set the recipe max uses if a limit is configured
-                if(randomTrade.limit() != null) {
+                if(randomTrade.limit() != null && randomTrade.limit() > 0) {
                     recipe.setMaxUses(randomTrade.limit());
                 }
 

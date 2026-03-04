@@ -403,7 +403,7 @@ public class MarketConfigManager {
      * @return true if valid or false
      */
     private boolean isItemStackConfigValid(@NotNull ComponentLogger logger, @NotNull ItemStackConfig itemStackConfig) {
-        Optional<ItemStack> optionalItemStack = new ItemStackBuilder(logger).fromItemStackConfig(itemStackConfig, null, null, List.of()).buildItemStack();
+        Optional<ItemStack> optionalItemStack = new ItemStackBuilder(logger).fromItemStackConfig(itemStackConfig, null, List.of()).buildItemStack();
         return optionalItemStack.isPresent();
     }
 

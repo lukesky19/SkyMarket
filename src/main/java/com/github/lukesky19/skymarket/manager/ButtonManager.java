@@ -21,7 +21,6 @@ import com.github.lukesky19.skylib.api.gui.GUIButton;
 import com.github.lukesky19.skylib.api.gui.GUIType;
 import com.github.lukesky19.skylib.api.itemstack.ItemStackBuilder;
 import com.github.lukesky19.skylib.api.itemstack.ItemStackConfig;
-import com.github.lukesky19.skylib.api.registry.RegistryUtil;
 import com.github.lukesky19.skymarket.SkyMarket;
 import com.github.lukesky19.skymarket.data.config.gui.ChestConfig;
 import com.github.lukesky19.skymarket.data.MarketData;
@@ -38,7 +37,6 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.ItemType;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -93,7 +91,7 @@ public class ButtonManager {
 
         List<ChestConfig.ItemConfig> itemsList = new ArrayList<>(marketConfig.items());
 
-        Optional<ItemStack> optionalFillerItemStack = new ItemStackBuilder(logger).fromItemStackConfig(guiData.filler().item(), null, null, List.of()).buildItemStack();
+        Optional<ItemStack> optionalFillerItemStack = new ItemStackBuilder(logger).fromItemStackConfig(guiData.filler().item(), null, List.of()).buildItemStack();
         if(optionalFillerItemStack.isPresent()) {
             ItemStack itemStack = optionalFillerItemStack.get();
 
@@ -104,7 +102,7 @@ public class ButtonManager {
             }
         }
 
-        Optional<ItemStack> optionalExitItemStack = new ItemStackBuilder(logger).fromItemStackConfig(guiData.exit().item(), null, null, List.of()).buildItemStack();
+        Optional<ItemStack> optionalExitItemStack = new ItemStackBuilder(logger).fromItemStackConfig(guiData.exit().item(), null, List.of()).buildItemStack();
         if(optionalExitItemStack.isPresent()) {
             if(guiData.exit().slot() != null) {
                 ItemStack itemStack = optionalExitItemStack.get();
@@ -132,7 +130,7 @@ public class ButtonManager {
             if(buttonConfig == null) continue;
             if(buttonConfig.slot() == null || buttonConfig.slot() < 0 || buttonConfig.slot() >= guiType.getSize()) continue;
 
-            Optional<ItemStack> optionalDummyItemStack = new ItemStackBuilder(logger).fromItemStackConfig(buttonConfig.item(), null, null, List.of()).buildItemStack();
+            Optional<ItemStack> optionalDummyItemStack = new ItemStackBuilder(logger).fromItemStackConfig(buttonConfig.item(), null, List.of()).buildItemStack();
             if(optionalDummyItemStack.isPresent()) {
                 ItemStack itemStack = optionalDummyItemStack.get();
 
@@ -181,7 +179,7 @@ public class ButtonManager {
 
             for(int i = 0; i < randomConfig.prices().buyItems().size(); i++) {
                 ItemStackConfig itemStackConfig = randomConfig.prices().buyItems().get(i);
-                Optional<ItemStack> optionalItemStack = new ItemStackBuilder(logger).fromItemStackConfig(itemStackConfig, null, null, List.of()).buildItemStack();
+                Optional<ItemStack> optionalItemStack = new ItemStackBuilder(logger).fromItemStackConfig(itemStackConfig, null, List.of()).buildItemStack();
                 if(optionalItemStack.isEmpty()) continue;
 
                 buyItems.add(optionalItemStack.get());
@@ -192,12 +190,9 @@ public class ButtonManager {
 
             if(transactionType.equals(TransactionType.ITEM)) {
                 if(randomConfig.transactionItem().itemType() == null) continue;
-                @NotNull Optional<ItemType> optionalItemType = RegistryUtil.getItemType(logger, randomConfig.transactionItem().itemType());
-                if(optionalItemType.isEmpty()) continue;
-                ItemType itemType = optionalItemType.get();
 
                 Integer randomAmount = PluginUtils.getRandomAmount(randomConfig.amount().fixed(), randomConfig.amount().min(), randomConfig.amount().max());
-                Map<Enchantment, Integer> randomEnchantments = PluginUtils.getRandomEnchantments(itemType, randomConfig.randomEnchants().enchantRandomly(), randomConfig.randomEnchants().min(), randomConfig.randomEnchants().max(), randomConfig.randomEnchants().treasure());
+                Map<Enchantment, Integer> randomEnchantments = PluginUtils.getRandomEnchantments(randomConfig.transactionItem().itemType(), randomConfig.randomEnchants().enchantRandomly(), randomConfig.randomEnchants().min(), randomConfig.randomEnchants().max(), randomConfig.randomEnchants().treasure());
 
                 Optional<ItemStack> optionalDisplayStack = PluginUtils.createItemStack(logger, randomConfig.displayItem(), randomAmount, randomEnchantments, placeholders);
                 if (optionalDisplayStack.isEmpty()) continue;
@@ -241,7 +236,7 @@ public class ButtonManager {
 
                 buttons.put(slot, guiButton);
             } else {
-                Optional<ItemStack> optionalDisplayStack = new ItemStackBuilder(logger).fromItemStackConfig(randomConfig.displayItem(), null, null, placeholders).buildItemStack();
+                Optional<ItemStack> optionalDisplayStack = new ItemStackBuilder(logger).fromItemStackConfig(randomConfig.displayItem(), null, placeholders).buildItemStack();
                 if(optionalDisplayStack.isEmpty()) continue;
 
                 GUIButton guiButton = new GUIButton.Builder()

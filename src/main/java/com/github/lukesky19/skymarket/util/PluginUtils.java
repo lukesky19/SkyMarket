@@ -19,7 +19,6 @@ package com.github.lukesky19.skymarket.util;
 
 import com.github.lukesky19.skylib.api.itemstack.ItemStackBuilder;
 import com.github.lukesky19.skylib.api.itemstack.ItemStackConfig;
-import com.github.lukesky19.skylib.api.registry.RegistryUtil;
 import com.github.lukesky19.skymarket.data.config.item.AmountConfig;
 import com.github.lukesky19.skymarket.data.config.item.RandomEnchantConfig;
 import net.kyori.adventure.text.logger.slf4j.ComponentLogger;
@@ -79,12 +78,13 @@ public class PluginUtils {
         // An error is logged on config load so we don't log an error here
         if(itemStackConfig.itemType() == null) return Optional.empty();
 
-        @NotNull Optional<ItemType> optionalItemType = RegistryUtil.getItemType(logger, itemStackConfig.itemType());
-        if(optionalItemType.isEmpty()) return Optional.empty();
-        ItemType itemType = optionalItemType.get();
-
         @Nullable Integer randomAmount = getRandomAmount(amountConfig.fixed(), amountConfig.min(), amountConfig.max());
-        @Nullable Map<Enchantment, Integer> randomEnchantments = getRandomEnchantments(itemType, randomEnchantConfig.enchantRandomly(), randomEnchantConfig.min(), randomEnchantConfig.max(), randomEnchantConfig.enchantRandomly());
+        @Nullable Map<Enchantment, Integer> randomEnchantments = getRandomEnchantments(
+                itemStackConfig.itemType(),
+                randomEnchantConfig.enchantRandomly(),
+                randomEnchantConfig.min(),
+                randomEnchantConfig.max(),
+                randomEnchantConfig.enchantRandomly());
 
         return createItemStack(logger, itemStackConfig, randomAmount, randomEnchantments, placeholders);
     }
@@ -100,7 +100,7 @@ public class PluginUtils {
      */
     public static @NotNull Optional<ItemStack> createItemStack(@NotNull ComponentLogger logger, @NotNull ItemStackConfig itemStackConfig, @Nullable Integer randomAmount, @Nullable Map<Enchantment, Integer> randomEnchantments, @NotNull List<TagResolver.Single> placeholders) {
         ItemStackBuilder itemStackBuilder = new ItemStackBuilder(logger);
-        itemStackBuilder.fromItemStackConfig(itemStackConfig, null, null, placeholders);
+        itemStackBuilder.fromItemStackConfig(itemStackConfig, null, placeholders);
         if(randomAmount != null) itemStackBuilder.setAmount(randomAmount);
         if(randomEnchantments != null && !randomEnchantments.isEmpty()) itemStackBuilder.getEnchantments().putAll(randomEnchantments);
 

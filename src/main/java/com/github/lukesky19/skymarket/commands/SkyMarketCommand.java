@@ -20,9 +20,9 @@ package com.github.lukesky19.skymarket.commands;
 import com.github.lukesky19.skylib.api.adventure.AdventureUtil;
 import com.github.lukesky19.skylib.api.time.Time;
 import com.github.lukesky19.skymarket.SkyMarket;
-import com.github.lukesky19.skymarket.configuration.LocaleManager;
-import com.github.lukesky19.skymarket.data.config.Locale;
-import com.github.lukesky19.skymarket.manager.MarketManager;
+import com.github.lukesky19.skymarket.locale.LocaleManager;
+import com.github.lukesky19.skymarket.locale.Locale;
+import com.github.lukesky19.skymarket.market.MarketManager;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.tree.LiteralCommandNode;
@@ -143,9 +143,8 @@ public class SkyMarketCommand {
                     CommandSender sender = ctx.getSource().getSender();
                     Locale locale = localeManager.getLocale();
                     @Nullable Time refreshTime = marketManager.getRefreshTime(id);
-                    String marketName = marketManager.getMarketName(id);
 
-                    if(refreshTime != null && marketName != null) {
+                    if(refreshTime != null) {
                         StringBuilder stringBuilder = new StringBuilder();
 
                         if (refreshTime.years() > 0) {
@@ -212,7 +211,7 @@ public class SkyMarketCommand {
                             }
                         }
 
-                        List<TagResolver.Single> placeholders = List.of(Placeholder.parsed("time", stringBuilder.toString()), Placeholder.parsed("market_name", marketName));
+                        List<TagResolver.Single> placeholders = List.of(Placeholder.parsed("time", stringBuilder.toString()), Placeholder.parsed("market_name", id));
 
                         sender.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.marketRefreshTime(), placeholders));
 

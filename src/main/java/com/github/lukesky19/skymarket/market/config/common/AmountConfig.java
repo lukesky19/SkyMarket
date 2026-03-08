@@ -15,16 +15,17 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-package com.github.lukesky19.skymarket.util;
+package com.github.lukesky19.skymarket.market.config.common;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.Map;
-import java.util.UUID;
+import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
+import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * This class is used as a key in a {@link Map}.
- * @param marketId The market id.
- * @param uuid The player's id.
+ * This record contains the configuration for configuring or calculating an {@link ItemStack}'s amount.
+ * @param fixed The fixed amount of the {@link ItemStack}.
+ * @param min The minimum amount. Used with the maximum amount to calculate the {@link ItemStack}'s amount.
+ * @param max The maximum amount. Used with the minimum amount to calculate the {@link ItemStack}'s amount.
  */
-public record MarketIdUUIDKey(@NotNull String marketId, @NotNull UUID uuid) {}
+@ConfigSerializable
+public record AmountConfig(@Nullable Integer fixed, @Nullable Integer min, @Nullable Integer max) {}

@@ -2,10 +2,11 @@ package com.github.lukesky19.skymarket.listener;
 
 import com.github.lukesky19.skylib.api.gui.interfaces.BaseGUI;
 import com.github.lukesky19.skylib.api.gui.templates.MerchantGUI;
-import com.github.lukesky19.skymarket.manager.GUIManager;
+import com.github.lukesky19.skymarket.gui.GUIManager;
 import com.github.lukesky19.skymarket.util.MarketIdUUIDKey;
-import io.papermc.paper.event.player.PlayerTradeEvent;
+import io.papermc.paper.event.player.PlayerPurchaseEvent;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -37,7 +38,7 @@ public class InventoryListener implements Listener {
      * If so, call the handleClick method for the specific GUI.
      * @param inventoryClickEvent InventoryClickEvent
      */
-    @EventHandler
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onClick(InventoryClickEvent inventoryClickEvent) {
         UUID uuid = inventoryClickEvent.getWhoClicked().getUniqueId();
         Inventory inventory = inventoryClickEvent.getClickedInventory();
@@ -59,7 +60,7 @@ public class InventoryListener implements Listener {
      * If so, call the handleDrag method for the specific GUI.
      * @param inventoryDragEvent InventoryClickEvent
      */
-    @EventHandler
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onDrag(InventoryDragEvent inventoryDragEvent) {
         UUID uuid = inventoryDragEvent.getWhoClicked().getUniqueId();
         Inventory inventory = inventoryDragEvent.getInventory();
@@ -82,7 +83,7 @@ public class InventoryListener implements Listener {
      * If so, call the handleClose method for the specific GUI.
      * @param inventoryCloseEvent InventoryCloseEvent
      */
-    @EventHandler
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onClose(InventoryCloseEvent inventoryCloseEvent) {
         UUID uuid = inventoryCloseEvent.getPlayer().getUniqueId();
 
@@ -96,7 +97,7 @@ public class InventoryListener implements Listener {
      * Sends trade select events to the respective open GUIs.
      * @param tradeSelectEvent A {@link TradeSelectEvent}
      */
-    @EventHandler
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onTradeSelect(TradeSelectEvent tradeSelectEvent) {
         UUID uuid = tradeSelectEvent.getWhoClicked().getUniqueId();
 
@@ -110,17 +111,17 @@ public class InventoryListener implements Listener {
 
     /**
      * Sends player trade events to the respective open GUIs.
-     * @param playerTradeEvent A {@link PlayerTradeEvent}
+     * @param playerPurchaseEvent A {@link PlayerPurchaseEvent}
      */
-    @EventHandler
-    public void onPlayerTrade(PlayerTradeEvent playerTradeEvent) {
-        UUID uuid = playerTradeEvent.getPlayer().getUniqueId();
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onPlayerTrade(PlayerPurchaseEvent playerPurchaseEvent) {
+        UUID uuid = playerPurchaseEvent.getPlayer().getUniqueId();
 
         @Nullable BaseGUI<MarketIdUUIDKey> baseGUI = guiManager.getOpenGUIByPlayerId(uuid);
         if(baseGUI == null) return;
 
         if(baseGUI instanceof MerchantGUI<MarketIdUUIDKey> tradeGUI) {
-            tradeGUI.handlePlayerTrade(playerTradeEvent);
+            tradeGUI.handlePlayerTrade(playerPurchaseEvent);
         }
     }
 }

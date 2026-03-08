@@ -17,17 +17,10 @@
 */
 package com.github.lukesky19.skymarket.util;
 
-import com.github.lukesky19.skylib.api.itemstack.ItemStackBuilder;
-import com.github.lukesky19.skylib.api.itemstack.ItemStackConfig;
-import com.github.lukesky19.skymarket.data.config.item.AmountConfig;
-import com.github.lukesky19.skymarket.data.config.item.RandomEnchantConfig;
-import net.kyori.adventure.text.logger.slf4j.ComponentLogger;
-import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ItemType;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -65,50 +58,6 @@ public class PluginUtils {
     }
 
     /**
-     * Create an {@link ItemStack}.
-     * @param logger A {@link ComponentLogger}.
-     * @param itemStackConfig An {@link ItemStackConfig}
-     * @param amountConfig An {@link AmountConfig}
-     * @param randomEnchantConfig A {@link RandomEnchantConfig}
-     * @param placeholders A {@link List} of {@link TagResolver.Single} placeholders.
-     * @return An {@link Optional} containing an {@link ItemStack}.
-     */
-    public static @NotNull Optional<ItemStack> createItemStack(@NotNull ComponentLogger logger, @NotNull ItemStackConfig itemStackConfig, @NotNull AmountConfig amountConfig, @NotNull RandomEnchantConfig randomEnchantConfig, @NotNull List<TagResolver.Single> placeholders) {
-        // If the ItemType is null, lets assume it is not configured
-        // An error is logged on config load so we don't log an error here
-        if(itemStackConfig.itemType() == null) return Optional.empty();
-
-        @Nullable Integer randomAmount = getRandomAmount(amountConfig.fixed(), amountConfig.min(), amountConfig.max());
-        @Nullable Map<Enchantment, Integer> randomEnchantments = getRandomEnchantments(
-                itemStackConfig.itemType(),
-                randomEnchantConfig.enchantRandomly(),
-                randomEnchantConfig.min(),
-                randomEnchantConfig.max(),
-                randomEnchantConfig.enchantRandomly());
-
-        return createItemStack(logger, itemStackConfig, randomAmount, randomEnchantments, placeholders);
-    }
-
-    /**
-     * Create an {@link ItemStack}.
-     * @param logger A {@link ComponentLogger}.
-     * @param itemStackConfig An {@link ItemStackConfig}
-     * @param randomAmount The amount of items the {@link ItemStack} should have.
-     * @param randomEnchantments A {@link Map} mapping {@link Enchantment} to a level as an {@link Integer}.
-     * @param placeholders A {@link List} of {@link TagResolver.Single} placeholders.
-     * @return An {@link Optional} containing an {@link ItemStack}.
-     */
-    public static @NotNull Optional<ItemStack> createItemStack(@NotNull ComponentLogger logger, @NotNull ItemStackConfig itemStackConfig, @Nullable Integer randomAmount, @Nullable Map<Enchantment, Integer> randomEnchantments, @NotNull List<TagResolver.Single> placeholders) {
-        ItemStackBuilder itemStackBuilder = new ItemStackBuilder(logger);
-        itemStackBuilder.fromItemStackConfig(itemStackConfig, null, placeholders);
-        if(randomAmount != null) itemStackBuilder.setAmount(randomAmount);
-        if(randomEnchantments != null && !randomEnchantments.isEmpty()) itemStackBuilder.getEnchantments().putAll(randomEnchantments);
-
-        // Return the built ItemStack
-        return itemStackBuilder.buildItemStack();
-    }
-
-    /**
      * Calculate the amount of items an {@link ItemStack} should have.
      * @param fixed The fixed amount.
      * @param min The minimum amount.
@@ -134,11 +83,20 @@ public class PluginUtils {
      * @param enchantRandomly Should the item be enchanted randomly?
      * @param min The minimum exp level.
      * @param max The maximum exp level.
-     * @param treasure Should tresure enchantments be included?
+     * @param treasure Should treasure enchantments be included?
      * @return A {@link Map} mapping {@link Enchantment}s to a level as an {@link Integer}, or null.
      */
-    public static @Nullable Map<Enchantment, Integer> getRandomEnchantments(@NotNull ItemType itemType, @Nullable Boolean enchantRandomly, @Nullable Integer min, @Nullable Integer max, @Nullable Boolean treasure) {
-        if((enchantRandomly == null || !enchantRandomly) || (min == null || min <= 0) || (max == null || max <= 0) || (treasure == null)) return null;
+    public static @Nullable Map<Enchantment, Integer> getRandomEnchantments(
+            @Nullable ItemType itemType,
+            @Nullable Boolean enchantRandomly,
+            @Nullable Integer min,
+            @Nullable Integer max,
+            @Nullable Boolean treasure) {
+        if(itemType == null
+                || (enchantRandomly == null || !enchantRandomly)
+                || (min == null || min <= 0)
+                || (max == null || max <= 0)
+                || (treasure == null)) return null;
 
         // Calculate the random enchantments to add
         ItemStack dummyStack = itemType.createItemStack();

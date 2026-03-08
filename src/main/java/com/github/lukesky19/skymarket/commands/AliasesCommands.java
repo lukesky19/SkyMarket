@@ -17,9 +17,9 @@
 */
 package com.github.lukesky19.skymarket.commands;
 
-import com.github.lukesky19.skymarket.configuration.SettingsManager;
-import com.github.lukesky19.skymarket.data.config.Settings;
-import com.github.lukesky19.skymarket.manager.MarketManager;
+import com.github.lukesky19.skymarket.settings.SettingsManager;
+import com.github.lukesky19.skymarket.settings.Settings;
+import com.github.lukesky19.skymarket.market.MarketManager;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
@@ -51,7 +51,7 @@ public class AliasesCommands {
      * @return A {@link List} containing {@link LiteralCommandNode} of type {@link CommandSourceStack}.
      */
     public @NotNull List<LiteralCommandNode<CommandSourceStack>> getAliases() {
-        Settings settings = settingsManager.getSettingsConfig();
+        Settings settings = settingsManager.getConfiguration();
         if(settings == null) return List.of();
 
         return settings.aliases().stream()

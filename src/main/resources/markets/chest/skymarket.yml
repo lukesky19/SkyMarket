@@ -1,4 +1,4 @@
-config-version: 2.0.0.0
+version: 3
 refresh-time: 6h
 market-name: SkyMarket
 gui-data:
@@ -8,1785 +8,2209 @@ gui-data:
         item:
             item-type: GRAY_STAINED_GLASS_PANE
             name: ' '
+    next-page:
+        item:
+            item-type: minecraft:arrow
+            amount: 1
+            name: Next Page
+            lore:
+                - <gray>Click to go to the next page</gray>
+        slot: 0
+    prev-page:
+        item:
+            item-type: minecraft:arrow
+            amount: 1
+            name: Previous Page
+            lore:
+                - <gray>Click to go to the previous page</gray>
+        slot: 8
     exit:
         item:
-            item-type: BARRIER
+            item-type: minecraft:barrier
             name: <yellow>Exit the shop.</yellow>
         slot: 22
+    time:
+        item:
+            item-type: minecraft:clock
+            amount: 1
+            name: Time Until Refresh
+            lore:
+                - <gray><remaining_time></gray>
+        slot: 4
     placeholder-slots:
-        - 9
-        - 10
-        - 11
-        - 12
-        - 13
-        - 14
-        - 15
-        - 16
-        - 17
-    dummy-buttons: []
-items:
-    -   transaction-type: ITEM
+        -   page-num: 0
+            slot-num: 9
+        -   page-num: 0
+            slot-num: 10
+        -   page-num: 0
+            slot-num: 11
+        -   page-num: 0
+            slot-num: 12
+        -   page-num: 0
+            slot-num: 13
+        -   page-num: 0
+            slot-num: 14
+        -   page-num: 0
+            slot-num: 15
+        -   page-num: 0
+            slot-num: 16
+        -   page-num: 0
+            slot-num: 17
+########################### Entry Documentation ###########################
+#        -   transaction-name: <#b00b1e>Stone</#b00b1e>
+#            display-item:
+#                item-type: minecraft:stone
+#                name: <#b00b1e>Stone</#b00b1e>
+#                lore:
+#                    - <gray>Buy for:</gray> <red><buy_price></red>
+#                    - <gray>Sell for:</gray> <red><sell_price></red>
+#                    - <gray>Buy Limit:</gray> <yellow><buy_count><white>/</white><buy_limit></yellow>
+#                    - <gray>Sell Limit:</gray> <yellow><sell_count><white>/</white><sell_limit></yellow>
+#                    - <gray>Player Buy Limit:</gray> <yellow><player_buy_count><white>/</white><player_buy_limit></yellow>
+#                    - <gray>Server Buy Limit:</gray> <yellow><server_buy_count><white>/</white><server_buy_limit></yellow>
+#                    - <gray>Player Sell Limit:</gray> <yellow><player_sell_count><white>/</white><player_sell_limit></yellow>
+#                    - <gray>Server Sell Limit:</gray> <yellow><server_sell_count><white>/</white><server_sell_limit></yellow>
+#                    - <gray>Time:</gray> <gold><remaining_time></gold>
+#            transaction-item:
+#                item-type: minecraft:stone
+#            ## Fixed will override min/max configuration.
+#            amount:
+#                fixed: 1
+#                min: 1
+#                max: 100
+#            random-enchants:
+#                enchant-randomly: true
+#                min: 5
+#                max: 19
+#                treasure: false
+#            buy-commands:
+#                - "give %player_name% stone 1"
+#            sell-commands:
+#                - "give %player_name% stone 1"
+#            ## Fixed will override min/max configuration.
+#            prices:
+#                buy-items:
+#                   -   item-type: minecraft:oak_log
+#                       amount: 16
+#                buy-fixed: 250.0
+#                buy-min: 100.0
+#                buy-max: 500.0
+#                sell-fixed: 25.0
+#                sell-min: 10.0
+#                sell-max: 50.0
+#            player-buy-limit: 1
+#            player-sell-limit: 1
+#            server-buy-limit: 1
+#            server-sell-limit: 1
+#            refresh-time: 10m
+entries:
+    -   transaction-name: <#b00b1e>Wither Rose</#b00b1e>
         display-item:
-            item-type: WITHER_ROSE
+            item-type: minecraft:wither_rose
             name: <#b00b1e>Wither Rose</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: WITHER_ROSE
+            item-type: minecraft:wither_rose
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Wither Rose</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 8500.0
             buy-max: 17500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Turtle Egg</#b00b1e>
         display-item:
-            item-type: TURTLE_EGG
+            item-type: minecraft:turtle_egg
             name: <#b00b1e>Turtle Egg</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: TURTLE_EGG
+            item-type: minecraft:turtle_egg
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Turtle Egg</#b00b1e>
         prices:
-            sell-fixed: -1.0
-            buy-min: 20000.0
-            buy-max: 40000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+            buy-min: 3000.0
+            buy-max: 4000.0
+    -   transaction-name: <#b00b1e>Sniffer Egg</#b00b1e>
         display-item:
-            item-type: SNIFFER_EGG
+            item-type: minecraft:sniffer_egg
             name: <#b00b1e>Sniffer Egg</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: SNIFFER_EGG
+            item-type: minecraft:sniffer_egg
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Sniffer Egg</#b00b1e>
         prices:
-            sell-fixed: -1.0
-            buy-min: 20000.0
-            buy-max: 40000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+            buy-min: 3000.0
+            buy-max: 4000.0
+    -   transaction-name: <#b00b1e>Dragon Head</#b00b1e>
         display-item:
-            item-type: DRAGON_HEAD
+            item-type: minecraft:dragon_head
             name: <#b00b1e>Dragon Head</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: DRAGON_HEAD
+            item-type: minecraft:dragon_head
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Dragon Head</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 75000.0
             buy-max: 100000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Elytra</#b00b1e>
         display-item:
-            item-type: ELYTRA
+            item-type: minecraft:elytra
             name: <#b00b1e>Elytra</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: ELYTRA
+            item-type: minecraft:elytra
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Elytra</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 75000.0
             buy-max: 100000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Saddle</#b00b1e>
         display-item:
-            item-type: SADDLE
+            item-type: minecraft:saddle
             name: <#b00b1e>Saddle</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: SADDLE
+            item-type: minecraft:saddle
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Saddle</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 1500.0
             buy-max: 6500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: COMMAND
+    -   transaction-name: <#b00b1e>Admire Goat Horn</#b00b1e>
         display-item:
-            item-type: GOAT_HORN
+            item-type: minecraft:goat_horn
             name: <#b00b1e>Admire Goat Horn</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
-            instrument: admire_goat_horn
+            instrument: minecraft:admire_goat_horn
+        transaction-item:
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Admire Goat Horn</#b00b1e>
-        prices:
-            sell-fixed: -1.0
-            buy-min: 10000.0
-            buy-max: 15000.0
-        buy-limit: -1
-        sell-limit: -1
         buy-commands:
             - minecraft:give %player_name% goat_horn[instrument=admire_goat_horn] 1
-    -   transaction-type: COMMAND
+        prices:
+            buy-min: 10000.0
+            buy-max: 15000.0
+    -   transaction-name: <#b00b1e>Call Goat Horn</#b00b1e>
         display-item:
-            item-type: GOAT_HORN
+            item-type: minecraft:goat_horn
             name: <#b00b1e>Call Goat Horn</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
-            instrument: call_goat_horn
-        transaction-name: <#b00b1e>Call Goat Horn</#b00b1e>
-        prices:
-            sell-fixed: -1.0
-            buy-min: 10000.0
-            buy-max: 15000.0
-        buy-limit: -1
-        sell-limit: -1
+            instrument: minecraft:call_goat_horn
+        transaction-item:
+        amount:
+            fixed: 1
         buy-commands:
             - minecraft:give %player_name% goat_horn[instrument=call_goat_horn] 1
-    -   transaction-type: COMMAND
+        prices:
+            buy-min: 10000.0
+            buy-max: 15000.0
+    -   transaction-name: <#b00b1e>Dream Goat Horn</#b00b1e>
         display-item:
-            item-type: GOAT_HORN
+            item-type: minecraft:goat_horn
             name: <#b00b1e>Dream Goat Horn</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
-            instrument: dream_goat_horn
+            instrument: minecraft:dream_goat_horn
+        transaction-item:
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Dream Goat Horn</#b00b1e>
-        prices:
-            sell-fixed: -1.0
-            buy-min: 10000.0
-            buy-max: 15000.0
-        buy-limit: -1
-        sell-limit: -1
         buy-commands:
             - minecraft:give %player_name% goat_horn[instrument=dream_goat_horn] 1
-    -   transaction-type: COMMAND
+        prices:
+            buy-min: 10000.0
+            buy-max: 15000.0
+    -   transaction-name: <#b00b1e>Feel Goat Horn</#b00b1e>
         display-item:
-            item-type: GOAT_HORN
+            item-type: minecraft:goat_horn
             name: <#b00b1e>Feel Goat Horn</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
-            instrument: feel_goat_horn
-        transaction-name: <#b00b1e>Feel Goat Horn</#b00b1e>
-        prices:
-            sell-fixed: -1.0
-            buy-min: 10000.0
-            buy-max: 15000.0
-        buy-limit: -1
-        sell-limit: -1
+            instrument: minecraft:feel_goat_horn
+        transaction-item:
+        amount:
+            fixed: 1
         buy-commands:
             - minecraft:give %player_name% goat_horn[instrument=feel_goat_horn] 1
-    -   transaction-type: COMMAND
+        prices:
+            buy-min: 10000.0
+            buy-max: 15000.0
+    -   transaction-name: <#b00b1e>Ponder Goat Horn</#b00b1e>
         display-item:
-            item-type: GOAT_HORN
+            item-type: minecraft:goat_horn
             name: <#b00b1e>Ponder Goat Horn</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
-            instrument: ponder_goat_horn
+            instrument: minecraft:ponder_goat_horn
+        transaction-item:
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Ponder Goat Horn</#b00b1e>
-        prices:
-            sell-fixed: -1.0
-            buy-min: 10000.0
-            buy-max: 15000.0
-        buy-limit: -1
-        sell-limit: -1
         buy-commands:
             - minecraft:give %player_name% goat_horn[instrument=ponder_goat_horn] 1
-    -   transaction-type: COMMAND
+        prices:
+            buy-min: 10000.0
+            buy-max: 15000.0
+    -   transaction-name: <#b00b1e>Seek Goat Horn</#b00b1e>
         display-item:
-            item-type: GOAT_HORN
+            item-type: minecraft:goat_horn
             name: <#b00b1e>Seek Goat Horn</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
-            instrument: seek_goat_horn
+            instrument: minecraft:seek_goat_horn
+        transaction-item:
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Seek Goat Horn</#b00b1e>
-        prices:
-            sell-fixed: -1.0
-            buy-min: 10000.0
-            buy-max: 15000.0
-        buy-limit: -1
-        sell-limit: -1
         buy-commands:
             - minecraft:give %player_name% goat_horn[instrument=seek_goat_horn] 1
-    -   transaction-type: COMMAND
+        prices:
+            buy-min: 10000.0
+            buy-max: 15000.0
+    -   transaction-name: <#b00b1e>Sing Goat Horn</#b00b1e>
         display-item:
-            item-type: GOAT_HORN
+            item-type: minecraft:goat_horn
             name: <#b00b1e>Sing Goat Horn</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
-            instrument: sing_goat_horn
+            instrument: minecraft:sing_goat_horn
+        transaction-item:
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Sing Goat Horn</#b00b1e>
-        prices:
-            sell-fixed: -1.0
-            buy-min: 10000.0
-            buy-max: 15000.0
-        buy-limit: -1
-        sell-limit: -1
         buy-commands:
             - minecraft:give %player_name% goat_horn[instrument=sing_goat_horn] 1
-    -   transaction-type: COMMAND
+        prices:
+            buy-min: 10000.0
+            buy-max: 15000.0
+    -   transaction-name: <#b00b1e>Yearn Goat Horn</#b00b1e>
         display-item:
-            item-type: GOAT_HORN
+            item-type: minecraft:goat_horn
             name: <#b00b1e>Yearn Goat Horn</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
-            instrument: yearn_goat_horn
+            instrument: minecraft:yearn_goat_horn
+        transaction-item:
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Yearn Goat Horn</#b00b1e>
-        prices:
-            sell-fixed: -1.0
-            buy-min: 10000.0
-            buy-max: 15000.0
-        buy-limit: -1
-        sell-limit: -1
         buy-commands:
             - minecraft:give %player_name% goat_horn[instrument=yearn_goat_horn] 1
-    -   transaction-type: ITEM
+        prices:
+            buy-min: 10000.0
+            buy-max: 15000.0
+    -   transaction-name: <#b00b1e>Music Disc 13</#b00b1e>
         display-item:
-            item-type: MUSIC_DISC_13
+            item-type: minecraft:music_disc_13
             name: <#b00b1e>Music Disc 13</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: MUSIC_DISC_13
+            item-type: minecraft:music_disc_13
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Music Disc 13</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 15000.0
             buy-max: 30000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Music Disc Cat</#b00b1e>
         display-item:
-            item-type: MUSIC_DISC_CAT
+            item-type: minecraft:music_disc_cat
             name: <#b00b1e>Music Disc Cat</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: MUSIC_DISC_CAT
+            item-type: minecraft:music_disc_cat
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Music Disc Cat</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 15000.0
             buy-max: 30000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Music Disc Blocks</#b00b1e>
         display-item:
-            item-type: MUSIC_DISC_BLOCKS
+            item-type: minecraft:music_disc_blocks
             name: <#b00b1e>Music Disc Blocks</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: MUSIC_DISC_BLOCKS
+            item-type: minecraft:music_disc_blocks
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Music Disc Blocks</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 15000.0
             buy-max: 30000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Music Disc Chirp</#b00b1e>
         display-item:
-            item-type: MUSIC_DISC_CHIRP
+            item-type: minecraft:music_disc_chirp
             name: <#b00b1e>Music Disc Chirp</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: MUSIC_DISC_CHIRP
+            item-type: minecraft:music_disc_chirp
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Music Disc Chirp</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 15000.0
             buy-max: 30000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Music Disc Far</#b00b1e>
         display-item:
-            item-type: MUSIC_DISC_FAR
+            item-type: minecraft:music_disc_far
             name: <#b00b1e>Music Disc Far</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: MUSIC_DISC_FAR
+            item-type: minecraft:music_disc_far
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Music Disc Far</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 15000.0
             buy-max: 30000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Music Disc Mall</#b00b1e>
         display-item:
-            item-type: MUSIC_DISC_MALL
+            item-type: minecraft:music_disc_mall
             name: <#b00b1e>Music Disc Mall</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: MUSIC_DISC_MALL
+            item-type: minecraft:music_disc_mall
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Music Disc Mall</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 15000.0
             buy-max: 30000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Music Disc Mellohi</#b00b1e>
         display-item:
-            item-type: MUSIC_DISC_MELLOHI
+            item-type: minecraft:music_disc_mellohi
             name: <#b00b1e>Music Disc Mellohi</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: MUSIC_DISC_MELLOHI
+            item-type: minecraft:music_disc_mellohi
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Music Disc Mellohi</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 15000.0
             buy-max: 30000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Music Disc Stal</#b00b1e>
         display-item:
-            item-type: MUSIC_DISC_STAL
+            item-type: minecraft:music_disc_stal
             name: <#b00b1e>Music Disc Stal</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: MUSIC_DISC_STAL
+            item-type: minecraft:music_disc_stal
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Music Disc Stal</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 15000.0
             buy-max: 30000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Music Disc Strad</#b00b1e>
         display-item:
-            item-type: MUSIC_DISC_STRAD
+            item-type: minecraft:music_disc_strad
             name: <#b00b1e>Music Disc Strad</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: MUSIC_DISC_STRAD
+            item-type: minecraft:music_disc_strad
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Music Disc Strad</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 15000.0
             buy-max: 30000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Music Disc Ward</#b00b1e>
         display-item:
-            item-type: MUSIC_DISC_WARD
+            item-type: minecraft:music_disc_ward
             name: <#b00b1e>Music Disc Ward</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: MUSIC_DISC_WARD
+            item-type: minecraft:music_disc_ward
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Music Disc Ward</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 15000.0
             buy-max: 30000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Music Disc 11</#b00b1e>
         display-item:
-            item-type: MUSIC_DISC_11
+            item-type: minecraft:music_disc_11
             name: <#b00b1e>Music Disc 11</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: MUSIC_DISC_11
+            item-type: minecraft:music_disc_11
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Music Disc 11</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 15000.0
             buy-max: 30000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Music Disc Wait</#b00b1e>
         display-item:
-            item-type: MUSIC_DISC_WAIT
+            item-type: minecraft:music_disc_wait
             name: <#b00b1e>Music Disc Wait</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: MUSIC_DISC_WAIT
+            item-type: minecraft:music_disc_wait
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Music Disc Wait</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 15000.0
             buy-max: 30000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Music Disc Otherside</#b00b1e>
         display-item:
-            item-type: MUSIC_DISC_OTHERSIDE
+            item-type: minecraft:music_disc_otherside
             name: <#b00b1e>Music Disc Otherside</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: MUSIC_DISC_OTHERSIDE
+            item-type: minecraft:music_disc_otherside
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Music Disc Otherside</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 15000.0
             buy-max: 30000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Music Disc Relic</#b00b1e>
         display-item:
-            item-type: MUSIC_DISC_RELIC
+            item-type: minecraft:music_disc_relic
             name: <#b00b1e>Music Disc Relic</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: MUSIC_DISC_RELIC
+            item-type: minecraft:music_disc_relic
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Music Disc Relic</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 15000.0
             buy-max: 30000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Music Disc 5</#b00b1e>
         display-item:
-            item-type: MUSIC_DISC_5
+            item-type: minecraft:music_disc_5
             name: <#b00b1e>Music Disc 5</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: MUSIC_DISC_5
+            item-type: minecraft:music_disc_5
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Music Disc 5</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 15000.0
             buy-max: 30000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Music Disc Pigstep</#b00b1e>
         display-item:
-            item-type: MUSIC_DISC_PIGSTEP
+            item-type: minecraft:music_disc_pigstep
             name: <#b00b1e>Music Disc Pigstep</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: MUSIC_DISC_PIGSTEP
+            item-type: minecraft:music_disc_pigstep
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Music Disc Pigstep</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 15000.0
             buy-max: 30000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Trident</#b00b1e>
         display-item:
-            item-type: TRIDENT
+            item-type: minecraft:trident
             name: <#b00b1e>Trident</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: TRIDENT
+            item-type: minecraft:trident
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Trident</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 100000.0
             buy-max: 200000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Nether Star</#b00b1e>
         display-item:
-            item-type: NETHER_STAR
+            item-type: minecraft:nether_star
             name: <#b00b1e>Nether Star</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: NETHER_STAR
+            item-type: minecraft:nether_star
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Nether Star</#b00b1e>
         prices:
-            sell-fixed: -1.0
-            buy-min: 100000.0
-            buy-max: 200000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+            buy-min: 50000.0
+            buy-max: 90000.0
+    -   transaction-name: <#b00b1e>Shulker Shell</#b00b1e>
         display-item:
-            item-type: SHULKER_SHELL
+            item-type: minecraft:shulker_shell
             name: <#b00b1e>Shulker Shell</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: SHULKER_SHELL
+            item-type: minecraft:shulker_shell
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Shulker Shell</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 100000.0
             buy-max: 200000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Dragon's Breath</#b00b1e>
         display-item:
-            item-type: DRAGON_BREATH
+            item-type: minecraft:dragon_breath
             name: <#b00b1e>Dragon's Breath</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: DRAGON_BREATH
+            item-type: minecraft:dragon_breath
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Dragon's Breath</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 8500.0
             buy-max: 17500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Netherite Upgrade Smithing Template</#b00b1e>
         display-item:
-            item-type: NETHERITE_UPGRADE_SMITHING_TEMPLATE
+            item-type: minecraft:netherite_upgrade_smithing_template
             name: <#b00b1e>Netherite Upgrade Smithing Template</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: NETHERITE_UPGRADE_SMITHING_TEMPLATE
+            item-type: minecraft:netherite_upgrade_smithing_template
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Netherite Upgrade Smithing Template</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 100000.0
             buy-max: 200000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Iron Horse Armor</#b00b1e>
         display-item:
-            item-type: IRON_HORSE_ARMOR
+            item-type: minecraft:iron_horse_armor
             name: <#b00b1e>Iron Horse Armor</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: IRON_HORSE_ARMOR
+            item-type: minecraft:iron_horse_armor
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Iron Horse Armor</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 8500.0
             buy-max: 17500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Golden Horse Armor</#b00b1e>
         display-item:
-            item-type: GOLDEN_HORSE_ARMOR
+            item-type: minecraft:golden_horse_armor
             name: <#b00b1e>Golden Horse Armor</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: GOLDEN_HORSE_ARMOR
+            item-type: minecraft:golden_horse_armor
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Golden Horse Armor</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 22500.0
             buy-max: 32000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Diamond Horse Armor</#b00b1e>
         display-item:
-            item-type: DIAMOND_HORSE_ARMOR
+            item-type: minecraft:diamond_horse_armor
             name: <#b00b1e>Diamond Horse Armor</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: DIAMOND_HORSE_ARMOR
+            item-type: minecraft:diamond_horse_armor
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Diamond Horse Armor</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 37000.0
             buy-max: 45000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Cobweb</#b00b1e>
         display-item:
-            item-type: COBWEB
+            item-type: minecraft:cobweb
             name: <#b00b1e>Cobweb</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: COBWEB
+            item-type: minecraft:cobweb
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Cobweb</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 8500.0
             buy-max: 17500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Sculk Shrieker</#b00b1e>
         display-item:
-            item-type: SCULK_SHRIEKER
+            item-type: minecraft:sculk_shrieker
             name: <#b00b1e>Sculk Shrieker</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: SCULK_SHRIEKER
+            item-type: minecraft:sculk_shrieker
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Sculk Shrieker</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 8500.0
             buy-max: 15000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Sculk Sensor</#b00b1e>
         display-item:
-            item-type: SCULK_SENSOR
+            item-type: minecraft:sculk_sensor
             name: <#b00b1e>Sculk Sensor</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: SCULK_SENSOR
+            item-type: minecraft:sculk_sensor
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Sculk Sensor</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 8500.0
             buy-max: 15000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Sculk Catalyst</#b00b1e>
         display-item:
-            item-type: SCULK_CATALYST
+            item-type: minecraft:sculk_catalyst
             name: <#b00b1e>Sculk Catalyst</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: SCULK_CATALYST
+            item-type: minecraft:sculk_catalyst
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Sculk Catalyst</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 45000.0
             buy-max: 85000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Totem of Undying</#b00b1e>
         display-item:
-            item-type: TOTEM_OF_UNDYING
+            item-type: minecraft:totem_of_undying
             name: <#b00b1e>Totem of Undying</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: TOTEM_OF_UNDYING
+            item-type: minecraft:totem_of_undying
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Totem of Undying</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 55000.0
             buy-max: 85000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Flower Banner Pattern</#b00b1e>
         display-item:
-            item-type: FLOWER_BANNER_PATTERN
+            item-type: minecraft:flower_banner_pattern
             name: <#b00b1e>Flower Banner Pattern</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: FLOWER_BANNER_PATTERN
+            item-type: minecraft:flower_banner_pattern
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Flower Banner Pattern</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 7500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Creeper Banner Pattern</#b00b1e>
         display-item:
-            item-type: CREEPER_BANNER_PATTERN
+            item-type: minecraft:creeper_banner_pattern
             name: <#b00b1e>Creeper Banner Pattern</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: CREEPER_BANNER_PATTERN
+            item-type: minecraft:creeper_banner_pattern
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Creeper Banner Pattern</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 7500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Skull Banner Pattern</#b00b1e>
         display-item:
-            item-type: SKULL_BANNER_PATTERN
+            item-type: minecraft:skull_banner_pattern
             name: <#b00b1e>Skull Banner Pattern</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: SKULL_BANNER_PATTERN
+            item-type: minecraft:skull_banner_pattern
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Skull Banner Pattern</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 7500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Mojang Banner Pattern</#b00b1e>
         display-item:
-            item-type: MOJANG_BANNER_PATTERN
+            item-type: minecraft:mojang_banner_pattern
             name: <#b00b1e>Mojang Banner Pattern</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: MOJANG_BANNER_PATTERN
+            item-type: minecraft:mojang_banner_pattern
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Mojang Banner Pattern</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 7500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Globe Banner Pattern</#b00b1e>
         display-item:
-            item-type: GLOBE_BANNER_PATTERN
+            item-type: minecraft:globe_banner_pattern
             name: <#b00b1e>Globe Banner Pattern</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: GLOBE_BANNER_PATTERN
+            item-type: minecraft:globe_banner_pattern
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Globe Banner Pattern</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 7500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Piglin Banner Pattern</#b00b1e>
         display-item:
-            item-type: PIGLIN_BANNER_PATTERN
+            item-type: minecraft:piglin_banner_pattern
             name: <#b00b1e>Piglin Banner Pattern</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: PIGLIN_BANNER_PATTERN
+            item-type: minecraft:piglin_banner_pattern
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Piglin Banner Pattern</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 7500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Wild Armor Trim Smithing Template</#b00b1e>
         display-item:
-            item-type: WILD_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:wild_armor_trim_smithing_template
             name: <#b00b1e>Wild Armor Trim Smithing Template</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: WILD_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:wild_armor_trim_smithing_template
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Wild Armor Trim Smithing Template</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 35000.0
             buy-max: 95000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Wayfinder Armor Trim Smithing Template</#b00b1e>
         display-item:
-            item-type: WAYFINDER_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:wayfinder_armor_trim_smithing_template
             name: <#b00b1e>Wayfinder Armor Trim Smithing Template</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: WAYFINDER_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:wayfinder_armor_trim_smithing_template
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Wayfinder Armor Trim Smithing Template</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 35000.0
             buy-max: 95000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Sentry Armor Trim Smithing Template</#b00b1e>
         display-item:
-            item-type: SENTRY_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:sentry_armor_trim_smithing_template
             name: <#b00b1e>Sentry Armor Trim Smithing Template</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: SENTRY_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:sentry_armor_trim_smithing_template
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Sentry Armor Trim Smithing Template</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 35000.0
             buy-max: 95000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Vex Armor Trim Smithing Template</#b00b1e>
         display-item:
-            item-type: VEX_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:vex_armor_trim_smithing_template
             name: <#b00b1e>Vex Armor Trim Smithing Template</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: VEX_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:vex_armor_trim_smithing_template
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Vex Armor Trim Smithing Template</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 35000.0
             buy-max: 95000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Dune Armor Trim Smithing Template</#b00b1e>
         display-item:
-            item-type: DUNE_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:dune_armor_trim_smithing_template
             name: <#b00b1e>Dune Armor Trim Smithing Template</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: DUNE_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:dune_armor_trim_smithing_template
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Dune Armor Trim Smithing Template</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 35000.0
             buy-max: 95000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Raiser Armor Trim Smithing Template</#b00b1e>
         display-item:
-            item-type: RAISER_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:raiser_armor_trim_smithing_template
             name: <#b00b1e>Raiser Armor Trim Smithing Template</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: RAISER_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:raiser_armor_trim_smithing_template
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Raiser Armor Trim Smithing Template</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 35000.0
             buy-max: 95000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Shaper Armor Trim Smithing Template</#b00b1e>
         display-item:
-            item-type: SHAPER_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:shaper_armor_trim_smithing_template
             name: <#b00b1e>Shaper Armor Trim Smithing Template</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: SHAPER_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:shaper_armor_trim_smithing_template
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Shaper Armor Trim Smithing Template</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 35000.0
             buy-max: 95000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Host Armor Trim Smithing Template</#b00b1e>
         display-item:
-            item-type: HOST_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:host_armor_trim_smithing_template
             name: <#b00b1e>Host Armor Trim Smithing Template</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: HOST_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:host_armor_trim_smithing_template
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Host Armor Trim Smithing Template</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 35000.0
             buy-max: 95000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Ward Armor Trim Smithing Template</#b00b1e>
         display-item:
-            item-type: WARD_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:ward_armor_trim_smithing_template
             name: <#b00b1e>Ward Armor Trim Smithing Template</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: WARD_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:ward_armor_trim_smithing_template
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Ward Armor Trim Smithing Template</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 35000.0
             buy-max: 95000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Snout Armor Trim Smithing Template</#b00b1e>
         display-item:
-            item-type: SNOUT_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:snout_armor_trim_smithing_template
             name: <#b00b1e>Snout Armor Trim Smithing Template</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: SNOUT_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:snout_armor_trim_smithing_template
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Snout Armor Trim Smithing Template</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 35000.0
             buy-max: 95000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Rib Armor Trim Smithing Template</#b00b1e>
         display-item:
-            item-type: RIB_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:rib_armor_trim_smithing_template
             name: <#b00b1e>Rib Armor Trim Smithing Template</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: RIB_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:rib_armor_trim_smithing_template
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Rib Armor Trim Smithing Template</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 35000.0
             buy-max: 95000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>EYE Armor Trim Smithing Template</#b00b1e>
         display-item:
-            item-type: EYE_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:eye_armor_trim_smithing_template
             name: <#b00b1e>EYE Armor Trim Smithing Template</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: EYE_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:eye_armor_trim_smithing_template
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>EYE Armor Trim Smithing Template</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 35000.0
             buy-max: 95000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Spire Armor Trim Smithing Template</#b00b1e>
         display-item:
-            item-type: SPIRE_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:spire_armor_trim_smithing_template
             name: <#b00b1e>Spire Armor Trim Smithing Template</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: SPIRE_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:spire_armor_trim_smithing_template
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Spire Armor Trim Smithing Template</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 35000.0
             buy-max: 95000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Archer Pottery Sherd</#b00b1e>
         display-item:
-            item-type: ARCHER_POTTERY_SHERD
+            item-type: minecraft:archer_pottery_sherd
             name: <#b00b1e>Archer Pottery Sherd</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: ARCHER_POTTERY_SHERD
+            item-type: minecraft:archer_pottery_sherd
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Archer Pottery Sherd</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 7500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Brewer Pottery Sherd</#b00b1e>
         display-item:
-            item-type: BREWER_POTTERY_SHERD
+            item-type: minecraft:brewer_pottery_sherd
             name: <#b00b1e>Brewer Pottery Sherd</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: BREWER_POTTERY_SHERD
+            item-type: minecraft:brewer_pottery_sherd
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Brewer Pottery Sherd</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 7500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Arms Up Pottery Sherd</#b00b1e>
         display-item:
-            item-type: ARMS_UP_POTTERY_SHERD
+            item-type: minecraft:arms_up_pottery_sherd
             name: <#b00b1e>Arms Up Pottery Sherd</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: ARMS_UP_POTTERY_SHERD
+            item-type: minecraft:arms_up_pottery_sherd
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Arms Up Pottery Sherd</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 7500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Burn Pottery Sherd</#b00b1e>
         display-item:
-            item-type: BURN_POTTERY_SHERD
+            item-type: minecraft:burn_pottery_sherd
             name: <#b00b1e>Burn Pottery Sherd</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: BURN_POTTERY_SHERD
+            item-type: minecraft:burn_pottery_sherd
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Burn Pottery Sherd</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 7500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Danger Pottery Sherd</#b00b1e>
         display-item:
-            item-type: DANGER_POTTERY_SHERD
+            item-type: minecraft:danger_pottery_sherd
             name: <#b00b1e>Danger Pottery Sherd</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: DANGER_POTTERY_SHERD
+            item-type: minecraft:danger_pottery_sherd
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Danger Pottery Sherd</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 7500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Friend Pottery Sherd</#b00b1e>
         display-item:
-            item-type: FRIEND_POTTERY_SHERD
+            item-type: minecraft:friend_pottery_sherd
             name: <#b00b1e>Friend Pottery Sherd</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: FRIEND_POTTERY_SHERD
+            item-type: minecraft:friend_pottery_sherd
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Friend Pottery Sherd</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 7500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Heart Pottery Sherd</#b00b1e>
         display-item:
-            item-type: HEART_POTTERY_SHERD
+            item-type: minecraft:heart_pottery_sherd
             name: <#b00b1e>Heart Pottery Sherd</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: HEART_POTTERY_SHERD
+            item-type: minecraft:heart_pottery_sherd
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Heart Pottery Sherd</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 7500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Heartbreak Pottery Sherd</#b00b1e>
         display-item:
-            item-type: HEARTBREAK_POTTERY_SHERD
+            item-type: minecraft:heartbreak_pottery_sherd
             name: <#b00b1e>Heartbreak Pottery Sherd</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: HEARTBREAK_POTTERY_SHERD
+            item-type: minecraft:heartbreak_pottery_sherd
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Heartbreak Pottery Sherd</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 7500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Howl Pottery Sherd</#b00b1e>
         display-item:
-            item-type: HOWL_POTTERY_SHERD
+            item-type: minecraft:howl_pottery_sherd
             name: <#b00b1e>Howl Pottery Sherd</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: HOWL_POTTERY_SHERD
+            item-type: minecraft:howl_pottery_sherd
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Howl Pottery Sherd</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 7500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Miner Pottery Sherd</#b00b1e>
         display-item:
-            item-type: MINER_POTTERY_SHERD
+            item-type: minecraft:miner_pottery_sherd
             name: <#b00b1e>Miner Pottery Sherd</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: MINER_POTTERY_SHERD
+            item-type: minecraft:miner_pottery_sherd
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Miner Pottery Sherd</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 7500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Prize Pottery Sherd</#b00b1e>
         display-item:
-            item-type: PRIZE_POTTERY_SHERD
+            item-type: minecraft:prize_pottery_sherd
             name: <#b00b1e>Prize Pottery Sherd</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: PRIZE_POTTERY_SHERD
+            item-type: minecraft:prize_pottery_sherd
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Prize Pottery Sherd</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 7500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Sheaf Pottery Sherd</#b00b1e>
         display-item:
-            item-type: SHEAF_POTTERY_SHERD
+            item-type: minecraft:sheaf_pottery_sherd
             name: <#b00b1e>Sheaf Pottery Sherd</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: SHEAF_POTTERY_SHERD
+            item-type: minecraft:sheaf_pottery_sherd
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Sheaf Pottery Sherd</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 7500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Skull Pottery Sherd</#b00b1e>
         display-item:
-            item-type: SKULL_POTTERY_SHERD
+            item-type: minecraft:skull_pottery_sherd
             name: <#b00b1e>Skull Pottery Sherd</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: SKULL_POTTERY_SHERD
+            item-type: minecraft:skull_pottery_sherd
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Skull Pottery Sherd</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 7500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Powder Snow Bucket</#b00b1e>
         display-item:
-            item-type: POWDER_SNOW_BUCKET
+            item-type: minecraft:powder_snow_bucket
             name: <#b00b1e>Powder Snow Bucket</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: POWDER_SNOW_BUCKET
+            item-type: minecraft:powder_snow_bucket
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Powder Snow Bucket</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 12500.0
             buy-max: 17500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Piston</#b00b1e>
         display-item:
-            item-type: PISTON
+            item-type: minecraft:piston
             name: <#b00b1e>Piston</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: PISTON
+            item-type: minecraft:piston
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Piston</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 2500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Sticky Piston</#b00b1e>
         display-item:
-            item-type: STICKY_PISTON
+            item-type: minecraft:sticky_piston
             name: <#b00b1e>Sticky Piston</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: STICKY_PISTON
+            item-type: minecraft:sticky_piston
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Sticky Piston</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 4500.0
             buy-max: 17500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Observer</#b00b1e>
         display-item:
-            item-type: OBSERVER
+            item-type: minecraft:observer
             name: <#b00b1e>Observer</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: OBSERVER
+            item-type: minecraft:observer
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Observer</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 3500.0
             buy-max: 15500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Dispenser</#b00b1e>
         display-item:
-            item-type: DISPENSER
+            item-type: minecraft:dispenser
             name: <#b00b1e>Dispenser</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: DISPENSER
+            item-type: minecraft:dispenser
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Dispenser</#b00b1e>
         prices:
-            sell-fixed: -1.0
-            buy-min: 3500.0
-            buy-max: 15500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+            buy-min: 1250.0
+            buy-max: 3500.0
+    -   transaction-name: <#b00b1e>Dispenser</#b00b1e>
         display-item:
-            item-type: DROPPER
+            item-type: minecraft:dropper
             name: <#b00b1e>Dispenser</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: DROPPER
+            item-type: minecraft:dropper
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Dispenser</#b00b1e>
         prices:
-            sell-fixed: -1.0
-            buy-min: 3500.0
-            buy-max: 15500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+            buy-min: 1250.0
+            buy-max: 3500.0
+    -   transaction-name: <#b00b1e>Cauldron</#b00b1e>
         display-item:
-            item-type: CAULDRON
+            item-type: minecraft:cauldron
             name: <#b00b1e>Cauldron</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: CAULDRON
+            item-type: minecraft:cauldron
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Cauldron</#b00b1e>
         prices:
-            sell-fixed: -1.0
-            buy-min: 2500.0
-            buy-max: 6500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+            buy-min: 1000.0
+            buy-max: 2500.0
+    -   transaction-name: <#b00b1e>Hopper</#b00b1e>
         display-item:
-            item-type: HOPPER
+            item-type: minecraft:hopper
             name: <#b00b1e>Hopper</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: HOPPER
+            item-type: minecraft:hopper
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Hopper</#b00b1e>
         prices:
-            sell-fixed: -1.0
-            buy-min: 3500.0
-            buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: COMMAND
+            buy-min: 1250.0
+            buy-max: 3500.0
+    -   transaction-name: <#b00b1e>Mending</#b00b1e>
         display-item:
-            item-type: ENCHANTED_BOOK
+            item-type: minecraft:enchanted_book
             name: <#b00b1e>Mending</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
             enchantments:
                 -   enchantment: minecraft:mending
                     level: 1
+            potion-config:
+                potion-effects: []
+            color:
+                random: false
+            item-flags: []
+            decorated-pot: {}
+            armor-trim: {}
+            attributes: []
+            options: {}
+        transaction-item:
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Mending</#b00b1e>
-        prices:
-            sell-fixed: -1.0
-            buy-min: 100000.0
-            buy-max: 250000.0
-        buy-limit: -1
-        sell-limit: -1
         buy-commands:
             - give %player_name% enchanted_book 1 mending
-    -   transaction-type: ITEM
+        prices:
+            buy-min: 100000.0
+            buy-max: 250000.0
+    -   transaction-name: <#b00b1e>Coal Block</#b00b1e>
         display-item:
-            item-type: COAL_BLOCK
+            item-type: minecraft:coal_block
             name: <#b00b1e>Coal Block</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: COAL_BLOCK
+            item-type: minecraft:coal_block
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Coal Block</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 510.0
             buy-max: 750.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Iron Block</#b00b1e>
         display-item:
-            item-type: IRON_BLOCK
+            item-type: minecraft:iron_block
             name: <#b00b1e>Iron Block</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: IRON_BLOCK
+            item-type: minecraft:iron_block
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Iron Block</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 1000.0
             buy-max: 1350.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Copper Block</#b00b1e>
         display-item:
-            item-type: COPPER_BLOCK
+            item-type: minecraft:copper_block
             name: <#b00b1e>Copper Block</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: COPPER_BLOCK
+            item-type: minecraft:copper_block
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Copper Block</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 680.0
             buy-max: 1000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Gold Block</#b00b1e>
         display-item:
-            item-type: GOLD_BLOCK
+            item-type: minecraft:gold_block
             name: <#b00b1e>Gold Block</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: GOLD_BLOCK
+            item-type: minecraft:gold_block
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Gold Block</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 1750.0
             buy-max: 2250.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Lapis Lazuli Block</#b00b1e>
         display-item:
-            item-type: LAPIS_BLOCK
+            item-type: minecraft:lapis_block
             name: <#b00b1e>Lapis Lazuli Block</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: LAPIS_BLOCK
+            item-type: minecraft:lapis_block
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Lapis Lazuli Block</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 475.0
             buy-max: 750.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Redstone Block</#b00b1e>
         display-item:
-            item-type: REDSTONE_BLOCK
+            item-type: minecraft:redstone_block
             name: <#b00b1e>Redstone Block</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: REDSTONE_BLOCK
+            item-type: minecraft:redstone_block
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Redstone Block</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 475.0
             buy-max: 750.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Diamond Block</#b00b1e>
         display-item:
-            item-type: DIAMOND_BLOCK
+            item-type: minecraft:diamond_block
             name: <#b00b1e>Diamond Block</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: DIAMOND_BLOCK
+            item-type: minecraft:diamond_block
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Diamond Block</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 3500.0
             buy-max: 5500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Emerald Block</#b00b1e>
         display-item:
-            item-type: EMERALD_BLOCK
+            item-type: minecraft:emerald_block
             name: <#b00b1e>Emerald Block</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: EMERALD_BLOCK
+            item-type: minecraft:emerald_block
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Emerald Block</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 2500.0
             buy-max: 6500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Netherite Scrap</#b00b1e>
         display-item:
-            item-type: NETHERITE_SCRAP
+            item-type: minecraft:netherite_scrap
             name: <#b00b1e>Netherite Scrap</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: NETHERITE_SCRAP
+            item-type: minecraft:netherite_scrap
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Netherite Scrap</#b00b1e>
         prices:
-            sell-fixed: -1.0
-            buy-min: 350000.0
-            buy-max: 500000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+            buy-min: 100000.0
+            buy-max: 150000.0
+    -   transaction-name: <#b00b1e>Field Masoned Banner Pattern</#b00b1e>
         display-item:
-            item-type: FIELD_MASONED_BANNER_PATTERN
+            item-type: minecraft:field_masoned_banner_pattern
             name: <#b00b1e>Field Masoned Banner Pattern</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: FIELD_MASONED_BANNER_PATTERN
+            item-type: minecraft:field_masoned_banner_pattern
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Field Masoned Banner Pattern</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 7500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Bordure Indented Banner Pattern</#b00b1e>
         display-item:
-            item-type: BORDURE_INDENTED_BANNER_PATTERN
+            item-type: minecraft:bordure_indented_banner_pattern
             name: <#b00b1e>Bordure Indented Banner Pattern</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: BORDURE_INDENTED_BANNER_PATTERN
+            item-type: minecraft:bordure_indented_banner_pattern
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Bordure Indented Banner Pattern</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 7500.0
             buy-max: 12500.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: COMMAND
+    -   transaction-name: <#b00b1e>Sellwand - 100 Uses</#b00b1e>
         display-item:
-            item-type: BREEZE_ROD
+            item-type: minecraft:breeze_rod
             name: <#b00b1e>Sellwand - 100 Uses</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Sellwand - 100 Uses</#b00b1e>
-        prices:
-            sell-fixed: -1.0
-            buy-min: 50000.0
-            buy-max: 75000.0
-        buy-limit: -1
-        sell-limit: -1
         buy-commands:
             - sellwand give %player_name% 100 1
-    -   transaction-type: COMMAND
+        prices:
+            buy-min: 50000.0
+            buy-max: 75000.0
+    -   transaction-name: <#b00b1e>Sellwand - 250 Uses</#b00b1e>
         display-item:
-            item-type: BREEZE_ROD
+            item-type: minecraft:breeze_rod
             name: <#b00b1e>Sellwand - 250 Uses</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Sellwand - 250 Uses</#b00b1e>
-        prices:
-            sell-fixed: -1.0
-            buy-min: 165000.0
-            buy-max: 187500.0
-        buy-limit: -1
-        sell-limit: -1
         buy-commands:
             - sellwand give %player_name% 250 1
-    -   transaction-type: COMMAND
+        prices:
+            buy-min: 165000.0
+            buy-max: 187500.0
+    -   transaction-name: <#b00b1e>Fish Crate Key</#b00b1e>
         display-item:
-            item-type: TRIPWIRE_HOOK
-            name: <#b00b1e>Build Crate Key</#b00b1e>
+            item-type: minecraft:tripwire_hook
+            name: <#b00b1e>Fish Crate Key</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
-                - <gray>Limit:</gray> <yellow><buy_limit></yellow>
+                - <gray>Buy Limit:</gray> <yellow><buy_count><white>/</white><buy_limit></yellow>
             options:
                 enchantment-glint: true
+        transaction-item:
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Build Crate Key</#b00b1e>
-        prices:
-            buy-fixed: 1000.0
-            sell-fixed: -1.0
-        buy-limit: 10
-        sell-limit: -1
         buy-commands:
-            - crates key give %player_name% build_v2 1
-    -   transaction-type: COMMAND
+            - crates key give %player_name% fish_v1 1
+        prices:
+            buy-min: 2000.0
+            buy-max: 2000.0
+        player-buy-limit: 10
+    -   transaction-name: <#b00b1e>Common Crate Key</#b00b1e>
         display-item:
-            item-type: TRIPWIRE_HOOK
-            name: <#b00b1e>Animal Crate Key</#b00b1e>
+            item-type: minecraft:tripwire_hook
+            name: <#b00b1e>Common Crate Key</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
-                - <gray>Limit:</gray> <yellow><buy_limit></yellow>
+                - <gray>Buy Limit:</gray> <yellow><buy_count><white>/</white><buy_limit></yellow>
             options:
                 enchantment-glint: true
+        transaction-item:
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Animal Crate Key</#b00b1e>
-        prices:
-            buy-fixed: 10000.0
-            sell-fixed: -1.0
-        buy-limit: 7
-        sell-limit: -1
         buy-commands:
-            - crates key give %player_name% animal_v1 1
-    -   transaction-type: COMMAND
+            - crates key give %player_name% common_v1 1
+        prices:
+            buy-min: 7000.0
+            buy-max: 7000.0
+        player-buy-limit: 5
+    -   transaction-name: <#b00b1e>Wind Burst</#b00b1e>
         display-item:
-            item-type: ENCHANTED_BOOK
+            item-type: minecraft:enchanted_book
             name: <#b00b1e>Wind Burst</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
             enchantments:
                 -   enchantment: minecraft:wind_burst
                     level: 1
+            potion-config:
+                potion-effects: []
+            color:
+                random: false
+            item-flags: []
+            decorated-pot: {}
+            armor-trim: {}
+            attributes: []
+            options: {}
+        transaction-item:
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Wind Burst</#b00b1e>
-        prices:
-            sell-fixed: -1.0
-            buy-min: 200000.0
-            buy-max: 300000.0
-        buy-limit: -1
-        sell-limit: -1
         buy-commands:
             - give %player_name% enchanted_book 1 wind_burst:1
-    -   transaction-type: ITEM
+        prices:
+            buy-min: 200000.0
+            buy-max: 300000.0
+    -   transaction-name: <#b00b1e>Silence Armor Trim Smithing Template</#b00b1e>
         display-item:
-            item-type: SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:silence_armor_trim_smithing_template
             name: <#b00b1e>Silence Armor Trim Smithing Template</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:silence_armor_trim_smithing_template
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Silence Armor Trim Smithing Template</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 35000.0
             buy-max: 95000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Tide Armor Trim Smithing Template</#b00b1e>
         display-item:
-            item-type: TIDE_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:tide_armor_trim_smithing_template
             name: <#b00b1e>Tide Armor Trim Smithing Template</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: TIDE_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:tide_armor_trim_smithing_template
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Tide Armor Trim Smithing Template</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 35000.0
             buy-max: 95000.0
-        buy-limit: -1
-        sell-limit: -1
-    -   transaction-type: ITEM
+    -   transaction-name: <#b00b1e>Coast Armor Trim Smithing Template</#b00b1e>
         display-item:
-            item-type: COAST_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:coast_armor_trim_smithing_template
             name: <#b00b1e>Coast Armor Trim Smithing Template</#b00b1e>
             lore:
                 - <gray>Buy for:</gray> <red><buy_price></red>
         transaction-item:
-            item-type: COAST_ARMOR_TRIM_SMITHING_TEMPLATE
+            item-type: minecraft:coast_armor_trim_smithing_template
         amount:
             fixed: 1
-        transaction-name: <#b00b1e>Coast Armor Trim Smithing Template</#b00b1e>
         prices:
-            sell-fixed: -1.0
             buy-min: 35000.0
             buy-max: 95000.0
-        buy-limit: -1
-        sell-limit: -1
+    -   transaction-name: <#b00b1e>Rare Crate Key</#b00b1e>
+        display-item:
+            item-type: minecraft:tripwire_hook
+            name: <#b00b1e>Rare Crate Key</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+                - <gray>Buy Limit:</gray> <yellow><buy_count><white>/</white><buy_limit></yellow>
+            options:
+                enchantment-glint: true
+        transaction-item:
+        amount:
+            fixed: 1
+        buy-commands:
+            - crates key give %player_name% rare_v1 1
+        prices:
+            buy-min: 20000.0
+            buy-max: 20000.0
+        player-buy-limit: 2
+    -   transaction-name: <#b00b1e>Legendary Crate Key</#b00b1e>
+        display-item:
+            item-type: minecraft:tripwire_hook
+            name: <#b00b1e>Legendary Crate Key</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+                - <gray>Buy Limit:</gray> <yellow><buy_count><white>/</white><buy_limit></yellow>
+            options:
+                enchantment-glint: true
+        transaction-item:
+        amount:
+            fixed: 1
+        buy-commands:
+            - crates key give %player_name% legendary_v1 1
+        prices:
+            buy-min: 300000.0
+            buy-max: 300000.0
+    -   transaction-name: <#b00b1e>Redstone</#b00b1e>
+        display-item:
+            item-type: minecraft:redstone
+            name: <#b00b1e>Redstone</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:redstone
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 70.0
+            buy-max: 150.0
+    -   transaction-name: <#b00b1e>Redstone Block</#b00b1e>
+        display-item:
+            item-type: minecraft:redstone_block
+            name: <#b00b1e>Redstone Block</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:redstone_block
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 1100.0
+            buy-max: 1350.0
+    -   transaction-name: <#b00b1e>Redstone Torch</#b00b1e>
+        display-item:
+            item-type: minecraft:redstone_torch
+            name: <#b00b1e>Redstone</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:redstone_torch
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 90.0
+            buy-max: 250.0
+    -   transaction-name: <#b00b1e>Repeater</#b00b1e>
+        display-item:
+            item-type: minecraft:repeater
+            name: <#b00b1e>Repeater</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:repeater
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 250.0
+            buy-max: 350.0
+    -   transaction-name: <#b00b1e>Comparator</#b00b1e>
+        display-item:
+            item-type: minecraft:comparator
+            name: <#b00b1e>Comparator</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:comparator
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 250.0
+            buy-max: 350.0
+    -   transaction-name: <#b00b1e>Lever</#b00b1e>
+        display-item:
+            item-type: minecraft:lever
+            name: <#b00b1e>Lever</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:lever
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 250.0
+            buy-max: 350.0
+    -   transaction-name: <#b00b1e>Daylight Detector</#b00b1e>
+        display-item:
+            item-type: minecraft:daylight_detector
+            name: <#b00b1e>Daylight Detector</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:daylight_detector
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 1250.0
+            buy-max: 1350.0
+    -   transaction-name: <#b00b1e>Target</#b00b1e>
+        display-item:
+            item-type: minecraft:target
+            name: <#b00b1e>Target</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:target
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 1250.0
+            buy-max: 1500.0
+    -   transaction-name: <#b00b1e>Crafter</#b00b1e>
+        display-item:
+            item-type: minecraft:crafter
+            name: <#b00b1e>Crafter</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:crafter
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 2000.0
+            buy-max: 3000.0
+    -   transaction-name: <#b00b1e>TNT</#b00b1e>
+        display-item:
+            item-type: minecraft:tnt
+            name: <#b00b1e>TNT</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:tnt
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 1500.0
+            buy-max: 2500.0
+    -   transaction-name: <#b00b1e>Crafting table</#b00b1e>
+        display-item:
+            item-type: minecraft:crafting_table
+            name: <#b00b1e>Crafting table</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:crafting_table
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 1000.0
+            buy-max: 2500.0
+    -   transaction-name: <#b00b1e>Smithing Table</#b00b1e>
+        display-item:
+            item-type: minecraft:smithing_table
+            name: <#b00b1e>Smithing Table</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:smithing_table
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 1000.0
+            buy-max: 2500.0
+    -   transaction-name: <#b00b1e>Grindstone</#b00b1e>
+        display-item:
+            item-type: minecraft:grindstone
+            name: <#b00b1e>Grindstone</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:grindstone
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 1000.0
+            buy-max: 2500.0
+    -   transaction-name: <#b00b1e>Cartography Table</#b00b1e>
+        display-item:
+            item-type: minecraft:cartography_table
+            name: <#b00b1e>Cartography Table</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:cartography_table
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 1000.0
+            buy-max: 2500.0
+    -   transaction-name: <#b00b1e>Loom</#b00b1e>
+        display-item:
+            item-type: minecraft:loom
+            name: <#b00b1e>Loom</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:loom
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 1000.0
+            buy-max: 2500.0
+    -   transaction-name: <#b00b1e>Stonecutter</#b00b1e>
+        display-item:
+            item-type: minecraft:stonecutter
+            name: <#b00b1e>Stonecutter</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:stonecutter
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 1000.0
+            buy-max: 2500.0
+    -   transaction-name: <#b00b1e>Fletching Table</#b00b1e>
+        display-item:
+            item-type: minecraft:fletching_table
+            name: <#b00b1e>Fletching Table</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:fletching_table
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 1000.0
+            buy-max: 2500.0
+    -   transaction-name: <#b00b1e>Composter</#b00b1e>
+        display-item:
+            item-type: minecraft:composter
+            name: <#b00b1e>Composter</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:composter
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 1000.0
+            buy-max: 2500.0
+    -   transaction-name: <#b00b1e>Brewing Stand</#b00b1e>
+        display-item:
+            item-type: minecraft:brewing_stand
+            name: <#b00b1e>Brewing Stand/#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:brewing_stand
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 3000.0
+            buy-max: 7000.0
+    -   transaction-name: <#b00b1e>Blast Furnace</#b00b1e>
+        display-item:
+            item-type: minecraft:blast_furnace
+            name: <#b00b1e>Blast Furnance</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:blast_furnace
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 3000.0
+            buy-max: 7000.0
+    -   transaction-name: <#b00b1e>Smoker</#b00b1e>
+        display-item:
+            item-type: minecraft:smoker
+            name: <#b00b1e>Smoker</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:smoker
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 3000.0
+            buy-max: 7000.0
+    -   transaction-name: <#b00b1e>Lectern</#b00b1e>
+        display-item:
+            item-type: minecraft:lectern
+            name: <#b00b1e>Lectern</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:lectern
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 1000.0
+            buy-max: 2500.0
+    -   transaction-name: <#b00b1e>Axolotl Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:axolotl_spawn_egg
+            name: <#b00b1e>Axolotle Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+                - <gray>Buy Limit:</gray> <yellow><buy_count><white>/</white><buy_limit></yellow>
+        transaction-item:
+            item-type: minecraft:axolotl_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 10000.0
+            buy-max: 25000.0
+        player-buy-limit: 5
+    -   transaction-name: <#b00b1e>Bat Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:bat_spawn_egg
+            name: <#b00b1e>Bat Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+                - <gray>Buy Limit:</gray> <yellow><buy_count><white>/</white><buy_limit></yellow>
+        transaction-item:
+            item-type: minecraft:bat_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 3000.0
+            buy-max: 4000.0
+        player-buy-limit: 5
+    -   transaction-name: <#b00b1e>Bee Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:bee_spawn_egg
+            name: <#b00b1e>Bee Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:bee_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 4000.0
+            buy-max: 10000.0
+    -   transaction-name: <#b00b1e>Camel Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:camel_spawn_egg
+            name: <#b00b1e>Camel Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:camel_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 7000.0
+            buy-max: 15000.0
+    -   transaction-name: <#b00b1e>Cat Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:cat_spawn_egg
+            name: <#b00b1e>Cat Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+                - <gray>Buy Limit:</gray> <yellow><buy_count><white>/</white><buy_limit></yellow>
+        transaction-item:
+            item-type: minecraft:cat_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 5000.0
+            buy-max: 7000.0
+        player-buy-limit: 5
+    -   transaction-name: <#b00b1e>Chicken Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:chicken_spawn_egg
+            name: <#b00b1e>Chicken Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:chicken_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 3000.0
+            buy-max: 4000.0
+    -   transaction-name: <#b00b1e>Cod Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:cod_spawn_egg
+            name: <#b00b1e>Cod Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:cod_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 4000.0
+            buy-max: 10000.0
+    -   transaction-name: <#b00b1e>Dolphin Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:dolphin_spawn_egg
+            name: <#b00b1e>Dolphin Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+                - <gray>Buy Limit:</gray> <yellow><buy_count><white>/</white><buy_limit></yellow>
+        transaction-item:
+            item-type: minecraft:dolphin_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 10000.0
+            buy-max: 25000.0
+        player-buy-limit: 5
+    -   transaction-name: <#b00b1e>Fox Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:fox_spawn_egg
+            name: <#b00b1e>Fox Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+                - <gray>Buy Limit:</gray> <yellow><buy_count><white>/</white><buy_limit></yellow>
+        transaction-item:
+            item-type: minecraft:fox_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 7000.0
+            buy-max: 15000.0
+        player-buy-limit: 5
+    -   transaction-name: <#b00b1e>Frog Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:frog_spawn_egg
+            name: <#b00b1e>Frog Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+                - <gray>Buy Limit:</gray> <yellow><buy_count><white>/</white><buy_limit></yellow>
+        transaction-item:
+            item-type: minecraft:frog_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 7000.0
+            buy-max: 15000.0
+        player-buy-limit: 5
+    -   transaction-name: <#b00b1e>Glow Squid Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:glow_squid_spawn_egg
+            name: <#b00b1e>Glow Squid Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:glow_squid_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 4000.0
+            buy-max: 7000.0
+    -   transaction-name: <#b00b1e>Goat Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:goat_spawn_egg
+            name: <#b00b1e>Goat Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:goat_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 7000.0
+            buy-max: 15000.0
+    -   transaction-name: <#b00b1e>Horse Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:horse_spawn_egg
+            name: <#b00b1e>Horse Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:horse_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 4000.0
+            buy-max: 7000.0
+    -   transaction-name: <#b00b1e>Llama Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:llama_spawn_egg
+            name: <#b00b1e>Llama Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:llama_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 4000.0
+            buy-max: 7000.0
+    -   transaction-name: <#b00b1e>Mooshroom Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:mooshroom_spawn_egg
+            name: <#b00b1e>Mooshroom Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:mooshroom_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 10000.0
+            buy-max: 25000.0
+    -   transaction-name: <#b00b1e>Mule Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:mule_spawn_egg
+            name: <#b00b1e>Mule Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:mule_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 4000.0
+            buy-max: 7000.0
+    -   transaction-name: <#b00b1e>Ocelot Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:ocelot_spawn_egg
+            name: <#b00b1e>Ocelot Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:ocelot_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 5000.0
+            buy-max: 7000.0
+    -   transaction-name: <#b00b1e>Panda Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:panda_spawn_egg
+            name: <#b00b1e>Panda Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:panda_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 4000.0
+            buy-max: 7000.0
+    -   transaction-name: <#b00b1e>Pufferfish Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:pufferfish_spawn_egg
+            name: <#b00b1e>Pufferfish Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:pufferfish_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 4000.0
+            buy-max: 10000.0
+    -   transaction-name: <#b00b1e>Rabbit Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:rabbit_spawn_egg
+            name: <#b00b1e>Rabbit Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:rabbit_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 3000.0
+            buy-max: 4000.0
+    -   transaction-name: <#b00b1e>Salmon Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:salmon_spawn_egg
+            name: <#b00b1e>Salmon Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:salmon_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 4000.0
+            buy-max: 10000.0
+    -   transaction-name: <#b00b1e>Sheep Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:sheep_spawn_egg
+            name: <#b00b1e>Sheep Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:sheep_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 5000.0
+            buy-max: 7000.0
+    -   transaction-name: <#b00b1e>Squid Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:squid_spawn_egg
+            name: <#b00b1e>Squid Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:squid_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 7000.0
+            buy-max: 15000.0
+    -   transaction-name: <#b00b1e>Strider Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:strider_spawn_egg
+            name: <#b00b1e>Strider Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:strider_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 10000.0
+            buy-max: 25000.0
+    -   transaction-name: <#b00b1e>Tropical Fish Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:tropical_fish_spawn_egg
+            name: <#b00b1e>Tropical Fish Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:tropical_fish_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 4000.0
+            buy-max: 10000.0
+    -   transaction-name: <#b00b1e>Wolf Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:wolf_spawn_egg
+            name: <#b00b1e>Wolf Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+        transaction-item:
+            item-type: minecraft:wolf_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 5000.0
+            buy-max: 7000.0
+        player-buy-limit: 5
+    -   transaction-name: <#b00b1e>Zombie Horse Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:zombie_horse_spawn_egg
+            name: <#b00b1e>Zombie Horse Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+                - <gray>Buy Limit:</gray> <yellow><buy_count><white>/</white><buy_limit></yellow>
+        transaction-item:
+            item-type: minecraft:zombie_horse_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 15000.0
+            buy-max: 27000.0
+        player-buy-limit: 5
+    -   transaction-name: <#b00b1e>Skeleton Horse Egg</#b00b1e>
+        display-item:
+            item-type: minecraft:skeleton_horse_spawn_egg
+            name: <#b00b1e>Skeleton Horse Egg</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+                - <gray>Buy Limit:</gray> <yellow><buy_count><white>/</white><buy_limit></yellow>
+        transaction-item:
+            item-type: minecraft:skeleton_horse_spawn_egg
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 15000.0
+            buy-max: 27000.0
+        player-buy-limit: 5
+    -   transaction-name: <#b00b1e>Wither Skull</#b00b1e>
+        display-item:
+            item-type: minecraft:wither_skeleton_skull
+            name: <#b00b1e>Wither Skull</#b00b1e>
+            lore:
+                - <gray>Buy for:</gray> <red><buy_price></red>
+                - <gray>Buy Limit:</gray> <yellow><buy_count><white>/</white><buy_limit></yellow>
+        transaction-item:
+            item-type: minecraft:wither_skeleton_skull
+        amount:
+            fixed: 1
+        prices:
+            buy-min: 25000.0
+            buy-max: 70000.0
+        player-buy-limit: 5

@@ -18,51 +18,44 @@
 package com.github.lukesky19.skymarket;
 
 import com.github.lukesky19.skylib.api.adventure.AdventureUtil;
+import com.github.lukesky19.skylib.api.common.abstracts.SkyPlugin;
 import com.github.lukesky19.skymarket.commands.AliasesCommands;
 import com.github.lukesky19.skymarket.commands.SkyMarketCommand;
-import com.github.lukesky19.skymarket.configuration.LocaleManager;
-import com.github.lukesky19.skymarket.configuration.SettingsManager;
-import com.github.lukesky19.skymarket.configuration.MarketConfigManager;
+import com.github.lukesky19.skymarket.gui.GUIManager;
+import com.github.lukesky19.skymarket.integration.HookManager;
+import com.github.lukesky19.skymarket.locale.LocaleManager;
+import com.github.lukesky19.skymarket.market.MarketDataManager;
+import com.github.lukesky19.skymarket.market.MarketManager;
+import com.github.lukesky19.skymarket.settings.SettingsManager;
+import com.github.lukesky19.skymarket.market.MarketConfigManager;
 import com.github.lukesky19.skymarket.listener.InventoryListener;
-import com.github.lukesky19.skymarket.manager.*;
+import com.github.lukesky19.skymarket.task.TaskManager;
+import com.github.lukesky19.skymarket.transaction.TransactionManager;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
-import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.milkbowl.vault.economy.Economy;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.RegisteredServiceProvider;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 /**
  * This class is the entry point to the plugin.
  */
-public final class SkyMarket extends JavaPlugin {
-    private SettingsManager settingsLoader;
-    private LocaleManager localeLoader;
+public final class SkyMarket extends SkyPlugin {
+    private SettingsManager settingsManager;
+    private LocaleManager localeManager;
     private MarketConfigManager marketConfigManager;
     private MarketDataManager marketDataManager;
     private GUIManager guiManager;
     private MarketManager marketManager;
-    private Economy economy;
+    private TaskManager taskManager;
 
     /**
      * Default Constructor.
      */
     public SkyMarket() {}
-
-    /**
-     * Gets the economy that Vault returned.
-     * @return An {@link Economy} instance.
-     */
-    public @NotNull Economy getEconomy() {
-        return this.economy;
-    }
 
     /**
      * Sets-up the plugin when started.
@@ -72,24 +65,21 @@ public final class SkyMarket extends JavaPlugin {
         boolean skyLib = checkSkyLibVersion();
         if(!skyLib) return;
 
-        boolean econ = setupEconomy();
-        if(!econ) return;
-
-        settingsLoader = new SettingsManager(this);
-        localeLoader = new LocaleManager(this, this.settingsLoader);
+        settingsManager = new SettingsManager(this);
+        localeManager = new LocaleManager(this, this.settingsManager);
         guiManager = new GUIManager();
-        marketConfigManager = new MarketConfigManager(this);
+        marketConfigManager = new MarketConfigManager(this, settingsManager);
         marketDataManager = new MarketDataManager();
-        TransactionManager transactionManager = new TransactionManager(this, localeLoader, guiManager);
-        ButtonManager buttonManager = new ButtonManager(this, marketDataManager, transactionManager, guiManager);
-        TradeManager tradeManager = new TradeManager(this);
-        marketManager = new MarketManager(this, localeLoader, guiManager, marketConfigManager, marketDataManager, buttonManager, tradeManager);
+        HookManager hookManager = new HookManager(this);
+        TransactionManager transactionManager = new TransactionManager(this, localeManager, hookManager);
+        marketManager = new MarketManager(this, localeManager, guiManager, transactionManager, marketConfigManager, marketDataManager);
+        taskManager = new TaskManager(this, marketDataManager, guiManager);
 
         this.getServer().getPluginManager().registerEvents(new InventoryListener(guiManager), this);
 
         // Register commands
-        SkyMarketCommand skyMarketCommand = new SkyMarketCommand(this, localeLoader, marketManager);
-        AliasesCommands commandAliasManager = new AliasesCommands(settingsLoader, marketManager);
+        SkyMarketCommand skyMarketCommand = new SkyMarketCommand(this, localeManager, marketManager);
+        AliasesCommands commandAliasManager = new AliasesCommands(settingsManager, marketManager);
         this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands -> {
             Commands commandRegistrar = commands.registrar();
 
@@ -112,6 +102,10 @@ public final class SkyMarket extends JavaPlugin {
         if(this.guiManager != null) {
             this.guiManager.closeOpenGUIs(true);
         }
+
+        if(this.taskManager != null) {
+            this.taskManager.stopRefreshTask();
+        }
     }
 
     /**
@@ -120,36 +114,20 @@ public final class SkyMarket extends JavaPlugin {
     public void reload() {
         this.guiManager.closeOpenGUIs(false);
 
-        this.settingsLoader.reload();
-        this.localeLoader.reload();
+        this.settingsManager.loadConfiguration();
+        this.localeManager.loadConfiguration();
         this.marketConfigManager.reload();
         this.marketDataManager.clearMarketData();
         this.marketManager.reload();
-    }
 
-    /**
-     * Checks for Vault as a dependency and sets up the Economy instance.
-     */
-    private boolean setupEconomy() {
-        if(getServer().getPluginManager().getPlugin("Vault") != null) {
-            RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
-            if (rsp != null) {
-                this.economy = rsp.getProvider();
-
-                return true;
-            }
-        }
-
-        this.getComponentLogger().error(MiniMessage.miniMessage().deserialize("<red>SkyShop has been disabled due to no Vault dependency found!</red>"));
-        this.getServer().getPluginManager().disablePlugin(this);
-        return false;
+        this.taskManager.stopRefreshTask();
+        this.taskManager.startRefreshTask();
     }
 
     /**
      * Checks if the Server has the proper SkyLib version.
      * @return true if it does, false if not.
      */
-    @SuppressWarnings("UnstableApiUsage")
     private boolean checkSkyLibVersion() {
         PluginManager pluginManager = this.getServer().getPluginManager();
         Plugin skyLib = pluginManager.getPlugin("SkyLib");

@@ -15,16 +15,20 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-package com.github.lukesky19.skymarket.util;
+package com.github.lukesky19.skymarket.market.config.button;
 
+import com.github.lukesky19.skylib.api.itemstack.ItemStackConfig;
+import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Map;
-import java.util.UUID;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * This class is used as a key in a {@link Map}.
- * @param marketId The market id.
- * @param uuid The player's id.
+ * This record contains the configuration for a single button to display in a GUI.
+ * @param item The {@link ItemStackConfig} for the {@link ItemStack}.
+ * @param slot The slot to place the {@link ItemStack} at.
  */
-public record MarketIdUUIDKey(@NotNull String marketId, @NotNull UUID uuid) {}
+@ConfigSerializable
+public record ButtonConfig(
+        @NotNull ItemStackConfig item,
+        @Nullable Integer slot) {}

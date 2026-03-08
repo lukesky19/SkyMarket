@@ -1,11 +1,12 @@
-config-version: 2.0.0.0
+version: 3
 refresh-time: 1h
 market-name: Villager Market
 gui-name: <gold><bold>Villager Market</bold></gold>
 num-of-trades: 30
 trades:
     # Armorer Trades
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: COAL
@@ -16,7 +17,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -27,7 +29,8 @@ trades:
                 item-type: IRON_HELMET
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -38,7 +41,8 @@ trades:
                 item-type: IRON_CHESTPLATE
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -49,7 +53,8 @@ trades:
                 item-type: IRON_LEGGINGS
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -60,7 +65,8 @@ trades:
                 item-type: IRON_BOOTS
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: IRON_INGOT
@@ -71,7 +77,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -82,7 +89,8 @@ trades:
                 item-type: BELL
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -93,7 +101,8 @@ trades:
                 item-type: CHAINMAIL_LEGGINGS
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -104,7 +113,8 @@ trades:
                 item-type: CHAINMAIL_BOOTS
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: LAVA_BUCKET
@@ -115,7 +125,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: DIAMOND
@@ -126,7 +137,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -137,7 +149,8 @@ trades:
                 item-type: CHAINMAIL_HELMET
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -148,7 +161,8 @@ trades:
                 item-type: CHAINMAIL_CHESTPLATE
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -159,7 +173,8 @@ trades:
                 item-type: SHIELD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -176,7 +191,8 @@ trades:
                 min: 5
                 max: 19
                 treasure: false
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -193,7 +209,8 @@ trades:
                 min: 5
                 max: 19
                 treasure: false
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -210,7 +227,8 @@ trades:
                 min: 5
                 max: 19
                 treasure: false
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -228,7 +246,8 @@ trades:
                 max: 19
                 treasure: false
     # Butcher
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: CHICKEN
@@ -239,7 +258,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: RABBIT
@@ -250,7 +270,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: PORKCHOP
@@ -261,7 +282,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -272,7 +294,8 @@ trades:
                 item-type: RABBIT_STEW
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: COAL
@@ -283,7 +306,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -294,7 +318,8 @@ trades:
                 item-type: COOKED_CHICKEN
             amount:
                 fixed: 8
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -305,7 +330,8 @@ trades:
                 item-type: COOKED_PORKCHOP
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: BEEF
@@ -316,7 +342,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: MUTTON
@@ -327,7 +354,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: DRIED_KELP_BLOCK
@@ -338,7 +366,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: SWEET_BERRIES
@@ -350,7 +379,8 @@ trades:
             amount:
                 fixed: 1
     # Cartographer
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: PAPER
@@ -361,7 +391,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -372,7 +403,8 @@ trades:
                 item-type: MAP
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: GLASS_PANE
@@ -383,7 +415,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: COMPASS
@@ -394,7 +427,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -405,7 +439,8 @@ trades:
                 item-type: ITEM_FRAME
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -416,7 +451,8 @@ trades:
                 item-type: ITEM_FRAME
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -427,7 +463,8 @@ trades:
                 item-type: WHITE_BANNER
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -438,7 +475,8 @@ trades:
                 item-type: LIGHT_GRAY_BANNER
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -449,7 +487,8 @@ trades:
                 item-type: GRAY_BANNER
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -460,7 +499,8 @@ trades:
                 item-type: BLACK_BANNER
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -471,7 +511,8 @@ trades:
                 item-type: BROWN_BANNER
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -482,7 +523,8 @@ trades:
                 item-type: RED_BANNER
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -493,7 +535,8 @@ trades:
                 item-type: ORANGE_BANNER
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -504,7 +547,8 @@ trades:
                 item-type: YELLOW_BANNER
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -515,7 +559,8 @@ trades:
                 item-type: LIME_BANNER
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -526,7 +571,8 @@ trades:
                 item-type: GREEN_BANNER
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -537,7 +583,8 @@ trades:
                 item-type: CYAN_BANNER
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -548,7 +595,8 @@ trades:
                 item-type: LIGHT_BLUE_BANNER
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -559,7 +607,8 @@ trades:
                 item-type: BLUE_BANNER
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -570,7 +619,8 @@ trades:
                 item-type: PURPLE_BANNER
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -581,7 +631,8 @@ trades:
                 item-type: MAGENTA_BANNER
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -592,7 +643,8 @@ trades:
                 item-type: PINK_BANNER
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -604,7 +656,8 @@ trades:
             amount:
                 fixed: 1
     # Cleric
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: ROTTEN_FLESH
@@ -615,7 +668,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -626,7 +680,8 @@ trades:
                 item-type: REDSTONE
             amount:
                 fixed: 2
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: GOLD_INGOT
@@ -637,7 +692,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -648,7 +704,8 @@ trades:
                 item-type: LAPIS_LAZULI
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: RABBIT_FOOT
@@ -659,7 +716,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -670,7 +728,8 @@ trades:
                 item-type: GLOWSTONE
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: TURTLE_SCUTE
@@ -681,7 +740,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: GLASS_BOTTLE
@@ -692,7 +752,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -703,7 +764,8 @@ trades:
                 item-type: ENDER_PEARL
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: NETHER_WART
@@ -714,7 +776,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -726,7 +789,8 @@ trades:
             amount:
                 fixed: 1
     # Farmer
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: WHEAT
@@ -737,7 +801,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: POTATO
@@ -748,7 +813,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: CARROT
@@ -759,7 +825,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: BEETROOT
@@ -770,7 +837,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -781,7 +849,8 @@ trades:
                 item-type: BREAD
             amount:
                 fixed: 6
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: PUMPKIN
@@ -792,7 +861,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -803,7 +873,8 @@ trades:
                 item-type: PUMPKIN_PIE
             amount:
                 fixed: 4
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -814,7 +885,8 @@ trades:
                 item-type: APPLE
             amount:
                 fixed: 4
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: MELON
@@ -825,7 +897,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -836,7 +909,8 @@ trades:
                 item-type: COOKIE
             amount:
                 fixed: 18
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -852,7 +926,8 @@ trades:
                             amplifier: 0
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -868,7 +943,8 @@ trades:
                             amplifier: 0
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -889,7 +965,8 @@ trades:
                             amplifier: 0
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -905,7 +982,8 @@ trades:
                             amplifier: 0
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -921,7 +999,8 @@ trades:
                             amplifier: 0
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -932,7 +1011,8 @@ trades:
                 item-type: CAKE
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -943,7 +1023,8 @@ trades:
                 item-type: GOLDEN_CARROT
             amount:
                 fixed: 3
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -955,7 +1036,8 @@ trades:
             amount:
                 fixed: 3
     # Fisherman
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: STRING
@@ -966,7 +1048,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: COAL
@@ -977,7 +1060,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -988,7 +1072,8 @@ trades:
                 item-type: COD_BUCKET
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: COD
@@ -1004,7 +1089,8 @@ trades:
                 item-type: COOKED_COD
             amount:
                 fixed: 6
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: COD
@@ -1015,7 +1101,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1026,7 +1113,8 @@ trades:
                 item-type: CAMPFIRE
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: SALMON
@@ -1042,7 +1130,8 @@ trades:
                 item-type: COOKED_SALMON
             amount:
                 fixed: 6
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: SALMON
@@ -1053,7 +1142,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1070,7 +1160,8 @@ trades:
                 min: 5
                 max: 19
                 treasure: false
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: TROPICAL_FISH
@@ -1081,7 +1172,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: PUFFERFISH
@@ -1092,7 +1184,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: OAK_BOAT
@@ -1103,7 +1196,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: SPRUCE_BOAT
@@ -1114,7 +1208,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: JUNGLE_BOAT
@@ -1125,7 +1220,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: ACACIA_BOAT
@@ -1136,7 +1232,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: CHERRY_BOAT
@@ -1147,7 +1244,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: DARK_OAK_BOAT
@@ -1159,7 +1257,8 @@ trades:
             amount:
                 fixed: 1
     # Fletcher
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: STICK
@@ -1170,7 +1269,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1181,7 +1281,8 @@ trades:
                 item-type: ARROW
             amount:
                 fixed: 16
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: GRAVEL
@@ -1197,7 +1298,8 @@ trades:
                 item-type: FLINT
             amount:
                 fixed: 10
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: FLINT
@@ -1208,7 +1310,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1219,7 +1322,8 @@ trades:
                 item-type: BOW
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: STRING
@@ -1230,7 +1334,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1241,7 +1346,8 @@ trades:
                 item-type: CROSSBOW
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: FEATHER
@@ -1252,7 +1358,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1269,7 +1376,8 @@ trades:
                 min: 5
                 max: 19
                 treasure: false
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: TRIPWIRE_HOOK
@@ -1280,7 +1388,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1297,7 +1406,8 @@ trades:
                 min: 5
                 max: 19
                 treasure: false
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1315,7 +1425,8 @@ trades:
                     potion-type: minecraft:night_vision
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1333,7 +1444,8 @@ trades:
                     potion-type: minecraft:long_night_vision
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1351,7 +1463,8 @@ trades:
                     potion-type: minecraft:invisibility
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1369,7 +1482,8 @@ trades:
                     potion-type: minecraft:long_invisibility
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1387,7 +1501,8 @@ trades:
                     potion-type: minecraft:leaping
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1405,7 +1520,8 @@ trades:
                     potion-type: minecraft:long_leaping
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1423,7 +1539,8 @@ trades:
                     potion-type: minecraft:strong_leaping
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1441,7 +1558,8 @@ trades:
                     potion-type: minecraft:fire_resistance
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1459,7 +1577,8 @@ trades:
                     potion-type: minecraft:long_fire_resistance
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1477,7 +1596,8 @@ trades:
                     potion-type: minecraft:swiftness
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1495,7 +1615,8 @@ trades:
                     potion-type: minecraft:long_swiftness
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1513,7 +1634,8 @@ trades:
                     potion-type: minecraft:strong_swiftness
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1531,7 +1653,8 @@ trades:
                     potion-type: minecraft:slowness
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1549,7 +1672,8 @@ trades:
                     potion-type: minecraft:long_slowness
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1567,7 +1691,8 @@ trades:
                     potion-type: minecraft:strong_slowness
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1585,7 +1710,8 @@ trades:
                     potion-type: minecraft:turtle_master
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1603,7 +1729,8 @@ trades:
                     potion-type: minecraft:long_turtle_master
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1621,7 +1748,8 @@ trades:
                     potion-type: minecraft:strong_turtle_master
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1639,7 +1767,8 @@ trades:
                     potion-type: minecraft:water_breathing
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1657,7 +1786,8 @@ trades:
                     potion-type: minecraft:long_water_breathing
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1675,7 +1805,8 @@ trades:
                     potion-type: minecraft:healing
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1693,7 +1824,8 @@ trades:
                     potion-type: minecraft:strong_healing
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1711,7 +1843,8 @@ trades:
                     potion-type: minecraft:harming
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1729,7 +1862,8 @@ trades:
                     potion-type: minecraft:strong_harming
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1747,7 +1881,8 @@ trades:
                     potion-type: minecraft:poison
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1765,7 +1900,8 @@ trades:
                     potion-type: minecraft:long_poison
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1783,7 +1919,8 @@ trades:
                     potion-type: minecraft:strong_poison
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1801,7 +1938,8 @@ trades:
                     potion-type: minecraft:regeneration
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1819,7 +1957,8 @@ trades:
                     potion-type: minecraft:long_regeneration
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1837,7 +1976,8 @@ trades:
                     potion-type: minecraft:strong_regeneration
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1855,7 +1995,8 @@ trades:
                     potion-type: minecraft:strength
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1873,7 +2014,8 @@ trades:
                     potion-type: minecraft:long_strength
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1891,7 +2033,8 @@ trades:
                     potion-type: minecraft:strong_strength
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1909,7 +2052,8 @@ trades:
                     potion-type: minecraft:weakness
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1927,7 +2071,8 @@ trades:
                     potion-type: minecraft:long_weakness
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1945,7 +2090,8 @@ trades:
                     potion-type: minecraft:slow_falling
             amount:
                 fixed: 5
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1964,7 +2110,8 @@ trades:
             amount:
                 fixed: 5
     # Leatherworker
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: LEATHER
@@ -1975,7 +2122,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -1988,7 +2136,8 @@ trades:
                     random: true
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2001,7 +2150,8 @@ trades:
                     random: true
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: FLINT
@@ -2012,7 +2162,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2025,7 +2176,8 @@ trades:
                     random: true
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2038,7 +2190,8 @@ trades:
                     random: true
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: RABBIT_HIDE
@@ -2049,7 +2202,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2062,7 +2216,8 @@ trades:
                     random: true
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: TURTLE_SCUTE
@@ -2073,7 +2228,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2086,7 +2242,8 @@ trades:
                     random: true
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2100,7 +2257,8 @@ trades:
             amount:
                 fixed: 1
     # Librarian
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2111,7 +2269,8 @@ trades:
                 item-type: SADDLE
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: PAPER
@@ -2122,7 +2281,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2133,7 +2293,8 @@ trades:
                 item-type: BOOKSHELF
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2153,7 +2314,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2173,7 +2335,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2193,7 +2356,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2213,7 +2377,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2233,7 +2398,8 @@ trades:
                         level: 4
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2253,7 +2419,8 @@ trades:
                         level: 5
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2273,7 +2440,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2293,7 +2461,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2313,7 +2482,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2333,7 +2503,8 @@ trades:
                         level: 4
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2353,7 +2524,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2373,7 +2545,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2393,7 +2566,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2413,7 +2587,8 @@ trades:
                         level: 4
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2433,7 +2608,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2453,7 +2629,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2473,7 +2650,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2493,7 +2671,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2513,7 +2692,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2533,7 +2713,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2553,7 +2734,8 @@ trades:
                         level: 4
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2573,7 +2755,8 @@ trades:
                         level: 5
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2593,7 +2776,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2613,7 +2797,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2633,7 +2818,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2653,7 +2839,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2673,7 +2860,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2693,7 +2881,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2713,7 +2902,8 @@ trades:
                         level: 4
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2733,7 +2923,8 @@ trades:
                         level: 5
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2753,7 +2944,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2773,7 +2965,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2793,7 +2986,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2813,7 +3007,8 @@ trades:
                         level: 4
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2833,7 +3028,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2853,7 +3049,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2873,7 +3070,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2893,7 +3091,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2913,7 +3112,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2933,7 +3133,8 @@ trades:
                         level: 4
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2953,7 +3154,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2973,7 +3175,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -2993,7 +3196,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3013,7 +3217,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3033,7 +3238,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3053,7 +3259,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3073,7 +3280,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3093,7 +3301,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3113,7 +3322,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3133,7 +3343,8 @@ trades:
                         level: 4
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3153,7 +3364,8 @@ trades:
                         level: 5
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3173,7 +3385,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3193,7 +3406,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3213,7 +3427,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3233,7 +3448,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3253,7 +3469,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3273,7 +3490,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3293,7 +3511,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3313,7 +3532,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3333,7 +3553,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3353,7 +3574,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3373,7 +3595,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3393,7 +3616,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3413,7 +3637,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3433,7 +3658,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3453,7 +3679,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3473,7 +3700,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3493,7 +3721,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3513,7 +3742,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3533,7 +3763,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3553,7 +3784,8 @@ trades:
                         level: 4
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3573,7 +3805,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3593,7 +3826,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3613,7 +3847,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3633,7 +3868,8 @@ trades:
                         level: 4
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3653,7 +3889,8 @@ trades:
                         level: 5
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3673,7 +3910,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3693,7 +3931,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3713,7 +3952,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3733,7 +3973,8 @@ trades:
                         level: 4
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3753,7 +3994,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3773,7 +4015,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3793,7 +4036,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3813,7 +4057,8 @@ trades:
                         level: 4
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3833,7 +4078,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3853,7 +4099,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3873,7 +4120,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3893,7 +4141,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3913,7 +4162,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3933,7 +4183,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3953,7 +4204,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3973,7 +4225,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -3993,7 +4246,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4013,7 +4267,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4033,7 +4288,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4053,7 +4309,8 @@ trades:
                         level: 4
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4073,7 +4330,8 @@ trades:
                         level: 5
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4093,7 +4351,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4113,7 +4372,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4133,7 +4393,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4153,7 +4414,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4173,7 +4435,8 @@ trades:
                         level: 4
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4193,7 +4456,8 @@ trades:
                         level: 5
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4213,7 +4477,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4233,7 +4498,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4253,7 +4519,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4273,7 +4540,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4293,7 +4561,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4313,7 +4582,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4333,7 +4603,8 @@ trades:
                         level: 1
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4353,7 +4624,8 @@ trades:
                         level: 2
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4373,7 +4645,8 @@ trades:
                         level: 3
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4384,7 +4657,8 @@ trades:
                 item-type: LANTERN
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: INK_SAC
@@ -4395,7 +4669,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4406,7 +4681,8 @@ trades:
                 item-type: GLASS
             amount:
                 fixed: 4
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: WRITABLE_BOOK
@@ -4417,7 +4693,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4428,7 +4705,8 @@ trades:
                 item-type: COMPASS
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4439,7 +4717,8 @@ trades:
                 item-type: CLOCK
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4451,7 +4730,8 @@ trades:
             amount:
                 fixed: 1
     # Mason
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: CLAY_BALL
@@ -4462,7 +4742,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4473,7 +4754,8 @@ trades:
                 item-type: BRICK
             amount:
                 fixed: 10
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: STONE
@@ -4484,7 +4766,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4495,7 +4778,8 @@ trades:
                 item-type: CHISELED_STONE_BRICKS
             amount:
                 fixed: 4
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: GRANITE
@@ -4506,7 +4790,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: ANDESITE
@@ -4517,7 +4802,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: DIORITE
@@ -4528,7 +4814,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4539,7 +4826,8 @@ trades:
                 item-type: DRIPSTONE_BLOCK
             amount:
                 fixed: 4
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4550,7 +4838,8 @@ trades:
                 item-type: POLISHED_ANDESITE
             amount:
                 fixed: 4
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4561,7 +4850,8 @@ trades:
                 item-type: POLISHED_DIORITE
             amount:
                 fixed: 4
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4572,7 +4862,8 @@ trades:
                 item-type: POLISHED_GRANITE
             amount:
                 fixed: 4
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: QUARTZ
@@ -4583,7 +4874,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4594,7 +4886,8 @@ trades:
                 item-type: WHITE_TERRACOTTA
             amount:
                 fixed: 4
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4605,7 +4898,8 @@ trades:
                 item-type: WHITE_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4616,7 +4910,8 @@ trades:
                 item-type: LIGHT_GRAY_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4627,7 +4922,8 @@ trades:
                 item-type: GRAY_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4638,7 +4934,8 @@ trades:
                 item-type: BLACK_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4649,7 +4946,8 @@ trades:
                 item-type: BROWN_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4660,7 +4958,8 @@ trades:
                 item-type: RED_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4671,7 +4970,8 @@ trades:
                 item-type: ORANGE_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4682,7 +4982,8 @@ trades:
                 item-type: YELLOW_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4693,7 +4994,8 @@ trades:
                 item-type: LIME_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4704,7 +5006,8 @@ trades:
                 item-type: GREEN_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4715,7 +5018,8 @@ trades:
                 item-type: CYAN_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4726,7 +5030,8 @@ trades:
                 item-type: LIGHT_BLUE_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4737,7 +5042,8 @@ trades:
                 item-type: BLUE_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4748,7 +5054,8 @@ trades:
                 item-type: PURPLE_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4759,7 +5066,8 @@ trades:
                 item-type: MAGENTA_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4770,7 +5078,8 @@ trades:
                 item-type: PINK_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4781,7 +5090,8 @@ trades:
                 item-type: WHITE_GLAZED_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4792,7 +5102,8 @@ trades:
                 item-type: LIGHT_GRAY_GLAZED_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4803,7 +5114,8 @@ trades:
                 item-type: GRAY_GLAZED_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4814,7 +5126,8 @@ trades:
                 item-type: BLACK_GLAZED_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4825,7 +5138,8 @@ trades:
                 item-type: BROWN_GLAZED_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4836,7 +5150,8 @@ trades:
                 item-type: RED_GLAZED_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4847,7 +5162,8 @@ trades:
                 item-type: ORANGE_GLAZED_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4858,7 +5174,8 @@ trades:
                 item-type: YELLOW_GLAZED_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4869,7 +5186,8 @@ trades:
                 item-type: LIME_GLAZED_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4880,7 +5198,8 @@ trades:
                 item-type: GREEN_GLAZED_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4891,7 +5210,8 @@ trades:
                 item-type: CYAN_GLAZED_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4902,7 +5222,8 @@ trades:
                 item-type: LIGHT_BLUE_GLAZED_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4913,7 +5234,8 @@ trades:
                 item-type: BLUE_GLAZED_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4924,7 +5246,8 @@ trades:
                 item-type: PURPLE_GLAZED_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4935,7 +5258,8 @@ trades:
                 item-type: MAGENTA_GLAZED_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4946,7 +5270,8 @@ trades:
                 item-type: PINK_GLAZED_TERRACOTTA
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4957,7 +5282,8 @@ trades:
                 item-type: QUARTZ_PILLAR
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -4969,7 +5295,8 @@ trades:
             amount:
                 fixed: 1
     # Shepard
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: WHITE_WOOL
@@ -4980,7 +5307,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: BROWN_WOOL
@@ -4991,7 +5319,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: BLACK_WOOL
@@ -5002,7 +5331,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: GRAY_WOOL
@@ -5013,7 +5343,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5024,7 +5355,8 @@ trades:
                 item-type: SHEARS
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: WHITE_DYE
@@ -5035,7 +5367,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: GRAY_DYE
@@ -5046,7 +5379,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: BLACK_DYE
@@ -5057,7 +5391,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: LIGHT_BLUE_DYE
@@ -5068,7 +5403,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: LIME_DYE
@@ -5079,7 +5415,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5090,7 +5427,8 @@ trades:
                 item-type: WHITE_WOOL
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5101,7 +5439,8 @@ trades:
                 item-type: LIGHT_GRAY_WOOL
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5112,7 +5451,8 @@ trades:
                 item-type: GRAY_WOOL
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5123,7 +5463,8 @@ trades:
                 item-type: BLACK_WOOL
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5134,7 +5475,8 @@ trades:
                 item-type: BROWN_WOOL
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5145,7 +5487,8 @@ trades:
                 item-type: RED_WOOL
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5156,7 +5499,8 @@ trades:
                 item-type: ORANGE_WOOL
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5167,7 +5511,8 @@ trades:
                 item-type: YELLOW_WOOL
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5178,7 +5523,8 @@ trades:
                 item-type: LIME_WOOL
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5189,7 +5535,8 @@ trades:
                 item-type: GREEN_WOOL
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5200,7 +5547,8 @@ trades:
                 item-type: CYAN_WOOL
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5211,7 +5559,8 @@ trades:
                 item-type: LIGHT_BLUE_WOOL
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5222,7 +5571,8 @@ trades:
                 item-type: BLUE_WOOL
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5233,7 +5583,8 @@ trades:
                 item-type: PURPLE_WOOL
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5244,7 +5595,8 @@ trades:
                 item-type: MAGENTA_WOOL
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5255,7 +5607,8 @@ trades:
                 item-type: PINK_WOOL
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5266,7 +5619,8 @@ trades:
                 item-type: WHITE_CARPET
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5277,7 +5631,8 @@ trades:
                 item-type: LIGHT_GRAY_CARPET
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5288,7 +5643,8 @@ trades:
                 item-type: GRAY_CARPET
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5299,7 +5655,8 @@ trades:
                 item-type: BLACK_CARPET
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5310,7 +5667,8 @@ trades:
                 item-type: BROWN_CARPET
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5321,7 +5679,8 @@ trades:
                 item-type: RED_CARPET
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5332,7 +5691,8 @@ trades:
                 item-type: ORANGE_CARPET
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5343,7 +5703,8 @@ trades:
                 item-type: YELLOW_CARPET
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5354,7 +5715,8 @@ trades:
                 item-type: LIME_CARPET
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5365,7 +5727,8 @@ trades:
                 item-type: GREEN_CARPET
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5376,7 +5739,8 @@ trades:
                 item-type: CYAN_CARPET
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5387,7 +5751,8 @@ trades:
                 item-type: LIGHT_BLUE_CARPET
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5398,7 +5763,8 @@ trades:
                 item-type: BLUE_CARPET
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5409,7 +5775,8 @@ trades:
                 item-type: PURPLE_CARPET
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5420,7 +5787,8 @@ trades:
                 item-type: MAGENTA_CARPET
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5431,7 +5799,8 @@ trades:
                 item-type: PINK_CARPET
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: YELLOW_DYE
@@ -5442,7 +5811,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: LIGHT_GRAY_DYE
@@ -5453,7 +5823,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: ORANGE_DYE
@@ -5464,7 +5835,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: RED_DYE
@@ -5475,7 +5847,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: PINK_DYE
@@ -5486,7 +5859,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5497,7 +5871,8 @@ trades:
                 item-type: WHITE_BED
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5508,7 +5883,8 @@ trades:
                 item-type: LIGHT_GRAY_BED
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5519,7 +5895,8 @@ trades:
                 item-type: GRAY_BED
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5530,7 +5907,8 @@ trades:
                 item-type: BLACK_BED
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5541,7 +5919,8 @@ trades:
                 item-type: BROWN_BED
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5552,7 +5931,8 @@ trades:
                 item-type: RED_BED
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5563,7 +5943,8 @@ trades:
                 item-type: ORANGE_BED
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5574,7 +5955,8 @@ trades:
                 item-type: YELLOW_BED
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5585,7 +5967,8 @@ trades:
                 item-type: LIME_BED
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5596,7 +5979,8 @@ trades:
                 item-type: GREEN_BED
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5607,7 +5991,8 @@ trades:
                 item-type: CYAN_BED
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5618,7 +6003,8 @@ trades:
                 item-type: LIGHT_BLUE_BED
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5629,7 +6015,8 @@ trades:
                 item-type: BLUE_BED
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5640,7 +6027,8 @@ trades:
                 item-type: PURPLE_BED
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5651,7 +6039,8 @@ trades:
                 item-type: MAGENTA_BED
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5662,7 +6051,8 @@ trades:
                 item-type: PINK_BED
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: BROWN_DYE
@@ -5673,7 +6063,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: PURPLE_DYE
@@ -5684,7 +6075,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: BLUE_DYE
@@ -5695,7 +6087,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: GREEN_DYE
@@ -5706,7 +6099,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: MAGENTA_DYE
@@ -5717,7 +6111,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: CYAN_DYE
@@ -5728,7 +6123,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5740,7 +6136,8 @@ trades:
             amount:
                 fixed: 3
     # Toolsmith
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: COAL
@@ -5751,7 +6148,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5762,7 +6160,8 @@ trades:
                 item-type: STONE_AXE
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5773,7 +6172,8 @@ trades:
                 item-type: STONE_SHOVEL
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5784,7 +6184,8 @@ trades:
                 item-type: STONE_PICKAXE
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5795,7 +6196,8 @@ trades:
                 item-type: STONE_HOE
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: IRON_INGOT
@@ -5806,7 +6208,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5817,7 +6220,8 @@ trades:
                 item-type: BELL
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: FLINT
@@ -5828,7 +6232,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5845,7 +6250,8 @@ trades:
                 min: 5
                 max: 19
                 treasure: false
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5862,7 +6268,8 @@ trades:
                 min: 5
                 max: 19
                 treasure: false
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5879,7 +6286,8 @@ trades:
                 min: 5
                 max: 19
                 treasure: false
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5890,7 +6298,8 @@ trades:
                 item-type: DIAMOND_HOE
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: DIAMOND
@@ -5901,7 +6310,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5918,7 +6328,8 @@ trades:
                 min: 5
                 max: 19
                 treasure: false
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5935,7 +6346,8 @@ trades:
                 min: 5
                 max: 19
                 treasure: false
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5952,7 +6364,8 @@ trades:
                 min: 5
                 max: 19
                 treasure: false
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: COAL
@@ -5963,7 +6376,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5974,7 +6388,8 @@ trades:
                 item-type: IRON_AXE
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -5991,7 +6406,8 @@ trades:
                 min: 5
                 max: 19
                 treasure: false
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: IRON_INGOT
@@ -6002,7 +6418,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -6013,7 +6430,8 @@ trades:
                 item-type: BELL
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: FLINT
@@ -6024,7 +6442,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: DIAMOND
@@ -6035,7 +6454,8 @@ trades:
                 item-type: EMERALD
             amount:
                 fixed: 1
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD
@@ -6052,7 +6472,8 @@ trades:
                 min: 5
                 max: 19
                 treasure: false
-    -   limit: -1
+    -   player-limit: -1
+        server-limit: -1
         input1:
             item:
                 item-type: EMERALD

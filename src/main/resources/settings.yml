@@ -1,5 +1,7 @@
-config-version: 2.0.0.0
+version: 3
 locale: en_US
+# When this is true, the bundled configuration files will be saved.
+first-run: true
 # These can and will only be registered when the plugin is first enabled.
 aliases:
     -

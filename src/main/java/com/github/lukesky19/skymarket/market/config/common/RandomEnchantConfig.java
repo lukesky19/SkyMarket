@@ -15,16 +15,22 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-package com.github.lukesky19.skymarket.util;
+package com.github.lukesky19.skymarket.market.config.common;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.Map;
-import java.util.UUID;
+import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
+import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * This class is used as a key in a {@link Map}.
- * @param marketId The market id.
- * @param uuid The player's id.
+ * This record contains the configuration to apply random enchantments to an {@link ItemStack}.
+ * @param enchantRandomly Should the item be enchanted randomly?
+ * @param min The minimum exp level.
+ * @param max The maximum exp level.
+ * @param treasure Should treasure enchantments be included?
  */
-public record MarketIdUUIDKey(@NotNull String marketId, @NotNull UUID uuid) {}
+@ConfigSerializable
+public record RandomEnchantConfig(
+    @Nullable Boolean enchantRandomly,
+    @Nullable Integer min,
+    @Nullable Integer max,
+    @Nullable Boolean treasure) {}

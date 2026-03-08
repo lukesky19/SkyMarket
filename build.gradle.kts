@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "com.github.lukesky19"
-version = "2.1.0.0"
+version = "3.0.0.0"
 
 repositories {
     mavenLocal()
@@ -38,10 +38,25 @@ tasks {
         }
     }
 
+    javadoc {
+        source = sourceSets["main"].allJava
+        classpath = files() + configurations["compileClasspath"]
+
+        (options as StandardJavadocDocletOptions).apply {
+            tags("apiNote:a:API Note:")
+            addStringOption("sourcepath", "")
+        }
+    }
+
     jar {
         manifest {
             attributes["paperweight-mappings-namespace"] = "mojang"
         }
+
         archiveClassifier.set("")
+    }
+
+    build {
+        dependsOn(javadoc)
     }
 }

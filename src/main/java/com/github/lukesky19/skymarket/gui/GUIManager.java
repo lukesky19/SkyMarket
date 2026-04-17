@@ -17,8 +17,8 @@
 */
 package com.github.lukesky19.skymarket.gui;
 
-import com.github.lukesky19.skylib.api.gui.abstracts.AbstractGUIManager;
-import com.github.lukesky19.skylib.api.gui.interfaces.BaseGUI;
+import com.github.lukesky19.skylib.paper.api.gui.abstracts.AbstractGUIManager;
+import com.github.lukesky19.skylib.paper.api.gui.interfaces.BaseGUI;
 import com.github.lukesky19.skymarket.util.MarketIdUUIDKey;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

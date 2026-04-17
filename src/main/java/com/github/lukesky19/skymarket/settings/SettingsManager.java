@@ -17,7 +17,7 @@
 */
 package com.github.lukesky19.skymarket.settings;
 
-import com.github.lukesky19.skylib.api.common.abstracts.config.SimpleConfigManager;
+import com.github.lukesky19.skylib.common.api.configuration.abstracts.SimpleConfigManager;
 import com.github.lukesky19.skymarket.SkyMarket;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
@@ -38,7 +38,7 @@ public class SettingsManager extends SimpleConfigManager<Settings> {
     }
 
     @Override
-    public void saveBundledConfig() {
+    public void saveDefaultConfiguration() {
         plugin.saveResource("settings.yml", false);
     }
 

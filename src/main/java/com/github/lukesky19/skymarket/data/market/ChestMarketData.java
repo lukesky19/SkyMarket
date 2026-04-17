@@ -17,9 +17,9 @@
 */
 package com.github.lukesky19.skymarket.data.market;
 
-import com.github.lukesky19.skylib.api.adventure.AdventureUtil;
-import com.github.lukesky19.skylib.api.gui.GUIType;
-import com.github.lukesky19.skylib.api.time.TimeUtil;
+import com.github.lukesky19.skylib.common.api.adventure.AdventureUtility;
+import com.github.lukesky19.skylib.common.api.time.TimeUtil;
+import com.github.lukesky19.skylib.paper.api.gui.GUIType;
 import com.github.lukesky19.skymarket.SkyMarket;
 import com.github.lukesky19.skymarket.locale.LocaleManager;
 import com.github.lukesky19.skymarket.locale.Locale;
@@ -214,7 +214,7 @@ public class ChestMarketData implements IMarketData {
         List<TagResolver.Single> placeholders = List.of(Placeholder.parsed("market_name", marketName));
         // Tell all online players that the market was refreshed.
         skyMarket.getServer().getOnlinePlayers().forEach(player ->
-                player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.marketRefreshed(), placeholders)));
+                player.sendMessage(AdventureUtility.deserialize(locale.prefix() + locale.marketRefreshed(), placeholders)));
 
         return true;
     }
@@ -222,7 +222,7 @@ public class ChestMarketData implements IMarketData {
     @Override
     public boolean refreshMarketSlot(int pageNum, int slotNum) {
         if(entries.isEmpty()) {
-            logger.warn(AdventureUtil.deserialize("Unable to refresh a market slot for market " + marketId + " due to no more entries available."));
+            logger.warn(AdventureUtility.plain("Unable to refresh a market slot for market " + marketId + " due to no more entries available."));
             this.removeMarketSlot(pageNum, slotNum);
             return false;
         }
@@ -263,22 +263,22 @@ public class ChestMarketData implements IMarketData {
         ChestMarketGUI marketGUI = new ChestMarketGUI(skyMarket, guiManager, player, identifier, localeManager, transactionManager, guiType, guiName, this);
         boolean creationResult = marketGUI.create();
         if(!creationResult) {
-            logger.error(AdventureUtil.deserialize("Unable to create the InventoryView for a market GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
-            player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.guiOpenError()));
+            logger.error(AdventureUtility.plain("Unable to create the InventoryView for a market GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
+            player.sendMessage(AdventureUtility.deserialize(locale.prefix() + locale.guiOpenError()));
             return false;
         }
 
         boolean updateResult = marketGUI.update();
         if(!updateResult) {
-            logger.error(AdventureUtil.deserialize("Unable to decorate a market GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
-            player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.guiOpenError()));
+            logger.error(AdventureUtility.plain("Unable to decorate a market GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
+            player.sendMessage(AdventureUtility.deserialize(locale.prefix() + locale.guiOpenError()));
             return false;
         }
 
         boolean openResult = marketGUI.open();
         if(!openResult) {
-            logger.error(AdventureUtil.deserialize("Unable to open a market GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
-            player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.guiOpenError()));
+            logger.error(AdventureUtility.plain("Unable to open a market GUI of id " + marketId + " for player " + player.getName() + " due to a configuration error."));
+            player.sendMessage(AdventureUtility.deserialize(locale.prefix() + locale.guiOpenError()));
             return false;
         }
 

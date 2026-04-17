@@ -17,11 +17,11 @@
 */
 package com.github.lukesky19.skymarket.market.config.button;
 
-import com.github.lukesky19.skylib.api.itemstack.ItemStackConfig;
-import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
+import com.github.lukesky19.skylib.paper.api.itemstack.ItemStackConfig;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
 
 /**
  * This record contains the configuration for a single button to display in a GUI.

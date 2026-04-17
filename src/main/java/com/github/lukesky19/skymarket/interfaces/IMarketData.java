@@ -17,7 +17,7 @@
 */
 package com.github.lukesky19.skymarket.interfaces;
 
-import com.github.lukesky19.skylib.api.gui.GUIType;
+import com.github.lukesky19.skylib.paper.api.gui.GUIType;
 import org.bukkit.entity.Player;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;

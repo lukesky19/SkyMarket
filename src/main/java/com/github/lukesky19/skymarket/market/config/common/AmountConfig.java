@@ -17,9 +17,9 @@
 */
 package com.github.lukesky19.skymarket.market.config.common;
 
-import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
+import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
 
 /**
  * This record contains the configuration for configuring or calculating an {@link ItemStack}'s amount.

@@ -17,8 +17,8 @@
 */
 package com.github.lukesky19.skymarket.data.slot;
 
-import com.github.lukesky19.skylib.api.itemstack.ItemStackBuilder;
-import com.github.lukesky19.skylib.api.itemstack.ItemStackConfig;
+import com.github.lukesky19.skylib.paper.api.itemstack.ItemStackBuilder;
+import com.github.lukesky19.skylib.paper.api.itemstack.ItemStackConfig;
 import com.github.lukesky19.skymarket.locale.LocaleManager;
 import com.github.lukesky19.skymarket.market.config.chest.ChestConfig;
 import com.github.lukesky19.skymarket.interfaces.IMarketSlot;

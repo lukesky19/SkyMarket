@@ -17,15 +17,11 @@
 */
 package com.github.lukesky19.skymarket.market;
 
-import com.github.lukesky19.skylib.api.adventure.AdventureUtil;
-import com.github.lukesky19.skylib.api.configurate.ConfigurationUtility;
-import com.github.lukesky19.skylib.api.gui.GUIType;
-import com.github.lukesky19.skylib.api.itemstack.ItemStackBuilder;
-import com.github.lukesky19.skylib.api.itemstack.ItemStackConfig;
-import com.github.lukesky19.skylib.libs.configurate.ConfigurateException;
-import com.github.lukesky19.skylib.libs.configurate.ConfigurationNode;
-import com.github.lukesky19.skylib.libs.configurate.serialize.SerializationException;
-import com.github.lukesky19.skylib.libs.configurate.yaml.YamlConfigurationLoader;
+import com.github.lukesky19.skylib.common.api.adventure.AdventureUtility;
+import com.github.lukesky19.skylib.common.platform.PlatformUtils;
+import com.github.lukesky19.skylib.paper.api.gui.GUIType;
+import com.github.lukesky19.skylib.paper.api.itemstack.ItemStackBuilder;
+import com.github.lukesky19.skylib.paper.api.itemstack.ItemStackConfig;
 import com.github.lukesky19.skymarket.SkyMarket;
 import com.github.lukesky19.skymarket.market.config.button.ButtonConfig;
 import com.github.lukesky19.skymarket.market.config.chest.ChestConfigV2;
@@ -42,6 +38,11 @@ import org.bukkit.inventory.ItemType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jspecify.annotations.NonNull;
+import com.github.lukesky19.skylib.libs.configurate.ConfigurateException;
+import com.github.lukesky19.skylib.libs.configurate.ConfigurationNode;
+import com.github.lukesky19.skylib.libs.configurate.serialize.SerializationException;
+import com.github.lukesky19.skylib.libs.configurate.yaml.NodeStyle;
+import com.github.lukesky19.skylib.libs.configurate.yaml.YamlConfigurationLoader;
 
 import java.io.File;
 import java.io.IOException;
@@ -130,7 +131,7 @@ public class MarketConfigManager {
         try(Stream<Path> pathStream = Files.walk(Paths.get(skyMarket.getDataFolder() + File.separator + "markets" + File.separator + "chest"))
                 .filter(Files::isRegularFile)) {
             pathStream.forEach(path -> {
-                YamlConfigurationLoader loader = ConfigurationUtility.getYamlConfigurationLoader(path);
+                YamlConfigurationLoader loader = createLoader(path);
                 try {
                     ConfigurationNode root = loader.load();
 
@@ -148,7 +149,7 @@ public class MarketConfigManager {
                             marketConfig = migrateChestConfig(chestConfigV2);
                         }
                     } else {
-                        logger.warn(AdventureUtil.deserialize("Failed to load configuration for " + path.toFile() + " due to an unsupported version."));
+                        logger.warn(AdventureUtility.plain("Failed to load configuration for " + path.toFile() + " due to an unsupported version."));
                     }
 
                     boolean result = isChestConfigValid(logger, marketId, marketConfig);
@@ -164,23 +165,23 @@ public class MarketConfigManager {
 
                                 chestConfigs.put(marketId, marketConfig);
                             } catch (ConfigurateException e) {
-                                logger.error(AdventureUtil.deserialize("Failed to save configuration for " + path.toFile() + ". " + e.getMessage()));
+                                logger.error(AdventureUtility.plain("Failed to save configuration for " + path.toFile() + ". " + e.getMessage()));
                             }
                         } else {
                             chestConfigs.put(marketId, marketConfig);
                         }
                     }
                 } catch (ConfigurateException e) {
-                    logger.error(AdventureUtil.deserialize("Failed to load configuration for " + path.toFile() + ". " + e.getMessage()));
+                    logger.error(AdventureUtility.plain("Failed to load configuration for " + path.toFile() + ". " + e.getMessage()));
                 }
             });
         } catch (IOException e) {
-            logger.error(AdventureUtil.deserialize("Failed to walk through chest configuration files. " + e.getMessage()));
+            logger.error(AdventureUtility.plain("Failed to walk through chest configuration files. " + e.getMessage()));
         }
 
         try(Stream<Path> pathStream = Files.walk(Paths.get(skyMarket.getDataFolder() + File.separator + "markets" + File.separator + "merchant")).filter(Files::isRegularFile)) {
             pathStream.forEach(path -> {
-                YamlConfigurationLoader loader = ConfigurationUtility.getYamlConfigurationLoader(path);
+                YamlConfigurationLoader loader = createLoader(path);
                 try {
                     ConfigurationNode root = loader.load();
 
@@ -198,7 +199,7 @@ public class MarketConfigManager {
                             marketConfig = migrateMerchantConfig(merchantConfigV2);
                         }
                     } else {
-                        logger.warn(AdventureUtil.deserialize("Failed to load configuration for " + path.toFile() + " due to an unsupported version."));
+                        logger.warn(AdventureUtility.plain("Failed to load configuration for " + path.toFile() + " due to an unsupported version."));
                     }
 
                     boolean result = isMerchantConfigValid(logger, marketId, marketConfig);
@@ -214,18 +215,18 @@ public class MarketConfigManager {
 
                                 merchantConfigs.put(marketId, marketConfig);
                             } catch (ConfigurateException e) {
-                                logger.error(AdventureUtil.deserialize("Failed to save configuration for " + path.toFile() + ". " + e.getMessage()));
+                                logger.error(AdventureUtility.plain("Failed to save configuration for " + path.toFile() + ". " + e.getMessage()));
                             }
                         } else {
                             merchantConfigs.put(marketId, marketConfig);
                         }
                     }
                 } catch (ConfigurateException e) {
-                    logger.error(AdventureUtil.deserialize("Failed to load configuration for " + path.toFile() + ". " + e.getMessage()));
+                    logger.error(AdventureUtility.plain("Failed to load configuration for " + path.toFile() + ". " + e.getMessage()));
                 }
             });
         } catch (IOException e) {
-            logger.error(AdventureUtil.deserialize("Failed to walk through merchant configuration files. " + e.getMessage()));
+            logger.error(AdventureUtility.plain("Failed to walk through merchant configuration files. " + e.getMessage()));
         }
     }
 
@@ -370,12 +371,12 @@ public class MarketConfigManager {
         if(marketConfig == null) return false;
 
         if(marketConfig.refreshTime() == null) {
-            logger.error(AdventureUtil.deserialize("The refresh-time in " + marketId + ".yml is invalid."));
+            logger.error(AdventureUtility.plain("The refresh-time in " + marketId + ".yml is invalid."));
             return false;
         }
 
         if(marketConfig.marketName() == null) {
-            logger.error(AdventureUtil.deserialize("The market-name in " + marketId + ".yml is invalid."));
+            logger.error(AdventureUtility.plain("The market-name in " + marketId + ".yml is invalid."));
             return false;
         }
 
@@ -383,7 +384,7 @@ public class MarketConfigManager {
 
         GUIType guiType = guiData.guiType();
         if(guiType == null) {
-            logger.error(AdventureUtil.deserialize("The gui type in " + marketId + ".yml is invalid."));
+            logger.error(AdventureUtility.plain("The gui type in " + marketId + ".yml is invalid."));
             return false;
         }
 
@@ -393,30 +394,30 @@ public class MarketConfigManager {
             }
 
             default -> {
-                logger.error(AdventureUtil.deserialize("The gui type in " + marketId + ".yml is not supported by the plugin."));
+                logger.error(AdventureUtility.plain("The gui type in " + marketId + ".yml is not supported by the plugin."));
                 return false;
             }
         }
 
         if(guiData.guiName() == null) {
-            logger.error(AdventureUtil.deserialize("The gui name in " + marketId + ".yml is invalid."));
+            logger.error(AdventureUtility.plain("The gui name in " + marketId + ".yml is invalid."));
             return false;
         }
 
         boolean fillerItemResult = isItemStackConfigValid(logger, guiData.filler().item());
         if(!fillerItemResult) {
-            logger.error(AdventureUtil.deserialize("The ItemStack for the filler buttons in market " + marketId + ".yml due to a configuration error with the ItemStackConfig."));
+            logger.error(AdventureUtility.plain("The ItemStack for the filler buttons in market " + marketId + ".yml due to a configuration error with the ItemStackConfig."));
             return false;
         }
 
         boolean exitSlotResult = isSlotValid(guiData.exit().slot(), guiType.getSize());
         if(!exitSlotResult) {
-            logger.error(AdventureUtil.deserialize("The slot for the exit button in " + marketId + ".yml is invalid or outside the bounds of this GUI type."));
+            logger.error(AdventureUtility.plain("The slot for the exit button in " + marketId + ".yml is invalid or outside the bounds of this GUI type."));
             return false;
         }
         boolean exitItemResult = isItemStackConfigValid(logger, guiData.exit().item());
         if(!exitItemResult) {
-            logger.error(AdventureUtil.deserialize("The ItemStack for the exit button in market " + marketId + ".yml due to a configuration error with the ItemStackConfig."));
+            logger.error(AdventureUtility.plain("The ItemStack for the exit button in market " + marketId + ".yml due to a configuration error with the ItemStackConfig."));
             return false;
         }
         
@@ -426,12 +427,12 @@ public class MarketConfigManager {
 
             boolean dummySlotResult = isSlotValid(buttonConfig.slot(), guiType.getSize());
             if(!dummySlotResult) {
-                logger.error(AdventureUtil.deserialize("The slot for the dummy button number " + i + " in " + marketId + ".yml is invalid or outside the bounds of this GUI type."));
+                logger.error(AdventureUtility.plain("The slot for the dummy button number " + i + " in " + marketId + ".yml is invalid or outside the bounds of this GUI type."));
                 return false;
             }
             boolean dummyItemResult = isItemStackConfigValid(logger, buttonConfig.item());
             if(!dummyItemResult) {
-                logger.error(AdventureUtil.deserialize("The ItemStack for the dummy button number " + i + " in market " + marketId + ".yml due to a configuration error with the ItemStackConfig."));
+                logger.error(AdventureUtility.plain("The ItemStack for the dummy button number " + i + " in market " + marketId + ".yml due to a configuration error with the ItemStackConfig."));
                 return false;
             }
         }
@@ -439,7 +440,7 @@ public class MarketConfigManager {
         for(ChestConfig.PlaceholderConfig placeholderConfig : guiData.placeholderSlots()) {
             boolean placeholderSlotResult = isSlotValid(placeholderConfig.slotNum(), guiType.getSize());
             if(!placeholderSlotResult) {
-                logger.error(AdventureUtil.deserialize("The slot " + placeholderConfig.slotNum() + " for a placeholder button in " + marketId + ".yml is invalid or outside the bounds of this GUI type."));
+                logger.error(AdventureUtility.plain("The slot " + placeholderConfig.slotNum() + " for a placeholder button in " + marketId + ".yml is invalid or outside the bounds of this GUI type."));
                 return false;
             }
         }
@@ -449,35 +450,35 @@ public class MarketConfigManager {
             if(marketEntry == null) continue;
 
             if(marketEntry.transactionName() == null) {
-                logger.warn(AdventureUtil.deserialize("The transaction name for entry " + i + " in " + marketId + ".yml is invalid."));
+                logger.warn(AdventureUtility.plain("The transaction name for entry " + i + " in " + marketId + ".yml is invalid."));
                 return false;
             }
 
             for(ItemStackConfig itemStackConfig : marketEntry.prices().buyItems()) {
                 boolean itemResult = isItemStackConfigValid(logger, itemStackConfig);
                 if(!itemResult) {
-                    logger.error(AdventureUtil.deserialize("A buy item under price config for entry " + i + " in " + marketId + ".yml is invalid."));
+                    logger.error(AdventureUtility.plain("A buy item under price config for entry " + i + " in " + marketId + ".yml is invalid."));
                     return false;
                 }
             }
 
             if(marketEntry.displayItem().itemType() == null) {
-                logger.error(AdventureUtil.deserialize("The display item's ItemStack config for entry " + i + " in " + marketId + ".yml is invalid."));
+                logger.error(AdventureUtility.plain("The display item's ItemStack config for entry " + i + " in " + marketId + ".yml is invalid."));
                 return false;
             }
 
             if(!isItemStackConfigValid(logger, marketEntry.displayItem())) {
-                logger.error(AdventureUtil.deserialize("The display item's ItemStack config for entry " + i + " in " + marketId + ".yml is invalid."));
+                logger.error(AdventureUtility.plain("The display item's ItemStack config for entry " + i + " in " + marketId + ".yml is invalid."));
                 return false;
             }
 
             if(!isAmountConfigValid(marketEntry.amount())) {
-                logger.error(AdventureUtil.deserialize("The amount config for entry " + i + " in " + marketId + ".yml is invalid."));
+                logger.error(AdventureUtility.plain("The amount config for entry " + i + " in " + marketId + ".yml is invalid."));
                 return false;
             }
 
             if(!isRandomEnchantConfigValid(marketEntry.randomEnchants())) {
-                logger.error(AdventureUtil.deserialize("The random enchants config for entry " + i + " in " + marketId + ".yml is invalid."));
+                logger.error(AdventureUtility.plain("The random enchants config for entry " + i + " in " + marketId + ".yml is invalid."));
                 return false;
             }
         }
@@ -496,22 +497,22 @@ public class MarketConfigManager {
         if(tradeConfig == null) return false;
 
         if(tradeConfig.refreshTime() == null) {
-            logger.error(AdventureUtil.deserialize("The refresh-time in " + marketId + ".yml is invalid."));
+            logger.error(AdventureUtility.plain("The refresh-time in " + marketId + ".yml is invalid."));
             return false;
         }
 
         if(tradeConfig.marketName() == null) {
-            logger.error(AdventureUtil.deserialize("The market-name in " + marketId + ".yml is invalid."));
+            logger.error(AdventureUtility.plain("The market-name in " + marketId + ".yml is invalid."));
             return false;
         }
 
         if(tradeConfig.guiName() == null) {
-            logger.error(AdventureUtil.deserialize("The gui-name in " + marketId + ".yml is invalid."));
+            logger.error(AdventureUtility.plain("The gui-name in " + marketId + ".yml is invalid."));
             return false;
         }
 
         if(tradeConfig.numOfTrades() <= 0) {
-            logger.warn(AdventureUtil.deserialize("The number of trades in " + marketId + ".yml is invalid. (Must be greater than 0)"));
+            logger.warn(AdventureUtility.plain("The number of trades in " + marketId + ".yml is invalid. (Must be greater than 0)"));
         }
 
         for(int tradeId = 0; tradeId < tradeConfig.trades().size(); tradeId++) {
@@ -523,12 +524,12 @@ public class MarketConfigManager {
             ItemStackConfig outputItemStackConfig = trade.output().item();
 
             if(outputItemStackConfig.itemType() == null && input1ItemStackConfig.itemType() == null && input2ItemStackConfig.itemType() == null) {
-                logger.warn(AdventureUtil.deserialize("The trade at trade id " + tradeId + " has no inputs or outputs"));
+                logger.warn(AdventureUtility.plain("The trade at trade id " + tradeId + " has no inputs or outputs"));
                 continue;
             }
 
             if(outputItemStackConfig.itemType() == null || input1ItemStackConfig.itemType() == null) {
-                logger.warn(AdventureUtil.deserialize("The trade at trade id " + tradeId + " has no output or first input configured."));
+                logger.warn(AdventureUtility.plain("The trade at trade id " + tradeId + " has no output or first input configured."));
                 continue;
             }
 
@@ -536,7 +537,7 @@ public class MarketConfigManager {
                     && isAmountConfigValid(trade.input1().amount())
                     && isRandomEnchantConfigValid(trade.input1().randomEnchants());
             if(!input1Result) {
-                logger.error(AdventureUtil.deserialize("The first input (input1) config is invalid for trade " + tradeId + " in " + marketId + ".yml."));
+                logger.error(AdventureUtility.plain("The first input (input1) config is invalid for trade " + tradeId + " in " + marketId + ".yml."));
                 return false;
             }
 
@@ -545,7 +546,7 @@ public class MarketConfigManager {
                         && isAmountConfigValid(trade.input2().amount())
                         && isRandomEnchantConfigValid(trade.input2().randomEnchants());
                 if(!input2Result) {
-                    logger.warn(AdventureUtil.deserialize("The second input (input2) config is invalid for trade " + tradeId + " in " + marketId + ".yml."));
+                    logger.warn(AdventureUtility.plain("The second input (input2) config is invalid for trade " + tradeId + " in " + marketId + ".yml."));
                     return false;
                 }
             }
@@ -554,7 +555,7 @@ public class MarketConfigManager {
                     && isAmountConfigValid(trade.output().amount())
                     && isRandomEnchantConfigValid(trade.output().randomEnchants());
             if(!outputResult) {
-                logger.error(AdventureUtil.deserialize("The output config is invalid for trade " + tradeId + " in " + marketId + ".yml."));
+                logger.error(AdventureUtility.plain("The output config is invalid for trade " + tradeId + " in " + marketId + ".yml."));
                 return false;
             }
         }
@@ -648,15 +649,32 @@ public class MarketConfigManager {
                     versionNode.set(2);
                     version = 2;
                 } else {
-                    logger.warn(AdventureUtil.deserialize("Failed to convert String-based version to numeric version due to an unrecognized version."));
+                    logger.warn(AdventureUtility.plain("Failed to convert String-based version to numeric version due to an unrecognized version."));
                     version = 0;
                 }
             } catch (SerializationException e) {
-                logger.warn(AdventureUtil.deserialize("Failed to convert String-based version to numeric version"));
+                logger.warn(AdventureUtility.plain("Failed to convert String-based version to numeric version"));
                 version = 0;
             }
         }
 
         return version;
+    }
+
+    /**
+     * Create the {@link YamlConfigurationLoader} for the path provided.
+     * @apiNote {@link PlatformUtils#getSerializers()} are included by default.
+     * @param path The {@link Path}.
+     * @return The {@link YamlConfigurationLoader}.
+     */
+    protected @NonNull YamlConfigurationLoader createLoader(@NonNull Path path) {
+        return YamlConfigurationLoader.builder()
+                .path(path)
+                .nodeStyle(NodeStyle.BLOCK)
+                .indent(4)
+                .defaultOptions(configurationOptions ->
+                        configurationOptions.serializers(builder ->
+                                builder.registerAll(PlatformUtils.getSerializers())))
+                .build();
     }
 }

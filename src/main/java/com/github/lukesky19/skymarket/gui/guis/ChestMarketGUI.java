@@ -17,12 +17,12 @@
 */
 package com.github.lukesky19.skymarket.gui.guis;
 
-import com.github.lukesky19.skylib.api.adventure.AdventureUtil;
-import com.github.lukesky19.skylib.api.gui.GUIType;
-import com.github.lukesky19.skylib.api.gui.GUIButton;
-import com.github.lukesky19.skylib.api.gui.templates.ChestGUI;
-import com.github.lukesky19.skylib.api.itemstack.ItemStackBuilder;
-import com.github.lukesky19.skylib.api.itemstack.ItemStackConfig;
+import com.github.lukesky19.skylib.common.api.adventure.AdventureUtility;
+import com.github.lukesky19.skylib.paper.api.gui.GUIButton;
+import com.github.lukesky19.skylib.paper.api.gui.GUIType;
+import com.github.lukesky19.skylib.paper.api.gui.templates.ChestGUI;
+import com.github.lukesky19.skylib.paper.api.itemstack.ItemStackBuilder;
+import com.github.lukesky19.skylib.paper.api.itemstack.ItemStackConfig;
 import com.github.lukesky19.skymarket.SkyMarket;
 import com.github.lukesky19.skymarket.interfaces.IMarketSlot;
 import com.github.lukesky19.skymarket.locale.LocaleManager;
@@ -106,7 +106,7 @@ public class ChestMarketGUI extends ChestGUI<MarketIdUUIDKey> {
     public boolean update() {
         // If the InventoryView was not created, log a warning and return false.
         if(inventoryView == null) {
-            logger.warn(AdventureUtil.deserialize("Unable to add buttons to the GUI as the InventoryView was not created."));
+            logger.warn(AdventureUtility.plain("Unable to add buttons to the GUI as the InventoryView was not created."));
             return false;
         }
 
@@ -242,7 +242,7 @@ public class ChestMarketGUI extends ChestGUI<MarketIdUUIDKey> {
     private void createPreviousPageButton() {
         // Check if the slot is not configured and send a warning.
         if(guiData.prevPage().slot() == null) {
-            logger.warn(AdventureUtil.deserialize("Unable to add a previous page button due to a slot not being configured."));
+            logger.warn(AdventureUtility.plain("Unable to add a previous page button due to a slot not being configured."));
             return;
         }
 
@@ -274,7 +274,7 @@ public class ChestMarketGUI extends ChestGUI<MarketIdUUIDKey> {
     private void createNextPageButton() {
         // Check if the slot is not configured and send a warning.
         if(guiData.nextPage().slot() == null) {
-            logger.warn(AdventureUtil.deserialize("Unable to add a next page button due to a slot not being configured."));
+            logger.warn(AdventureUtility.plain("Unable to add a next page button due to a slot not being configured."));
             return;
         }
 
@@ -306,7 +306,7 @@ public class ChestMarketGUI extends ChestGUI<MarketIdUUIDKey> {
     private void createExitButton() {
         // Check if the slot is not configured and send a warning.
         if(guiData.exit().slot() == null) {
-            logger.warn(AdventureUtil.deserialize("Unable to add a exit button due to a slot not being configured."));
+            logger.warn(AdventureUtility.plain("Unable to add a exit button due to a slot not being configured."));
             return;
         }
 
@@ -334,7 +334,7 @@ public class ChestMarketGUI extends ChestGUI<MarketIdUUIDKey> {
     private void createTimeButton() {
         // Check if the slot is not configured and send a warning.
         if(guiData.time().slot() == null) {
-            logger.warn(AdventureUtil.deserialize("Unable to add a time button due to a slot not being configured."));
+            logger.warn(AdventureUtility.plain("Unable to add a time button due to a slot not being configured."));
             return;
         }
 
@@ -368,7 +368,7 @@ public class ChestMarketGUI extends ChestGUI<MarketIdUUIDKey> {
     private void createDummyButtons() {
         guiData.dummyButtons().forEach(buttonConfig -> {
             if(buttonConfig.slot() == null) {
-                logger.warn(AdventureUtil.deserialize("Unable to add a dummy button to the unlocks shop GUI due to an invalid slot."));
+                logger.warn(AdventureUtility.plain("Unable to add a dummy button to the unlocks shop GUI due to an invalid slot."));
                 return;
             }
 

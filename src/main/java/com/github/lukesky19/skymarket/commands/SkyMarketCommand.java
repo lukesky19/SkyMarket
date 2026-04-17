@@ -17,8 +17,8 @@
 */
 package com.github.lukesky19.skymarket.commands;
 
-import com.github.lukesky19.skylib.api.adventure.AdventureUtil;
-import com.github.lukesky19.skylib.api.time.Time;
+import com.github.lukesky19.skylib.common.api.adventure.AdventureUtility;
+import com.github.lukesky19.skylib.common.api.time.Time;
 import com.github.lukesky19.skymarket.SkyMarket;
 import com.github.lukesky19.skymarket.locale.LocaleManager;
 import com.github.lukesky19.skymarket.locale.Locale;
@@ -95,7 +95,7 @@ public class SkyMarketCommand {
 
                 Locale locale = localeManager.getLocale();
 
-                ctx.getSource().getSender().sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.configReload()));
+                ctx.getSource().getSender().sendMessage(AdventureUtility.deserialize(locale.prefix() + locale.configReload()));
 
                 return 1;
             })
@@ -120,7 +120,7 @@ public class SkyMarketCommand {
                     if(marketManager.refreshMarket(id)) {
                         return 1;
                     } else {
-                        sender.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.invalidMarketId()));
+                        sender.sendMessage(AdventureUtility.deserialize(locale.prefix() + locale.invalidMarketId()));
                         return 0;
                     }
                 })
@@ -213,11 +213,11 @@ public class SkyMarketCommand {
 
                         List<TagResolver.Single> placeholders = List.of(Placeholder.parsed("time", stringBuilder.toString()), Placeholder.parsed("market_name", id));
 
-                        sender.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.marketRefreshTime(), placeholders));
+                        sender.sendMessage(AdventureUtility.deserialize(locale.prefix() + locale.marketRefreshTime(), placeholders));
 
                         return 1;
                     } else {
-                        sender.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.invalidMarketId()));
+                        sender.sendMessage(AdventureUtility.deserialize(locale.prefix() + locale.invalidMarketId()));
                         return 0;
                     }
                 })

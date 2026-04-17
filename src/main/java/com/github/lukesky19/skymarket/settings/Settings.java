@@ -17,10 +17,10 @@
 */
 package com.github.lukesky19.skymarket.settings;
 
-import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
 import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.Nullable;
+import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 /**

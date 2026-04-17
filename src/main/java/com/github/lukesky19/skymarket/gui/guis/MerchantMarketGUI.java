@@ -17,7 +17,7 @@
 */
 package com.github.lukesky19.skymarket.gui.guis;
 
-import com.github.lukesky19.skylib.api.gui.templates.MerchantGUI;
+import com.github.lukesky19.skylib.paper.api.gui.templates.MerchantGUI;
 import com.github.lukesky19.skymarket.SkyMarket;
 import com.github.lukesky19.skymarket.data.market.MerchantMarketData;
 import com.github.lukesky19.skymarket.data.slot.MerchantMarketSlot;

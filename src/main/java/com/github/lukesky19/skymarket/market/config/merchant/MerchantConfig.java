@@ -17,8 +17,7 @@
 */
 package com.github.lukesky19.skymarket.market.config.merchant;
 
-import com.github.lukesky19.skylib.api.itemstack.ItemStackConfig;
-import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
+import com.github.lukesky19.skylib.paper.api.itemstack.ItemStackConfig;
 import com.github.lukesky19.skymarket.market.config.common.AmountConfig;
 import com.github.lukesky19.skymarket.market.config.common.RandomEnchantConfig;
 import com.github.lukesky19.skymarket.gui.guis.MerchantMarketGUI;
@@ -26,6 +25,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MerchantRecipe;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
 
 import java.util.List;
 

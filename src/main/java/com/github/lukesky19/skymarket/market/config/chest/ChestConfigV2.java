@@ -17,14 +17,14 @@
 */
 package com.github.lukesky19.skymarket.market.config.chest;
 
-import com.github.lukesky19.skylib.api.gui.GUIType;
-import com.github.lukesky19.skylib.api.itemstack.ItemStackConfig;
-import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
+import com.github.lukesky19.skylib.paper.api.gui.GUIType;
+import com.github.lukesky19.skylib.paper.api.itemstack.ItemStackConfig;
 import com.github.lukesky19.skymarket.market.config.button.ButtonConfig;
 import com.github.lukesky19.skymarket.market.config.common.AmountConfig;
 import com.github.lukesky19.skymarket.market.config.common.RandomEnchantConfig;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import com.github.lukesky19.skylib.libs.configurate.objectmapping.ConfigSerializable;
 
 import java.util.List;
 

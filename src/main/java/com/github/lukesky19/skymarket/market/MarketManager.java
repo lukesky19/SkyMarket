@@ -17,9 +17,9 @@
 */
 package com.github.lukesky19.skymarket.market;
 
-import com.github.lukesky19.skylib.api.adventure.AdventureUtil;
-import com.github.lukesky19.skylib.api.time.Time;
-import com.github.lukesky19.skylib.api.time.TimeUtil;
+import com.github.lukesky19.skylib.common.api.adventure.AdventureUtility;
+import com.github.lukesky19.skylib.common.api.time.Time;
+import com.github.lukesky19.skylib.common.api.time.TimeUtil;
 import com.github.lukesky19.skymarket.SkyMarket;
 import com.github.lukesky19.skymarket.locale.LocaleManager;
 import com.github.lukesky19.skymarket.locale.Locale;
@@ -175,7 +175,7 @@ public class MarketManager {
 
         IMarketData marketData = marketDataManager.getMarketData(marketId);
         if(marketData == null) {
-            player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.invalidMarketId()));
+            player.sendMessage(AdventureUtility.deserialize(locale.prefix() + locale.invalidMarketId()));
             return false;
         }
 

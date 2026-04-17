@@ -2,7 +2,6 @@ name: SkyMarket
 version: '${version}'
 main: com.github.lukesky19.skymarket.SkyMarket
 api-version: '1.21'
-load: STARTUP
 author: lukeskywlker19
 description: A rotating shop plugin
 depend: [SkyLib, Vault]

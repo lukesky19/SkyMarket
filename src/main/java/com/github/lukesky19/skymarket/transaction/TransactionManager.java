@@ -17,10 +17,11 @@
 */
 package com.github.lukesky19.skymarket.transaction;
 
-import com.github.lukesky19.skylib.api.adventure.AdventureUtil;
-import com.github.lukesky19.skylib.api.format.FormatUtil;
-import com.github.lukesky19.skylib.api.placeholderapi.PlaceholderAPIUtil;
-import com.github.lukesky19.skylib.api.player.PlayerUtil;
+import com.github.lukesky19.skylib.common.api.adventure.AdventureUtility;
+import com.github.lukesky19.skylib.paper.api.adventure.PaperAdventureUtility;
+import com.github.lukesky19.skylib.paper.api.format.FormatUtil;
+import com.github.lukesky19.skylib.paper.api.placeholderapi.PlaceholderAPIUtil;
+import com.github.lukesky19.skylib.paper.api.player.PlayerUtil;
 import com.github.lukesky19.skymarket.SkyMarket;
 import com.github.lukesky19.skymarket.integration.HookManager;
 import com.github.lukesky19.skymarket.integration.hooks.EconomyHook;
@@ -90,21 +91,21 @@ public class TransactionManager {
 
         // Check if the item can be purchased according to the buy price or the items to trade.
         if(marketSlot.getBuyPrice() <= 0 && marketSlot.getBuyItems().isEmpty()) {
-            player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.unbuyable()));
+            player.sendMessage(AdventureUtility.deserialize(locale.prefix() + locale.unbuyable()));
             return;
         }
 
         // Check limits
         if(marketSlot.getServerPurchaseLimit() > 0) {
             if(marketSlot.getServerPurchaseCount() >= marketSlot.getServerPurchaseLimit()) {
-                player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.buyLimitReached()));
+                player.sendMessage(AdventureUtility.deserialize(locale.prefix() + locale.buyLimitReached()));
                 return;
             }
         }
 
         if(marketSlot.getPlayerPurchaseLimit() > 0) {
             if(marketSlot.getPlayerPurchasedCount(playerId) >= marketSlot.getPlayerPurchaseLimit()) {
-                player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.buyLimitReached()));
+                player.sendMessage(AdventureUtility.deserialize(locale.prefix() + locale.buyLimitReached()));
                 return;
             }
         }
@@ -120,7 +121,7 @@ public class TransactionManager {
             }
 
             if(!containsItems) {
-                player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.insufficientItems()));
+                player.sendMessage(AdventureUtility.deserialize(locale.prefix() + locale.insufficientItems()));
                 return;
             }
         }
@@ -128,7 +129,7 @@ public class TransactionManager {
         // Check if the player's balance has enough money for the price
         if(marketSlot.getBuyPrice() > 0) {
             if(economyHook.getBalance(player) < marketSlot.getBuyPrice()) {
-                player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.insufficientFunds()));
+                player.sendMessage(PaperAdventureUtility.deserialize(player, locale.prefix() + locale.insufficientFunds()));
                 return;
             }
         }
@@ -193,7 +194,7 @@ public class TransactionManager {
         }
 
         // Send the success message
-        player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.buySuccess(), successPlaceholders));
+        player.sendMessage(PaperAdventureUtility.deserialize(player, locale.prefix() + locale.buySuccess(), successPlaceholders));
 
         // Increment the limits if a limit is configured
         if(marketSlot.getServerPurchaseLimit() > 0
@@ -218,28 +219,28 @@ public class TransactionManager {
 
         // Check if the item can be sold according to the sell price
         if(marketSlot.getSellPrice() <= 0) {
-            player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.unsellable()));
+            player.sendMessage(AdventureUtility.deserialize(locale.prefix() + locale.unsellable()));
             return;
         }
 
         // Check limits
         if(marketSlot.getServerSellLimit() > 0) {
             if(marketSlot.getServerSoldCount() >= marketSlot.getServerSellLimit()) {
-                player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.sellLimitReached()));
+                player.sendMessage(AdventureUtility.deserialize(locale.prefix() + locale.sellLimitReached()));
                 return;
             }
         }
 
         if(marketSlot.getPlayerSellLimit() > 0) {
             if(marketSlot.getPlayerSoldCount(playerId) >= marketSlot.getPlayerSellLimit()) {
-                player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.sellLimitReached()));
+                player.sendMessage(AdventureUtility.deserialize(locale.prefix() + locale.sellLimitReached()));
                 return;
             }
         }
 
         if(marketSlot.getServerSoldCount() >= marketSlot.getServerSellLimit()
                 || marketSlot.getPlayerSoldCount(playerId) >= marketSlot.getPlayerSellLimit()) {
-            player.sendMessage(AdventureUtil.deserialize(locale.prefix() + locale.buyLimitReached()));
+            player.sendMessage(AdventureUtility.deserialize(locale.prefix() + locale.buyLimitReached()));
             return;
         }
 
@@ -248,7 +249,7 @@ public class TransactionManager {
             ItemStack transactionItem = optionalItemStack.get();
             // Check if the player has enough items
             if(!player.getInventory().containsAtLeast(transactionItem, transactionItem.getAmount())) {
-                player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.notEnoughItems()));
+                player.sendMessage(PaperAdventureUtility.deserialize(player, locale.prefix() + locale.notEnoughItems()));
                 return;
             }
 
@@ -288,7 +289,7 @@ public class TransactionManager {
         successPlaceholders.add(Placeholder.parsed("bal", bal));
 
         // Send the success message
-        player.sendMessage(AdventureUtil.deserialize(player, locale.prefix() + locale.sellSuccess(), successPlaceholders));
+        player.sendMessage(PaperAdventureUtility.deserialize(player, locale.prefix() + locale.sellSuccess(), successPlaceholders));
 
         // Increment the limits if a limit is configured
         if(marketSlot.getServerSellLimit() > 0

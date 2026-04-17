@@ -17,7 +17,7 @@
 */
 package com.github.lukesky19.skymarket.integration;
 
-import com.github.lukesky19.skylib.api.integration.Hook;
+import com.github.lukesky19.skylib.common.api.integration.Hook;
 import com.github.lukesky19.skymarket.SkyMarket;
 import com.github.lukesky19.skymarket.integration.hooks.EconomyHook;
 import org.jetbrains.annotations.NotNull;

@@ -84,7 +84,7 @@ public class MerchantMarketSlot implements IMarketSlot {
      * @return A {@link MerchantRecipe}.
      */
     public @NonNull MerchantRecipe createMerchantRecipe(@NonNull UUID playerId) {
-        MerchantRecipe recipe = new MerchantRecipe(output, 999999999);
+        MerchantRecipe recipe = new MerchantRecipe(output, Integer.MAX_VALUE);
 
         // Add the first ingredient
         recipe.addIngredient(input1);
@@ -98,16 +98,15 @@ public class MerchantMarketSlot implements IMarketSlot {
         // Set the recipe's uses and max uses if a limit is configured
         if(serverLimit > 0 || playerLimit > 0) {
             int playerAmount = playerCounts.getOrDefault(playerId, 0);
-            if(serverCount >= serverLimit) {
-                recipe.setUses(serverCount);
-                recipe.setMaxUses(serverLimit);
-            } else if(playerAmount >= playerLimit) {
-                recipe.setUses(playerAmount);
-                recipe.setMaxUses(playerLimit);
-            } else {
-                recipe.setMaxUses(Math.min(playerLimit, serverLimit));
-                recipe.setUses(Math.min(playerAmount, serverCount));
-            }
+
+            int effectiveServerLimit = serverLimit > 0 ? serverLimit : Integer.MAX_VALUE;
+            int effectivePlayerLimit = playerLimit > 0 ? playerLimit : Integer.MAX_VALUE;
+
+            int maxUses = Math.min(effectiveServerLimit, effectivePlayerLimit);
+            int uses = Math.min(playerAmount, serverCount);
+
+            recipe.setMaxUses(maxUses);
+            recipe.setUses(uses);
         }
 
         return recipe;

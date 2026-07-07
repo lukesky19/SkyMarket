@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "com.github.lukesky19"
-version = "3.1.0.1"
+version = "3.1.1.0"
 
 repositories {
     mavenLocal()
@@ -20,10 +20,10 @@ repositories {
 
 dependencies {
     // Paper
-    compileOnly("io.papermc.paper:paper-api:26.1.2.build.+")
+    compileOnly("io.papermc.paper:paper-api:26.2.build.+")
 
     // SkyLib
-    compileOnly("com.github.lukesky19:SkyLib:2.0.0.0")
+    compileOnly("com.github.lukesky19:SkyLib:2.0.2.0")
 
     // Integration
     compileOnly("com.github.MilkBowl:VaultAPI:1.7.1")
